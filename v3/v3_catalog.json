@@ -37,6 +37,9 @@
       "name": "Product Custom Fields"
     },
     {
+      "name": "Product Images"
+    },
+    {
       "name": "Product Modifiers"
     },
     {
@@ -53,43 +56,6 @@
     },
     {
       "name": "Product Videos"
-    },
-    {
-      "name": "Product Images"
-    },
-    {
-      "name": "Customers",
-      "description": "BigCommerce Customers API Definition."
-    },
-    {
-      "name": "Orders",
-      "description": "BigCommerce Orders API Definition."
-    },
-    {
-      "name": "Price Lists",
-      "description": "BigCommerce Price Lists API Definition."
-    },
-    {
-      "name": "Scripts"
-    },
-    {
-      "name": "Themes",
-      "description": "BigCommerce Themes API Definition."
-    },
-    {
-      "name": "Legacy"
-    },
-    {
-      "name": "Widget Template",
-      "description": "BigCommerce Widget Templates API Definition."
-    },
-    {
-      "name": "Widget",
-      "description": "BigCommerce Widgets API Definition."
-    },
-    {
-      "name": "Placement",
-      "description": "BigCommerce Placements API Definition."
     }
   ],
   "schemes": [
@@ -11709,73 +11675,11 @@
     }
   },
   "parameters": {
-    "TemplateUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific template.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "FilterWidgetTemplateUUIDParam": {
-      "in": "query",
-      "name": "widget_template_uuid",
-      "description": "The identifier for a specific widget template.",
-      "type": "string",
-      "format": "uuid",
-      "required": false
-    },
-    "FilterWidgetTemplateKindParam": {
-      "in": "query",
-      "name": "widget_template_kind",
-      "description": "The kind of widget template.",
-      "type": "string",
-      "required": false
-    },
     "FilterTemplateFileParam": {
       "in": "query",
       "name": "template_file",
       "description": "The template file, for example: `pages/home`.",
       "type": "string",
-      "required": false
-    },
-    "RequiredTemplateFile": {
-      "in": "query",
-      "name": "templateFile",
-      "description": "The template file, for example: `pages/home`.",
-      "type": "string",
-      "required": true
-    },
-    "PlacementUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific placement.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "WidgetUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific widget.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "ScriptUUID": {
-      "name": "uuid",
-      "description": "The identifier for a specific script.",
-      "required": true,
-      "in": "path",
-      "type": "string",
-      "format": "uuid"
-    },
-    "FilterWidgetUUIDParam": {
-      "name": "widget_uuid",
-      "description": "The identifier for a specific widget.",
-      "in": "query",
-      "type": "string",
-      "format": "uuid",
       "required": false
     },
     "FilterIdParam": {
@@ -11802,20 +11706,6 @@
     "FilterEmailParam": {
       "name": "email",
       "description": "Filter items by email.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterFirstNameParam": {
-      "name": "first_name",
-      "description": "Filter items by first_name.\n",
-      "required": false,
-      "in": "query",
-      "type": "string"
-    },
-    "FilterLastNameParam": {
-      "name": "last_name",
-      "description": "Filter items by last_name.\n",
       "required": false,
       "in": "query",
       "type": "string"
@@ -12043,17 +11933,6 @@
         "primary_image"
       ]
     },
-    "FilterIncludePriceRecordParam": {
-      "name": "include",
-      "description": "Sub-resources to include on a price record, in a comma-separated list. Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other valies will be ignored.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "bulk_pricing_tiers",
-        "sku"
-      ]
-    },
     "FilterIncludeFieldsParam": {
       "name": "include_fields",
       "description": "Fields to include, in a comma-separated list. The ID and the specified fields will be returned.",
@@ -12136,19 +12015,6 @@
       "required": false,
       "in": "query",
       "type": "integer"
-    },
-    "ScriptsSortKeyParam": {
-      "name": "sort",
-      "description": "Scripts field name to sort by.\n",
-      "required": false,
-      "in": "query",
-      "type": "string",
-      "enum": [
-        "name",
-        "description",
-        "date_created",
-        "date_modified"
-      ]
     },
     "DirectionParam": {
       "name": "direction",
@@ -12256,13 +12122,6 @@
       "in": "path",
       "type": "integer"
     },
-    "SubscriberIdParam": {
-      "name": "subscriber_id",
-      "in": "path",
-      "description": "The ID of the `Subscriber` requested.\n",
-      "required": true,
-      "type": "integer"
-    },
     "VariantIdParam": {
       "name": "variant_id",
       "in": "path",
@@ -12318,41 +12177,6 @@
       "description": "The ID of the `Order` to which the transactions belong.\n",
       "required": true,
       "type": "integer"
-    },
-    "JobIdParam": {
-      "name": "job_id",
-      "description": "The job identifier.",
-      "in": "path",
-      "type": "string",
-      "required": true
-    },
-    "ThemeIdParam": {
-      "name": "theme_id",
-      "description": "The theme identifier.",
-      "in": "path",
-      "type": "string",
-      "required": true
-    },
-    "PriceListIdParam": {
-      "type": "integer",
-      "name": "price_list_id",
-      "in": "path",
-      "description": "The ID of the `Price List` requested.\n",
-      "required": true
-    },
-    "PriceRecordCurrencyParam": {
-      "name": "currency_code",
-      "type": "string",
-      "in": "path",
-      "description": "The currency code associated with the price record being acted upon.\n",
-      "required": true,
-      "format": "ISO-4217"
-    },
-    "QueryWidgetsParam": {
-      "type": "string",
-      "name": "query",
-      "in": "query",
-      "description": "The query string associated with a widget's name and description.\n"
     },
     "Accept": {
       "in": "header",
