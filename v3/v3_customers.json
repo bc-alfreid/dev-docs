@@ -29,7 +29,7 @@
   "paths": {
     "/customers/subscribers": {
       "get": {
-        "description": "Returns a paginated Subscribers collection.\n",
+        "description": "Get all subscribers from your store. Optional parameters may be passed in.",
         "operationId": "getSubscribers",
         "parameters": [
           {
@@ -58,39 +58,120 @@
           },
           {
             "$ref": "#/parameters/LimitParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
           "200": {
-            "description": "An array of subscriber objects and metadata.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/SubscriberCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 1,
+                    "email": "janedoe@email.com",
+                    "first_name": "jane",
+                    "last_name": "",
+                    "source": "storefront",
+                    "order_id": null,
+                    "date_created": "2018-09-14T19:45:59+00:00",
+                    "date_modified": "2018-09-14T19:45:59+00:00"
+                  },
+                  {
+                    "id": 2,
+                    "email": "johndoe@email.com",
+                    "first_name": "jane",
+                    "last_name": "",
+                    "source": "storefront",
+                    "order_id": null,
+                    "date_created": "2018-09-14T19:46:07+00:00",
+                    "date_modified": "2018-09-14T19:46:07+00:00"
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 2,
+                    "count": 2,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "links": {
+                      "current": "?page=1&limit=50"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "tags": [
           "Subscribers"
+        ],
+        "summary": "Get All Subscribers",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
         ]
       },
       "post": {
-        "description": "Creates a `Subscriber` object.\n",
+        "description": "Create a subscriber.",
         "operationId": "createSubscriber",
         "parameters": [
           {
             "name": "subscriber",
             "in": "body",
             "required": true,
-            "description": "`Subscriber` object.\n",
             "schema": {
               "$ref": "#/definitions/SubscriberPost"
+            },
+            "x-examples": {
+              "application/json": {
+                "email": "janedoe2@email.com",
+                "first_name": "Jane",
+                "last_name": "Doe",
+                "source": "mailchimp"
+              }
             }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
           "200": {
-            "description": "A `Subscriber` object.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/SubscriberResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": 3,
+                  "email": "janedoe2@email.com",
+                  "first_name": "Jane",
+                  "last_name": "Doe",
+                  "source": "mailchimp",
+                  "order_id": null,
+                  "date_created": "2018-09-14T19:49:45+00:00",
+                  "date_modified": "2018-09-14T19:49:45+00:00"
+                },
+                "meta": {}
+              }
             }
           },
           "409": {
@@ -108,10 +189,19 @@
         },
         "tags": [
           "Subscribers"
+        ],
+        "summary": "Create a Subscriber",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
         ]
       },
       "delete": {
-        "description": "Deletes a Subscriber or Subscribers from BigCommerce Customers.\n",
+        "description": "Delete a subscriber(s). Filter parameters are recommened to only target certain subscribers.",
         "operationId": "deleteSubscribers",
         "parameters": [
           {
@@ -134,15 +224,30 @@
           },
           {
             "$ref": "#/parameters/FilterDateModifiedParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
           "204": {
-            "description": "An empty response.\n"
+            "description": ""
           }
         },
         "tags": [
           "Subscribers"
+        ],
+        "summary": "Delete All Subscribers",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
         ]
       }
     },
@@ -153,13 +258,28 @@
         }
       ],
       "get": {
-        "description": "Gets `Subscriber` object.",
+        "description": "Get a subscriber using the `subscriber_id`.",
         "operationId": "getSubscriberById",
         "responses": {
           "200": {
-            "description": "A `Subscriber` object.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/SubscriberResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": 2,
+                  "email": "johndoe@email.com",
+                  "first_name": "jane",
+                  "last_name": "",
+                  "source": "storefront",
+                  "order_id": null,
+                  "date_created": "2018-09-14T19:46:07+00:00",
+                  "date_modified": "2018-09-14T19:46:07+00:00"
+                },
+                "meta": {}
+              }
             }
           },
           "404": {
@@ -171,27 +291,68 @@
         },
         "tags": [
           "Subscribers"
+        ],
+        "summary": "Get a Subscriber by Id",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
         ]
       },
       "put": {
-        "description": "Updates a `Subscriber` object.\n",
         "operationId": "updateSubscriber",
         "parameters": [
           {
             "name": "subscriber",
             "in": "body",
             "required": true,
-            "description": "Returns a `Subscriber` object.\n",
             "schema": {
               "$ref": "#/definitions/SubscriberPut"
+            },
+            "x-examples": {
+              "application/json": {
+                "email": "janed@email.com"
+              }
             }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
           "200": {
-            "description": "A `Subscriber` object.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/SubscriberResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": 2,
+                  "email": "jane2@email.com",
+                  "first_name": "jane",
+                  "last_name": "",
+                  "source": "storefront",
+                  "order_id": null,
+                  "date_created": "2018-09-14T19:46:07+00:00",
+                  "date_modified": "2018-09-14T19:46:07+00:00"
+                },
+                "meta": {}
+              }
             }
           },
           "404": {
@@ -215,18 +376,45 @@
         },
         "tags": [
           "Subscribers"
+        ],
+        "summary": "Update a Subscriber",
+        "description": "Updates a subscriber using the `subscriber_id`.",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
         ]
       },
       "delete": {
-        "description": "Deletes a `Subscriber` object.\n",
+        "description": "Delete a subscriber using the `subscriber_id`.",
         "operationId": "deleteSubscriberById",
         "responses": {
           "204": {
-            "description": "An empty response.\n"
+            "description": ""
           }
         },
         "tags": [
           "Subscribers"
+        ],
+        "summary": "Delete Subscriber by Id",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          }
         ]
       }
     }
@@ -355,10 +543,10 @@
         "meta": {
           "$ref": "#/definitions/CollectionMeta"
         }
-      }
+      },
+      "title": "Subscriber Collection Response"
     },
     "SubscriberResponse": {
-      "description": "Response payload for the BigCommerce API.\n",
       "type": "object",
       "properties": {
         "data": {
@@ -367,7 +555,8 @@
         "meta": {
           "$ref": "#/definitions/Meta"
         }
-      }
+      },
+      "title": "Subscriber Response"
     },
     "SubscriberBase": {
       "type": "object",
@@ -412,7 +601,8 @@
           "minimum": 1,
           "maximum": 2147483647
         }
-      }
+      },
+      "title": "Subscriber Base"
     },
     "Subscriber": {
       "type": "object",
@@ -444,7 +634,8 @@
         {
           "$ref": "#/definitions/SubscriberBase"
         }
-      ]
+      ],
+      "title": "Subscriber Post"
     },
     "SubscriberPut": {
       "type": "object",
@@ -453,7 +644,8 @@
         {
           "$ref": "#/definitions/SubscriberBase"
         }
-      ]
+      ],
+      "title": "Subscriber Put"
     },
     "CollectionMeta": {
       "type": "object",
@@ -608,5 +800,6 @@
     {
       "X-Auth-Token": []
     }
-  ]
+  ],
+  "responses": {}
 }
