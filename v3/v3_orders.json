@@ -37,13 +37,103 @@
         "tags": [
           "Orders"
         ],
-        "description": "Returns a collection of `Transaction` objects related to a BigCommerce Order.\n",
+        "description": "Get transaction related to an order using the `order_id`.\n\n* Depending on the payment method used, different details will be available. Not all credit card payment gateways will return full card details or all CVV/fraud response details.\n* Test Payment Gateway does not return any information.",
         "operationId": "getTransactions",
         "responses": {
           "200": {
-            "description": "An array of transactions.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/TransactionCollectionResponse"
+            },
+            "examples": {
+              "Square Payment Gateway": {
+                "data": [
+                  {
+                    "id": 85926313,
+                    "order_id": "121",
+                    "event": "purchase",
+                    "method": "nonce",
+                    "amount": 1,
+                    "currency": "USD",
+                    "gateway": "squarev2",
+                    "gateway_transaction_id": "pN5Kd7R9ilEI2ygBawCy7tMF|qwnAFAxRZ7tYRtIpZULg1yMF",
+                    "status": "ok",
+                    "test": false,
+                    "fraud_review": false,
+                    "reference_transaction_id": null,
+                    "date_created": "2018-05-08T15:06:12+00:00",
+                    "avs_result": {
+                      "code": "",
+                      "message": "",
+                      "street_match": "",
+                      "postal_match": ""
+                    },
+                    "cvv_result": {
+                      "code": "",
+                      "message": ""
+                    },
+                    "credit_card": null,
+                    "gift_certificate": null,
+                    "store_credit": null,
+                    "offline": null,
+                    "custom": null,
+                    "payment_instrument_token": null
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 1,
+                    "count": 1,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "links": {
+                      "current": "?page=1&limit=50"
+                    }
+                  }
+                }
+              },
+              "Pay In Store": {
+                "data": [
+                  {
+                    "id": 100287014,
+                    "order_id": "176",
+                    "event": "pending",
+                    "method": "offline",
+                    "amount": 25,
+                    "currency": "USD",
+                    "gateway": "instore",
+                    "gateway_transaction_id": null,
+                    "status": "ok",
+                    "test": false,
+                    "fraud_review": false,
+                    "reference_transaction_id": null,
+                    "date_created": "2018-09-05T14:02:10+00:00",
+                    "avs_result": null,
+                    "cvv_result": null,
+                    "credit_card": null,
+                    "gift_certificate": null,
+                    "store_credit": null,
+                    "offline": {
+                      "display_name": "Pay in Store"
+                    },
+                    "custom": null,
+                    "payment_instrument_token": null
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 1,
+                    "count": 1,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "links": {
+                      "current": "?page=1&limit=50"
+                    }
+                  }
+                }
+              }
             }
           },
           "204": {
@@ -58,7 +148,21 @@
               "$ref": "#/definitions/NotFound"
             }
           }
-        }
+        },
+        "summary": "Get Transactions",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/OrderIdParam"
+          }
+        ]
       }
     }
   },
@@ -159,8 +263,12 @@
     },
     "Meta": {
       "type": "object",
-      "description": "Empty meta object; may be used later.",
-      "title": "Meta"
+      "title": "Meta",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/Pagination"
+        }
+      }
     },
     "ErrorResponse": {
       "allOf": [
@@ -325,7 +433,8 @@
         "custom": {
           "$ref": "#/definitions/Custom"
         }
-      }
+      },
+      "title": "Transaction Post"
     },
     "NotFound": {
       "description": "Error payload for the BigCommerce API.",
@@ -359,7 +468,8 @@
           "type": "object",
           "description": "May be used in the future"
         }
-      }
+      },
+      "title": "Transaction Response"
     },
     "TransactionCollectionResponse": {
       "type": "object",
@@ -374,7 +484,8 @@
         "meta": {
           "$ref": "#/definitions/CollectionMeta"
         }
-      }
+      },
+      "title": "Transaction Collection Response"
     },
     "Transaction": {
       "type": "object",
@@ -471,7 +582,7 @@
           "type": "string"
         }
       },
-      "title": "Offline - Transaction Post Remove"
+      "title": "Offline"
     },
     "GiftCertificate": {
       "type": "object",
