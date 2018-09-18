@@ -1781,5 +1781,13 @@
       "name": "X-Auth-Token",
       "in": "header"
     }
-  }
+  },
+  "security": [
+    {
+      "X-Auth-Client": []
+    },
+    {
+      "X-Auth-Token": []
+    }
+  ]
 }
