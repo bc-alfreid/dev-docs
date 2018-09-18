@@ -161,6 +161,12 @@
         "parameters": [
           {
             "$ref": "#/parameters/OrderIdParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ]
       }
