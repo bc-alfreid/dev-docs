@@ -2269,8 +2269,7 @@
                                 "title": "Multiple Categories"
                               }
                             }
-                          ],
-                          "children": []
+                          ]
                         }
                       },
                       {
@@ -6200,7 +6199,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "BigCommerce has several ways to interact with orders. \n- Storefront Orders API \n- V2 Orders API \n- Using the Server to Server Checkout"
+                        "data": "What is an Order?\n"
                       },
                       {
                         "type": "text",
@@ -6248,7 +6247,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Order Scenarios\n\nThese just provide a quick overview of the steps. For more details see each endpoint.\n\n1. [Create](/api-docs/api-reference/v2-api/v2-orders/orders/postorders) an Order\n\t2. Existing store products and new store products can be added.\n\t3. Billing Address is required.\n\t4. Shipping Address. This is an optional step and this can also be added using [Update Order](/api-docs/api-reference/v2-api/v2-orders/orders/putordersid).\n\n2. Edit Order Products\n\t3. Currently there is not a way to edit order products using the api.\n4. Edit Order Shipping Addresses\n\t5. There is not a way to edit order shipping addresses using the api. Products can be added."
+                        "data": "## Order Scenarios\n\nThese just provide a quick overview of the steps. For more details see each endpoint.\n\n1. [Create](/api-docs/api-reference/v2-api/v2-orders/orders/postorders) an Order\n\t2. Existing store products and new store products can be added.\n\t3. Billing Address is required.\n\t4. Shipping Address. This is an optional step and this can also be added using [Update Order](/api-docs/api-reference/v2-api/v2-orders/orders/putordersid).\n\n2. Edit Order Products\n\t3. Currently there is not a way to edit order products using the api. Product can be added using [Update Order](/api-docs/api-reference/v2-api/v2-orders/orders/putordersid).\n4. Edit Order Shipping Addresses\n\t5. There is not a way to edit order shipping addresses using the api."
                       },
                       {
                         "type": "text",
@@ -6293,8 +6292,131 @@
                   "data": {
                     "blocks": [
                       {
+                        "type": "html",
+                        "data": "<h1>Shipping</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#what-is-a-shipment\">What is a Shipment?</a></li>\n        <li><a href=\"#storefront-server-checkout\">Storefront Checkout and Server to Server Checkout</a></li>\n        <li><a href=\"#order-shipping-addresses\">Order Shipping Addresses</a></li>\n        <li><a href=\"#shipping-zone-methods\">Shipping Zone and Shipping Methods</a></li>\n        <li><a href=\"#real-time-carriers\">Real-Time Carriers</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
                         "type": "text",
-                        "data": ""
+                        "data": "## What is a Shipment?\nA shipment is a grouping of physical items sent out to one or more customers. A shipment can only be created for an order.\n\nV2 Shipping API allows for setting up Shipping Zones, Shipping Methods, and Shipping Carrier Connections.\n\nOrder Shipments allows for a shipment to created for an order. The shipping provider, tracking number and shipping address id create a shipment.\n\nFor more see:\n* [Create a Shipment](/api-docs/api-reference/v2-api/v2-orders/order-shipments/postordersorderidshipments)",
+                        "header": {
+                          "anchor": "what-is-a-shipment"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Storefront Checkout and Server to Server Checkout\n\nA shipment cannot be created from these endpoints. A Consignment can be created during the Checkout portion. A Consignment supports multiple shipping addresses, with each address having its own line items. A Checkout will always have one Consignment assigned to it, which is the first shipping address.\n\nFor more see:\n* [Storefront Checkout](/api-docs/api-reference/cart-and-checkout-api-reference/storefront-checkout/checkout/checkoutsconsignmentsbycheckoutidpost)\n* [Server to Server Checkout](/api-docs/api-reference/cart-and-checkout-api-reference/server-server-checkout/checkout/checkoutsconsignmentsbycheckoutidpost)",
+                        "header": {
+                          "anchor": "storefront-server-checkout"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Order Shipping Addresses\n\nThis endpoint is for view shipping addresses on an order. This will be the address the items are shipped to.  An order can have more than one shipping address.\n\nFor more see:\n* [Order Shipping Addresses](/api-docs/api-reference/v2-api/v2-orders/order-shipping-addresses/getordersorderidshippingaddressesid)",
+                        "header": {
+                          "anchor": "order-shipping-addresses"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Shipping Zone and Shipping Methods\n\nA shipping zone is where the item is being shipped to. A shipping method is how way an item arrives such as USPS or FedEx. They can be set up using the API.\n\nFor more see:\n* [Shipping Zones](/api-docs/api-reference/v2-api/v2-shipping/shipping-zones/postshippingzones)\n* [Shipping Methods](/api-docs/api-reference/v2-api/v2-shipping/shipping-method/postshippingzoneszoneidmethods)",
+                        "header": {
+                          "anchor": "shipping-zone-methods"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Real-Time Carriers\n\nBigCommerce offers native integrations with many real-time carriers. These can be set up and configured via API. \n\nFor more see:\n* [Set Up Real-Time Carrier](/api-docs/api-reference/v2-api/v2-shipping/shipping-carrier/postshippingcarrierconnection)\n* [Configure Real-Time Carrier](/api-docs/api-reference/v2-api/v2-shipping/shipping-method/postshippingzoneszoneidmethods)",
+                        "header": {
+                          "anchor": "real-time-carriers"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "Shipper HQ",
+                  "route": {
+                    "path": "/shipper-hq"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Shipper HQ Metafields</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shipper-hq-object-properties\">ShipperHQ Object Properties</a></li>\n        <li><a href=\"#control-panel-behavior\">Control Panel Behavior</a></li>\n        <li><a href=\"#add-shipperhq-metafield\">Add ShipperHQ Metafield</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "When ShipperHQ is enabled on a store, there are additional fields that become available on the product level.\nShipping Origins, Origin Locations, and Dimensional Rules are accessible. These can be set in the Control Panel by the merchant as well as using the\n[Product Metafields Endpoint](/api-docs/api-reference/v3-api/catalog-api/product-metafields/createproductmetafield) or the [Variant Metafields Endpoint](/api-docs/api-reference/v3-api/catalog-api/product-variants-metafields/createvariantmetafield)."
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## ShipperHQ Object Properties\n\n| Property | Type | Values |\n|---|---|---|\n| permission_set | string | This must be set to `write`. Setting to any other field will cause unintended behavior. **required** |\n| key | enum | Members: `shipping-groups`, `shipping-origins`, `shipping-dimensional-rules` **required** |\n| value | JSON encoded string | This will be the name of the attribute type in ShipperHQ. This needs to be input exactly how it is listed within ShipperHQ. To pass in more than one Shipping Origin, Origin Location or Dimensional Rule use an array with a comma-separated list. White spaces and special characters need to be escaped. Must be a JSON encoded string `\"[\\\"Origin Name from SHQ-1\\\",\\\" Origin Name from SHQ-2\\\"]\"` **required** |\n| namespace | string | This will always be `shipping.shipperhq` **required** |\n| resource_type | string | Either `product` or `variant` |\n| resource_id | string | Id of the product or variant **read-only** |\n| description | string | ShipperHQ shipping origins associated with this product/sku. **read-only** |\n| date_created | string | Date and time of the metafield's creation. **read-only** |\n| date_modified | string | Date and time when the metafield was last updated. **read-only** |\n| id | number | Id of the Metafield. **read-only** |",
+                        "header": {
+                          "anchor": "shipper-hq-object-properties"
+                        }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "warning",
+                          "body": "The metafields must be entered exactly otherwise they will not work. Since the metafield can also be used to store information against a product, if the <code>namespace</code> for example is set to shipping and not <code>shipping.shipperhq</code>, it will not update the shipping information."
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Control Panel Behavior\n\nWhen Shipping Origins are set using the API, the fields cannot be deleted using the Control Panel. A /DELETE request must be sent to the metafields resource.\n\n`/DELETE https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`\n",
+                        "header": {
+                          "anchor": "control-panel-behavior"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Add ShipperHQ Metafield\n\n`/POST https://api.bigcommerce.com/stores/{{store_hash}}/v3/catalog/products/{{product_id}}/metafields`",
+                        "header": {
+                          "anchor": "add-shipperhq-metafield"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n\t\"permission_set\": \"write\",\n\t\"key\": \"shipping-origins\",\n\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\"namespace\": \"shipping.shipperhq\"\n}",
+                        "header": {
+                          "title": "SHQ Add Metafield Request"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n\t\"data\": [{\n\t\t\t\"id\": 51,\n\t\t\t\"key\": \"shipping-origins\",\n\t\t\t\"value\": \"[\\\"Alaska\\\",\\\"California\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping origins associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-19T17:56:08+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 52,\n\t\t\t\"key\": \"shipping-groups\",\n\t\t\t\"value\": \"[\\\"SHIPPING GROUP NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ shipping group rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 53,\n\t\t\t\"key\": \"shipping-dimensional-rules\",\n\t\t\t\"value\": \"[\\\"DIMENSIONAL RULES NAME\\\"]\",\n\t\t\t\"namespace\": \"shipping.shipperhq\",\n\t\t\t\"permission_set\": \"write\",\n\t\t\t\"resource_type\": \"product\",\n\t\t\t\"resource_id\": 214,\n\t\t\t\"description\": \"ShipperHQ dimensional rules associated with this product/sku\",\n\t\t\t\"date_created\": \"2018-07-24T14:51:43+00:00\",\n\t\t\t\"date_modified\": \"2018-07-24T14:51:43+00:00\"\n\t\t}\n\t],\n\t\"meta\": {\n\t\t\"pagination\": {\n\t\t\t\"total\": 3,\n\t\t\t\"count\": 3,\n\t\t\t\"per_page\": 50,\n\t\t\t\"current_page\": 1,\n\t\t\t\"total_pages\": 1,\n\t\t\t\"links\": {\n\t\t\t\t\"current\": \"?page=1&limit=50\"\n\t\t\t}\n\t\t}\n\t}\n}",
+                        "header": {
+                          "title": "SHQ Add Metafield Response"
+                        }
                       }
                     ]
                   }
@@ -6560,6 +6682,104 @@
             },
             "data": {
               "children": [
+                {
+                  "title": "Product SKU",
+                  "route": {
+                    "path": "/v2-product-sku"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Product SKUs</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-product-sku-object-properties\">SKU Object – Properties</a></li>\n        <li><a href=\"#v2-list-product-skus\">List Product SKUs</a></li>\n        <li><a href=\"#v2-get-a-product-sku\">Get a Product SKU </a></li>\n        <li><a href=\"#v2-get-a-count-of-product-skus\">Get a Count of Product SKU's </a></li>\n        <li><a href=\"#v2-create-a-product-sku\">Create a Product SKU</a></li>\n        <li><a href=\"#v2-update-a-product-sku\">Update a Product SKU</a></li>\n        <li><a href=\"#v2-delete-a-product-sku\">Delete a Product SKU</a></li>\n        <li><a href=\"#v2-delete-multiple-product-skus\"> Delete Multiple Product SKUs</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## SKU Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | int | |\n| product_id | int | |\n| sku | string | The unique SKU (stock keeping unit). |\n| price | decimal | This SKU's base price on the storefront. If this value is null, the product's default price (set in the Product resource's `price` field) will be used as the base price. |\n| adjusted_price | decimal | The SKU's price on the storefront – after the product's base price is inherited, and/or any option set or any product rules are applied. This property is READ-ONLY. |\n| cost_price | decimal | The product's cost price. |\n| upc | string | The UPC (Universal Product Code) for this product combination. |\n| inventory_level | int | The inventory level for the product. |\n| inventory_warning_level | int | The inventory warning level for the product .|\n| bin_picking_number | string | The BIN picking number. |\n| weight | decimal | This SKU's base weight on the storefront. If this value is null, the product's default weight (set in the Product resource's weight field) will be used as the base weight. |\n| adjusted_weight | decimal | This SKU's weight on the storefront – after the product's base weight is inherited, and/or any option set or any product rules are applied. This property is READ-ONLY. |\n| is_purchasing_disabled | boolean | if true, this prohibits purchasing of the SKU. | \n| purchasing_disabled_message | string | The message to display if purchasing is disabled on this SKU. | \n| image_file | string | The image that will be displayed when this SKU is selected on the storefront. When updating a SKU image, send the publicly accessible URL. Supported image formats are JPEG, PNG, and GIF. | \n| options | object_array | This is an object {\"product_option_id\": int, \"option_value_id\":int} |",
+                        "header": {
+                          "anchor": "v2-product-sku-object-properties"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Product SKUs \n\nGets the collection of SKUs associated with a product.\n\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/skus`\n\n### Notes \n\nBigCommerce has updated the SKU schema to include additional price, weight, image, and purchasable properties. We will eventually remove the ability to manage these properties via SKU rules. (Merchants are already constrained from creating SKU-only rules in the BigCommerce control panel.)\n\n### Filters \n\nFilter parameters can be added to the URL query string to select specific skus in the collection.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| min_id | int | /api/v2/products/{product_id}/skus?min_id={value} |\n| max_id | int | /api/v2/products/{product_id}/skus?max_id={value} |\n| sku | string | /api/v2/products/{product_id}/skus?sku={value} |\n| upc | string | /api/v2/products/{product_id}/skus?upc={value} |\n| inventory_level | string | /api/v2/products/{product_id}/skus?inventory_level={value} |\n| inventory_warning_level | string | /api/v2/products/{product_id}/skus?inventory_warning_level={value} |\n| bin_picking_number | string | /api/v2/products/{product_id}/skus?bin_picking_number={value} |\n| min_inventory_level | int | /api/v2/products/{product_id}/skus?min_inventory_level={value} |\n| max_inventory_level | int | /api/v2/products/{product_id}/skus?max_inventory_level={value} |\n| is_low_inventory | boolean | /api/v2/products/{product_id}/skus?is_low_inventory={value} |\n| product_hash | int | /api/v2/products/{product_id}/skus?product_hash={value} |\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 skus are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| page | int | /api/v2/products/{product_id}/skus?page={number} |\n| limit | int | /api/v2/products/{product_id}/skus?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 1,\n    \"product_id\": 5,\n    \"sku\": \"MB-1\",\n    \"price\": null,\n    \"adjusted_price\": \"1.5000\",\n    \"cost_price\": \"0.0000\",\n    \"upc\": \"\",\n    \"inventory_level\": 0,\n    \"inventory_warning_level\": 0,\n    \"bin_picking_number\": \"\",\n    \"weight\": null,\n    \"adjusted_weight\": \"0.00\",\n    \"is_purchasing_disabled\": false,\n    \"purchasing_disabled_message\": \"\",\n    \"image_file\": \"\",\n    \"options\": [\n      {\n        \"product_option_id\": 15,\n        \"option_value_id\": 17\n      },\n      {\n        \"product_option_id\": 16,\n        \"option_value_id\": 28\n      }\n    ]\n  },\n  {\n    \"id\": 2,\n    \"product_id\": 5,\n    \"sku\": \"MB-2\",\n    \"price\": null,\n    \"adjusted_price\": \"2.0000\",\n    \"cost_price\": \"0.0000\",\n    \"upc\": \"\",\n    \"inventory_level\": 0,\n    \"inventory_warning_level\": 0,\n    \"bin_picking_number\": \"\",\n    \"weight\": null,\n    \"adjusted_weight\": \"0.00\",\n    \"is_purchasing_disabled\": true,\n    \"purchasing_disabled_message\": \"We're sorry, this is unavailable.\",\n    \"image_file\": \"\",\n    \"options\": [\n      {\n        \"product_option_id\": 15,\n        \"option_value_id\": 18\n      },\n      {\n        \"product_option_id\": 16,\n        \"option_value_id\": 26\n      }\n    ]\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-product-skus"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Product SKU \n\nGets a single product SKU.\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/skus/{id}`\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 5,\n  \"product_id\": 7,\n  \"sku\": \"MBA-1atest\",\n    \"price\": null,\n    \"adjusted_price\": \"1.5000\",\n  \"cost_price\": \"0.0000\",\n  \"upc\": \"\",\n  \"inventory_level\": 0,\n  \"inventory_warning_level\": 0,\n  \"bin_picking_number\": \"\",\n    \"weight\": null,\n    \"adjusted_weight\": \"0.00\",\n    \"is_purchasing_disabled\": false,\n    \"purchasing_disabled_message\": \"\",\n    \"image_file\": \"https://thinglust.com/eyecandy.png\",\n  \"options\": [\n    {\n      \"product_option_id\": 20,\n      \"option_value_id\": 51\n    }\n  ]\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-product-sku"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Count of Product SKUs \n\nGets a count of the number of product SKUs in the store.\n\n\n>`GET /stores/{store_hash}/v2/products/skus/count`\n\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"count\": 1235\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-count-of-product-skus"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create a Product SKU \n\nCreates a new product SKU.\n\n\n>`POST /stores/{store_hash}/v2/products/{product_id}/skus`\n\n\n### Read-only Properties \n\nThe following properties of the sku are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n*   adjusted_price\n*   adjusted_weight\n\n### Requirements \n\nThe following properties of the sku are required. The request won’t be fulfilled unless these properties are valid.\n\n*   sku\n*   options\n\n### Notes \n\nTo maximize system performance, BigCommerce caps the number of SKUs associated with a product at 500. If you attempt to add a SKU to a product that has 500 SKUs, BigCommerce will return a 403 error.\n\nBigCommerce has updated the SKU schema to include additional price, weight, image, and purchasable properties. We will eventually remove the ability to manage these properties via SKU rules. (Merchants are already constrained from creating SKU-only rules in the BigCommerce control panel.)\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 5,\n  \"product_id\": 7,\n  \"sku\": \"MBA-1atest\",\n    \"price\": null,\n    \"adjusted_price\": \"1.5000\",\n  \"cost_price\": \"0.0000\",\n  \"upc\": \"\",\n  \"inventory_level\": 0,\n  \"inventory_warning_level\": 0,\n  \"bin_picking_number\": \"\",\n    \"weight\": null,\n    \"adjusted_weight\": \"0.00\",\n    \"is_purchasing_disabled\": false,\n    \"purchasing_disabled_message\": \"\",\n    \"image_file\": \"\",\n  \"options\": [\n    {\n      \"product_option_id\": 20,\n      \"option_value_id\": 51\n    }\n  ]\n}\n```",
+                        "header": {
+                          "anchor": "v2-create-a-product-sku"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update a Product SKU \n\nUpdates an existing product SKU.\n\n\n>`PUT /stores/{store_hash}/v2/products/{product_id}/skus/{id}`\n\n\n### Read-only Properties \n\nThe following properties of the sku are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n*   adjusted_price\n*   adjusted_weight\n\n### Requirements \n\nThere are no required properties for updating a product SKU.\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 5,\n  \"product_id\": 7,\n  \"sku\": \"MBA-1atest\",\n    \"price\": \"4.9900\",\n    \"adjusted_price\": \"3.9900\",\n  \"cost_price\": \"2.9900\",\n  \"upc\": \"\",\n  \"inventory_level\": 0,\n  \"inventory_warning_level\": 0,\n  \"bin_picking_number\": \"\",\n    \"weight\": null,\n    \"adjusted_weight\": \"0.00\",\n    \"is_purchasing_disabled\": true,\n    \"purchasing_disabled_message\": \"We're sorry, this is unavailable.\",\n    \"image_file\": \"\",\n  \"options\": [\n    {\n      \"product_option_id\": 20,\n      \"option_value_id\": 51\n    }\n  ]\n}\n```",
+                        "header": {
+                          "anchor": "v2-update-a-product-sku"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete a Product SKU \n\nDeletes a product SKU.\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/skus/{id}`",
+                        "header": {
+                          "anchor": "v2-delete-a-product-sku"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete Multiple Product SKUs \n\nDeletes multiple product SKUs.\n\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/skus`\n\n\n### Filters \n\nFilter parameters can be added to the URL query string to select specific SKUs in the collection.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| min_id | int | /api/v2/products/{product_id}/skus?min_id={value} |\n| max_id | int | /api/v2/products/{product_id}/skus?max_id={value} |\n| sku | string | /api/v2/products/{product_id}/skus?sku={value} |\n| upc | string | /api/v2/products/{product_id}/skus?upc={value} |\n| inventory_level | string | /api/v2/products/{product_id}/skus?inventory_level={value} |\n| inventory_warning_level | string | /api/v2/products/{product_id}/skus?inventory_warning_level={value} |\n| bin_picking_number | string | /api/v2/products/{product_id}/skus?bin_picking_number={value} |\n| min_inventory_level | int | /api/v2/products/{product_id}/skus?min_inventory_level={value} |\n| max_inventory_level | int | /api/v2/products/{product_id}/skus?max_inventory_level={value} |\n| is_low_inventory | boolean | /api/v2/products/{product_id}/skus?is_low_inventory={value} |\n| product_hash | int | /api/v2/products/{product_id}/skus?product_hash={value} |\n\n## Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 skus are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| page | int | /api/v2/products/{product_id}/skus?page={number} |\n| limit | int | /api/v2/products/{product_id}/skus?limit={count} |",
+                        "header": {
+                          "anchor": "v2-delete-multiple-product-skus"
+                        }
+                      }
+                    ]
+                  }
+                },
                 {
                   "title": "Products",
                   "route": {
@@ -7124,10 +7344,699 @@
                           "anchor": "v2-delete-all-options"
                         }
                       }
+                    ],
+                    "children": []
+                  }
+                },
+                {
+                  "title": "Option Sets",
+                  "route": {
+                    "path": "/v2-option-sets"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Option Sets</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-option-set-object-properties\">Option Set Object – Properties</a></li>\n        <li><a href=\"#v2-list-option-sets\">List Option Sets </a></li>\n        <li><a href=\"#v2-get-a-option-set\">Get an Option Set </a></li>\n        <li><a href=\"#v2-get-a-count-of-option-sets\">Get a Count of Option Sets</a></li>\n        <li><a href=\"#v2-create-a-option-set\">Create an Option Set</a></li>\n        <li><a href=\"#v2-update-a-option-set\">Update an Option Set </a></li>\n        <li><a href=\"#v2-delete-a-option-set\">Delete an Option Set</a></li>\n        <li><a href=\"#v2-delete-all-option-sets\">Delete All Option Sets</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Option Set Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | int | Optional field. Unique numeric ID for this option set. Increments sequentially. |\n| name | string | Required field. The option set's name, as used internally. Must be unique. |\n| options | object/resource | Optional field; read-only. Object containing option-set options: a `url` and a `resource`. |\n| product_id (optional) | integer | Optional field; read-only. If `null`, this option set can be reused with any product. If populated with a numeric ID, this option set can be used exclusively with the corresponding product. |",
+                        "header": {
+                          "anchor": "v2-option-set-object-properties"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Option Sets \n\nGets the collection of option sets. (Default sorting is by option-set id, from lowest to highest.)\n\n\n>`GET /stores/{store_hash}/v2/option_sets`\n\n\n### Filters \n\nFilter parameters can be added to the URL query string to select specific option_sets in the collection.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| name | string | /api/v2/option_sets?name={value} |\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 option_sets are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| Page | int | /api/v2/option_sets?page={number} |\n| Limit | int | /api/v2/option_sets?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 1,\n    \"product_id\": null,\n    \"name\": \"MacBook\",\n    \"options\": {\n      \"url\": \"https://store-bwvr466.mybigcommerce.com/api/v2/optionsets/1/options.json\",\n      \"resource\": \"/optionsets/1/options\",\n      \"product_id\": null\n    }\n  },\n  {\n    \"id\": 2,\n    \"product_id\": null,\n    \"name\": \"PixelSkin Case\",\n    \"options\": {\n      \"url\": \"https://store-bwvr466.mybigcommerce.com/api/v2/optionsets/2/options.json\",\n      \"resource\": \"/optionsets/2/options\",\n      \"product_id\": null\n    }\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-option-sets"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get an Option Set \n\nGets an option set.\n\n\n>`GET /stores/{store_hash}/v2/option_sets/{id}`\n\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 10,\n  \"product_id\": null,\n  \"name\": \"T-Shirt Facets\",\n  \"options\": {\n    \"url\": \"https://store-bwvr466.mybigcommerce.com/api/v2/optionsets/10/options.json\",\n    \"resource\": \"/optionsets/13/options\",\n    \"product_id\": null\n  }\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-option-set"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Count of Option Sets \n\nGets a count of the number of option sets in the store.\n\n\n>`GET /stores/{store_hash}/v2/option_sets/count`\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"count\": 4\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-count-of-option-sets"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create an Option Set \n\nCreates a new Option set.\n\n>`POST /stores/{store_hash}/v2/option_sets`\n\n\n### Read-only Properties \n\nThe following properties of the option set are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   options\n\n### Requirements \n\nThe following properties of the option set are required. The request won’t be fulfilled unless these properties are valid.\n\n*   name\n\n### Request \n\nExample request object:\n\n```\n{\n  \"name\": \"T-Shirts\"\n}\n```\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 10,\n  \"product_id\": null,\n  \"name\": \"T-Shirts\",\n  \"options\": {\n    \"url\": \"https://store-bwvr466.mybigcommerce.com/api/v2/optionsets/10/options.json\",\n    \"resource\": \"/optionsets/10/options\",\n    \"product_id\": null\n  }\n}\n```",
+                        "header": {
+                          "anchor": "v2-create-a-option-set"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update an Option Set \n\nUpdates an existing option set.\n\n>`PUT /stores/{store_hash}/v2/option_sets/{id}`\n\n### Read-only Properties \n\nThe following properties of the option set are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   options\n\n### Requirements \n\nThe following properties of the option set are required. The request won’t be fulfilled unless these properties are valid.\n\n*   name\n\n### Request \n\nExample request object:\n\n```json\n{\n  \"name\": \"T-shirt Facets\"\n}\n```\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 10,\n  \"product_id\": null,\n  \"name\": \"T-shirt Facets\",\n  \"options\": {\n    \"url\": \"https://store-bwvr466.mybigcommerce.com/api/v2/optionsets/10/options.json\",\n    \"resource\": \"/optionsets/13/options\",\n    \"product_id\": null\n  }\n}\n```",
+                        "header": {
+                          "anchor": "v2-update-a-option-set"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete an Option Set \n\nDeletes an option set.\n\n>`DELETE /stores/{store_hash}/v2/option_sets/{id}`",
+                        "header": {
+                          "anchor": "v2-delete-a-option-set"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete All Option Sets \n\nDeletes all option sets in the store.\n\n>`DELETE /stores/{store_hash}/v2/option_sets`",
+                        "header": {
+                          "anchor": "v2-delete-all-option-sets"
+                        }
+                      }
+                    ],
+                    "children": []
+                  }
+                },
+                {
+                  "title": "Option Set Options",
+                  "route": {
+                    "path": "/v2-option-set-options"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Option Set Options</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-option-set-options-object-properties\">Option Set Option: Object – Properties</a></li>\n        <li><a href=\"#v2-list-option-set-options\">List Option Set Options</a></li>\n        <li><a href=\"#v2-get-a-option-set-option\">Get an Option Set Option</a></li>\n        <li><a href=\"#v2-create-a-option-set\">Create an Option Set</a></li>\n        <li><a href=\"#v2-update-a-option-set-option\">Update an Option Set Option</a></li>\n        <li><a href=\"#v2-delete-a-option-set-option\">Delete an Option Set Option</a></li>\n        <li><a href=\"#v2-delete-all-option-set-options\">Delete Multiple Option Set Options</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Option Set Option: Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | int | The ID of this option. |\n| option_id | int | The ID of the option to which this option set connects. |\n| option_set_id | int | The ID of this option set. |\n| display_name | string | The friendly name used for this option set. |\n| sort_order | int | The order in which the option is displayed on the product page. |\n| is_required | boolean | Specifies whether customer is required to enter a value for this option before they can add the product to their cart. |\n| option | resource | The connected option. |\n| values | object_array | Array of values for the connected option. |",
+                        "header": {
+                          "anchor": "v2-option-set-options-object-properties"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Option Set Options \n\nGets the options associated with an option set. (Default sorting is by option id, from lowest to highest.)\n\n\n>`GET /stores/{store_hash}/v2/option_sets/{option_set_id}/options`\n\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 option_set_options are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| Page | int | /api/v2/option_sets/{option_set_id}/options?page={number} |\n| Limit | int | /api/v2/option_sets/{option_set_id}/options?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 43,\n    \"option_id\": 18,\n    \"option_set_id\": 14,\n    \"display_name\": \"Size\",\n    \"sort_order\": 0,\n    \"is_required\": true,\n    \"option\": {\n      \"url\": \"https://example.com/api/v2/options/18.json\",\n      \"resource\": \"/options/18\"\n    },\n    \"values\": [\n      {\n        \"label\": \"XS\",\n        \"sort_order\": 0,\n        \"value\": \"XS\",\n        \"option_value_id\": 68\n      },\n      {\n        \"label\": \"S\",\n        \"sort_order\": 1,\n        \"value\": \"S\",\n        \"option_value_id\": 69\n      },\n      {\n        \"label\": \"M\",\n        \"sort_order\": 2,\n        \"value\": \"M\",\n        \"option_value_id\": 70\n      },\n      {\n        \"label\": \"L\",\n        \"sort_order\": 3,\n        \"value\": \"L\",\n        \"option_value_id\": 71\n      },\n      {\n        \"label\": \"XL\",\n        \"sort_order\": 4,\n        \"value\": \"XL\",\n        \"option_value_id\": 72\n      }\n    ]\n  },\n  {\n    \"id\": 44,\n    \"option_id\": 3,\n    \"option_set_id\": 14,\n    \"display_name\": \"Color\",\n    \"sort_order\": 1,\n    \"is_required\": true,\n    \"option\": {\n      \"url\": \"https://example.com/api/v2/options/3.json\",\n      \"resource\": \"/options/3\"\n    },\n    \"values\": [\n      {\n        \"label\": \"Silver\",\n        \"sort_order\": 1,\n        \"value\": \"#cccccc\",\n        \"option_value_id\": 7\n      },\n      {\n        \"label\": \"Black\",\n        \"sort_order\": 2,\n        \"value\": \"#000000\",\n        \"option_value_id\": 8\n      },\n      {\n        \"label\": \"Purple\",\n        \"sort_order\": 3,\n        \"value\": \"#700170\",\n        \"option_value_id\": 9\n      }\n    ]\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-option-set-options"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get an Option Set Option \n\nGets an option set option.\n\n>`GET /stores/{store_hash}/v2/option_sets/{option_set_id}/options/{id}`\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 4,\n  \"option_id\": 5,\n  \"option_set_id\": 2,\n  \"display_name\": \"Clock Speeds (CPU)\",\n  \"sort_order\": 0,\n  \"is_required\": true,\n  \"option\": {\n    \"url\": \"https://example.com/api/v2/options/5.json\",\n    \"resource\": \"/options/5\"\n  }\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-option-set-option"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create an Option Set Option \n\nCreates a new option associated with an option set.\n\n>`POST /stores/{store_hash}/v2/option_sets/{option_set_id}/options`\n\n### Read-only Properties \n\nThe following properties of the option set option are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   option_set_id\n*   values\n*   option\n\n### Requirements \n\nThe following properties of the option set option are required. The request won’t be fulfilled unless these properties are valid.\n\n*   option_id\n\n### Request \n\nExample request object:\n\n```\n{\n  \"option_id\": 10,\n  \"display_name\": \"Choose a color\",\n  \"sort_order\": 1,\n  \"is_required\": true\n}\n```\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 2,\n  \"option_id\": 10,\n  \"option_set_id\": 1,\n  \"display_name\": \"Choose a color\",\n  \"sort_order\": 1,\n  \"is_required\": true,\n  \"option\": {\n    \"url\": \"https://example.com/api/v2/options/10.json\",\n    \"resource\": \"/options/10\"\n  }\n}\n```"
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update an Option Set Option \n\nUpdates an existing option set option.\n\n\n>`PUT /stores/{store_hash}/v2/option_sets/{option_set_id}/options/{id}`\n\n\n### Read-only Properties \n\nThe following properties of the option set option are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   option_id\n*   option_set_id\n*   values\n*   option\n\n### Requirements \n\nThe following properties of the option set option are required. The request won’t be fulfilled unless these properties are valid.\n\n### Request \n\nExample request object:\n\n```\n{\n  \"display_name\": \"Pick a color...\",\n  \"sort_order\": 2,\n  \"is_required\": false\n}\n```\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 2,\n  \"option_id\": 10,\n  \"option_set_id\": 2,\n  \"display_name\": \"Pick a color...\",\n  \"sort_order\": 2,\n  \"is_required\": false,\n  \"option\": {\n    \"url\": \"https://example.com/api/v2/options/10.json\",\n    \"resource\": \"/options/10\"\n  }\n}\n```",
+                        "header": {
+                          "anchor": "v2-update-a-option-set-option"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete an Option Set Option \n\nDeletes an option belonging to an option set.\n\n>`DELETE /stores/{store_hash}/v2/option_sets/{option_set_id}/options/{id}`",
+                        "header": {
+                          "anchor": "v2-delete-a-option-set-option"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete Multiple Option Set Options \n\nDeletes multiple options associated with an option set.\n\n>`DELETE /stores/{store_hash}/v2/option_sets/{option_set_id}/options`\n\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 option_set_options are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| Page | int | /api/v2/option_sets/{option_set_id}/options?page={number} |\n| Limit | int | /api/v2/option_sets/{option_set_id}/options?limit={count} |",
+                        "header": {
+                          "anchor": "v2-delete-all-option-set-options"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "Option Values",
+                  "route": {
+                    "path": "/v2-option-values"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "data": "## Option Value Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | int | A unique, read-only value that identifies this option value. |\n| option_id | int | A read-only value identifying the option to which this option value is assigned. |\n| label | string | The name of the label. Cannot be the same as the label of another value already assigned to the option. |\n| sort_order | int |\n| value | text | Acceptable values generally depend on the option type, as defined in the option:<br><br> `RB`: string to be displayed to the customer.<br> `RT`: string to be displayed to the customer.<br> `S`: string to be displayed to the customer.<br> `P`: product ID;<br> `PI`: product ID.<br> `CS`: one of the following color values – a hexadecimal color code to create a color option (e.g., `#0f0000`);<br> a CSS 2.1 color name (e.g., `blue`);<br> up to three hexadecimal color codes and/or color names, separated by pipe symbols (e.g., <code>#FF0000&#124;lime&#124;#0000FF</code>);<br>  a URI to an image to create a texture (e.g., `http://store.com/images/myimg.png`);<br> or the name of an image file in the store's WebDAV `import` folder  (e.g., `myimg.png`). |\n| is_default | boolean | Whether or not this value is selected by default. For each option, only one option value can be selected by default. |",
+                        "header": {
+                          "anchor": "v2-option-values"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Option Values \n\nGets the values belonging to an option. (Default sorting is by option-value id, from lowest to highest.)\n\n\n>`GET /stores/{store_hash}/v2/options/{option_id}/values`\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 option_values are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| Page | int | /api/v2/options/{option_id}/values?page={number} |\n| Limit | int | /api/v2/options/{option_id}/values?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 1,\n    \"option_id\": 3,\n    \"label\": \"Silver\",\n    \"sort_order\": 2,\n    \"value\": \"#cccccc\",\n    \"is_default\": true\n  },\n  {\n    \"id\": 2,\n    \"option_id\": 3,\n    \"label\": \"Black\",\n    \"sort_order\": 1,\n    \"value\": \"#000000\",\n    \"is_default\": false\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-option-values"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get an Option Value \n\nGets an option value.\n\n>`GET /stores/{store_hash}/v2/options/{option_id}/values/{id}`\n\n#### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 9,\n  \"option_id\": 3,\n  \"label\": \"Purple\",\n  \"sort_order\": 3,\n  \"value\": \"#700170\",\n  \"is_default\": false\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-an-option-value"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create an Option Value \n\nCreates a new option value.\n\n\n>`POST /stores/{store_hash}/v2/options/{option_id}/values`\n\n### Read-only Properties \n\nThe following properties of the option value are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   option_id\n\n### Requirements \n\nThe following properties of the option value are required. The request won’t be fulfilled unless these properties are valid.\n\n*   label\n*   value\n\n### Notes \n\nTo maximize system performance, BigCommerce caps the total number of values per option at 250. IF the option has 250 values and you try to create another one, BigCommerce will return a 403 error.\n\nWhen you POST an `is_default`property of `true`, all other option values on the parent option will have their `is_default` property set to `false`.\n\n### Request \n\nExample request object:\n\n```\n{\n  \"label\": \"white\",\n  \"sort_order\": 0,\n  \"value\": \"#FFFFFF\",\n  \"is_default\": true\n}\n```\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 68,\n  \"option_id\": 3,\n  \"label\": \"white\",\n  \"sort_order\": 0,\n  \"value\": \"#FFFFFF\",\n  \"is_default\": true\n}\n```",
+                        "header": {
+                          "anchor": "v2-create-an-option-value"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update an Option Value \n\nUpdates an existing option value.\n\n\n>`PUT /stores/{store_hash}/v2/options/{option_id}/values/{id}`\n\n\n###  Read-only Properties\n\nThe following properties of the option value are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   option_id\n\n#### Requirements \n\nThe following properties of the option value are required. The request won’t be fulfilled unless these properties are valid.\n\n###  Notes\n\nWhen you PUT an `is_default` property of `true`, all other option values on the parent option will have their `is_default` property set to `false`.\n\n### Request \n\nExample request object:\n\n```\n{\n  \"label\": \"whitish\",\n  \"sort_order\": 1,\n  \"value\": \"#FFFFEF\",\n  \"is_default\": true\n}\n```\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 68,\n  \"option_id\": 3,\n  \"label\": \"whitish\",\n  \"sort_order\": 1,\n  \"value\": \"#FFFFEF\",\n  \"is_default\": true\n}\n```",
+                        "header": {
+                          "anchor": "v2-update-an-option-value"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete an Option Value \n\nDeletes an option value.\n\n>`DELETE /stores/{store_hash}/v2/options/{option_id}/values/{id}`",
+                        "header": {
+                          "anchor": "v2-delete-an-option-value"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete Multiple Option Values \n\nDeletes multiple values belonging to an option.\n\n>`DELETE /stores/{store_hash}/v2/options/{option_id}/values`\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 option_values are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| Page | int | /api/v2/options/{option_id}/values?page={number} |\n| Limit | int | /api/v2/options/{option_id}/values?limit={count} |",
+                        "header": {
+                          "anchor": "v2-delete-multiple-option-values"
+                        }
+                      }
+                    ],
+                    "children": []
+                  }
+                },
+                {
+                  "title": "Product Images",
+                  "route": {
+                    "path": "/v2-product-images"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Product Images</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-product-image-object-propertes\">Product Image Object – Properties </a></li>\n        <li><a href=\"#v2-list-product-images\">List Product Images</a></li>\n        <li><a href=\"#v2-get-a-product-image\">Get a Product Image </a></li>\n        <li><a href=\"#v2-get-a-count-of-product-images\">Get a Count of Product Images</a></li>\n        <li><a href=\"#v2-create-a-product-image\">Create a Product Image </a></li>\n        <li><a href=\"#v2-update-a-product-image\">Update a Product Image</a></li>\n        <li><a href=\"#v2-delete-a-product-image\">Delete a Product Image</a></li>\n        <li><a href=\"#v2-delete-multiple-product-images\">Delete Multiple Product Images</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Product Image Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | int |\n| product_id | int | The ID of the product to which the image belongs. |\n| image_file | string | When specifying a product image, the `image_file` should be specified as either: a path to an image already uploaded via WebDAV to the import directory (with the path relative to the import directory); or a URL to an image accessible on the internet. |\n| is_thumbnail | boolean | If true, the image is used as the product's thumbnail. |\n| sort_order | int | The order in which the image will be displayed on the product page. Lower integers will give the image a higher priority. If the image is given a lower priority, then when updating, all images with a `sort_order` the same or greater than the image's new `sort_order` value will have their `sort_order` reordered. |\n| description | text | The description for the image |\n| date_created | date |",
+                        "header": {
+                          "anchor": "v2-product-image-object-propertes"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Product Images \n\nGets the images associated with a product. (Default sorting is by image id, from lowest to highest.)\n\n\n>GET /stores/{store_hash}/v2/products/{product_id}/images\n\n#### Filters \n\nThere are no filter parameters specific to product images.\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 product_images are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| page | int | /api/v2/products/{product_id}/images?page={number} |\n| limit | int | /api/v2/products/{product_id}/images?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 247,\n    \"product_id\": 32,\n    \"image_file\": \"sample_images/in_123__14581.jpg\",\n    \"zoom_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/247/in_123__14581.1393831046.1280.1280.jpg?c=1\",\n    \"thumbnail_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/247/in_123__14581.1393831046.386.513.jpg?c=1\",\n    \"standard_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/247/in_123__14581.1393831046.220.290.jpg?c=1\",\n    \"tiny_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/247/in_123__14581.1393831046.44.58.jpg?c=1\",\n    \"is_thumbnail\": true,\n    \"sort_order\": 0,\n    \"description\": null,\n    \"date_created\": \"Mon, 24 Sep 2012 01:14:30 +0000\"\n  },\n  {\n    \"id\": 248,\n    \"product_id\": 32,\n    \"image_file\": \"sample_images/in_122__93910.jpg\",\n    \"zoom_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.1280.1280.jpg?c=1\",\n    \"thumbnail_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.386.513.jpg?c=1\",\n    \"standard_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.220.290.jpg?c=1\",\n    \"tiny_url\": \"https://cdn.url.path/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.44.58.jpg?c=1\",\n    \"is_thumbnail\": false,\n    \"sort_order\": 1,\n    \"description\": null,\n    \"date_created\": \"Mon, 24 Sep 2012 01:17:14 +0000\"\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-product-images"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Product Image \n\nGets a product image.\n\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/images/{id}`\n\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 248,\n  \"product_id\": 32,\n  \"image_file\": \"sample_images/in_122__93910.jpg\",\n  \"zoom_url\": \"https://cdn.bcapp.dev/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.1280.1280.jpg?c=1\",\n  \"thumbnail_url\": \"https://cdn.bcapp.dev/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.386.513.jpg?c=1\",\n  \"standard_url\": \"https://cdn.bcapp.dev/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.220.290.jpg?c=1\",\n  \"tiny_url\": \"https://cdn.bcapp.dev/bcapp/et7xe3pz/products/32/images/248/in_122__93910.1393831046.44.58.jpg?c=1\",\n  \"is_thumbnail\": false,\n  \"sort_order\": 1,\n  \"description\": null,\n  \"date_created\": \"Mon, 24 Sep 2012 01:17:14 +0000\"\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-product-image"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Count of Product Images \n\nGets a count of the number of product images in the store.\n\n\n>`GET /stores/{store_hash}/v2/products/images/count`\n\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"count\": 105\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-count-of-product-images"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create a Product Image \n\nCreates a new product image.\n\n\n>`POST /stores/{store_hash}/v2/products/{product_id}/images`\n\n\n### Read-only Properties \n\nThe following properties of the product image are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   date_created\n*   product_id\n\n### Requirements \n\nThe following properties of the product image are required. The request won’t be fulfilled unless these properties are valid.\n\n*   image_file\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 116,\n  \"product_id\": 29,\n  \"image_file\": \"p/022/astonishing-x-men-1-100k__36562.jpg\",\n  \"is_thumbnail\": false,\n  \"sort_order\": 0,\n  \"description\": \"\",\n  \"date_created\": \"Fri, 21 Dec 2012 18:54:04 +0000\"\n}\n```",
+                        "header": {
+                          "anchor": "v2-create-a-product-image"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update a Product Image \n\nUpdates an existing product image.\n\n\n>`PUT /stores/{store_hash}/v2/products/{product_id}/images/{id}`\n\n\n### Read-only Properties \n\nThe following properties of the product image are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n*   date_created\n\n### Requirements \n\nThe following properties of the product image are required. The request won’t be fulfilled unless these properties are valid.\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 118,\n  \"product_id\": 30,\n  \"image_file\": \"k/392/ud2vk0n1l0zcfr7gtlqi__43888.png\",\n  \"is_thumbnail\": false,\n  \"sort_order\": 1,\n  \"description\": \"\",\n  \"date_created\": \"Fri, 21 Dec 2012 19:01:03 +0000\"\n}\n```\n",
+                        "header": {
+                          "anchor": "v2-update-a-product-image"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete a Product Image \n\nDeletes a product image.\n\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/images/{id}`"
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete Multiple Product Images \n\nDeletes multiple product images.\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/images`\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 `product_images` are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| Page | int | /api/v2/products/{product_id}/images?page={number} |\n| Limit | int | /api/v2/products/{product_id}/images?limit={count} |",
+                        "header": {
+                          "anchor": "v2-delete-multiple-product-images"
+                        }
+                      }
+                    ],
+                    "children": []
+                  }
+                },
+                {
+                  "title": "Product Options",
+                  "route": {
+                    "path": "/v2-product-options"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Product Options</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-product-option-object-properties\"> Product Options Object – Properties</a></li>\n        <li><a href=\"#v2-list-product-options\">List Product Options</a></li>\n        <li><a href=\"#v2-get-a-product-option\">Get a Product Option</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Product Options Object – Properties \n\n| Title | Name | Type | Description |\n| --- | --- | --- | --- |\n| `id` | `int` |\n| `option_id` | `int` |\n| `display_name` | `string` |\n| `sort_order` | `int` |\n| `is_required` | `boolean` |",
+                        "header": {
+                          "anchor": "v2-product-option-object-properties"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Product Options\n\nGets the options associated with a product.\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/options`\n\n### Pagination\n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250\\. If a limit isn’t provided, up to 50 product_options are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| `page` | int | `/api/v2/products/{product_id}/options?page={number}` |\n| `limit` | int | `/api/v2/products/{product_id}/options?limit={count}` |\n\n### Response\n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 13,\n    \"option_id\": 8,\n    \"display_name\": \"iPod Capacities\",\n    \"sort_order\": 0,\n    \"is_required\": true\n  },\n  {\n    \"id\": 14,\n    \"option_id\": 9,\n    \"display_name\": \"Accessories\",\n    \"sort_order\": 1,\n    \"is_required\": false\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-product-options"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Product Option\n\nGets an option associated with a product.\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/options/{id}`\n\n### Response\n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 14,\n  \"option_id\": 9,\n  \"display_name\": \"Accessories\",\n  \"sort_order\": 1,\n  \"is_required\": false\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-product-option"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "Product Reviews",
+                  "route": {
+                    "path": "/v2-product-reviews"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Product Reviews</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-product-review-object-properties\">Product Review Object – Properties</a></li>\n        <li><a href=\"#v2-list-product-reviews\">List Product Reviews </a></li>\n        <li><a href=\"#v2-get-a-product-review\">Get a Product Review </a></li>\n        <li><a href=\"#v2-create-a-product-review\">Create a Product Review </a></li>\n        <li><a href=\"#v2-update-a-product-review\">Update a Product Review </a></li>\n        <li><a href=\"#v2-delete-a-product-review\">Delete a Product Review </a></li>\n        <li><a href=\"#v2-delete-all-product-reviews\">Delete All Product Reviews </a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Product Review Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | int | Unique database ID for this product review. Read-only. |\n| product_id | int | The ID of the product to which this review belongs. Read-only. |\n| author | string | The review's author, displayed on the storefront. |\n| date_created | date | RFC 2822 date that specifies the creation time of the review. (If not specified, will use the current time.) |\n| rating | int | A whole number from 1–5, specifying the product's rating in this review. |\n| title | string | The review's title, displayed on the storefront. |\n| review | text | The full text of the review, displayed on the storefront. |\n| status | int | A status indicator. 0=\"Pending\", 1= \"Approved\", 2=\"Disapproved\". |",
+                        "header": {
+                          "anchor": "v2-product-review-object-properties"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Product Reviews \n\nGets the reviews associated with a product. (Default sorting is by review id, from lowest to highest.)\n\n>`GET /stores/{store_hash}/v2/products/{id}/reviews`\n\n\n### Filters \n\nThere are no filter parameters specific to product reviews. \n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 product_reviews are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| page | int | /api/v2/products/{product_id}/reviews?page={number} |\n| limit | int | /api/v2/products/{product_id}/reviews?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 190,\n    \"product_id\": 5310,\n    \"author\": \"John Doe\",\n    \"date_created\": \"Wed, 12 Dec 2012 06:00:00 +0000\",\n    \"title\": \"My experience with the widget\",\n    \"review\": \"This widget worked for me, but might not work for everyone.\",\n    \"rating\": 4,\n    \"status\": 1\n  },\n  {\n    \"id\": 191,\n    \"product_id\": 5310,\n    \"author\": \"Jane Doe\",\n    \"date_created\": \"Tue, 12 Nov 2013 06:00:00 +0000\",\n    \"title\": \"Great product, slow shipping\",\n    \"review\": \"Took two weeks to arrive\",\n    \"rating\": 3,\n    \"status\": 1\n  },\n  {\n    \"id\": 192,\n    \"product_id\": 5310,\n    \"author\": \"Jimmy Doe\",\n    \"date_created\": \"Fri, 14 Dec 2012 06:00:00 +0000\",\n    \"title\": \"Worked for me!\",\n    \"review\": \"I thought this product was pretty good\",\n    \"rating\": 5,\n    \"status\": 1\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-product-reviews"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Product Review \n\nGets a product review.\n\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/reviews/{id}`\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 190,\n  \"product_id\": 5310,\n  \"author\": \"John Doe\",\n  \"date_created\": \"Wed, 12 Dec 2012 06:00:00 +0000\",\n  \"title\": \"My experience with the widget\",\n  \"review\": \"This widget worked for me, but might not work for everyone.\",\n  \"rating\": 4,\n  \"status\": 1\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-product-review"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create a Product Review \n\nCreates a new product review. \n\n### Notes \n\nThe `review` property is the review's text. The `rating` property must be a whole number between 1–5. If the optional `date_created` property is not specified, it defaults to the current date/time. If the optional \"status\" property is not specified, it defaults to 0 [`Pending`]. Other allowable values are 1 [`Approved`] or 2 [`Disapproved`].)\n\n\n>`POST /stores/{store_hash}/v2/products/{product_id}/reviews`\n\n\n### Read-only Properties \n\nThe following properties of the product review are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n\n### Requirements \n\nThe following properties of the product review are required. The request won’t be fulfilled unless these properties are valid.\n\n*   author\n*   title\n*   review\n*   rating\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 8,\n  \"product_id\": 32,\n  \"author\": \"Jimmy Doe\",\n  \"date_created\": \"Tue, 05 Mar 2013 06:00:00 +0000\",\n  \"title\": \"Worked for me!\",\n  \"review\": \"I thought this product was pretty good\",\n  \"rating\": 5,\n  \"status\": 0\n}\n```",
+                        "header": {
+                          "anchor": "v2-create-a-product-review"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update a Product Review \n\nUpdates an existing product review. Your request may update any of the properties that are writeable for the Create (POST) operation.\n\n\n>`PUT /stores/{store_hash}/v2/products/{product_id}/reviews/{id}`\n\n\n### Read-only Properties \n\nThe following properties of the product review are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 8,\n  \"product_id\": 32,\n  \"author\": \"Jimmy Doe\",\n  \"date_created\": \"Tue, 05 Mar 2013 06:00:00 +0000\",\n  \"title\": \"Worked for me!\",\n  \"review\": \"I thought this product was pretty good\",\n  \"rating\": 5,\n  \"status\": 1\n}\n```",
+                        "header": {
+                          "anchor": "v2-update-a-product-review"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete a Product Review \n\nDeletes a specified product review. (If successful, this will typically return a `204 No Content`.)\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/reviews/{id}`",
+                        "header": {
+                          "anchor": "v2-delete-a-product-review"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete All Product Reviews \n\nDeletes all reviews for the specified product. (If successful, this will typically return a `204 No Content`.)\n\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/reviews`",
+                        "header": {
+                          "anchor": "v2-delete-all-product-reviews"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "Product Rules",
+                  "route": {
+                    "path": "/v2-product-rules"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Product Reviews</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-product-rule-object-properties\">Product Rule Object – Properties </a></li>\n        <li><a href=\"#v2-list-product-rules\">List Product Rules</a></li>\n        <li><a href=\"#v2-get-a-product-rule\">Get a Product Rule </a></li>\n        <li><a href=\"#v2-get-a-count-of-product-rules\">Get a Count of Product Rules </a></li>\n        <li><a href=\"#v2-create-a-product-rule\">Create a Product Rule</a></li>\n        <li><a href=\"#v2-update-a-product-rule\"> Update a Product Rule</a></li>\n        <li><a href=\"#v2-delete-a-product-rule\">Delete a Product Rule</a></li>\n        <li><a href=\"#v2-delete-multiple-product-rules\">Delete Multiple Product Rules</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Product Rule Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | int | The ID of the rule. |\n| product_id | int | The ID of the product to which the rule belongs. |\n| sort_order | int | The order in which the rule will be displayed on the product page. Lower integers will give the rule a higher priority. If the rule is given a lower priority, then when updating, all rules with a `sort_order` the same or greater than the rule's new `sort_order` value will have their `sort_order` reordered. |\n| is_enabled | boolean | If set to `true`, the rule will be evaluated when a customer configures a product's options. |\n| is_stop | boolean | If set to `true` and the rule evaluates to `true`, no more rules with a higher `sort_order` will be processed. |\n| price_adjuster | object | If a product option rule specifies a change to the price based on an option, the `price_adjuster` object will consist of two name/value pairs. The first pair is named `adjuster` and contains one of the following values: `relative`, `percentage`, or `absolute`. The `percentage` value causes the price to vary based on either a positive or negative percentage. The `relative` value causes the price to vary by either a positive or negative monetary amount. The `absolute` value resets the price, so it should always be a positive number. The second pair is named `adjuster_value` and contains a decimal value representing one of the following: the amount to add or subtract from the price, the percentage by which the price should change, or the new price (as per the `adjuster` setting). If the product option rule does not specify a change to the price based on size or color, `price_adjuster` will be null. |\n| weight_adjuster | object | If a product option rule specifies a change to the weight based on an option, the `weight_adjuster` object will consist of two name/value pairs. The first pair is named `adjuster` and contains one of the following values: `relative` or `absolute`. The `relative` value causes the weight to vary by either a positive or negative amount. The `absolute` value resets the weight, so it should always be a positive number. The second pair is named `adjuster_value` and contains a decimal value representing one of the following: the amount to add or subtract from the weight or the new weight (as per the `adjuster` setting). If the product option rule does not specify a change to the price based on size or color, `weight_adjuster` will be null. |\n| is_purchasing_disabled | boolean | If true this rule prohibits purchasing the product with the configured option values. |\n| purchasing_disabled_message | string | The message to display if the rule disabled purchasing the product. |\n| is_purchasing_hidden | boolean | If true the rule hides the options on the product. Setting this to true has no effect if the rule is based on an SKU or has conditions from multiple product options. |\n| image_file | string | When specifying a product rule, the image_file should be specified as either: A path to an rule already uploaded via FTP in the import directory and the path should be relative from the import directory. It can be a URL to an rule accessible on the internet. |\n| conditions | array | The conditions array can contain one or more objects. Each object inside the array contains three name/value pairs, but at least one value will be missing at any given time. If a `product_option_id` value is present, then a `option_value_id` must also be present. If `product_option_id` and `option_value_id` values are present, then a `sku_id` value must not be present. This also holds true in the reverse, where if a `sku_id` value exists, values for the `product_option_id` and `option_value_id` cannot exist. NOTE: if you can use a SKU value, this is preferred for simplicity. Empty values are represented as `null`. If multiple objects are included in the array, the software runs through them using an AND/OR logic. Objects with identical `product_option_id` values will be linked with an OR. Objects with different `product_option_id` values will be linked with an AND. When one object contains a `sku_id` value and the other contains `product_option_id` and `option_value_id` values, they will be linked with an AND. Two objects which both contain `sku_id` values will be linked with an OR. |"
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Product Rules \n\nGets the collection of rules associated with a product. (Default sorting is by rule id, from lowest to highest.)\n\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/rules`\n\n### Filters \n\nThere are no filter parameters specific to product rules.\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 product_rules are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| page | int | /api/v2/products/{product_id}/rules?page={number} |\n| limit | int | /api/v2/products/{product_id}/rules?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": 1,\n    \"product_id\": 3,\n    \"sort_order\": 0,\n    \"is_enabled\": true,\n    \"is_stop\": false,\n    \"price_adjuster\": null,\n    \"weight_adjuster\": null,\n    \"is_purchasing_disabled\": false,\n    \"purchasing_disabled_message\": \"\",\n    \"is_purchasing_hidden\": false,\n    \"image_file\": \"attribute_rule_images/1_source.jpg\",\n    \"conditions\": [\n      {\n        \"product_option_id\": 4,\n        \"option_value_id\": 7,\n        \"sku_id\": null\n      }\n    ]\n  },\n  {\n    \"id\": 2,\n    \"product_id\": 3,\n    \"sort_order\": 1,\n    \"is_enabled\": true,\n    \"is_stop\": false,\n    \"price_adjuster\": null,\n    \"weight_adjuster\": null,\n    \"is_purchasing_disabled\": false,\n    \"purchasing_disabled_message\": \"\",\n    \"is_purchasing_hidden\": false,\n    \"image_file\": \"attribute_rule_images/2_source.jpg\",\n    \"conditions\": [\n      {\n        \"product_option_id\": 4,\n        \"option_value_id\": 8,\n        \"sku_id\": null\n      }\n    ]\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-product-rules"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Product Rule \n\nGets a single product rule.\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/rules/{id}`\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 2,\n  \"product_id\": 3,\n  \"sort_order\": 1,\n  \"is_enabled\": true,\n  \"is_stop\": false,\n  \"price_adjuster\": null,\n  \"weight_adjuster\": null,\n  \"is_purchasing_disabled\": false,\n  \"purchasing_disabled_message\": \"\",\n  \"is_purchasing_hidden\": false,\n  \"image_file\": \"attribute_rule_images/2_source.jpg\",\n  \"conditions\": [\n    {\n      \"product_option_id\": 4,\n      \"option_value_id\": 8,\n      \"sku_id\": null\n    }\n  ]\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-product-rule"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Count of Product Rules \n\nGets a count of the number of product rules in the store.\n\n>`GET /stores/{store_hash}/v2/products/rules/count`\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"count\": 3\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-count-of-product-rules"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create a Product Rule \n\nCreates a new product rule.\n\n\n>`POST /stores/{store_hash}/v2/products/{product_id}/rules`\n\n\n### Read-only Properties \n\nThe following properties of the product rule are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n\n### Requirements \n\nThe following properties of the product rule are required. The request won’t be fulfilled unless these properties are valid.\n\n*   conditions\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 10,\n  \"product_id\": 3,\n  \"sort_order\": 1,\n  \"is_enabled\": true,\n  \"is_stop\": false,\n  \"price_adjuster\": null,\n  \"weight_adjuster\": null,\n  \"is_purchasing_disabled\": false,\n  \"purchasing_disabled_message\": \"\",\n  \"is_purchasing_hidden\": false,\n  \"image_file\": \"attribute_rule_images/2_source.jpg\",\n  \"conditions\": [\n    {\n      \"product_option_id\": 4,\n      \"option_value_id\": 8,\n      \"sku_id\": null\n    }\n  ]\n}\n```",
+                        "header": {
+                          "anchor": "v2-create-a-product-rule"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update a Product Rule \n\nUpdates an existing product rule. \n\n### Notes \n\nIf you include a conditions object array, its contents will be appended to any existing conditions. This operation does not overwrite existing conditions.\n\n>`PUT /stores/{store_hash}/v2/products/{product_id}/rules/{id}`\n\n### Read-only Properties \n\nThe following properties of the product rule are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n\n### Requirements \n\nThere are no property requirements for updating a product rule.\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"id\": 2,\n  \"product_id\": 3,\n  \"sort_order\": 2,\n  \"is_enabled\": true,\n  \"is_stop\": false,\n  \"price_adjuster\": null,\n  \"weight_adjuster\": null,\n  \"is_purchasing_disabled\": false,\n  \"purchasing_disabled_message\": \"\",\n  \"is_purchasing_hidden\": false,\n  \"image_file\": \"attribute_rule_images/2_source.jpg\",\n  \"conditions\": [\n    {\n      \"product_option_id\": 4,\n      \"option_value_id\": 8,\n      \"sku_id\": null\n    }\n  ]\n}\n```",
+                        "header": {
+                          "anchor": "v2-update-a-product-rule"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete a Product Rule \n\nDeletes a product rule.\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/rules/{id}`",
+                        "header": {
+                          "anchor": "v2-delete-a-product-rule"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete Multiple Product Rules \n\nDeletes multiple product rules.\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/rules`\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 `product_rules` are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| page | int | /api/v2/products/{product_id}/rules?page={number} |\n| limit | int | /api/v2/products/{product_id}/rules?limit={count} |",
+                        "header": {
+                          "anchor": "v2-delete-multiple-product-rules"
+                        }
+                      }
+                    ],
+                    "children": []
+                  }
+                },
+                {
+                  "title": "Product Videos",
+                  "route": {
+                    "path": "/v2-product-videos"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Product Videos</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#v2-product-video-object-properties\">Videos Object – Properties </a></li>\n        <li><a href=\"#v2-list-product-videos\">List Product Videos</a></li>\n        <li><a href=\"#v2-get-a-product-video\">Get a Product Video </a></li>\n        <li><a href=\"#v2-get-a-count-of-product-videos\">Get a Count of Product Videos </a></li>\n        <li><a href=\"#v2-create-a-product-video\">Create a Product Video</a></li>\n        <li><a href=\"#v2-update-a-product-video\">Update Product Video Metadata</a></li>\n        <li><a href=\"#v2-delete-a-product-video\">Delete a Product Video </a></li>\n        <li><a href=\"#v2-delete-all-product-videos\">Delete All Product Videos </a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Videos Object – Properties \n\n| Name | Type | Description |\n| --- | --- | --- |\n| id | string | ID of this video. |\n| product_id | int | ID of the associated product. |\n| sort_order | int | Sort order for this video. |\n| name | string | Name for this video. |",
+                        "header": {
+                          "anchor": "v2-product-video-object-properties"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## List Product Videos \n\nGets the videos associated with a product.\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/videos`\n\n### Pagination \n\nParameters can be added to the URL query string to paginate the collection. The maximum limit is 250. If a limit isn’t provided, up to 50 `product_videos` are returned by default.\n\n| Parameter | Type | Example |\n| --- | --- | --- |\n| page | int | /api/v2/products/{product_id}/videos?page={number} |\n| limit | int | /api/v2/products/{product_id}/videos?limit={count} |\n\n### Response \n\nExample JSON returned in the response:\n\n```\n[\n  {\n    \"id\": \"UmhvxsOwhqk\",\n    \"product_id\": 30,\n    \"sort_order\": 0,\n    \"name\": \"X-Men Evolution: Season 1, Episode 1\"\n  }\n]\n```",
+                        "header": {
+                          "anchor": "v2-list-product-videos"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Product Video \n\nGets a product video.\n\n>`GET /stores/{store_hash}/v2/products/{product_id}/videos/{id}`\n",
+                        "header": {
+                          "anchor": "v2-get-a-product-video"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Get a Count of Product Videos \n\nGets a count of the number of product videos in the store.\n\n>`GET /stores/{store_hash}/v2/products/videos/count`\n\n### Response \n\nExample JSON returned in the response:\n\n```\n{\n  \"count\": 0\n}\n```",
+                        "header": {
+                          "anchor": "v2-get-a-count-of-product-videos"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Create a Product Video \n\nAdds a link to a YouTube video to a product.\n\n\n>`POST /stores/{store_hash}/v2/products/{product_id}/videos`\n\n### Read-only Properties \n\nThe following properties of the product video are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n\n### Requirements \n\nThe following properties of the product video are required. The request won’t be fulfilled unless these properties are valid.\n\n*   url\n\n### Notes \n\nOnly YouTube videos are supported. To create a new video, pass the full `url` in the request body.\n\n### Request \n\nExample request object:\n\n```\n{\n  \"url\": \"https://www.youtube.com/watch?v=4wZ3ZG_Wams\"\n}\n```",
+                        "header": {
+                          "anchor": "v2-create-a-product-video"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Update Product Video Metadata \n\nEdit the metadata of a product video.\n\n>`PUT /stores/{store_hash}/v2/products/{product_id}/videos/{id}`\n\n### Read-only Properties \n\nThe following properties of the product video are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   product_id\n\n### Requirements \n\nThere are no required properties when updating a product video. \n\n### Notes \n\nThe `name`, `sort_order` and `url` properties of the product video are editable.\n\nPosting a new `url` will update the `id` of the video to reference the new video.\n\n### Request \n\nExample request object:\n\n```\n{\n  \"name\": \"New video title\",\n  \"sort_order\": 2\n}\n```",
+                        "header": {
+                          "anchor": "v2-update-a-product-video"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete a Product Video \n\nDelete a product video.\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/videos/{id}`",
+                        "header": {
+                          "anchor": "v2-delete-a-product-video"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Delete All Product Videos \n\nDeletes all videos belonging to a product.\n\n>`DELETE /stores/{store_hash}/v2/products/{product_id}/videos`",
+                        "header": {
+                          "anchor": "v2-delete-all-product-videos"
+                        }
+                      }
                     ]
                   }
                 }
               ]
+            },
+            "config": {
+              "sidebar": {
+                "token": "v2"
+              }
             }
           }
         ]
