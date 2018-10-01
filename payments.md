@@ -6,6 +6,17 @@ PROJECT-1986.payment_api_v3_create_payments_scope is the expirement I enabled.
 I keep getting an order is invalid. I made the order using the cart/checkout then created an order using the checkout api. 
 I have tried serveral orders, but it keeps returning order invalid. What makes the order valid so that I can get a payment access token?
 
+```
+{
+  "order": {
+    "id": 183
+  }
+}
+
+```
+
+`https://api.bigcommerce.com/stores/jrah6gmn/v3/payments/access_tokens`
+
 ## PaymentAccessTokenRequest under Create an access token
 
 Why is there an is_recurring field? Does it do anything?
@@ -31,10 +42,10 @@ it here do? For example is if I select test mode here, but its not selected on t
 - type: Just says to classify this payment instrument and it is stored_card? Are there others? 
 
 ## Payment Request
-- What identifier? payment_method_id. It doesn't explain where that can be found
+- payment_method_id What identifier? It doesn't explain where that can be found
 
 
-First attempts
+## First attempts
 
 {
     "status": 500,
