@@ -1,0 +1,405 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Payment API",
+    "contact": {}
+  },
+  "host": "payments.bigcommerce.com",
+  "basePath": "/stores/{store_hash}",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/payments": {
+      "post": {
+        "description": "This server-to-server endpoint provides the capability to process payment using payment instrument such as credit card. Depending on merchant's configuration in BigCommerce's Control Panel, the payment request will be processed as either 'Authorize only' or 'Authorize and Capture'.",
+        "summary": "Process a payment for a particular order",
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "PaymentsPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Authorization header with a valid payment access token is required to access this endpoint e.g. Authorization: PAT a-valid-payment-access-token"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Payment has been successfully processed",
+            "schema": {
+              "$ref": "#/definitions/SuccessPaymentResponse"
+            }
+          },
+          "400": {
+            "description": "Payment request has been rejected due to malformed request",
+            "schema": {
+              "$ref": "#/definitions/ErrorPaymentResponse"
+            }
+          },
+          "401": {
+            "description": "Valid authentication required",
+            "schema": {
+              "$ref": "#/definitions/ErrorPaymentResponse"
+            }
+          },
+          "422": {
+            "description": "Payment request has been rejected due to missing, invalid data or declined by payment provider",
+            "schema": {
+              "$ref": "#/definitions/ErrorPaymentResponse"
+            }
+          },
+          "default": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorPaymentResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PaymentRequest": {
+      "title": "PaymentRequest",
+      "type": "object",
+      "properties": {
+        "payment": {
+          "$ref": "#/definitions/Payment"
+        }
+      },
+      "required": [
+        "payment"
+      ]
+    },
+    "Payment": {
+      "title": "Payment",
+      "type": "object",
+      "properties": {
+        "amount": {
+          "description": "Amount in smallest currency unit",
+          "type": "integer",
+          "format": "int32"
+        },
+        "currency_code": {
+          "description": "Currency code",
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "instrument": {
+          "description": "",
+          "type": "object"
+        },
+        "payment_method_id": {
+          "description": "Identifier for payment method that will be used for this payment",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "instrument",
+        "payment_method_id"
+      ]
+    },
+    "SuccessPaymentResponse": {
+      "title": "SuccessPaymentResponse",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier for this transaction",
+          "type": "string"
+        },
+        "transaction_type": {
+          "$ref": "#/definitions/TransactionType"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        }
+      }
+    },
+    "TransactionType": {
+      "title": "TransactionType",
+      "description": "Transaction type for this payment",
+      "example": "authorization",
+      "type": "string",
+      "enum": [
+        "authorization",
+        "purchase"
+      ]
+    },
+    "Status": {
+      "title": "Status",
+      "description": "Status to indicate a success response",
+      "example": "success",
+      "type": "string",
+      "enum": [
+        "success"
+      ]
+    },
+    "ErrorPaymentResponse": {
+      "title": "ErrorPaymentResponse",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "HTTP status code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "Short summary describing the particular error",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Detailed summary describing the particular error",
+          "type": "string"
+        },
+        "type": {
+          "description": "Reference that identifies the particular error",
+          "type": "string"
+        },
+        "code": {
+          "description": "Code representing the particular error",
+          "type": "integer",
+          "format": "int32"
+        },
+        "errors": {
+          "description": "",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "title",
+        "type"
+      ]
+    },
+    "Card": {
+      "title": "Card",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Type to classify this payment instrument",
+          "example": "card",
+          "type": "string",
+          "default": "card"
+        },
+        "cardholder_name": {
+          "description": "Cardholder's full name",
+          "type": "string",
+          "minLength": 1
+        },
+        "number": {
+          "description": "Credit card number",
+          "type": "string",
+          "minLength": 1
+        },
+        "expiry_month": {
+          "description": "Expiry month of this card",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "format": "int32"
+        },
+        "expiry_year": {
+          "description": "Expiry year of this card",
+          "type": "integer",
+          "format": "int32"
+        },
+        "verification_value": {
+          "description": "Verification value of this card or CVV",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 4
+        },
+        "issue_month": {
+          "description": "Issue month of this card",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "format": "int32"
+        },
+        "issue_year": {
+          "description": "Issue year of this card",
+          "type": "integer",
+          "format": "int32"
+        },
+        "issue_number": {
+          "description": "Issue number of this card",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "type",
+        "cardholder_name",
+        "number",
+        "expiry_month",
+        "expiry_year"
+      ]
+    },
+    "StoredCard": {
+      "title": "StoredCard",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Type to classify this payment instrument. There is only type for stored cards.",
+          "example": "stored_card",
+          "type": "string",
+          "default": "stored_card"
+        },
+        "token": {
+          "description": "Identifier representing this stored card",
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "type",
+        "token"
+      ]
+    },
+    "BasePaymentResponse": {
+      "title": "BasePaymentResponse",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier for this transaction",
+          "type": "string"
+        },
+        "transaction_type": {
+          "$ref": "#/definitions/TransactionType"
+        }
+      }
+    },
+    "PendingPaymentResponse": {
+      "title": "PendingPaymentResponse",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier for this transaction",
+          "type": "string"
+        },
+        "transaction_type": {
+          "$ref": "#/definitions/TransactionType"
+        },
+        "status": {
+          "$ref": "#/definitions/Status20"
+        }
+      }
+    },
+    "Status20": {
+      "title": "Status20",
+      "description": "Status to indicate a pending response",
+      "example": "pending",
+      "type": "string",
+      "enum": [
+        "pending"
+      ]
+    },
+    "Error": {
+      "title": "Error",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "HTTP status code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "Short summary describing the particular error",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Detailed summary describing the particular error",
+          "type": "string"
+        },
+        "type": {
+          "description": "Reference that identifies the particular error",
+          "type": "string"
+        },
+        "code": {
+          "description": "Code representing the particular error",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "status",
+        "title",
+        "type"
+      ]
+    },
+    "ErrorPaymentResponse22": {
+      "title": "ErrorPaymentResponse22",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "HTTP status code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "Short summary describing the particular error",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Detailed summary describing the particular error",
+          "type": "string"
+        },
+        "type": {
+          "description": "Reference that identifies the particular error",
+          "type": "string"
+        },
+        "code": {
+          "description": "Code representing the particular error",
+          "type": "integer",
+          "format": "int32"
+        },
+        "errors": {
+          "description": "",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "title",
+        "type"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Payment",
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "CreatePaymentToken API",
+    "contact": {}
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{store_hash}/v3",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/payments/access_tokens": {
+      "post": {
+        "description": "This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for a particular order. ",
+        "summary": "Creates a payment access token",
+        "tags": [
+          "Payment Access Token"
+        ],
+        "operationId": "PaymentsAccessTokensPost",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PaymentAccessTokenRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Payment access token has been successfully created",
+            "schema": {
+              "$ref": "#/definitions/PaymentsAccessTokensResponse"
+            }
+          },
+          "400": {
+            "description": "Request has been rejected",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Valid authentication required",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Request has been rejected due to resource not being found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request has been rejected due to missing or invalid data",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PaymentAccessTokenRequest": {
+      "title": "PaymentAccessTokenRequest",
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/Order"
+        }
+      },
+      "required": [
+        "order"
+      ]
+    },
+    "Order": {
+      "title": "Order",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier for the order",
+          "type": "integer",
+          "minimum": 1,
+          "format": "int32"
+        },
+        "is_recurring": {
+          "description": "Whether this is a recurring order",
+          "example": false,
+          "type": "boolean",
+          "default": false
+        },
+        "shopper_session": {
+          "$ref": "#/definitions/ShopperSession"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "ShopperSession": {
+      "title": "ShopperSession",
+      "type": "object",
+      "properties": {
+        "ip_address": {
+          "description": "IP address where this shopper made the purchase",
+          "type": "string"
+        }
+      }
+    },
+    "PaymentsAccessTokensResponse": {
+      "title": "Payments Access Tokens Response",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/PaymentAccessToken"
+        }
+      }
+    },
+    "PaymentAccessToken": {
+      "title": "PaymentAccessToken",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Payment access token. This token is required in subsequent payment request to Payment API endpoint.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "ErrorResponse": {
+      "title": "ErrorResponse",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "HTTP status code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "Short summary describing the particular error",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Detailed summary describing the particular error",
+          "type": "string"
+        },
+        "type": {
+          "description": "Reference that identifies the particular error",
+          "type": "string"
+        },
+        "code": {
+          "description": "Code representing the particular error",
+          "type": "integer",
+          "format": "int32"
+        },
+        "errors": {
+          "description": "",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "title",
+        "type"
+      ]
+    },
+    "PaymentMethod": {
+      "title": "PaymentMethod",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier for this payment method",
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "description": "Name of this payment method",
+          "type": "string",
+          "minLength": 1
+        },
+        "test_mode": {
+          "description": "Whether this payment method is on test mode. This corresponds to the test payment in the control panel and the payment gateway. They should have the same setting otherwise this could cause the payment to fail. This is a read-only value.",
+          "example": false,
+          "type": "boolean",
+          "default": false
+        },
+        "verification_value_required": {
+          "description": "Whether verification value is required for payment",
+          "type": "boolean"
+        },
+        "stored_cards": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StoredCard"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "test_mode",
+        "verification_value_required",
+        "stored_cards"
+      ]
+    },
+    "StoredCard": {
+      "title": "StoredCard",
+      "type": "object",
+      "properties": {
+        "brand": {
+          "description": "Brand of this card such as VISA or Mastercard",
+          "type": "string",
+          "minLength": 1
+        },
+        "expiry_month": {
+          "description": "Expiry month of this card",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "format": "int32"
+        },
+        "expiry_year": {
+          "description": "Expiry year of this card",
+          "type": "integer",
+          "format": "int32"
+        },
+        "iin": {
+          "description": "Issuer identification number of this card. This is extracted from the card when the order is payed for.",
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 6
+        },
+        "last_4": {
+          "description": "Last four numbers of this card",
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 4
+        },
+        "token": {
+          "description": "Identifier representing this stored card. This is used to identify cards within BigCommerce. It is the same as the `payment_access_token` that returns via the Get Transactions endpoint.",
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "brand",
+        "expiry_month",
+        "expiry_year",
+        "iin",
+        "last_4",
+        "token"
+      ]
+    },
+    "Error": {
+      "title": "Error",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "HTTP status code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "Short summary describing the particular error",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Detailed summary describing the particular error",
+          "type": "string"
+        },
+        "type": {
+          "description": "Reference that identifies the particular error",
+          "type": "string"
+        },
+        "code": {
+          "description": "Code representing the particular error",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "status",
+        "title",
+        "type"
+      ]
+    },
+    "ErrorResponse26": {
+      "title": "ErrorResponse26",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "HTTP status code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "Short summary describing the particular error",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Detailed summary describing the particular error",
+          "type": "string"
+        },
+        "type": {
+          "description": "Reference that identifies the particular error",
+          "type": "string"
+        },
+        "code": {
+          "description": "Code representing the particular error",
+          "type": "integer",
+          "format": "int32"
+        },
+        "errors": {
+          "description": "",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "title",
+        "type"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Payment Access Token",
+      "description": ""
+    },
+    {
+      "name": "Payment Methods",
+      "description": ""
+    }
+  ],
+  "securityDefinitions": {
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-Auth-Client"
+    },
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "X-Auth-Client": []
+    },
+    {
+      "X-Auth-Token": []
+    }
+  ]
+}
