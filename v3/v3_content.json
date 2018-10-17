@@ -1,10 +1,10 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Scripts API",
-    "version": "3.0.0b",
-    "description": "BigCommerce Scripts API",
-    "termsOfService": "http://www.bigcommerce.com/terms",
+    "title": "Scripts",
+    "version": "",
+    "description": "The BigCommerce Scripts API can be used to add a script to a store's page. Some use cases:\n* Insert tracking codes\n* Storefront single click applications\n* Live chat, support plugins\n* Theme extension or connector apps",
+    "termsOfService": "",
     "license": {
       "name": ""
     }
@@ -652,6 +652,20 @@
     },
     "Script": {
       "type": "object",
+      "example": {
+        "uuid": "2bf40be2-e57a-4bc8-860a-5bf45edd3795",
+        "name": "jQuery",
+        "description": "The Write Less, Do More, JavaScript Library.",
+        "src": "https://code.jquery.com/jquery-3.2.1.min.js",
+        "auto_uninstall": true,
+        "load_method": "defer",
+        "location": "head",
+        "visibility": "storefront",
+        "kind": "src",
+        "api_client_id": "d1j42k5q76xsm15fa3g8sp2egytoixo",
+        "date_created": "2017-12-05T23:37:45.506Z",
+        "date_modified": "2017-12-05T23:37:45.506Z"
+      },
       "properties": {
         "uuid": {
           "type": "string",
@@ -676,11 +690,11 @@
         },
         "auto_uninstall": {
           "type": "boolean",
-          "description": "Whether to uninstall this script when the app associated with it is removed."
+          "description": "It will enable automatic cleanup of the script when the single click app is uninstalled or OAuth token is revoked."
         },
         "load_method": {
           "type": "string",
-          "description": "The load method to use for the script. Values are `default`, `async`, or `defer`.",
+          "description": "The load method to use for the script. Values are `default`, `async`, or `defer`. It determines how the script should be loaded into the page.",
           "enum": [
             "default",
             "async",
@@ -697,7 +711,7 @@
         },
         "visibility": {
           "type": "string",
-          "description": "Which set of pages the script should load on. The values allowed for this parameter are `storefront`, `all_pages`, `checkout` and `order_confirmation`. Please note that you need to have `Checkout content` scope to use `all_pages` and `checkout`.",
+          "description": "Which set of pages the script should load on. \n\nPlease note that you need to have `Checkout content` scope to use `all_pages` and `checkout`.\n\n- The current visibility options are `storefront`, `checkout`, `all_pages` and `order_confirmation`.\n\n     `storefront`: All pages that are not `checkout` or `order_confirmation`.\n     \n     `all_pages`: Includes `storefront`, `checkout` and `order_confirmation`. This also includes the cart page. It **does not** include giftcertificates.php, sitemap.php, account.php, and login.php.",
           "enum": [
             "storefront",
             "all_pages",
@@ -707,7 +721,7 @@
         },
         "kind": {
           "type": "string",
-          "description": "What type of script this is. Values are `src` - a `script` tag will be generated with its `src` attribute set to the value of `src`; `script_tag` - The value of `html` will be injected directly onto the page.",
+          "description": "What type of script this is.\n\n`src` - a `script` tag will be generated with its `src` attribute set to the value of `src`; For scripts that use the src url. By providing a path to the script, we can optimize and serve the script tag automatically for you.\n\n`script_tag` - The value of `html` will be injected directly onto the page.\nFor scripts which include a raw HTML script_tag to be inserted into the page. The load_method must be default.",
           "enum": [
             "src",
             "script_tag"
@@ -727,20 +741,6 @@
           "format": "date-time",
           "description": "The date on which this object was last updated."
         }
-      },
-      "example": {
-        "uuid": "2bf40be2-e57a-4bc8-860a-5bf45edd3795",
-        "name": "jQuery",
-        "description": "The Write Less, Do More, JavaScript Library.",
-        "src": "https://code.jquery.com/jquery-3.2.1.min.js",
-        "auto_uninstall": true,
-        "load_method": "defer",
-        "location": "head",
-        "visibility": "storefront",
-        "kind": "src",
-        "api_client_id": "d1j42k5q76xsm15fa3g8sp2egytoixo",
-        "date_created": "2017-12-05T23:37:45.506Z",
-        "date_modified": "2017-12-05T23:37:45.506Z"
       }
     },
     "ScriptPost": {

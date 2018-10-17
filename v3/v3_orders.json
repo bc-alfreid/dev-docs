@@ -1,10 +1,10 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "BigCommerce API",
-    "version": "3.0.0b",
-    "description": "A Swagger Document for the BigCommmerce v3 API.",
-    "termsOfService": "http://www.bigcommerce.com/terms",
+    "title": "Order Transactions",
+    "version": "",
+    "description": "The Transactions API returns granular details about the payment instruments used to pay for an order. Depending on the payment method used, different details will be available. Not all credit card payment gateways will return full card details or all CVV/fraud response details. This is primarily used to get detailed gateway response information for credit card transactions, however it will also return any available information about digital wallet payments, as well as details about orders paid (partially or in full) via a gift certificate or store credit. \n\nThe [test payment gateway](https://forum.bigcommerce.com/s/article/Testing-Shipping-Tax-and-Payment-Settings#test-payment) available in the BigCommerce control panel does not return any payment information.\n\nFor an API for more general Order information, such as the information needed to create a new Order, or get all the details of an order for fulfillment purposes, see the [Orders API](/api-reference/orders/orders-api).",
+    "termsOfService": "",
     "license": {
       "name": ""
     }
@@ -479,7 +479,7 @@
     },
     "TransactionCollectionResponse": {
       "type": "object",
-      "description": "Response payload for the BigCommerce Order Transactions API.\n",
+      "description": "Response payload for the BigCommerce Order Transactions API.",
       "properties": {
         "data": {
           "type": "array",
@@ -494,14 +494,12 @@
       "title": "Transaction Collection Response"
     },
     "Transaction": {
-      "type": "object",
-      "description": "A BigCommerce Transaction object describes a single transaction.\n",
+      "description": "A BigCommerce Transaction object describes a single transaction.",
       "allOf": [
         {
           "$ref": "#/definitions/TransactionPost"
         },
         {
-          "type": "object",
           "properties": {
             "id": {
               "type": "integer",
@@ -518,7 +516,7 @@
             },
             "payment_instrument_token": {
               "type": "string",
-              "description": "Token for an existing stored Credit Card used for this transaction, if any.\n"
+              "description": "This field contains internal BigPay token for stored card that is then mapped to the actual third-party token. We currently do not offer a way to get third party tokens.These tokens are read-only and do not return any information about the payment."
             },
             "avs_result": {
               "$ref": "#/definitions/AVSResult"
@@ -537,7 +535,9 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Transaction",
+      "type": "object"
     },
     "CreditCard": {
       "type": "object",

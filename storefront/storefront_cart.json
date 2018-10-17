@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "title": "Storefront Cart",
-    "description": "Storefront Cart",
-    "version": "v0.0.2"
+    "description": "The Storefront Cart does not use API Tokens and allows for cart data to be scraped directly from the front end or used in a Stencil Theme.\n\nNotes:\n- The Try It Now at each endpoint will not work. Please see [Cart and Checkout](/api-docs/cart-and-checkout/cart-and-checkout-overview) for a script that can be used to get Cart details.\n- cartId is the same as the checkoutId.\n- Carts are valid for 30 days after the last modification. A modification includes the initial cart creation or editing the existing cart.\n- The redirect url endpoint does not work using the Storefront Cart. At this time shoppers can not be directed to any carts or checkouts created using the Storefront APIS. ",
+    "version": ""
   },
   "consumes": [
     "application/json"
@@ -240,7 +240,7 @@
         "description": "Get a cart. By default, the cart response will return abbreviated details for cart line items. To get full details of selected product options, use the following query parameters: \n\n- Physical products only: `?include=lineItems.physicalItems.options `\n- Digital products only: `?include=lineItems.digitalItems.options`\n- Both physical and digital items: `?include=lineItems.digitalItems.options,lineItems.physicalItems.options`"
       },
       "post": {
-        "description": "Creates a cart and generates a cart ID.\n\n* When creating a cart it is recommeneded to use the option id and option value.\n* To add a product with a mix of variants and options, the `optionSelections` need to be listed out separately. ",
+        "description": "Creates a cart and generates a cart ID.\n\n* When creating a cart it is recommeneded to use the option id and option value.\n* To add a product with a mix of variants and options, the `optionSelections` need to be listed out separately. \n* The redirect url endpoint does not work using the Storefront Cart. At this time shoppers can not be directed to any carts or checkouts created using the Storefront APIS. ",
         "parameters": [
           {
             "name": "cartData",
@@ -2046,9 +2046,7 @@
     },
     "BaseItem": {
       "type": "object",
-      "required": [
-        "quantity"
-      ],
+      "title": "Base Item",
       "properties": {
         "id": {
           "type": "string",
@@ -2056,7 +2054,7 @@
         },
         "parentId": {
           "type": "string",
-          "description": "Bundled items will have their parent's item Id."
+          "description": "The product is part of a bundle such as a product pick list, then the parentId or the main product id will populate."
         },
         "variantId": {
           "type": "number",
@@ -2130,9 +2128,15 @@
           "items": {
             "$ref": "#/definitions/ProductOption"
           }
+        },
+        "brand": {
+          "type": "string",
+          "description": "The products brand"
         }
       },
-      "title": "Base Item"
+      "required": [
+        "quantity"
+      ]
     },
     "ProductOption": {
       "type": "object",
@@ -2217,5 +2221,5 @@
   "schemes": [
     "https"
   ],
-  "host": "store_url"
+  "host": "<store_url>"
 }

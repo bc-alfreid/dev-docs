@@ -1,10 +1,10 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "BigCommerce V3 Catalog API",
-    "version": "3.0.0b",
-    "description": "V3 Catalog API",
-    "termsOfService": "http://www.bigcommerce.com/terms",
+    "title": "Catalog",
+    "version": "",
+    "description": "The Catalog API manages products, brands and categories for a store. To learn more about the Catalog resources see [Catalog Products](/api-docs/catalog/products/products-overview) and [Categories](/api-docs/catalog/categories/categories-overview).",
+    "termsOfService": "",
     "license": {
       "name": ""
     }
@@ -175,1571 +175,7 @@
         ],
         "responses": {
           "200": {
-            "description": "This example sorts the results by name, included the variants and limits the number per page to 10. `/v3/catalog/products?sort=name&include=variants&limit=10`",
-            "schema": {
-              "$ref": "#/definitions/ProductCollectionResponse"
-            },
-            "examples": {
-              "application/json": {
-                "data": [
-                  {
-                    "id": 174,
-                    "name": "1L Le Parfait Jar",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
-                    "weight": 1,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 7.95,
-                    "cost_price": 0,
-                    "retail_price": 10,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 7.95,
-                    "categories": [
-                      23,
-                      21
-                    ],
-                    "brand_id": 36,
-                    "option_set_id": null,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 7,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "jar, glass",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-08-15T14:48:46+00:00",
-                    "date_modified": "2018-09-05T20:42:07+00:00",
-                    "view_count": 10,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/all/1l-le-parfait-jar/",
-                      "is_customized": true
-                    },
-                    "base_variant_id": 345,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 345,
-                        "product_id": 174,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 7.95,
-                        "calculated_price": 7.95,
-                        "sale_price": 0,
-                        "retail_price": 10,
-                        "map_price": 0,
-                        "weight": 1,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 1,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/174/images/425/leparfaitmedium3_1024x1024_1024x1024__37756__81924.1534344526.560.850.jpg?c=2",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": 167,
-                    "name": "Able Brewing System",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
-                    "weight": 1,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 225,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 225,
-                    "categories": [
-                      23,
-                      21
-                    ],
-                    "brand_id": 43,
-                    "option_set_id": 52,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 2,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-08-15T14:48:36+00:00",
-                    "date_modified": "2018-08-20T15:11:17+00:00",
-                    "view_count": 21,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/all/able-brewing-system/",
-                      "is_customized": true
-                    },
-                    "base_variant_id": 338,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 338,
-                        "product_id": 167,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 225,
-                        "calculated_price": 225,
-                        "sale_price": 0,
-                        "retail_price": 0,
-                        "map_price": 0,
-                        "weight": 1,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 1,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.560.850.jpg?c=2",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": 181,
-                    "name": "All Purpose Cleaner",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
-                    "weight": 1,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 15,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 15,
-                    "categories": [
-                      21,
-                      22
-                    ],
-                    "brand_id": 37,
-                    "option_set_id": null,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 0,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-08-15T14:48:51+00:00",
-                    "date_modified": "2018-08-15T15:01:15+00:00",
-                    "view_count": 0,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/all/all-purpose-cleaner/",
-                      "is_customized": true
-                    },
-                    "base_variant_id": 352,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 352,
-                        "product_id": 181,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 15,
-                        "calculated_price": 15,
-                        "sale_price": 0,
-                        "retail_price": 0,
-                        "map_price": 0,
-                        "weight": 1,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 1,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/181/images/442/CommonGoodAllPurposeCleaner_d37aa1e8_e16f_4309_bddd_8fae0d94efc7_1024x1024__40180__66527.1534344531.560.850.jpg?c=2",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": 193,
-                    "name": "BigCommerce Coffee Mug",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "",
-                    "weight": 4,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 10,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 10,
-                    "categories": [
-                      21
-                    ],
-                    "brand_id": 38,
-                    "option_set_id": null,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 0,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-09-05T20:19:06+00:00",
-                    "date_modified": "2018-09-05T20:19:06+00:00",
-                    "view_count": 0,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/bigcommerce-coffee-mug/",
-                      "is_customized": false
-                    },
-                    "base_variant_id": 385,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 385,
-                        "product_id": 193,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 10,
-                        "calculated_price": 10,
-                        "sale_price": 0,
-                        "retail_price": 0,
-                        "map_price": 0,
-                        "weight": 4,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 4,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": 194,
-                    "name": "BigCommerce Coffee Mug_2",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "",
-                    "weight": 3,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 11,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 11,
-                    "categories": [
-                      21
-                    ],
-                    "brand_id": 38,
-                    "option_set_id": null,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 0,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-09-05T20:20:47+00:00",
-                    "date_modified": "2018-09-05T20:20:47+00:00",
-                    "view_count": 0,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/bigcommerce-coffee-mug_2/",
-                      "is_customized": false
-                    },
-                    "base_variant_id": 386,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 386,
-                        "product_id": 194,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 11,
-                        "calculated_price": 11,
-                        "sale_price": 0,
-                        "retail_price": 0,
-                        "map_price": 0,
-                        "weight": 3,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 3,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": 195,
-                    "name": "BigCommerce Coffee Mug_3",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "",
-                    "weight": 3,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 11,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 11,
-                    "categories": [
-                      21
-                    ],
-                    "brand_id": 38,
-                    "option_set_id": 50,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 0,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-09-05T20:22:19+00:00",
-                    "date_modified": "2018-09-07T20:01:26+00:00",
-                    "view_count": 0,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/bigcommerce-coffee-mug_3/",
-                      "is_customized": false
-                    },
-                    "base_variant_id": null,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 388,
-                        "product_id": 195,
-                        "sku": "SKU-4484A834",
-                        "sku_id": 351,
-                        "price": null,
-                        "calculated_price": 11,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 3,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 174,
-                            "label": "Beige",
-                            "option_id": 221,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 389,
-                        "product_id": 195,
-                        "sku": "SKU-9E932372",
-                        "sku_id": 352,
-                        "price": null,
-                        "calculated_price": 11,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 3,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 175,
-                            "label": "Grey",
-                            "option_id": 221,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 390,
-                        "product_id": 195,
-                        "sku": "SKU-29CE333F",
-                        "sku_id": 353,
-                        "price": null,
-                        "calculated_price": 11,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 3,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 176,
-                            "label": "Black",
-                            "option_id": 221,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 391,
-                        "product_id": 195,
-                        "sku": "SKU-02FBF02A",
-                        "sku_id": 354,
-                        "price": null,
-                        "calculated_price": 11,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 3,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 189,
-                            "label": "Black-Walnut",
-                            "option_id": 221,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "id": 184,
-                    "name": "Canvas Laundry Cart",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
-                    "weight": 15,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 249,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 249,
-                    "categories": [
-                      23,
-                      22
-                    ],
-                    "brand_id": 36,
-                    "option_set_id": 51,
-                    "option_set_display": "right",
-                    "inventory_level": 1497,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "variant",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 6,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-08-15T14:48:53+00:00",
-                    "date_modified": "2018-08-28T19:02:11+00:00",
-                    "view_count": 22,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/all/canvas-laundry-cart/",
-                      "is_customized": true
-                    },
-                    "base_variant_id": null,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 364,
-                        "product_id": 184,
-                        "sku": "SMA-RED",
-                        "sku_id": 330,
-                        "price": 15.99,
-                        "calculated_price": 15.99,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": 15,
-                        "calculated_weight": 15,
-                        "width": 4,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 497,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 177,
-                            "label": "Small",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 180,
-                            "label": "Red",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 365,
-                        "product_id": 184,
-                        "sku": "MED-RED",
-                        "sku_id": 331,
-                        "price": 555,
-                        "calculated_price": 555,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 500,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 178,
-                            "label": "Medium",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 180,
-                            "label": "Red",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 366,
-                        "product_id": 184,
-                        "sku": "LAR-RED",
-                        "sku_id": 332,
-                        "price": null,
-                        "calculated_price": 253.99,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 500,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 179,
-                            "label": "Large",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 180,
-                            "label": "Red",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 367,
-                        "product_id": 184,
-                        "sku": "SMA-GRE",
-                        "sku_id": 333,
-                        "price": null,
-                        "calculated_price": 249,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 177,
-                            "label": "Small",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 181,
-                            "label": "Green",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 368,
-                        "product_id": 184,
-                        "sku": "MED-GRE",
-                        "sku_id": 334,
-                        "price": null,
-                        "calculated_price": 249,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 178,
-                            "label": "Medium",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 181,
-                            "label": "Green",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 369,
-                        "product_id": 184,
-                        "sku": "LAR-GRE",
-                        "sku_id": 335,
-                        "price": null,
-                        "calculated_price": 253.99,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 179,
-                            "label": "Large",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 181,
-                            "label": "Green",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 370,
-                        "product_id": 184,
-                        "sku": "SMA-BLU",
-                        "sku_id": 336,
-                        "price": null,
-                        "calculated_price": 249,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 177,
-                            "label": "Small",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 182,
-                            "label": "Blue",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 371,
-                        "product_id": 184,
-                        "sku": "MED-BLU",
-                        "sku_id": 337,
-                        "price": null,
-                        "calculated_price": 249,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 178,
-                            "label": "Medium",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 182,
-                            "label": "Blue",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      },
-                      {
-                        "id": 372,
-                        "product_id": 184,
-                        "sku": "LAR-BLU",
-                        "sku_id": 338,
-                        "price": null,
-                        "calculated_price": 253.99,
-                        "sale_price": null,
-                        "retail_price": null,
-                        "map_price": null,
-                        "weight": null,
-                        "calculated_weight": 15,
-                        "width": null,
-                        "height": null,
-                        "depth": null,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": null,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": [
-                          {
-                            "id": 179,
-                            "label": "Large",
-                            "option_id": 199,
-                            "option_display_name": "Size"
-                          },
-                          {
-                            "id": 182,
-                            "label": "Blue",
-                            "option_id": 200,
-                            "option_display_name": "Color"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "id": 173,
-                    "name": "Ceramic Measuring Spoon Set",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</p>",
-                    "weight": 1,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 18,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 18,
-                    "categories": [
-                      23,
-                      21
-                    ],
-                    "brand_id": 36,
-                    "option_set_id": null,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 1,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-08-15T14:48:45+00:00",
-                    "date_modified": "2018-08-20T15:14:23+00:00",
-                    "view_count": 0,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/all/ceramic-measuring-spoon-set/",
-                      "is_customized": true
-                    },
-                    "base_variant_id": 344,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 344,
-                        "product_id": 173,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 18,
-                        "calculated_price": 18,
-                        "sale_price": 0,
-                        "retail_price": 0,
-                        "map_price": 0,
-                        "weight": 1,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 1,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/173/images/424/measuringspoons1_1024x1024__22102__55079.1534344525.560.850.jpg?c=2",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": 170,
-                    "name": "Ceramic Measuring Spoons",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
-                    "weight": 1,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 25,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 25,
-                    "categories": [
-                      23,
-                      21
-                    ],
-                    "brand_id": 36,
-                    "option_set_id": null,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 0,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-08-15T14:48:42+00:00",
-                    "date_modified": "2018-08-15T15:01:15+00:00",
-                    "view_count": 0,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/all/ceramic-measuring-spoons/",
-                      "is_customized": true
-                    },
-                    "base_variant_id": 341,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 341,
-                        "product_id": 170,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 25,
-                        "calculated_price": 25,
-                        "sale_price": 0,
-                        "retail_price": 0,
-                        "map_price": 0,
-                        "weight": 1,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 1,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/170/images/411/measuringsquares2_1024x1024__07108__95421.1534344522.560.850.jpg?c=2",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  },
-                  {
-                    "id": 176,
-                    "name": "Ceramic Sugar & Creamer Set",
-                    "type": "physical",
-                    "sku": "",
-                    "description": "<div data-position=\"description\"> <div class=\"description\"> <div class=\"rte-content\"> <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p> </div> </div> </div>",
-                    "weight": 1,
-                    "width": 0,
-                    "depth": 0,
-                    "height": 0,
-                    "price": 59,
-                    "cost_price": 0,
-                    "retail_price": 0,
-                    "sale_price": 0,
-                    "map_price": 0,
-                    "tax_class_id": 0,
-                    "product_tax_code": "",
-                    "calculated_price": 59,
-                    "categories": [
-                      23,
-                      21
-                    ],
-                    "brand_id": 36,
-                    "option_set_id": null,
-                    "option_set_display": "right",
-                    "inventory_level": 0,
-                    "inventory_warning_level": 0,
-                    "inventory_tracking": "none",
-                    "reviews_rating_sum": 0,
-                    "reviews_count": 0,
-                    "total_sold": 1,
-                    "fixed_cost_shipping_price": 0,
-                    "is_free_shipping": false,
-                    "is_visible": true,
-                    "is_featured": false,
-                    "related_products": [
-                      -1
-                    ],
-                    "warranty": "",
-                    "bin_picking_number": "",
-                    "layout_file": "product.html",
-                    "upc": "",
-                    "mpn": "",
-                    "gtin": "",
-                    "search_keywords": "",
-                    "availability": "available",
-                    "availability_description": "",
-                    "gift_wrapping_options_type": "any",
-                    "gift_wrapping_options_list": [],
-                    "sort_order": 0,
-                    "condition": "New",
-                    "is_condition_shown": false,
-                    "order_quantity_minimum": 0,
-                    "order_quantity_maximum": 0,
-                    "page_title": "",
-                    "meta_keywords": [],
-                    "meta_description": "",
-                    "date_created": "2018-08-15T14:48:48+00:00",
-                    "date_modified": "2018-08-31T15:19:27+00:00",
-                    "view_count": 0,
-                    "preorder_release_date": null,
-                    "preorder_message": "",
-                    "is_preorder_only": false,
-                    "is_price_hidden": false,
-                    "price_hidden_label": "",
-                    "custom_url": {
-                      "url": "/all/ceramic-sugar-creamer-set/",
-                      "is_customized": true
-                    },
-                    "base_variant_id": 347,
-                    "open_graph_type": "product",
-                    "open_graph_title": "",
-                    "open_graph_description": "",
-                    "open_graph_use_meta_description": true,
-                    "open_graph_use_product_name": true,
-                    "open_graph_use_image": true,
-                    "variants": [
-                      {
-                        "id": 347,
-                        "product_id": 176,
-                        "sku": "",
-                        "sku_id": null,
-                        "price": 59,
-                        "calculated_price": 59,
-                        "sale_price": 0,
-                        "retail_price": 0,
-                        "map_price": 0,
-                        "weight": 1,
-                        "width": 0,
-                        "height": 0,
-                        "depth": 0,
-                        "is_free_shipping": false,
-                        "fixed_cost_shipping_price": 0,
-                        "calculated_weight": 1,
-                        "purchasing_disabled": false,
-                        "purchasing_disabled_message": "",
-                        "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/176/images/432/milkandcreamer1_1024x1024__69117__81345.1534344528.560.850.jpg?c=2",
-                        "cost_price": 0,
-                        "upc": "",
-                        "mpn": "",
-                        "gtin": "",
-                        "inventory_level": 0,
-                        "inventory_warning_level": 0,
-                        "bin_picking_number": "",
-                        "option_values": []
-                      }
-                    ]
-                  }
-                ],
-                "meta": {
-                  "pagination": {
-                    "total": 39,
-                    "count": 10,
-                    "per_page": 10,
-                    "current_page": 1,
-                    "total_pages": 4,
-                    "links": {
-                      "next": "?sort=name&include=variants&limit=10&page=2",
-                      "current": "?sort=name&include=variants&limit=10&page=1"
-                    },
-                    "too_many": false
-                  }
-                }
-              }
-            }
+            "$ref": "#/responses/ProductCollectionResponse"
           }
         },
         "summary": "Get All Products",
@@ -1778,7 +214,160 @@
                 "weight": 4,
                 "type": "physical"
               },
-              "Creating a Product with Variants": "{\n    \"name\": \"BigCommerce Coffee Mug\",\n    \"price\": \"10.00\",\n    \"categories\":[\n            23,21\n        ],\n        \n    \"weight\": 4,\n    \"type\": \"physical\",\n    \"variants\":[\n        {\n            \"sku\": \"SKU-BLU\",\n            \"option_values\":[\n                    {\n                        \"option_display_name\": \"Mug Color\",\n                        \"label\": \"Blue\"\n                    }\n                ]\n        },\n        {\n            \"sku\": \"SKU-GRAY\",\n            \"option_values\":[\n                    {\n                        \"option_display_name\": \"Mug Color\",\n                        \"label\": \"Gray\"\n                    }\n                ]\n        }\n    ]\n}"
+              "Creating a Product with Variants": "{\n    \"name\": \"BigCommerce Coffee Mug\",\n    \"price\": \"10.00\",\n    \"categories\":[\n            23,21\n        ],\n        \n    \"weight\": 4,\n    \"type\": \"physical\",\n    \"variants\":[\n        {\n            \"sku\": \"SKU-BLU\",\n            \"option_values\":[\n                    {\n                        \"option_display_name\": \"Mug Color\",\n                        \"label\": \"Blue\"\n                    }\n                ]\n        },\n        {\n            \"sku\": \"SKU-GRAY\",\n            \"option_values\":[\n                    {\n                        \"option_display_name\": \"Mug Color\",\n                        \"label\": \"Gray\"\n                    }\n                ]\n        }\n    ]\n}",
+              "application/json": {
+                "name": "deser",
+                "type": "digital",
+                "sku": "nulla cill",
+                "description": "velit ea laborum",
+                "weight": 6653716699.214403,
+                "width": 3309999404.9099708,
+                "depth": 4134454397.1852517,
+                "height": 5598633863.808846,
+                "price": 49476158.100480735,
+                "cost_price": 50352345.96818179,
+                "retail_price": 36286048.34741529,
+                "sale_price": 11052123.33915786,
+                "tax_class_id": 306504518,
+                "product_tax_code": "a",
+                "categories": [
+                  5956409,
+                  -946051
+                ],
+                "brand_id": 996103720,
+                "inventory_level": 632406493,
+                "inventory_warning_level": 550419826,
+                "inventory_tracking": "none",
+                "fixed_cost_shipping_price": 58177662.107555576,
+                "is_free_shipping": true,
+                "is_visible": true,
+                "is_featured": true,
+                "related_products": [
+                  91656741,
+                  -2410364,
+                  73795790
+                ],
+                "warranty": "",
+                "bin_picking_number": "sint amet",
+                "layout_file": "nulla do",
+                "upc": "cons",
+                "search_keywords": "ut sit",
+                "availability": "disabled",
+                "availability_description": "aliqu",
+                "gift_wrapping_options_type": "any",
+                "gift_wrapping_options_list": [
+                  25901911,
+                  -11127634
+                ],
+                "sort_order": -1555536918,
+                "condition": "Refurbished",
+                "is_condition_shown": true,
+                "order_quantity_minimum": 240355460,
+                "order_quantity_maximum": 178262377,
+                "page_title": "eu magn",
+                "meta_keywords": [
+                  "aute sed laboris",
+                  "sint proident",
+                  "Duis"
+                ],
+                "meta_description": "Excepteu",
+                "view_count": 311660434,
+                "preorder_release_date": "1978-02-08T16:31:47.697Z",
+                "preorder_message": "eu veniam ",
+                "is_preorder_only": true,
+                "is_price_hidden": true,
+                "price_hidden_label": "elit mo",
+                "custom_url": {
+                  "url": "amet dolore",
+                  "is_customized": true
+                },
+                "open_graph_type": "drink",
+                "open_graph_title": "sed dolore laboris",
+                "open_graph_description": "qui aute occaecat irure Excepteur",
+                "open_graph_use_meta_description": false,
+                "open_graph_use_product_name": true,
+                "open_graph_use_image": true,
+                "brand_name": "consectetur ullamco",
+                "custom_fields": [
+                  {
+                    "name": "incidid",
+                    "value": "amet "
+                  },
+                  {
+                    "name": "laboris u",
+                    "value": "sed occae"
+                  },
+                  {
+                    "name": "d",
+                    "value": "in sin"
+                  },
+                  {
+                    "name": "quis",
+                    "value": "non nisi d"
+                  }
+                ],
+                "bulk_pricing_rules": [
+                  {
+                    "quantity_min": 36386399,
+                    "quantity_max": 16049178,
+                    "type": "percent",
+                    "amount": 45682957.00946889
+                  },
+                  {
+                    "quantity_min": 30096932,
+                    "quantity_max": 18129770,
+                    "type": "fixed",
+                    "amount": 81926328.72978693
+                  },
+                  {
+                    "quantity_min": 26209769,
+                    "quantity_max": 20727080,
+                    "type": "percent",
+                    "amount": 98517183.05615105
+                  },
+                  {
+                    "quantity_min": 23518238,
+                    "quantity_max": 69792968,
+                    "type": "percent",
+                    "amount": 77246599.44982533
+                  },
+                  {
+                    "quantity_min": 68783738,
+                    "quantity_max": 55517681,
+                    "type": "fixed",
+                    "amount": 131961.92377118443
+                  }
+                ],
+                "variants": [
+                  {
+                    "cost_price": 43411253.95607388,
+                    "price": 33995022.931045726,
+                    "sale_price": 68667606.302963,
+                    "retail_price": 9552682.621407116,
+                    "weight": 35541646.32589165,
+                    "width": 41896181.62487447,
+                    "height": 46658474.628709756,
+                    "depth": 15671295.040809019,
+                    "is_free_shipping": true,
+                    "fixed_cost_shipping_price": 84506228.2754877,
+                    "purchasing_disabled": true,
+                    "purchasing_disabled_message": "aute ",
+                    "image_url": "cillum in sed",
+                    "upc": "amet culpa",
+                    "inventory_level": -95050659,
+                    "inventory_warning_level": -94168530,
+                    "bin_picking_number": "paria",
+                    "product_id": 48998310,
+                    "sku": "occ",
+                    "option_values": [
+                      {
+                        "option_display_name": "des",
+                        "label": "eni"
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           },
           {
@@ -2492,7 +1081,7 @@
         ]
       },
       "post": {
-        "description": "Creates an image on a product using the product_id. Publicly accessible URLs and files (form post) are valid parameters. Must either provide a `image_url` or a `image_file`.\n\nIf creating a product image using the multi-part file, will not accept other fields. Only the image can be uploaded. The other fields must be passed in later using an /PUT request to the product image. ",
+        "description": "Creates an image on a product using the product_id. Publicly accessible URLs and files (form post) are valid parameters. Must either provide a `image_url` or a `image_file`.\n\nIf creating a product image using the multi-part file, will not accept other fields. Only the image can be uploaded. The other fields must be passed in later using an /PUT request to the product image. \n\nOnly one image at a time can be created.",
         "operationId": "createProductImage",
         "parameters": [
           {
@@ -12972,7 +11561,8 @@
         "meta": {
           "$ref": "#/definitions/CollectionMeta"
         }
-      }
+      },
+      "title": "Variant Collection Response"
     },
     "VariantResponse": {
       "description": "Successful response.\n",
@@ -12984,7 +11574,8 @@
         "meta": {
           "$ref": "#/definitions/Meta"
         }
-      }
+      },
+      "title": "Variant Response"
     },
     "VariantBase": {
       "type": "object",
@@ -13094,7 +11685,8 @@
           "minLength": 0,
           "maxLength": 255
         }
-      }
+      },
+      "title": "Variant Base"
     },
     "Variant": {
       "type": "object",
@@ -13171,7 +11763,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Variant Post"
     },
     "VariantPut": {
       "type": "object",
@@ -13191,7 +11784,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Variant Put"
     },
     "VariantProductPost": {
       "type": "object",
@@ -13225,7 +11819,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Variant Product Post"
     },
     "VariantProductPut": {
       "type": "object",
@@ -13247,7 +11842,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Variant Product Put"
     },
     "OptionValueProductBase": {
       "type": "object",
@@ -13455,7 +12051,8 @@
         "meta": {
           "$ref": "#/definitions/CollectionMeta"
         }
-      }
+      },
+      "title": "Product Image Collection Response"
     },
     "ProductImageResponse": {
       "description": "Response payload for the BigCommerce API.\n",
@@ -13467,7 +12064,8 @@
         "meta": {
           "$ref": "#/definitions/Meta"
         }
-      }
+      },
+      "title": "Product Image Response"
     },
     "ProductImageBase": {
       "type": "object",
@@ -13487,7 +12085,8 @@
           "description": "The description for the image.\n",
           "type": "string"
         }
-      }
+      },
+      "title": "Product Image Base"
     },
     "ProductImage": {
       "type": "object",
@@ -13534,7 +12133,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Product Image"
     },
     "ProductImagePost": {
       "type": "object",
@@ -13556,7 +12156,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Product Image Post"
     },
     "ProductImagePut": {
       "type": "object",
@@ -13565,7 +12166,8 @@
         {
           "$ref": "#/definitions/ProductImageBase"
         }
-      ]
+      ],
+      "title": "Product Image Put"
     },
     "ProductVideoCollectionResponse": {
       "description": "Response payload for the BigCommerce API.\n",
@@ -13580,7 +12182,8 @@
         "meta": {
           "$ref": "#/definitions/CollectionMeta"
         }
-      }
+      },
+      "title": "Product Video Collection Response"
     },
     "ProductVideoResponse": {
       "description": "Response payload for the BigCommerce API.\n",
@@ -13592,7 +12195,8 @@
         "meta": {
           "$ref": "#/definitions/Meta"
         }
-      }
+      },
+      "title": "Product Video Response"
     },
     "ProductVideoBase": {
       "type": "object",
@@ -13621,7 +12225,8 @@
             "youtube"
           ]
         }
-      }
+      },
+      "title": "Product Video Base"
     },
     "ProductVideo": {
       "type": "object",
@@ -13651,7 +12256,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Product Video"
     },
     "ProductVideoPost": {
       "type": "object",
@@ -13674,7 +12280,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Product Video Post"
     },
     "ProductVideoPut": {
       "type": "object",
@@ -13695,7 +12302,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Product Video Put"
     },
     "ProductReviewCollectionResponse": {
       "description": "Response payload for the BigCommerce API.\n",
@@ -13710,7 +12318,8 @@
         "meta": {
           "$ref": "#/definitions/CollectionMeta"
         }
-      }
+      },
+      "title": "Product Review Collection Response"
     },
     "ProductReviewResponse": {
       "description": "Response payload for the BigCommerce API.\n",
@@ -13722,7 +12331,8 @@
         "meta": {
           "$ref": "#/definitions/Meta"
         }
-      }
+      },
+      "title": "Product Review Response"
     },
     "ProductReviewBase": {
       "type": "object",
@@ -13761,7 +12371,8 @@
           "format": "date-time",
           "description": "Date the product was reviewed.\n"
         }
-      }
+      },
+      "title": "Product Review Base"
     },
     "ProductReview": {
       "type": "object",
@@ -13793,7 +12404,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Product Review"
     },
     "ProductReviewPost": {
       "description": "The model for a POST to create a product review.\n",
@@ -13802,7 +12414,8 @@
           "$ref": "#/definitions/ProductReviewBase"
         }
       ],
-      "type": "object"
+      "type": "object",
+      "title": "Product Review Post"
     },
     "ProductReviewPut": {
       "type": "object",
@@ -13811,7 +12424,8 @@
         {
           "$ref": "#/definitions/ProductReviewBase"
         }
-      ]
+      ],
+      "title": "Product Review Put"
     },
     "ImageResponse": {
       "description": "Image Response returns for:\n* Create Variant Image\n* Create Modifier Image\n* Create Category Image\n* Create Brand Image",
@@ -13834,22 +12448,8 @@
           "type": "string",
           "description": "A public URL for a GIF, JPEG, or PNG image.\n"
         }
-      }
-    },
-    "ProductCollectionResponse": {
-      "type": "object",
-      "description": "Response payload for the BigCommerce API.\n",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Product"
-          }
-        },
-        "meta": {
-          "$ref": "#/definitions/CollectionMeta"
-        }
-      }
+      },
+      "title": "Resource Image"
     },
     "ProductResponse": {
       "description": "Response payload for the BigCommerce API.\n",
@@ -13861,7 +12461,8 @@
         "meta": {
           "$ref": "#/definitions/Meta"
         }
-      }
+      },
+      "title": "Product Response"
     },
     "ProductBase": {
       "type": "object",
@@ -14343,7 +12944,8 @@
             }
           }
         }
-      ]
+      ],
+      "title": "Product Post"
     },
     "ProductPut": {
       "description": "The model for a PUT to update a product.",
@@ -15346,38 +13948,6 @@
       },
       "description": "Adjuster for Complex Rules."
     },
-    "BulkPricingTier": {
-      "type": "object",
-      "title": "Bulk Pricing Tier",
-      "properties": {
-        "quantity_min": {
-          "type": "integer",
-          "description": "The minimum quantity of associated variant in the cart needed to qualify for this tiers pricing.\n",
-          "example": 1
-        },
-        "quantity_max": {
-          "type": "integer",
-          "description": "The maximum allowed quantity of associated variant in the cart to qualify for this tiers pricing.\n",
-          "example": 10
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "fixed",
-            "price",
-            "percent"
-          ],
-          "description": "The type of adjustment that is made. Acceptable values: price – the adjustment amount per product; percent – the adjustment as a percentage of the original price; fixed – the adjusted absolute price of the product.\n",
-          "example": "price"
-        },
-        "amount": {
-          "type": "number",
-          "format": "double",
-          "description": "The price adjustment amount. This value along with the type will decide the price per variant for the pricing tier.\n",
-          "example": 3
-        }
-      }
-    },
     "CollectionMeta": {
       "type": "object",
       "description": "Data about the response, including pagination and collection totals.",
@@ -15592,5 +14162,1586 @@
     {
       "X-Auth-Token": []
     }
-  ]
+  ],
+  "responses": {
+    "ProductCollectionResponse": {
+      "description": "",
+      "schema": {
+        "type": "object",
+        "description": "Response payload for the BigCommerce API.\n",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "meta": {
+            "$ref": "#/definitions/CollectionMeta"
+          }
+        }
+      },
+      "examples": {
+        "application/json": {
+          "data": [
+            {
+              "id": 174,
+              "name": "1L Le Parfait Jar",
+              "type": "physical",
+              "sku": "",
+              "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
+              "weight": 1,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 7.95,
+              "cost_price": 0,
+              "retail_price": 10,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 7.95,
+              "categories": [
+                23,
+                21
+              ],
+              "brand_id": 36,
+              "option_set_id": null,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 7,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "jar, glass",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-08-15T14:48:46+00:00",
+              "date_modified": "2018-09-05T20:42:07+00:00",
+              "view_count": 10,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/all/1l-le-parfait-jar/",
+                "is_customized": true
+              },
+              "base_variant_id": 345,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 345,
+                  "product_id": 174,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 7.95,
+                  "calculated_price": 7.95,
+                  "sale_price": 0,
+                  "retail_price": 10,
+                  "map_price": 0,
+                  "weight": 1,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 1,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/174/images/425/leparfaitmedium3_1024x1024_1024x1024__37756__81924.1534344526.560.850.jpg?c=2",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            },
+            {
+              "id": 167,
+              "name": "Able Brewing System",
+              "type": "physical",
+              "sku": "",
+              "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
+              "weight": 1,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 225,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 225,
+              "categories": [
+                23,
+                21
+              ],
+              "brand_id": 43,
+              "option_set_id": 52,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 2,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-08-15T14:48:36+00:00",
+              "date_modified": "2018-08-20T15:11:17+00:00",
+              "view_count": 21,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/all/able-brewing-system/",
+                "is_customized": true
+              },
+              "base_variant_id": 338,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 338,
+                  "product_id": 167,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 225,
+                  "calculated_price": 225,
+                  "sale_price": 0,
+                  "retail_price": 0,
+                  "map_price": 0,
+                  "weight": 1,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 1,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.560.850.jpg?c=2",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            },
+            {
+              "id": 181,
+              "name": "All Purpose Cleaner",
+              "type": "physical",
+              "sku": "",
+              "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
+              "weight": 1,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 15,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 15,
+              "categories": [
+                21,
+                22
+              ],
+              "brand_id": 37,
+              "option_set_id": null,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 0,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-08-15T14:48:51+00:00",
+              "date_modified": "2018-08-15T15:01:15+00:00",
+              "view_count": 0,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/all/all-purpose-cleaner/",
+                "is_customized": true
+              },
+              "base_variant_id": 352,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 352,
+                  "product_id": 181,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 15,
+                  "calculated_price": 15,
+                  "sale_price": 0,
+                  "retail_price": 0,
+                  "map_price": 0,
+                  "weight": 1,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 1,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/181/images/442/CommonGoodAllPurposeCleaner_d37aa1e8_e16f_4309_bddd_8fae0d94efc7_1024x1024__40180__66527.1534344531.560.850.jpg?c=2",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            },
+            {
+              "id": 193,
+              "name": "BigCommerce Coffee Mug",
+              "type": "physical",
+              "sku": "",
+              "description": "",
+              "weight": 4,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 10,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 10,
+              "categories": [
+                21
+              ],
+              "brand_id": 38,
+              "option_set_id": null,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 0,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-09-05T20:19:06+00:00",
+              "date_modified": "2018-09-05T20:19:06+00:00",
+              "view_count": 0,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/bigcommerce-coffee-mug/",
+                "is_customized": false
+              },
+              "base_variant_id": 385,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 385,
+                  "product_id": 193,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 10,
+                  "calculated_price": 10,
+                  "sale_price": 0,
+                  "retail_price": 0,
+                  "map_price": 0,
+                  "weight": 4,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 4,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            },
+            {
+              "id": 194,
+              "name": "BigCommerce Coffee Mug_2",
+              "type": "physical",
+              "sku": "",
+              "description": "",
+              "weight": 3,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 11,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 11,
+              "categories": [
+                21
+              ],
+              "brand_id": 38,
+              "option_set_id": null,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 0,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-09-05T20:20:47+00:00",
+              "date_modified": "2018-09-05T20:20:47+00:00",
+              "view_count": 0,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/bigcommerce-coffee-mug_2/",
+                "is_customized": false
+              },
+              "base_variant_id": 386,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 386,
+                  "product_id": 194,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 11,
+                  "calculated_price": 11,
+                  "sale_price": 0,
+                  "retail_price": 0,
+                  "map_price": 0,
+                  "weight": 3,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 3,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            },
+            {
+              "id": 195,
+              "name": "BigCommerce Coffee Mug_3",
+              "type": "physical",
+              "sku": "",
+              "description": "",
+              "weight": 3,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 11,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 11,
+              "categories": [
+                21
+              ],
+              "brand_id": 38,
+              "option_set_id": 50,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 0,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-09-05T20:22:19+00:00",
+              "date_modified": "2018-09-07T20:01:26+00:00",
+              "view_count": 0,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/bigcommerce-coffee-mug_3/",
+                "is_customized": false
+              },
+              "base_variant_id": null,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 388,
+                  "product_id": 195,
+                  "sku": "SKU-4484A834",
+                  "sku_id": 351,
+                  "price": null,
+                  "calculated_price": 11,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 3,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 174,
+                      "label": "Beige",
+                      "option_id": 221,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 389,
+                  "product_id": 195,
+                  "sku": "SKU-9E932372",
+                  "sku_id": 352,
+                  "price": null,
+                  "calculated_price": 11,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 3,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 175,
+                      "label": "Grey",
+                      "option_id": 221,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 390,
+                  "product_id": 195,
+                  "sku": "SKU-29CE333F",
+                  "sku_id": 353,
+                  "price": null,
+                  "calculated_price": 11,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 3,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 176,
+                      "label": "Black",
+                      "option_id": 221,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 391,
+                  "product_id": 195,
+                  "sku": "SKU-02FBF02A",
+                  "sku_id": 354,
+                  "price": null,
+                  "calculated_price": 11,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 3,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 189,
+                      "label": "Black-Walnut",
+                      "option_id": 221,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 184,
+              "name": "Canvas Laundry Cart",
+              "type": "physical",
+              "sku": "",
+              "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
+              "weight": 15,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 249,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 249,
+              "categories": [
+                23,
+                22
+              ],
+              "brand_id": 36,
+              "option_set_id": 51,
+              "option_set_display": "right",
+              "inventory_level": 1497,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "variant",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 6,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-08-15T14:48:53+00:00",
+              "date_modified": "2018-08-28T19:02:11+00:00",
+              "view_count": 22,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/all/canvas-laundry-cart/",
+                "is_customized": true
+              },
+              "base_variant_id": null,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 364,
+                  "product_id": 184,
+                  "sku": "SMA-RED",
+                  "sku_id": 330,
+                  "price": 15.99,
+                  "calculated_price": 15.99,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": 15,
+                  "calculated_weight": 15,
+                  "width": 4,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 497,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 177,
+                      "label": "Small",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 180,
+                      "label": "Red",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 365,
+                  "product_id": 184,
+                  "sku": "MED-RED",
+                  "sku_id": 331,
+                  "price": 555,
+                  "calculated_price": 555,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 500,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 178,
+                      "label": "Medium",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 180,
+                      "label": "Red",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 366,
+                  "product_id": 184,
+                  "sku": "LAR-RED",
+                  "sku_id": 332,
+                  "price": null,
+                  "calculated_price": 253.99,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 500,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 179,
+                      "label": "Large",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 180,
+                      "label": "Red",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 367,
+                  "product_id": 184,
+                  "sku": "SMA-GRE",
+                  "sku_id": 333,
+                  "price": null,
+                  "calculated_price": 249,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 177,
+                      "label": "Small",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 181,
+                      "label": "Green",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 368,
+                  "product_id": 184,
+                  "sku": "MED-GRE",
+                  "sku_id": 334,
+                  "price": null,
+                  "calculated_price": 249,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 178,
+                      "label": "Medium",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 181,
+                      "label": "Green",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 369,
+                  "product_id": 184,
+                  "sku": "LAR-GRE",
+                  "sku_id": 335,
+                  "price": null,
+                  "calculated_price": 253.99,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 179,
+                      "label": "Large",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 181,
+                      "label": "Green",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 370,
+                  "product_id": 184,
+                  "sku": "SMA-BLU",
+                  "sku_id": 336,
+                  "price": null,
+                  "calculated_price": 249,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 177,
+                      "label": "Small",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 182,
+                      "label": "Blue",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 371,
+                  "product_id": 184,
+                  "sku": "MED-BLU",
+                  "sku_id": 337,
+                  "price": null,
+                  "calculated_price": 249,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 178,
+                      "label": "Medium",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 182,
+                      "label": "Blue",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                },
+                {
+                  "id": 372,
+                  "product_id": 184,
+                  "sku": "LAR-BLU",
+                  "sku_id": 338,
+                  "price": null,
+                  "calculated_price": 253.99,
+                  "sale_price": null,
+                  "retail_price": null,
+                  "map_price": null,
+                  "weight": null,
+                  "calculated_weight": 15,
+                  "width": null,
+                  "height": null,
+                  "depth": null,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": null,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": [
+                    {
+                      "id": 179,
+                      "label": "Large",
+                      "option_id": 199,
+                      "option_display_name": "Size"
+                    },
+                    {
+                      "id": 182,
+                      "label": "Blue",
+                      "option_id": 200,
+                      "option_display_name": "Color"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 173,
+              "name": "Ceramic Measuring Spoon Set",
+              "type": "physical",
+              "sku": "",
+              "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</p>",
+              "weight": 1,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 18,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 18,
+              "categories": [
+                23,
+                21
+              ],
+              "brand_id": 36,
+              "option_set_id": null,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 1,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-08-15T14:48:45+00:00",
+              "date_modified": "2018-08-20T15:14:23+00:00",
+              "view_count": 0,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/all/ceramic-measuring-spoon-set/",
+                "is_customized": true
+              },
+              "base_variant_id": 344,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 344,
+                  "product_id": 173,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 18,
+                  "calculated_price": 18,
+                  "sale_price": 0,
+                  "retail_price": 0,
+                  "map_price": 0,
+                  "weight": 1,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 1,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/173/images/424/measuringspoons1_1024x1024__22102__55079.1534344525.560.850.jpg?c=2",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            },
+            {
+              "id": 170,
+              "name": "Ceramic Measuring Spoons",
+              "type": "physical",
+              "sku": "",
+              "description": "<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>",
+              "weight": 1,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 25,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 25,
+              "categories": [
+                23,
+                21
+              ],
+              "brand_id": 36,
+              "option_set_id": null,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 0,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-08-15T14:48:42+00:00",
+              "date_modified": "2018-08-15T15:01:15+00:00",
+              "view_count": 0,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/all/ceramic-measuring-spoons/",
+                "is_customized": true
+              },
+              "base_variant_id": 341,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 341,
+                  "product_id": 170,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 25,
+                  "calculated_price": 25,
+                  "sale_price": 0,
+                  "retail_price": 0,
+                  "map_price": 0,
+                  "weight": 1,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 1,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/170/images/411/measuringsquares2_1024x1024__07108__95421.1534344522.560.850.jpg?c=2",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            },
+            {
+              "id": 176,
+              "name": "Ceramic Sugar & Creamer Set",
+              "type": "physical",
+              "sku": "",
+              "description": "<div data-position=\"description\"> <div class=\"description\"> <div class=\"rte-content\"> <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p> </div> </div> </div>",
+              "weight": 1,
+              "width": 0,
+              "depth": 0,
+              "height": 0,
+              "price": 59,
+              "cost_price": 0,
+              "retail_price": 0,
+              "sale_price": 0,
+              "map_price": 0,
+              "tax_class_id": 0,
+              "product_tax_code": "",
+              "calculated_price": 59,
+              "categories": [
+                23,
+                21
+              ],
+              "brand_id": 36,
+              "option_set_id": null,
+              "option_set_display": "right",
+              "inventory_level": 0,
+              "inventory_warning_level": 0,
+              "inventory_tracking": "none",
+              "reviews_rating_sum": 0,
+              "reviews_count": 0,
+              "total_sold": 1,
+              "fixed_cost_shipping_price": 0,
+              "is_free_shipping": false,
+              "is_visible": true,
+              "is_featured": false,
+              "related_products": [
+                -1
+              ],
+              "warranty": "",
+              "bin_picking_number": "",
+              "layout_file": "product.html",
+              "upc": "",
+              "mpn": "",
+              "gtin": "",
+              "search_keywords": "",
+              "availability": "available",
+              "availability_description": "",
+              "gift_wrapping_options_type": "any",
+              "gift_wrapping_options_list": [],
+              "sort_order": 0,
+              "condition": "New",
+              "is_condition_shown": false,
+              "order_quantity_minimum": 0,
+              "order_quantity_maximum": 0,
+              "page_title": "",
+              "meta_keywords": [],
+              "meta_description": "",
+              "date_created": "2018-08-15T14:48:48+00:00",
+              "date_modified": "2018-08-31T15:19:27+00:00",
+              "view_count": 0,
+              "preorder_release_date": null,
+              "preorder_message": "",
+              "is_preorder_only": false,
+              "is_price_hidden": false,
+              "price_hidden_label": "",
+              "custom_url": {
+                "url": "/all/ceramic-sugar-creamer-set/",
+                "is_customized": true
+              },
+              "base_variant_id": 347,
+              "open_graph_type": "product",
+              "open_graph_title": "",
+              "open_graph_description": "",
+              "open_graph_use_meta_description": true,
+              "open_graph_use_product_name": true,
+              "open_graph_use_image": true,
+              "variants": [
+                {
+                  "id": 347,
+                  "product_id": 176,
+                  "sku": "",
+                  "sku_id": null,
+                  "price": 59,
+                  "calculated_price": 59,
+                  "sale_price": 0,
+                  "retail_price": 0,
+                  "map_price": 0,
+                  "weight": 1,
+                  "width": 0,
+                  "height": 0,
+                  "depth": 0,
+                  "is_free_shipping": false,
+                  "fixed_cost_shipping_price": 0,
+                  "calculated_weight": 1,
+                  "purchasing_disabled": false,
+                  "purchasing_disabled_message": "",
+                  "image_url": "https://cdn8.bigcommerce.com/s-jrah6gmn/products/176/images/432/milkandcreamer1_1024x1024__69117__81345.1534344528.560.850.jpg?c=2",
+                  "cost_price": 0,
+                  "upc": "",
+                  "mpn": "",
+                  "gtin": "",
+                  "inventory_level": 0,
+                  "inventory_warning_level": 0,
+                  "bin_picking_number": "",
+                  "option_values": []
+                }
+              ]
+            }
+          ],
+          "meta": {
+            "pagination": {
+              "total": 39,
+              "count": 10,
+              "per_page": 10,
+              "current_page": 1,
+              "total_pages": 4,
+              "links": {
+                "next": "?sort=name&include=variants&limit=10&page=2",
+                "current": "?sort=name&include=variants&limit=10&page=1"
+              },
+              "too_many": false
+            }
+          }
+        }
+      }
+    }
+  }
 }

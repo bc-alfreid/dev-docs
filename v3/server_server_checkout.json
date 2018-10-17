@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "v0.0.1",
-    "title": "BigCommerce's OAuth V3 Checkout API",
-    "description": "API for managing a shopper's end-to-end checkout experience.\n\nServerToServer Cart API [https://developer.bigcommerce.com/api/v3/#/reference/cart]"
+    "version": "",
+    "title": "Server to Server Checkout",
+    "description": "Allows for a checkout to be created from an existing cart using BigCommerce checkout logic. The existing BigCommerce front end cart/checkout can be bypassed.\n\nNotes:\n- checkoutId is the same as the cartId."
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{store_hash}/v3",
@@ -20,7 +20,7 @@
     "/checkouts/{checkoutId}": {
       "get": {
         "description": "A checkout is an aggregation of multiple entities – Cart, Addresses, Shipping Options, and more.",
-        "summary": "Return a Checkout by Id",
+        "summary": "Get a Checkout by Id",
         "tags": [
           "Checkout"
         ],
@@ -312,7 +312,7 @@
     },
     "/checkouts/{checkoutId}/billing-address": {
       "post": {
-        "description": "Adds a new billing address to the checkout.\nExample /POST:\n```\n{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\",\n  \"email\": \"jane@email.com\",\n  \"address1\": \"123 Main Street\",\n  \"address2\": \"\",\n  \"city\": \"Austin\",\n  \"state_or_province\": \"Texas\",\n  \"state_or_province_code\": \"TX\",\n  \"country_code\": \"US\",\n  \"postal_code\": \"78751\",\n  \"phone\": \"1234567890\"\n}\n``",
+        "description": "Adds a new billing address to the checkout. Either email or countryCode is required.",
         "tags": [
           "Checkout"
         ],
@@ -623,7 +623,7 @@
     },
     "/checkouts/{checkoutId}/billing-address/{addressId}": {
       "put": {
-        "description": "Updates the existing billing address on the checkout.\nExample /PUT:\n```\n{\n  \"email\": \"jane@email.com\",\n  \"phone\": \"1234567890\"\n}\n```\n",
+        "description": "Updates the existing billing address on the checkout.",
         "summary": "Update Checkout Billing Address",
         "tags": [
           "Checkout"
@@ -928,7 +928,7 @@
     },
     "/checkouts/{checkoutId}/consignments": {
       "post": {
-        "description": "Adds a new consignment to checkout. A Consignment includes a shipping address, a list of line item IDs that ship to this address and a shipping option ID. When creating a new consignment, you'll need to provide an address and a list of line item IDs. Shipping option ID should be added to this consignment later, using PUT.",
+        "description": "Adds a new consignment to checkout. A Consignment includes a shipping address, a list of line item IDs that ship to this address and a shipping option ID. When creating a new consignment, you'll need to provide an address and a list of line item IDs. \n\n\nWhen creating a consignment or new shipping address `consignments.available_shipping_options` must be included in the request to return the available shipping options for the order. The id or shippingOptionId that is return will need to be updated in a [PUT](/api-docs/api-reference/cart-and-checkout-api-reference/storefrontcheckout/checkout/checkoutsconsignmentsbycheckoutidandconsignmentidput). ",
         "summary": "Add Consignment to Checkout",
         "tags": [
           "Checkout"
@@ -1021,9 +1021,6 @@
             "name": "include",
             "in": "query",
             "required": false,
-            "enum": [
-              "consignments.availableShippingOptions"
-            ],
             "x-enum-elements": [
               {
                 "name": "Enum_consignments.availableShippingOptions",
@@ -1032,7 +1029,7 @@
             ],
             "type": "string",
             "description": "",
-            "default": "consignments.availableShippingOptions"
+            "default": "consignments.available_shipping_options"
           }
         ],
         "responses": {
@@ -1236,7 +1233,7 @@
     },
     "/checkouts/{checkoutId}/consignments/{consignmentId}": {
       "put": {
-        "description": "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.",
+        "description": "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.\n\nUsing the shippingOptionId from the [POST](http://) consignment, each shipping address should be updated with the corresponding line items and shippingOptionId.",
         "summary": "Update Checkout Consignment",
         "tags": [
           "Checkout"
@@ -1290,7 +1287,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns Checkout Object.",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/Checkout"
             },
@@ -1487,7 +1484,7 @@
         }
       },
       "delete": {
-        "description": "Removes an existing consignment from checkout.",
+        "description": "Removes an existing consignment from checkout. \nRemoving the last consigment will remove the Cart from the customer it is assigned to. Create a new rediret url for the customer to access it again.",
         "summary": "Delete Checkout Consignment",
         "tags": [
           "Checkout"
@@ -1683,7 +1680,7 @@
     },
     "/checkouts/{checkoutId}/coupons": {
       "post": {
-        "description": "Adds a coupon code to the checkout.\nExample /POST: \n```\n{\n  \"coupon_code\": \"S2549JM0Y\"\n}\n```",
+        "description": "Adds a coupon code to the checkout.",
         "summary": "Add Coupon to Checkout",
         "tags": [
           "Checkout"
@@ -1914,7 +1911,7 @@
     },
     "/checkouts/{checkoutId}/coupons/{couponCode}": {
       "delete": {
-        "description": "Removes an existing coupon from checkout.",
+        "description": "Removes an existing coupon from checkout. ",
         "summary": "Delete Checkout Coupon",
         "tags": [
           "Checkout"
@@ -2102,6 +2099,55 @@
           "IsMultiContentStreaming": false
         }
       }
+    },
+    "/checkouts/{checkoutId}/orders": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            },
+            "examples": {
+              "application/json": {
+                "id": 85424895
+              }
+            }
+          }
+        },
+        "summary": "Create an Order",
+        "description": "Create an order. Orders created will be set to incomplete order status. \n\nYou can create as many orders from the same order(cart) as you want. Order duplication creates the same order with a new order number with the incomplete status. \nOnce the order is paid, then the cart is deleted. Cart deletion occurs if you are using BigCommerce to accept payments on orders.",
+        "security": [
+          {
+            "X-Auth-Client": []
+          },
+          {
+            "X-Auth-Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Accepts"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/parameters/checkoutId"
+          }
+        ],
+        "tags": [
+          "Checkout"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "checkoutId",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ]
     }
   },
   "definitions": {
@@ -3127,6 +3173,17 @@
       "required": [
         "quantity"
       ]
+    },
+    "Order": {
+      "type": "object",
+      "title": "Order",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 75,
+          "description": "The order Id."
+        }
+      }
     }
   },
   "parameters": {
@@ -3180,5 +3237,10 @@
       "name": "{X-Auth-Token}",
       "in": "header"
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Checkout"
+    }
+  ]
 }

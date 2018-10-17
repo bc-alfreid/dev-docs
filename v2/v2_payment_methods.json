@@ -2,8 +2,12 @@
   "swagger": "2.0",
   "info": {
     "version": "",
-    "title": "BigCommerce V2 Payment Methods",
-    "description": "Enabled payment types or methods in a store."
+    "title": "Payment Methods",
+    "description": "Enabled payment types or methods in a store.",
+    "termsOfService": "",
+    "license": {
+      "name": ""
+    }
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{store_hash}/v2",

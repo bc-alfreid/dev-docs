@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "v0.0.2",
+    "version": "",
     "title": "Storefront Orders",
-    "description": ""
+    "description": "Returns transaction data about an existing order. "
   },
   "host": "<store_url>",
   "basePath": "/api/storefront",

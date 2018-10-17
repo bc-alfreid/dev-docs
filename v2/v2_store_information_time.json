@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "",
-    "title": "BigCommerce V2 Store ",
+    "title": "Store ",
     "description": "### Store Information Reference\nThe Store Information object, and Get Store Information endpoint, manage store profile settings.\nA Store Information object represents an individual store’s profile and metadata.\n\n### System Reference\nThe Get a Timestamp endpoint generates a timestamp ping to check the system status."
   },
   "host": "api.bigcommerce.com",

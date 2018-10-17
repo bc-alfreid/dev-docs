@@ -2,7 +2,8 @@
   "swagger": "2.0",
   "info": {
     "title": "Server to Server Cart",
-    "version": "v0.0.1"
+    "version": "",
+    "description": "Allows for a cart to be created using BigCommerce cart logic. The existing BigCommerce front end cart can be bypassed.\n\nNotes:\n- cartId is the same as the checkoutId.\n- Carts are valid for 30 days from the last modification. This can include creating the cart or editing the cart.\n- The redirect url endpoint does not work using the Storefront Cart. At this time shoppers can not be directed to any carts or checkouts created using the Storefront APIS. "
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{store_hash}/v3",
@@ -36,7 +37,7 @@
               "Create a Cart with a Variant": "{\n    \"line_items\":[\n        {\n            \"quantity\": 2,\n            \"product_id\": 107,\n            \"variant_id\": 185\n        }\n    ]\n}",
               "With a Variant of Checkbox and Picklist": "{\n  \"line_items\": [\n    {\n      \"quantity\": 1,\n      \"product_id\": 77,\n      \"option_selections\": [\n        {\n          \"option_id\": 120,\n          \"option_value\": 69\n        },\n        {\n          \"option_id\": 121,\n          \"option_value\": 10\n        },\n\n        {\n          \"option_id\": 124,\n          \"option_value\": 106\n        },\n        {\n          \"option_id\": 122,\n          \"option_value\": \"Hello\"\n        },\n        {\n          \"option_id\": 123,\n          \"option_value\": 104\n        }\n\n      ]\n    }\n  ]\n} "
             },
-            "description": "1. Creating a cart by adding a simple product (a product without option selections)\n2. Creating a cart with a variant. This works when a product can be specified purely by a variant, without any other required options.\n3. With a variant and a checkbox and picklist modifier added.\n\nFor a full explanation of creating a Cart see [Creating Carts](http://)."
+            "description": "1. Creating a cart by adding a simple product (a product without option selections)\n2. Creating a cart with a variant. This works when a product can be specified purely by a variant, without any other required options.\n3. With a variant and a checkbox and picklist modifier added."
           },
           {
             "$ref": "#/parameters/Accept"
@@ -304,7 +305,7 @@
     },
     "/carts/{cartId}/redirect_urls": {
       "post": {
-        "description": "Create a URL to redirect a shopper to an already created cart using the `cartId`.\n\nA cart's redirect URLs may only be used once. Once a redirect URL has been visited, it will be invalidated and cannot be used again. If your application requires URLs to be visited more than once, consider generating a fresh one each time you need to restore a cart, and redirecting to the URL from your own application.",
+        "description": "Create a URL to redirect a shopper to an already created cart using the `cartId`.\n\nA cart's redirect URLs may only be used once. Once a redirect URL has been visited, it will be invalidated and cannot be used again. If your application requires URLs to be visited more than once, consider generating a fresh one each time you need to restore a cart, and redirecting to the URL from your own application.\n\n* The redirect url endpoint does not work using the Storefront Cart. At this time shoppers can not be directed to any carts or checkouts created using the Storefront APIS. ",
         "parameters": [
           {
             "name": "cartId",
@@ -377,12 +378,11 @@
             },
             "x-examples": {
               "application/json": {
-                "line_item": [
-                  {
-                    "quantity": 2,
-                    "list_price": 12.5
-                  }
-                ]
+                "line_item": {
+                  "quantity": 2,
+                  "product_id": 152,
+                  "list_price": 12.5
+                }
               }
             }
           },
@@ -1103,16 +1103,16 @@
       "title": "Item Gift Certificate"
     },
     "ContactEntity": {
+      "title": "Contact Entity",
+      "type": "object",
       "properties": {
         "name": {
           "type": "string"
         },
         "email": {
-          "type": "string",
-          "format": "email"
+          "type": "string"
         }
-      },
-      "title": "Contact Entity"
+      }
     },
     "ItemDigital": {
       "allOf": [
@@ -1165,41 +1165,54 @@
     },
     "BaseItem": {
       "type": "object",
-      "required": [
-        "quantity"
-      ],
+      "title": "Base Item",
       "properties": {
         "id": {
           "type": "string",
-          "description": "The line-item ID."
+          "description": "The line-item ID.",
+          "example": "6e193ce6-f327-4dcc-b75e-72cf6738525e"
         },
         "variant_id": {
-          "type": "number"
+          "type": "number",
+          "description": "The id of the variant. Required in the /PUT or /POST if the product has variants.",
+          "example": 358
         },
         "product_id": {
-          "type": "number"
+          "type": "number",
+          "description": "The id of the product. Required in a /POST",
+          "example": 12
         },
         "sku": {
-          "type": "string"
+          "type": "string",
+          "example": "SMGREEN",
+          "description": "SKU of the variant."
         },
         "name": {
           "type": "string",
-          "description": "The item's product name."
+          "description": "The item's product name.",
+          "example": "T-Shirt"
         },
         "url": {
           "description": "The product URL.",
           "type": "string",
-          "format": "uri"
+          "format": "uri",
+          "example": "http://your-store-url.mybigcommerce.com/your-product/"
         },
         "quantity": {
-          "type": "number"
+          "type": "number",
+          "example": 5,
+          "description": "Quantity of this item in the cart."
         },
         "is_taxable": {
-          "type": "boolean"
+          "type": "boolean",
+          "example": false,
+          "description": "Whether the item is taxable."
         },
         "image_url": {
           "type": "string",
-          "format": "uri"
+          "format": "uri",
+          "example": "https://pathtoproductimage/ProductDefault.png",
+          "description": "Image of the product or variant."
         },
         "discounts": {
           "type": "array",
@@ -1215,7 +1228,8 @@
         },
         "discount_amount": {
           "type": "number",
-          "description": "The total value of all discounts applied to this item."
+          "description": "The total value of all discounts applied to this item. This includes coupons and cart level discounts",
+          "example": 4
         },
         "coupon_amount": {
           "type": "number",
@@ -1245,7 +1259,11 @@
           }
         }
       },
-      "title": "Base Item"
+      "required": [
+        "variant_id",
+        "product_id",
+        "quantity"
+      ]
     },
     "ProductOption": {
       "type": "object",
@@ -1275,6 +1293,7 @@
       "properties": {
         "coupons": {
           "type": "object",
+          "description": "Required in a ",
           "properties": {
             "coupon_code": {
               "type": "object",
@@ -1289,7 +1308,7 @@
                 "code": {
                   "type": "string",
                   "example": "KV56053388J",
-                  "description": "The coupon code"
+                  "description": "The coupon code. Required in a /POST request."
                 },
                 "name": {
                   "type": "string",
@@ -1324,7 +1343,10 @@
                 }
               }
             }
-          }
+          },
+          "required": [
+            "coupon_code"
+          ]
         }
       }
     },
@@ -1366,8 +1388,8 @@
   "securityDefinitions": {
     "X-Auth-Client": {
       "type": "apiKey",
-      "name": "X-Auth-Client",
-      "in": "header"
+      "in": "header",
+      "name": "X-Auth-Client"
     },
     "X-Auth-Token": {
       "type": "apiKey",
@@ -1400,14 +1422,6 @@
       ]
     }
   },
-  "security": [
-    {
-      "X-Auth-Client": []
-    },
-    {
-      "X-Auth-Token": []
-    }
-  ],
   "schemes": [
     "https"
   ]

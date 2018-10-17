@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0",
-    "title": "BigCommerce V2 Orders API",
-    "description": "Orders APIs integrate with point-of-sale, shipping, distribution, and inventory-management systems. They include Orders, Order Coupons, Order Messages, Order Products, Order Shipping Addresses, Order Statuses, Order Taxes, and Shipments."
+    "version": "",
+    "title": "Orders",
+    "description": "Orders APIs integrate with point-of-sale, shipping, distribution, and inventory-management systems. \n\n### Order\nThe Order object contains a record of the purchase agreement between a shopper and a merchant. To learn more about creating orders, see [Orders API Guide](/api-docs/orders/orders-guide). \n\n### Order Coupons\nCoupon code applied to an order.\n\n### Order Messages\nMessages associated with an order.\n\n### Order Products\nProduct line items belonging to an order.\n\n### Order Shipping Addresses\nCustomer shipping address belonging to an order.\n\n### Order Statuses\nEach order status represents a state in the order-fulfillment workflow.\n\n### Order Taxes\nEach tax applied to an order. This information can be useful for reporting purposes. All values are read-only.\n\n### Order Shipments\nTracks a package consignment from an order that is shipped from the seller to the buyer.\n\n### Order Shipping Addresses Quotes\nRead Only. Get's all shipping quotes from an order."
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{store_hash}/v2",
@@ -278,7 +278,7 @@
         ]
       },
       "put": {
-        "description": "## Read-only Properties\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   coupons\n\n\n> If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders updated via the API.\n\n\n## Changing the Order Status\n\nThe `status` property cannot be edited directly, because it is generated based on the `status_id`.\n\nUse the `status_id` property to set the order to a specific state. The list of available statuses is provided by the [Order Statuses](#) resource. If the store has subscribed to Avalara Premium, tax documents are submitted when the `status_id` property changes. The following table details the behavior for `PUT` operations. See also the list of [Paid Statuses](#).\n\n| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |\n| --- | --- | --- | --- |\n| Any | None | `Pending` | None |\n| Paid or `Refunded` | Paid | Paid | None |\n| Unpaid or `Refunded` | Unpaid | Unpaid | None |\n| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |\n| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |\n\n## Calculated Fields\n\nEdits to the following properties will trigger a recalculation of the subtotal and total:\n\n*   products\n*   discount_amount\n*   shipping_cost_ex_tax\n*   shipping_cost_inc_tax\n*   handling_cost_ex_tax\n*   handling_cost_inc_tax\n*   wrapping_cost_ex_tax\n*   wrapping_cost_inc_tax\n*   billing_address\n*   shipping_addresses\n\n\n## Limitation on Coupons/Discounts\n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. You should modify the above fields only if you have created the order via the POST operation, or if you intend to manually override the subtotals and totals.\n\n## Adding an Existing Product\n| Name             | Type  | Description                                                                                                                                                                                                                                                                                                |\n| ---------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| product\\_id      | int   | The ID of the product that you want to add to the order (required).                                                                                                                                                                                                                                        |\n| quantity         | int   | How many products of this type to add to the order (required).                                                                                                                                                                                                                                             |\n| product\\_options | array | These values might be required, depending on how the product's options are set up. If the options are required, pass in the \\[\\`id\\`\\](\\#options-object-properties) of the product option (not the option itself) and the \\[\\`value\\`\\](\\#option-value-object-properties) of the option (not the product). |\n| price\\_inc\\_tax  | int   | If you include a value here, it will overwrite the price (including tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_inc\\_tax\\`, you must also include a value for \\`price\\_ex\\_tax\\`.                                                        |\n| price\\_ex\\_tax   | int   | If you include a value here, it will overwrite the price (excluding tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_ex\\_tax\\`, you must also include a value for \\`price\\_inc\\_tax\\`.                                                        |\n\n## Add a New Product\n| Name            | Type    | Description                                                                                                        |\n| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |\n| name            | int     | The name of the custom product tax. (Required.)                                                                    |\n| quantity        | int     | The quantity of the purchase for this custom product tax. (Required. Can be positive or negative. Cannot be zero.) |\n| price\\_inc\\_tax | decimal | The price of the custom product, including tax. (Required.)                                                        |\n| price\\_ex\\_tax  | decimal | The price of the custom product, excluding tax. (Required.)                                                        |\n| sku             | text    | The SKU of the custom product. (Optional.)                                                                         |",
+        "description": "## Properties that can be updated\n* customer_id\n* statud_id\n* Add a new product\n* Add a custom product\n* billing_address\n\n## Read-only Properties\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   coupons\n*   shipping_address\n\n\n> If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders updated via the API.\n\n\n## Changing the Order Status\n\nThe `status` property cannot be edited directly, because it is generated based on the `status_id`.\n\nUse the `status_id` property to set the order to a specific state. The list of available statuses is provided by the [Order Statuses](#) resource. If the store has subscribed to Avalara Premium, tax documents are submitted when the `status_id` property changes. The following table details the behavior for `PUT` operations. See also the list of [Paid Statuses](#).\n\n| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |\n| --- | --- | --- | --- |\n| Any | None | `Pending` | None |\n| Paid or `Refunded` | Paid | Paid | None |\n| Unpaid or `Refunded` | Unpaid | Unpaid | None |\n| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |\n| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |\n\n## Calculated Fields\n\nEdits to the following properties will trigger a recalculation of the subtotal and total:\n\n*   products\n*   discount_amount\n*   shipping_cost_ex_tax\n*   shipping_cost_inc_tax\n*   handling_cost_ex_tax\n*   handling_cost_inc_tax\n*   wrapping_cost_ex_tax\n*   wrapping_cost_inc_tax\n*   billing_address\n*   shipping_addresses\n\n\n## Limitation on Coupons/Discounts\n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. You should modify the above fields only if you have created the order via the POST operation, or if you intend to manually override the subtotals and totals.\n\n## Adding an Existing Product\n| Name             | Type  | Description                                                                                                                                                                                                                                                                                                |\n| ---------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| product\\_id      | int   | The ID of the product that you want to add to the order (required).                                                                                                                                                                                                                                        |\n| quantity         | int   | How many products of this type to add to the order (required).                                                                                                                                                                                                                                             |\n| product\\_options | array | These values might be required, depending on how the product's options are set up. If the options are required, pass in the \\[\\`id\\`\\](\\#options-object-properties) of the product option (not the option itself) and the \\[\\`value\\`\\](\\#option-value-object-properties) of the option (not the product). |\n| price\\_inc\\_tax  | int   | If you include a value here, it will overwrite the price (including tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_inc\\_tax\\`, you must also include a value for \\`price\\_ex\\_tax\\`.                                                        |\n| price\\_ex\\_tax   | int   | If you include a value here, it will overwrite the price (excluding tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_ex\\_tax\\`, you must also include a value for \\`price\\_inc\\_tax\\`.                                                        |\n\n## Add a New Product\n| Name            | Type    | Description                                                                                                        |\n| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |\n| name            | int     | The name of the custom product tax. (Required.)                                                                    |\n| quantity        | int     | The quantity of the purchase for this custom product tax. (Required. Can be positive or negative. Cannot be zero.) |\n| price\\_inc\\_tax | decimal | The price of the custom product, including tax. (Required.)                                                        |\n| price\\_ex\\_tax  | decimal | The price of the custom product, excluding tax. (Required.)                                                        |\n| sku             | text    | The SKU of the custom product. (Optional.)                                                                         |",
         "summary": "Update an Order",
         "tags": [
           "Orders"
@@ -1516,7 +1516,7 @@
         ]
       },
       "post": {
-        "description": "## Requirements\n\nThe following properties of the order are required. The request won’t be fulfilled unless these properties are valid.\n\n*   products\n*   billing_address\n\n## Ready Only\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   cart_id\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   is_deleted\n*   coupons\n\n## Taxes\nIf a store has automatic tax enabled, BigCommerce does not compute sales tax on orders created via the API.\n\nAbbreviated state names in shipping and billing addresses will prevent tax documents from being submitted to Avalara. To ensure successful Avalara tax-document submission, spell state names out in full. For example, supplying CA as a state name leads to no tax-document submission. Supplying California as a state name leads to a successful submission.\n\n## Overriding Preset Values\n\nYou can create overrides for calculated values such as product prices, subtotal and totals by sending a fixed value in the request. If values are not supplied for these properties, they will be automatically calculated based on the pre-set store values and tax rules.\n\n## Order Products\n\n*   Existing products can be added to the order with a reference to their `product_id`.\n*   Custom products can be added to the order using the [products array](/api-docs/api-reference/v2-api/v2-orders/models/orderproducts).\n*   If price is not specified, it will automatically pick up the price from the store’s product catalog. However, you can override this via `price_inc_tax` and `price_ex_tax`.\n*   If `price_inc_tax` and `price_ex_tax` are specified, price and rulesets are ignored, and the `price_inc_tax` or `price_ex_tax` are written to `base_price` according to the store settings.\n*   When the store is subscribed to Avalara Premium, a value of `API Tax Override` is written to the Order Tax object's `name` field.\n*   Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.\n*   For products that are configured to track stock, the quantity specified on the order will reduce the stock on hand. When there is not enough inventory to fulfill the order, the order will be rejected with an \"out of stock\" error code.\n*   For products that have min and max quantities specified in their settings, the API will honor these, and will reject orders appropriately.\n*   For products where product options are required, the API will validate these requirements to ensure that the product options are specified.\n*   Product quantity must be specified.\n\n#### Calculation of Totals\n\n*   When not specified, order subtotal and total are automatically calculated.\n*   You can override order subtotal and/or total. If you choose to override one, we strongly recommend that override both, because the system will not be able to accurately calculate the other.\n\n#### Order Properties\n\n*   Billing address is mandatory.\n*   Shipping address is not mandatory, and can optionally be specified as composite records.\n    *   When the shipping address is not specified, the system will fall back to using the billing address as the shipping address.\n    *   Multiple shipments are not supported, so the API will assume the first address in the collection.\n*   In the shipping and billing addresses, there is no requirement to specify `country` when `country_ISO2` is specified.\n    *   The value specified for `country_ISO2` will always override any value specified for `country`.\n*   Coupon redemption is not currently supported.\n*   To specify a guest checkout, set `customer_id` to `0`.\n*   `order_source` cannot be specified, and will be set to `external`.\n    *   You can optionally specify a value for `external_source` to specify which external source the order is coming from - e.g., POS system X, accounting system Y, etc.\n\n## Changing the Order Status\n\n*   You can specify `status_id`, which will automatically set the corresponding `status`. When `status_id` is not specified, it will be automatically set to `1`, which will set `status` to `Pending`.\n\n*   `POST` or `PUT` orders on stores with Avalara Premium cause tax documents to be submitted. If a store has subscribed to Avalara Premium, BigCommerce automatically submits tax documents to Avalara when the order achieves a paid status. The following statuses are of the paid type:\n    *   Shipped\n    *   Partially Shipped\n    *   Awaiting Pickup\n    *   Awaiting Shipment\n    *   Completed\n    *   Awaiting Fulfillment\n*   BigCommerce considers all statuses other than those above to be of the unpaid type, except `Refunded`, which is considered neither paid or unpaid. Orders that are created using the `POST` method, and that include a status of the paid type, cause the submission of tax documents to Avalara.",
+        "description": "When creating an order the shipping address is the same as the billing address and can not be changed. \n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. \n\n## Requirements\n\nThe following properties of the order are required. The request won’t be fulfilled unless these properties are valid.\n\n*   products\n*   billing_address\n\n## Ready Only\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   cart_id\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   is_deleted\n*   coupons\n\n## Taxes\nIf a store has automatic tax enabled, BigCommerce does not compute sales tax on orders created via the API.\n\nAbbreviated state names in shipping and billing addresses will prevent tax documents from being submitted to Avalara. To ensure successful Avalara tax-document submission, spell state names out in full. For example, supplying CA as a state name leads to no tax-document submission. Supplying California as a state name leads to a successful submission.\n\n## Overriding Preset Values\n\nYou can create overrides for calculated values such as product prices, subtotal and totals by sending a fixed value in the request. If values are not supplied for these properties, they will be automatically calculated based on the pre-set store values and tax rules.\n\n## Order Products\n\n*   Existing products can be added to the order with a reference to their `product_id`.\n*   Custom products can be added to the order using the [products array](/api-docs/api-reference/v2-api/v2-orders/models/orderproducts).\n*   If price is not specified, it will automatically pick up the price from the store’s product catalog. However, you can override this via `price_inc_tax` and `price_ex_tax`.\n*   If `price_inc_tax` and `price_ex_tax` are specified, price and rulesets are ignored, and the `price_inc_tax` or `price_ex_tax` are written to `base_price` according to the store settings.\n*   When the store is subscribed to Avalara Premium, a value of `API Tax Override` is written to the Order Tax object's `name` field.\n*   Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.\n*   For products that are configured to track stock, the quantity specified on the order will reduce the stock on hand. When there is not enough inventory to fulfill the order, the order will be rejected with an \"out of stock\" error code.\n*   For products that have min and max quantities specified in their settings, the API will honor these, and will reject orders appropriately.\n*   For products where product options are required, the API will validate these requirements to ensure that the product options are specified.\n*   Product quantity must be specified.\n\n#### Calculation of Totals\n\n*   When not specified, order subtotal and total are automatically calculated.\n*   You can override order subtotal and/or total. If you choose to override one, we strongly recommend that override both, because the system will not be able to accurately calculate the other.\n\n#### Order Properties\n\n*   Billing address is mandatory.\n*   Shipping address is not mandatory, and can optionally be specified as composite records.\n    *   When the shipping address is not specified, the system will fall back to using the billing address as the shipping address.\n    *   Multiple shipments are not supported, so the API will assume the first address in the collection.\n*   In the shipping and billing addresses, there is no requirement to specify `country` when `country_ISO2` is specified.\n    *   The value specified for `country_ISO2` will always override any value specified for `country`.\n*   Coupon redemption is not currently supported.\n*   To specify a guest checkout, set `customer_id` to `0`.\n*   `order_source` cannot be specified, and will be set to `external`.\n    *   You can optionally specify a value for `external_source` to specify which external source the order is coming from - e.g., POS system X, accounting system Y, etc.\n\n## Changing the Order Status\n\n*   You can specify `status_id`, which will automatically set the corresponding `status`. When `status_id` is not specified, it will be automatically set to `1`, which will set `status` to `Pending`.\n\n*   `POST` or `PUT` orders on stores with Avalara Premium cause tax documents to be submitted. If a store has subscribed to Avalara Premium, BigCommerce automatically submits tax documents to Avalara when the order achieves a paid status. The following statuses are of the paid type:\n    *   Shipped\n    *   Partially Shipped\n    *   Awaiting Pickup\n    *   Awaiting Shipment\n    *   Completed\n    *   Awaiting Fulfillment\n*   BigCommerce considers all statuses other than those above to be of the unpaid type, except `Refunded`, which is considered neither paid or unpaid. Orders that are created using the `POST` method, and that include a status of the paid type, cause the submission of tax documents to Avalara.",
         "summary": "Create an Order",
         "tags": [
           "Orders"
@@ -2652,7 +2652,7 @@
     },
     "/orders/{order_id}/shipping_addresses": {
       "get": {
-        "description": "Get all shipping address on an order using the `order_id`.",
+        "description": "Get all shipping address on an order using the `order_id`.\n\nReturned in the response is shipping_quotes object. Please use the Get Shipping Quotes Endpoint. Using the response will return a 204 for the shipping quote. ",
         "summary": "Get A List of Order Shipping Address",
         "produces": [
           "application/json"
@@ -2714,27 +2714,27 @@
             "examples": {
               "application/json": [
                 {
-                  "id": 39,
-                  "order_id": 138,
+                  "id": 42,
+                  "order_id": 140,
                   "first_name": "Jane",
                   "last_name": "Doe",
                   "company": "",
-                  "street_1": "123 Main Street",
+                  "street_1": "123 MainStreet",
                   "street_2": "",
                   "city": "Austin",
                   "zip": "78751",
                   "country": "United States",
                   "country_iso2": "US",
                   "state": "Texas",
-                  "email": "",
+                  "email": "jane@email.com",
                   "phone": "1234567890",
-                  "items_total": 1,
+                  "items_total": 2,
                   "items_shipped": 0,
-                  "shipping_method": "Free Shipping",
-                  "base_cost": "0.0000",
-                  "cost_ex_tax": "0.0000",
-                  "cost_inc_tax": "0.0000",
-                  "cost_tax": "0.0000",
+                  "shipping_method": "Fixed Shipping",
+                  "base_cost": "5.0000",
+                  "cost_ex_tax": "4.0000",
+                  "cost_inc_tax": "4.3200",
+                  "cost_tax": "0.3200",
                   "cost_tax_class_id": 2,
                   "base_handling_cost": "0.0000",
                   "handling_cost_ex_tax": "0.0000",
@@ -2743,179 +2743,214 @@
                   "handling_cost_tax_class_id": 2,
                   "shipping_zone_id": 1,
                   "shipping_zone_name": "United States",
+                  "shipping_quotes": {
+                    "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/140/shippingaddresses/42/shippingquotes",
+                    "resource": "/orders/140/shippingaddresses/42/shippingquotes"
+                  },
                   "form_fields": [
                     {
-                      "name": "License",
-                      "value": ""
-                    }
-                  ]
-                },
-                {
-                  "id": 40,
-                  "order_id": 138,
-                  "first_name": "John",
-                  "last_name": "Doe",
-                  "company": "",
-                  "street_1": "178 South Street",
-                  "street_2": "",
-                  "city": "Austin",
-                  "zip": "78751",
-                  "country": "United States",
-                  "country_iso2": "US",
-                  "state": "Texas",
-                  "email": "",
-                  "phone": "1234567890",
-                  "items_total": 1,
-                  "items_shipped": 0,
-                  "shipping_method": "Free Shipping",
-                  "base_cost": "0.0000",
-                  "cost_ex_tax": "0.0000",
-                  "cost_inc_tax": "0.0000",
-                  "cost_tax": "0.0000",
-                  "cost_tax_class_id": 2,
-                  "base_handling_cost": "0.0000",
-                  "handling_cost_ex_tax": "0.0000",
-                  "handling_cost_inc_tax": "0.0000",
-                  "handling_cost_tax": "0.0000",
-                  "handling_cost_tax_class_id": 2,
-                  "shipping_zone_id": 1,
-                  "shipping_zone_name": "United States",
-                  "form_fields": [
-                    {
-                      "name": "License",
-                      "value": ""
+                      "name": "Wholesale ID",
+                      "value": "12345566"
                     }
                   ]
                 }
               ],
               "Response Schema": [
                 {
-                  "id": -26785729,
-                  "order_id": 18561719,
-                  "first_name": "enim cupidatat consequat tempor",
-                  "last_name": "deserunt eiusmod",
-                  "company": "labore deserunt occaecat adipisicing",
-                  "street_1": "do Excepteur irure reprehenderit",
-                  "street_2": "pariatur",
-                  "city": "dolor",
-                  "zip": "Duis id non laborum velit",
-                  "country": "sit",
-                  "country_iso2": "laborum",
-                  "state": "qui",
-                  "email": "voluptate anim",
-                  "phone": "officia",
-                  "items_total": -48218827.059781335,
-                  "items_shipped": 79026465.57907018,
-                  "shipping_method": "irure dolor labore ex",
-                  "base_cost": "qui amet commodo nulla",
-                  "cost_ex_tax": "sed",
-                  "cost_inc_tax": "minim ullamco",
-                  "cost_tax": "co",
-                  "cost_tax_class_id": 48598975,
-                  "base_handling_cost": "qui dolor",
-                  "handling_cost_ex_tax": "velit",
-                  "handling_cost_inc_tax": "dolor nostrud nulla tempor",
-                  "handling_cost_tax": "in cupidatat laborum ipsum",
-                  "handling_cost_tax_class_id": 75156983,
-                  "shipping_zone_id": -71967595,
-                  "shipping_zone_name": "sed anim",
-                  "form_fields": {}
+                  "id": -54684842,
+                  "order_id": -693064,
+                  "first_name": "nulla reprehenderi",
+                  "last_name": "sunt sit Lorem ut",
+                  "company": "cupidatat veniam quis",
+                  "street_1": "sed",
+                  "street_2": "Lorem esse veniam",
+                  "city": "sit magna dolor eu tempor",
+                  "zip": "culpa eiusmod",
+                  "country": "eiusmod ex nisi",
+                  "country_iso2": "laboris nulla magna sint voluptate",
+                  "state": "qui reprehenderit commodo proident",
+                  "email": "laboris sit",
+                  "phone": "exercitation adipisicing elit velit",
+                  "items_total": 1670582.7826287448,
+                  "items_shipped": -31742034.667358696,
+                  "shipping_method": "in enim eiusmod anim",
+                  "base_cost": "ea Duis ullamco qui",
+                  "cost_ex_tax": "anim ea",
+                  "cost_inc_tax": "quis laborum incididunt",
+                  "cost_tax": "in nulla",
+                  "cost_tax_class_id": 13286044,
+                  "base_handling_cost": "Duis esse aliquip",
+                  "handling_cost_ex_tax": "pariatur sint dolore ipsum",
+                  "handling_cost_inc_tax": "aliquip qui nisi",
+                  "handling_cost_tax": "deserunt Excepteur cupidatat enim",
+                  "handling_cost_tax_class_id": -34191651,
+                  "shipping_zone_id": 1163947,
+                  "shipping_zone_name": "voluptate",
+                  "form_fields": [
+                    {
+                      "name": "in Ut",
+                      "value": "aliquip non"
+                    },
+                    {
+                      "name": "ad aliqua",
+                      "value": "et aliqua mollit"
+                    },
+                    {
+                      "name": "dolor in exercitation Lorem aliqua",
+                      "value": "ut enim Ex"
+                    }
+                  ],
+                  "shipping_quotes": {
+                    "url": "nostrud aute Ut iru",
+                    "resource": "laboris fugiat quis labore"
+                  }
                 },
                 {
-                  "id": 80209993,
-                  "order_id": -59555714,
-                  "first_name": "amet adipisicing",
-                  "last_name": "nisi velit anim culpa",
-                  "company": "deserunt qui ad aute tempor",
-                  "street_1": "in",
-                  "street_2": "amet ex esse",
-                  "city": "elit ut",
-                  "zip": "exercitation irure pariatur",
-                  "country": "id Ut",
-                  "country_iso2": "deserunt nisi sint",
-                  "state": "nostrud reprehenderit nulla culpa",
-                  "email": "ut mollit officia",
-                  "phone": "sint Ut",
-                  "items_total": 69871340.3957791,
-                  "items_shipped": 83209773.78416988,
-                  "shipping_method": "anim esse labore id",
-                  "base_cost": "id elit",
-                  "cost_ex_tax": "aute",
-                  "cost_inc_tax": "id",
-                  "cost_tax": "eu sint",
-                  "cost_tax_class_id": 88434453,
-                  "base_handling_cost": "laboris aliqua amet ea",
-                  "handling_cost_ex_tax": "eiusmod laboris commodo",
-                  "handling_cost_inc_tax": "es",
-                  "handling_cost_tax": "proident deserunt Duis dolor",
-                  "handling_cost_tax_class_id": 86906073,
-                  "shipping_zone_id": 93116364,
-                  "shipping_zone_name": "aliquip nisi incididunt Duis",
-                  "form_fields": {}
+                  "id": 95990108,
+                  "order_id": -96808780,
+                  "first_name": "cupidatat",
+                  "last_name": "nulla ut qui fugiat",
+                  "company": "sed fugiat dolor aute",
+                  "street_1": "cupidatat voluptate",
+                  "street_2": "commodo veniam eiusmod qui laborum",
+                  "city": "sint ea",
+                  "zip": "occaecat anim ad",
+                  "country": "eu ex Lorem",
+                  "country_iso2": "eiusmod reprehenderit do ea",
+                  "state": "cupidatat",
+                  "email": "anim esse sunt et sed",
+                  "phone": "qui amet in Lorem ut",
+                  "items_total": -85181779.44775757,
+                  "items_shipped": 51928806.3849026,
+                  "shipping_method": "do ad",
+                  "base_cost": "nostrud sint ullamco Ut",
+                  "cost_ex_tax": "labore nisi in pariatur",
+                  "cost_inc_tax": "in cupidatat",
+                  "cost_tax": "in dolore labore elit id",
+                  "cost_tax_class_id": -85345190,
+                  "base_handling_cost": "cupidatat dolor ad tempor",
+                  "handling_cost_ex_tax": "dolore esse",
+                  "handling_cost_inc_tax": "id enim Lorem",
+                  "handling_cost_tax": "non voluptate Excepteur",
+                  "handling_cost_tax_class_id": 12610041,
+                  "shipping_zone_id": -88318666,
+                  "shipping_zone_name": "fugiat sit esse officia exercitation",
+                  "form_fields": [
+                    {
+                      "name": "nulla ipsum sint qui sunt",
+                      "value": "aute dolor ut dolore"
+                    },
+                    {
+                      "name": "sunt deserunt",
+                      "value": "culpa Lorem Ut fugiat sunt"
+                    }
+                  ],
+                  "shipping_quotes": {
+                    "url": "adipisicing veniam deserunt incididunt L",
+                    "resource": "deserunt veniam ali"
+                  }
                 },
                 {
-                  "id": 42480415,
-                  "order_id": -44467616,
-                  "first_name": "ea aliquip aliqua pariatur",
-                  "last_name": "est in",
-                  "company": "qui exercitation consectetur ut fugiat",
-                  "street_1": "consequat",
-                  "street_2": "laboris quis",
-                  "city": "ex pariatur",
-                  "zip": "proident Lorem",
-                  "country": "do volupta",
-                  "country_iso2": "sint",
-                  "state": "esse",
-                  "email": "cupidatat laborum ipsum id",
-                  "phone": "deserunt ",
-                  "items_total": 64454886.74408239,
-                  "items_shipped": 19390317.564821526,
-                  "shipping_method": "incididunt co",
-                  "base_cost": "et nisi do",
-                  "cost_ex_tax": "culpa non laboris velit consequat",
-                  "cost_inc_tax": "amet eu occaecat in sed",
-                  "cost_tax": "dolore nostrud dolor",
-                  "cost_tax_class_id": 16248693,
-                  "base_handling_cost": "aute Excepteur",
-                  "handling_cost_ex_tax": "do sint ipsum",
-                  "handling_cost_inc_tax": "i",
-                  "handling_cost_tax": "est",
-                  "handling_cost_tax_class_id": 60885716,
-                  "shipping_zone_id": -91065891,
-                  "shipping_zone_name": "anim",
-                  "form_fields": {}
+                  "id": -98873438,
+                  "order_id": 13898184,
+                  "first_name": "non aliqua",
+                  "last_name": "ullamco cillum dolore",
+                  "company": "Excepteur",
+                  "street_1": "aliqua in ut aliquip ipsum",
+                  "street_2": "id ipsum labore",
+                  "city": "cillum magna laboris",
+                  "zip": "aliquip deserunt",
+                  "country": "tempor do",
+                  "country_iso2": "adipisicing tempor sit",
+                  "state": "Lorem",
+                  "email": "esse non",
+                  "phone": "nulla ex anim",
+                  "items_total": -96150334.1361276,
+                  "items_shipped": 12042073.60634464,
+                  "shipping_method": "ex Duis nostrud ",
+                  "base_cost": "culpa officia enim voluptate",
+                  "cost_ex_tax": "minim fugiat laborum",
+                  "cost_inc_tax": "exercitation dolore nostrud",
+                  "cost_tax": "est velit ut pariatur",
+                  "cost_tax_class_id": -44538387,
+                  "base_handling_cost": "Duis",
+                  "handling_cost_ex_tax": "mollit cillum exercitation",
+                  "handling_cost_inc_tax": "id elit",
+                  "handling_cost_tax": "ullamco incididunt amet et",
+                  "handling_cost_tax_class_id": 43815323,
+                  "shipping_zone_id": 47329537,
+                  "shipping_zone_name": "nulla reprehenderit fugi",
+                  "form_fields": [
+                    {
+                      "name": "officia qui fugiat veniam",
+                      "value": "reprehenderit laboris Duis"
+                    },
+                    {
+                      "name": "nostrud Ut",
+                      "value": "ullamco laborum anim"
+                    },
+                    {
+                      "name": "reprehenderit sit",
+                      "value": "occaecat consequat quis"
+                    }
+                  ],
+                  "shipping_quotes": {
+                    "url": "laboris amet",
+                    "resource": "in sit nisi incididunt"
+                  }
                 },
                 {
-                  "id": 9610237,
-                  "order_id": -66752246,
-                  "first_name": "adipisicing magna sit incididunt",
-                  "last_name": "esse tempor Duis nulla",
-                  "company": "officia",
-                  "street_1": "occaecat nisi in commodo",
-                  "street_2": "cillum",
-                  "city": "velit",
-                  "zip": "occaecat deserunt",
-                  "country": "ad dolore voluptate minim consectetur",
-                  "country_iso2": "elit enim officia",
-                  "state": "Ut Lorem",
-                  "email": "exerci",
-                  "phone": "dolore se",
-                  "items_total": 67594558.92658278,
-                  "items_shipped": -42211365.748526976,
-                  "shipping_method": "amet veniam ",
-                  "base_cost": "fugiat laboris ad Ut",
-                  "cost_ex_tax": "deserunt in ut magna",
-                  "cost_inc_tax": "quis adipisicing sit irure",
-                  "cost_tax": "ad ut",
-                  "cost_tax_class_id": -36931798,
-                  "base_handling_cost": "labore veniam do",
-                  "handling_cost_ex_tax": "ipsum",
-                  "handling_cost_inc_tax": "dolor mollit qui ",
-                  "handling_cost_tax": "ad ea dolore",
-                  "handling_cost_tax_class_id": 11305201,
-                  "shipping_zone_id": 3879716,
-                  "shipping_zone_name": "in ipsum dolore qui sit",
-                  "form_fields": {}
+                  "id": 86292936,
+                  "order_id": 50233770,
+                  "first_name": "officia ipsum ad reprehenderit",
+                  "last_name": "non est Lorem ad",
+                  "company": "eu veniam",
+                  "street_1": "dolore irure adipisicing",
+                  "street_2": "id magna",
+                  "city": "reprehenderit aliqua",
+                  "zip": "amet in",
+                  "country": "in dolor enim",
+                  "country_iso2": "irure",
+                  "state": "est eiusmod ut reprehenderit",
+                  "email": "ad dolor",
+                  "phone": "pariatur",
+                  "items_total": -30954310.93864338,
+                  "items_shipped": 73368711.42462865,
+                  "shipping_method": "Lorem",
+                  "base_cost": "Lorem fugiat deseru",
+                  "cost_ex_tax": "ut proident",
+                  "cost_inc_tax": "sunt exerci",
+                  "cost_tax": "aute",
+                  "cost_tax_class_id": -44566407,
+                  "base_handling_cost": "velit sunt elit exercitation",
+                  "handling_cost_ex_tax": "aliquip nulla ea d",
+                  "handling_cost_inc_tax": "pariatur nisi sint anim",
+                  "handling_cost_tax": "cupidatat consectetur laborum deserunt",
+                  "handling_cost_tax_class_id": 54229873,
+                  "shipping_zone_id": 33123290,
+                  "shipping_zone_name": "ex sit",
+                  "form_fields": [
+                    {
+                      "name": "eiusmod sunt Duis",
+                      "value": "in esse"
+                    },
+                    {
+                      "name": "tempor",
+                      "value": "la"
+                    },
+                    {
+                      "name": "commodo anim",
+                      "value": "eiusmod minim Excepteur"
+                    },
+                    {
+                      "name": "ullamco ad irure",
+                      "value": "nisi in in"
+                    }
+                  ],
+                  "shipping_quotes": {
+                    "url": "nostrud",
+                    "resource": "eu sunt"
+                  }
                 }
               ]
             }
@@ -3593,7 +3628,7 @@
         ]
       },
       "post": {
-        "description": "## Requirements \n\nThe following properties of the shipment are required. The request won’t be fulfilled unless these properties are valid.\n\n*   order_address_id\n*   items\n*   shipping_provider\n*   \n## Read-only Properties \n\nThe following properties of the shipment are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   order_id\n*   date_created\n*   customer_id\n*   billing_address\n*   shipping_address\n\n## Notes \n\n* For the `shipping_provider` property, acceptable values are an empty string (`\"\"`), or one of these valid BigCommerce shipping-provider values: `auspost`, `canadapost`, `endicia`, `usps`, `fedex`, `royalmail`, `ups`, `upsready`, `upsonline`, or `shipperhq`.\n* If your POST request does not include `shipping_provider` – at least as an empty string, as shown in the example request below – this property's value will default to `custom`, and no tracking link will be generated in the email. \n* `tracking_carrier` is optional, but if you include it, its value must refer/map to the same carrier service as the `shipping_provider` value. Acceptable values for `tracking_carrier` are an empty string (`\"\"`), or one of the valid tracking-carrier values viewable [here](https://docs.google.com/spreadsheets/d/1w9c_aECSCGyf-oOrvGeUniDl-ARGKemfZl0qSsav8D4/pubhtml?gid=0&single=true) and downloadable as a .CSV file [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).",
+        "description": "## Requirements \n\nThe following properties of the shipment are required. The request won’t be fulfilled unless these properties are valid. \n\n*   order_address_id /GET Orders\n*   items /GET Orders\n*   shipping_provider  \n\n## Read-only Properties \n\nThe following properties of the shipment are read-only. If one or more of these properties are included in the request, it will be rejected.\n\n*   id\n*   order_id\n*   date_created\n*   customer_id\n*   billing_address\n*   shipping_address\n\n## Notes \n\n* For the `shipping_provider` property, acceptable values are an empty string (`\"\"`), or one of these valid BigCommerce shipping-provider values: `auspost`, `canadapost`, `endicia`, `usps`, `fedex`, `royalmail`, `ups`, `upsready`, `upsonline`, or `shipperhq`.\n* If your POST request does not include `shipping_provider` – at least as an empty string, as shown in the example request below – this property's value will default to `custom`, and no tracking link will be generated in the email. \n* `tracking_carrier` is optional, but if you include it, its value must refer/map to the same carrier service as the `shipping_provider` value. Acceptable values for `tracking_carrier` are an empty string (`\"\"`), or one of the valid tracking-carrier values viewable [here](https://docs.google.com/spreadsheets/d/1w9c_aECSCGyf-oOrvGeUniDl-ARGKemfZl0qSsav8D4/pubhtml?gid=0&single=true) and downloadable as a .CSV file [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).",
         "summary": "Create A New Order Shipment",
         "parameters": [
           {
@@ -4473,27 +4508,27 @@
             },
             "examples": {
               "application/json": {
-                "id": 15,
-                "order_id": 114,
-                "first_name": "Julie",
-                "last_name": "Bishop",
-                "company": "Yamia",
-                "street_1": "988 Comanche Circle",
+                "id": 42,
+                "order_id": 140,
+                "first_name": "Jane",
+                "last_name": "Doe",
+                "company": "",
+                "street_1": "123 MainStreet",
                 "street_2": "",
-                "city": "Cypress",
-                "zip": "77426-2265",
+                "city": "Austin",
+                "zip": "78751",
                 "country": "United States",
                 "country_iso2": "US",
-                "state": "Wyoming",
-                "email": "",
-                "phone": "5-(248)906-2014",
-                "items_total": 1,
+                "state": "Texas",
+                "email": "jane@email.com",
+                "phone": "1234567890",
+                "items_total": 2,
                 "items_shipped": 0,
-                "shipping_method": "None",
-                "base_cost": "0.0000",
-                "cost_ex_tax": "0.0000",
-                "cost_inc_tax": "0.0000",
-                "cost_tax": "0.0000",
+                "shipping_method": "Fixed Shipping",
+                "base_cost": "5.0000",
+                "cost_ex_tax": "4.0000",
+                "cost_inc_tax": "4.3200",
+                "cost_tax": "0.3200",
                 "cost_tax_class_id": 2,
                 "base_handling_cost": "0.0000",
                 "handling_cost_ex_tax": "0.0000",
@@ -4501,45 +4536,76 @@
                 "handling_cost_tax": "0.0000",
                 "handling_cost_tax_class_id": 2,
                 "shipping_zone_id": 1,
-                "shipping_zone_name": "Default Zone"
+                "shipping_zone_name": "United States",
+                "shipping_quotes": {
+                  "url": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/140/shippingaddresses/42/shippingquotes",
+                  "resource": "/orders/140/shippingaddresses/42/shippingquotes"
+                },
+                "form_fields": [
+                  {
+                    "name": "Wholesale ID",
+                    "value": "12345566"
+                  }
+                ]
               },
               "Response Schema": {
-                "id": 67558076,
-                "order_id": 79294467,
-                "first_name": "nisi esse Duis voluptate",
-                "last_name": "veniam",
-                "company": "tempor cill",
-                "street_1": "nulla aliquip esse consectetur",
-                "street_2": "amet c",
-                "city": "ea ullamco",
-                "zip": "ut ad",
-                "country": "in dolore dolor",
-                "country_iso2": "ut enim nisi esse",
-                "state": "nisi non",
-                "email": "eiusmod eu",
-                "phone": "in fugiat aute",
-                "items_total": -88364733.72703338,
-                "items_shipped": -33994737.9162429,
-                "shipping_method": "Lorem ut aliqua",
-                "base_cost": "sed pariatur cupidatat",
-                "cost_ex_tax": "irure eu",
-                "cost_inc_tax": "sunt ipsum",
-                "cost_tax": "deserunt dolo",
-                "cost_tax_class_id": -90974450,
-                "base_handling_cost": "anim id incididunt",
-                "handling_cost_ex_tax": "nulla irure veniam officia eu",
-                "handling_cost_inc_tax": "magna quis proident",
-                "handling_cost_tax": "voluptate do",
-                "handling_cost_tax_class_id": 32677171,
-                "shipping_zone_id": -27215609,
-                "shipping_zone_name": "esse Excepteur dolor",
-                "form_fields": {}
+                "id": -29450990,
+                "order_id": 34166023,
+                "first_name": "deserunt laborum",
+                "last_name": "fugiat",
+                "company": "velit",
+                "street_1": "Ut quis",
+                "street_2": "adipisicing pariatur tempor fugiat esse",
+                "city": "dolor proident mollit reprehenderit",
+                "zip": "proident",
+                "country": "irure ea laborum Ut anim",
+                "country_iso2": "labore dolore adipisicing",
+                "state": "id enim non dolor elit",
+                "email": "ipsum",
+                "phone": "aute nostrud est",
+                "items_total": -67724434.6633909,
+                "items_shipped": -4163394.274353355,
+                "shipping_method": "reprehenderit enim eiusmod proident non",
+                "base_cost": "commodo sed nisi magna",
+                "cost_ex_tax": "est voluptate quis",
+                "cost_inc_tax": "cillum Duis ea velit",
+                "cost_tax": "sit ut sunt",
+                "cost_tax_class_id": -51918037,
+                "base_handling_cost": "anim Lorem",
+                "handling_cost_ex_tax": "commodo amet fugiat",
+                "handling_cost_inc_tax": "labore cupidatat",
+                "handling_cost_tax": "ex ut ipsum dolor",
+                "handling_cost_tax_class_id": -93796372,
+                "shipping_zone_id": 16088828,
+                "shipping_zone_name": "sint laborum sed cillum",
+                "form_fields": [
+                  {
+                    "name": "in non",
+                    "value": "consectetur ea nisi"
+                  },
+                  {
+                    "name": "adipisicing in",
+                    "value": "esse ipsum adipisicing dolore non"
+                  },
+                  {
+                    "name": "id dolor consequat in nulla",
+                    "value": "laboris elit adipisicing"
+                  },
+                  {
+                    "name": "culpa proident",
+                    "value": "est Duis nostrud"
+                  }
+                ],
+                "shipping_quotes": {
+                  "url": "adipisicing est ad nostrud commodo",
+                  "resource": "velit sit ad m"
+                }
               }
             }
           }
         },
         "summary": "Get a Shipping Address",
-        "description": "Gets a shipping address associated with an order.",
+        "description": "Gets a shipping address associated with an order.\nReturned in the response is shipping_quotes object. Please use the Get Shipping Quotes Endpoint. Using the response will return a 204 for the shipping quote. ",
         "tags": [
           "Order Shipping Addresses"
         ],
@@ -4569,6 +4635,96 @@
         },
         {
           "name": "id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/orders/{order_id}/shipping_addresses/{shipping_address_id}/shipping_quotes": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ShippingQuotes"
+            },
+            "examples": {
+              "application/json": {
+                "id": "24",
+                "uuid": "a72acc8d-504b-4a40-8534-7c54d997ed59",
+                "timestamp": "Mon, 27 Aug 2018 19:28:26 +0000",
+                "shipping_provider_id": "bcstatic",
+                "shipping_provider_quote": [],
+                "provider_code": "shipping_byweight",
+                "carrier_code": "",
+                "rate_code": "",
+                "rate_id": ""
+              },
+              "Response Schema": {
+                "id": "in ut quis dolore qui",
+                "uuid": "ea dolo",
+                "timestamp": "1994-06-30T18:07:50.886Z",
+                "shipping_provider_id": "mollit aute voluptate dolor",
+                "provider_code": "anim non deserunt in",
+                "carrier_code": "eu dolore exercitation",
+                "rate_code": "officia in eiusmod",
+                "rate_id": "Ut in"
+              },
+              "Fixed Shipping": "{\n    \"id\": \"16\",\n    \"uuid\": \"18aaa5eb-3c7a-4bf8-bfaa-d14d155606f1\",\n    \"timestamp\": \"Mon, 30 Jul 2018 15:32:35 +0000\",\n    \"shipping_provider_id\": \"bcproductbased\",\n    \"shipping_provider_quote\": [],\n    \"provider_code\": \"productfixedshipping\",\n    \"carrier_code\": \"\",\n    \"rate_code\": \"\",\n    \"rate_id\": \"\"\n}",
+              "UPS Example": {
+                "id": "19",
+                "uuid": "6c21e6ba-3080-4def-991b-ae79ace4dfac",
+                "timestamp": "Mon, 20 Aug 2018 14:47:13 +0000",
+                "shipping_provider_id": "bcrealtime",
+                "shipping_provider_quote": {
+                  "rate": {
+                    "value": "44.11",
+                    "unit": "USD"
+                  },
+                  "transitTime": "1 business day",
+                  "name": "UPS Next Day Air®",
+                  "signatureConfirmationFee": null,
+                  "carrierName": "",
+                  "carrierCode": null,
+                  "code": null,
+                  "deliveryMessage": "",
+                  "labelSizes": [],
+                  "insuredMailFee": null,
+                  "dates": [],
+                  "rateId": null
+                },
+                "provider_code": "upsready",
+                "carrier_code": "",
+                "rate_code": "",
+                "rate_id": ""
+              }
+            }
+          }
+        },
+        "summary": "Get All Shipping Quotes",
+        "description": "Gets any shipping quotes assocated to an order. \n\nThis is a read only enpoint and the output can vary based on the shipping quote. A shipping quote can only be generated using the storefront at this time. Orders that are created in the control panel or via api return a 204 for this endpoint since a shipping quote is not generated during that process.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "tags": [
+          "Order Shipping Addresses Quotes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "order_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "shipping_address_id",
           "in": "path",
           "type": "string",
           "required": true
@@ -4977,6 +5133,12 @@
           "description": "Id of the external merchant.",
           "example": "null",
           "type": "string"
+        },
+        "form_fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FormFields"
+          }
         }
       },
       "required": [
@@ -5478,7 +5640,13 @@
         },
         "form_fields": {
           "description": "Empty array",
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FormFields"
+          }
+        },
+        "shipping_quotes": {
+          "$ref": "#/definitions/ShippingQuotesResource"
         }
       }
     },
@@ -6136,6 +6304,70 @@
           }
         }
       }
+    },
+    "ShippingQuotesResource": {
+      "type": "object",
+      "title": "Shipping Quotes Resource",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "This URL will return a 204 for shipping quotes. To return shipping quotes:\n`/shipping_addresses/shipping_address_id/shipping_quotes`",
+          "example": "https://api.bigcommerce.com/stores/{store_hash}/v2/orders/163/shippingaddresses/64/shippingquotes"
+        },
+        "resource": {
+          "type": "string",
+          "example": "orders/163/shippingaddresses/64/shippingquotes",
+          "description": "This URL will return a 204 for shipping quotes. To return shipping quotes:\n`/shipping_addresses/shipping_address_id/shipping_quotes`"
+        }
+      }
+    },
+    "ShippingQuotes": {
+      "type": "object",
+      "title": "Shipping Quotes",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Id of the shipping quote",
+          "example": "24"
+        },
+        "uuid": {
+          "type": "string",
+          "description": "uuid of the shipping quote",
+          "example": "a72acc8d-504b-4a40-8534-7c54d997ed59"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Time the order was created in RFC 2822 format.",
+          "format": "date-time"
+        },
+        "shipping_provider_id": {
+          "type": "string",
+          "example": "bcstatic",
+          "description": "Id of the shipping provider"
+        },
+        "shipping_provider_quote": {
+          "type": "array",
+          "description": "This can vary based on the shipping provider. Manual shipping methods such as fixed will return an empty array. Shipping providers such as UPS will return an object with the shipping information. Since the shipping quote is tied to a shipping address only one quote will return in the response.",
+          "items": {}
+        },
+        "provider_code": {
+          "type": "string",
+          "example": "shipping_byweight",
+          "description": "Code of the shipping provider"
+        },
+        "carrier_code": {
+          "type": "string",
+          "description": "Code of the shipping carrier"
+        },
+        "rate_code": {
+          "type": "string",
+          "description": "Type of delivery. This can vary based on shipping quote."
+        },
+        "rate_id": {
+          "type": "string",
+          "description": "This can vary based on shipping quote"
+        }
+      }
     }
   },
   "tags": [
@@ -6162,6 +6394,9 @@
     },
     {
       "name": "Order Messages"
+    },
+    {
+      "name": "Order Shipping Addresses Quotes"
     }
   ],
   "securityDefinitions": {

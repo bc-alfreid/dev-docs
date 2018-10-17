@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "BigCommerce V2 Customers",
+    "title": "Customers",
     "description": "## Customers\nIdentity and account details for customers shopping on BigCommerce stores.\n\n## Customer Addresses\nPostal address belonging to a customer.\n\n## Customer Groups\nGroupings of customers who share the same level of access and discounts at a store."
   },
   "host": "api.bigcommerce.com",
@@ -703,7 +703,7 @@
         }
       }
     },
-    "/customers/{id}": {
+    "/customers/{customer_id}": {
       "get": {
         "description": "Gets a single customer.",
         "summary": "Get a Single Customer",
@@ -842,13 +842,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "Unique numeric ID of this customer."
+            "$ref": "#/parameters/customer_id"
           },
           {
             "name": "Accept",
@@ -885,10 +879,7 @@
       },
       "parameters": [
         {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "required": true
+          "$ref": "#/parameters/customer_id"
         }
       ],
       "put": {
@@ -1104,7 +1095,7 @@
         }
       }
     },
-    "/customers/{id}/validate": {
+    "/customers/{customer_id}/validate": {
       "post": {
         "description": "**This endpoint has special rate limiting protections to protect against abuse.**\n\nProvided a password, will return a true/false response indicating if the provided password matches the customer’s current password. This endpoint is useful if you want to power the login of another system using BigCommerce’s stored customer accounts, or as a safe way to migrate passwords to another system (by checking them against BigCommerce’s password, and if correct, storing it in another system securely.)If the password matches what’s stored against the customer account, the response will be:\n\n```\n{\n    \"success\": \"true\"\n}\n```\nIf the password does NOT match, the response will instead be:\n\n```\n{\n    \"success\": \"false\"\n}\n```",
         "summary": "Validate a Password",
@@ -1113,13 +1104,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "Unique numeric ID of this customer."
+            "$ref": "#/parameters/customer_id"
           },
           {
             "name": "Accept",
@@ -1190,10 +1175,7 @@
       },
       "parameters": [
         {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "required": true
+          "$ref": "#/parameters/customer_id"
         }
       ]
     },
@@ -1451,13 +1433,7 @@
         "summary": "Delete All Customer Address",
         "parameters": [
           {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "ID of this customer address"
+            "$ref": "#/parameters/customer_id"
           },
           {
             "name": "Accept",
@@ -1512,14 +1488,11 @@
       },
       "parameters": [
         {
-          "name": "customer_id",
-          "in": "path",
-          "type": "string",
-          "required": true
+          "$ref": "#/parameters/customer_id"
         }
       ]
     },
-    "/customers/{customer_id}/addresses/{id}": {
+    "/customers/{customer_id}/addresses/{customer_address_id}": {
       "get": {
         "description": "Gets a customer address.\n\n## Read-only Properties\n* form_fields",
         "summary": "Get A Customer Address",
@@ -1752,13 +1725,7 @@
         "summary": "Delete A Customer Address",
         "parameters": [
           {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "ID of this customer address"
+            "$ref": "#/parameters/customer_id"
           },
           {
             "name": "Accept",
@@ -1777,11 +1744,7 @@
             "default": "application/json"
           },
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": "Address Id"
+            "$ref": "#/parameters/customer_address_id"
           }
         ],
         "responses": {
@@ -1802,16 +1765,10 @@
       },
       "parameters": [
         {
-          "name": "customer_id",
-          "in": "path",
-          "type": "string",
-          "required": true
+          "$ref": "#/parameters/customer_id"
         },
         {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "required": true
+          "$ref": "#/parameters/customer_address_id"
         }
       ]
     },
@@ -1824,13 +1781,7 @@
         ],
         "parameters": [
           {
-            "name": "customer_id",
-            "in": "path",
-            "required": true,
-            "type": "number",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "ID of this customer address"
+            "$ref": "#/parameters/customer_id"
           },
           {
             "name": "Accept",
@@ -1893,10 +1844,7 @@
       },
       "parameters": [
         {
-          "name": "customer_id",
-          "in": "path",
-          "type": "string",
-          "required": true
+          "$ref": "#/parameters/customer_id"
         }
       ]
     },
@@ -2194,19 +2142,13 @@
         ]
       }
     },
-    "/customer_groups/{id}": {
+    "/customer_groups/{customer_group_id}": {
       "get": {
         "description": "Gets a customer group.",
         "summary": "Get A Customer Group",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "The id of the customer group"
+            "$ref": "#/parameters/customer_group_id"
           },
           {
             "name": "Accept",
@@ -2360,10 +2302,7 @@
       },
       "parameters": [
         {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "required": true
+          "$ref": "#/parameters/customer_group_id"
         }
       ],
       "put": {
@@ -3077,5 +3016,28 @@
     {
       "X-Auth-Client": []
     }
-  ]
+  ],
+  "parameters": {
+    "customer_id": {
+      "name": "customer_id",
+      "in": "path",
+      "type": "integer",
+      "required": true,
+      "description": "Id of the customer"
+    },
+    "customer_group_id": {
+      "name": "customer_group_id",
+      "in": "path",
+      "type": "integer",
+      "required": true,
+      "description": "Id of the customer group"
+    },
+    "customer_address_id": {
+      "name": "customer_address_id",
+      "in": "path",
+      "type": "integer",
+      "description": "Id of the customer address.",
+      "required": true
+    }
+  }
 }

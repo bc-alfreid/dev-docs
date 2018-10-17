@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0",
-    "title": "BigCommerce V2 Store Content API",
+    "version": "",
+    "title": "Store Content",
     "description": "Store Content APIs help merchants edit and publish blog posts and Web pages, improve SEO, and drive traffic to stores. They include Blog Posts, Blog Tags, Redirects, and Pages.\n\n## Blog Posts\nA content entry in the store’s blog.\n\n## Blog Tags\nIndex of tags used on the store’s blog.\n\n## Pages\nA static Web page on the storefront.\n\n## Redirects\nA 301 redirect, mapping from a given URL path to another URL. Redirects are used to create custom URL paths that map to resources on the storefront (such as products, categories, brands, etc.), or to manually defined static URLs."
   },
   "host": "api.bigcommerce.com",

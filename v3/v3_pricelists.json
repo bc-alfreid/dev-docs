@@ -2,9 +2,9 @@
   "swagger": "2.0",
   "info": {
     "title": "Price Lists",
-    "version": "3.0.0b",
-    "description": "BigCommerce Price Lists",
-    "termsOfService": "http://www.bigcommerce.com/terms",
+    "version": "",
+    "description": "A Price List allows you to populate different versions of catalog pricing and assign them to different Customer Groups. The prices are specified exclusively at the variant level. If an active Price List does not contain prices for a variant then the Catalog pricing will be used. \n\n* The association of a Price List to a Customer Group can be done either via the Control Panel or using the V2 Customer Groups API.\n\n* Price Lists will provide overridden price values to the Stencil storefront. Final price display can be further customized within the Stencil template. See the [Price Object](http://) in Stencil for further documentation.\n\n* Bulk requests are limited to 1000 items per request.",
+    "termsOfService": "",
     "license": {
       "name": ""
     }

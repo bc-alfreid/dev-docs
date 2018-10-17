@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0",
-    "title": "BigCommerce V2 Currency",
+    "version": "",
+    "title": "Currency",
     "description": "The Currency object and endpoints manage alternate currency display options on the storefront."
   },
   "host": "api.bigcommerce.com",
@@ -270,7 +270,8 @@
           "name": "id",
           "in": "path",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Currency Id"
         }
       ],
       "put": {
