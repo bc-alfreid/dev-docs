@@ -30,4 +30,4 @@ Customers is named subscribers since the V3 customers api is not public.
 - [X] Remove extra shared parameters
 - [X] Update Security Definitions
 - [X] Make sure header is listed
-- [ ] Add in examples - Need to add in one with full JSON Schema
+- [X] Add in examples - Need to add in one with full JSON Schema
