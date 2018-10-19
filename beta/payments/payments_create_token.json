@@ -1,9 +1,15 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "CreatePaymentToken API",
-    "contact": {}
+    "version": "",
+    "title": "Create Payment Token API",
+    "contact": {},
+    "license": {
+      "name": "",
+      "url": ""
+    },
+    "termsOfService": "https://www.bigcommerce.com/terms/api-terms/",
+    "description": "This endpoint will create a payment tokent that can be used to process payments. A Payment token is required for stored cards, credit cards and orders where a `payment_access_token` is being used. \n\nWhile the Try It Now will work, please use the test payment gateway for security."
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{store_hash}/v3",
@@ -19,7 +25,7 @@
   "paths": {
     "/payments/access_tokens": {
       "post": {
-        "description": "This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for a particular order. ",
+        "description": "This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for an order.\n\nAfter the token is created then use the token to [submit a payment](/process-payment/payment/paymentspost).\n\n* The order id is required ",
         "summary": "Creates a payment access token",
         "tags": [
           "Payment Access Token"
@@ -33,7 +39,29 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/PaymentAccessTokenRequest"
+            },
+            "x-examples": {
+              "application/json": {
+                "order": {
+                  "id": 44796008,
+                  "is_recurring": true,
+                  "shopper_session": {
+                    "ip_address": "culpa exercitation"
+                  }
+                }
+              },
+              "Example": {
+                "order": {
+                  "id": 182
+                }
+              }
             }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
@@ -41,6 +69,13 @@
             "description": "Payment access token has been successfully created",
             "schema": {
               "$ref": "#/definitions/PaymentsAccessTokensResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": "ad anim"
+                }
+              }
             }
           },
           "400": {
@@ -79,7 +114,7 @@
   },
   "definitions": {
     "PaymentAccessTokenRequest": {
-      "title": "PaymentAccessTokenRequest",
+      "title": "Payment Access Token Request",
       "type": "object",
       "properties": {
         "order": {
@@ -101,7 +136,7 @@
           "format": "int32"
         },
         "is_recurring": {
-          "description": "Whether this is a recurring order",
+          "description": "Whether this is a recurring order. If the order is recurring this field should be set to true in order to let the payment gateway know. ",
           "example": false,
           "type": "boolean",
           "default": false
@@ -115,11 +150,11 @@
       ]
     },
     "ShopperSession": {
-      "title": "ShopperSession",
+      "title": "Shopper Session",
       "type": "object",
       "properties": {
         "ip_address": {
-          "description": "IP address where this shopper made the purchase",
+          "description": "IP address where this shopper made the purchase. It is currently stored in BigCommerce and not sent to the payment gateway. Optional field. ",
           "type": "string"
         }
       }
@@ -134,7 +169,7 @@
       }
     },
     "PaymentAccessToken": {
-      "title": "PaymentAccessToken",
+      "title": "Payment Access Token",
       "type": "object",
       "properties": {
         "id": {
@@ -148,7 +183,7 @@
       ]
     },
     "ErrorResponse": {
-      "title": "ErrorResponse",
+      "title": "Error Response",
       "type": "object",
       "properties": {
         "status": {
@@ -187,48 +222,8 @@
         "type"
       ]
     },
-    "PaymentMethod": {
-      "title": "PaymentMethod",
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Identifier for this payment method",
-          "type": "string",
-          "minLength": 1
-        },
-        "name": {
-          "description": "Name of this payment method",
-          "type": "string",
-          "minLength": 1
-        },
-        "test_mode": {
-          "description": "Whether this payment method is on test mode. This corresponds to the test payment in the control panel and the payment gateway. They should have the same setting otherwise this could cause the payment to fail. This is a read-only value.",
-          "example": false,
-          "type": "boolean",
-          "default": false
-        },
-        "verification_value_required": {
-          "description": "Whether verification value is required for payment",
-          "type": "boolean"
-        },
-        "stored_cards": {
-          "description": "",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/StoredCard"
-          }
-        }
-      },
-      "required": [
-        "id",
-        "name",
-        "test_mode",
-        "verification_value_required",
-        "stored_cards"
-      ]
-    },
     "StoredCard": {
-      "title": "StoredCard",
+      "title": "Stored Card",
       "type": "object",
       "properties": {
         "brand": {
@@ -261,7 +256,7 @@
           "maxLength": 4
         },
         "token": {
-          "description": "Identifier representing this stored card. This is used to identify cards within BigCommerce. It is the same as the `payment_access_token` that returns via the Get Transactions endpoint.",
+          "description": "Identifier representing this stored card. This is used to identify cards within BigCommerce. It is the same as the `payment_access_token` that returns via the [Get Transactions endpoint](https://developer.bigcommerce.com/api/v3/#/reference/orders).",
           "type": "string",
           "minLength": 64,
           "maxLength": 64
@@ -308,46 +303,6 @@
         "title",
         "type"
       ]
-    },
-    "ErrorResponse26": {
-      "title": "ErrorResponse26",
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "HTTP status code",
-          "type": "integer",
-          "format": "int32"
-        },
-        "title": {
-          "description": "Short summary describing the particular error",
-          "type": "string"
-        },
-        "detail": {
-          "description": "Detailed summary describing the particular error",
-          "type": "string"
-        },
-        "type": {
-          "description": "Reference that identifies the particular error",
-          "type": "string"
-        },
-        "code": {
-          "description": "Code representing the particular error",
-          "type": "integer",
-          "format": "int32"
-        },
-        "errors": {
-          "description": "",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      },
-      "required": [
-        "status",
-        "title",
-        "type"
-      ]
     }
   },
   "tags": [
@@ -379,5 +334,19 @@
     {
       "X-Auth-Token": []
     }
-  ]
+  ],
+  "parameters": {
+    "Accept": {
+      "name": "Accept",
+      "in": "header",
+      "type": "string",
+      "default": "application/json"
+    },
+    "Content-Type": {
+      "in": "header",
+      "type": "string",
+      "name": "Content-Type",
+      "default": "application/json"
+    }
+  }
 }
