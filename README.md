@@ -1,33 +1,33 @@
-# dev-docs-swagger-files
-
-## About these files
-
-They are organized by url.
-
-- Catalog / catalog
-- Customers (Subscribers) / customers
-- Content / content
-   - Placements
-   - Scripts
-   - Widgets 
-  
-- Orders / orders
--Price Lists /pricelists
--Themes / themes
-- Cart /cart
-- Checkout / checkout
-- Storefront Cart
-- Storefront Checkout
+This repo contains all the main developer documentation file which is built from json. It also contains all the swagger files for the BigCommerce API. 
 
 
-Content is named Scripts at this time since Widgets and Placements are not public.  
-Customers is named subscribers since the V3 customers api is not public. 
+## Open an Issue
+Create a PR against the repo to have an issue looked at. It should include a link to the page or section. What needs to be fixed and any supporting evidence, such as an API response. 
 
-## To Do for cleanup in each file
+### Issues we are looking for
+1. Spelling and Grammar Mistakes
+2. Broken Links
+3. Areas that need clarification in the documentation. 
+4. Incorrect information such as the API list an array, but it should be an object. Please make sure to provide code samples for this issue. 
 
-- [X] Finish breaking out the files, then perform cleanup
-- [X] Remove extra filter params
-- [X] Remove extra shared parameters
-- [X] Update Security Definitions
-- [X] Make sure header is listed
-- [X] Add in examples - Need to add in one with full JSON Schema
+If you would like to open an issue for anything besides the API or the documentation, here are our other public repositories. 
+You an also join our [BigCommerce Developers](https://support.bigcommerce.com/s/group/0F913000000HLjECAW/bigcommerce-developers) group for specific questions on working with the API and platform questions. 
+
+- [BigCommerce Python API](https://github.com/bigcommerce/bigcommerce-api-python)
+- [BigCommerce PHP API](https://github.com/bigcommerce/bigcommerce-api-php)
+- [BigCommerce Ruby API](https://github.com/bigcommerce/bigcommerce-api-ruby)
+- [BigCommerce Node API - Community Supported](https://github.com/getconversio/node-bigcommerce)
+
+
+- [BigCommerce Checkout SDK](https://github.com/bigcommerce/checkout-sdk-js)
+- [BigCommerce Checkout SDK Example](https://github.com/bigcommerce/checkout-sdk-js-example)
+
+
+- [PHP Hello World App](https://github.com/bigcommerce/hello-world-app-php-silex)
+- [Python Hello World App](https://github.com/bigcommerce/hello-world-app-python-flask)
+- [Ruby Hello World App - OmniAuth](https://github.com/bigcommerce/omniauth-bigcommerce)
+
+
+- [Cornerstone Issues](https://github.com/bigcommerce/cornerstone)
+- [Stencil CLI](https://github.com/bigcommerce/stencil-cli)
+
