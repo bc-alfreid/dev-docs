@@ -1,0 +1,91 @@
+                {
+                  "title": "Transitioning to Stencil",
+                  "route": {
+                    "path": "/transitionining-to-stencil"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Transitioning to Stencil</h1>"
+                      },
+                      {
+                        "type": "html",
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#choosing-dev-path\"> Choosing a Development Path</a></li>\n\t\t<li><a href=\"#front-matter-quick-start\">Front-Matter Quick Start</a></li>\n    <li><a href=\"#handlebars-matter-quick-start\">Handlebars Quick Start</a></li>\n\t\t<li><a href=\"#seo-tips\">SEO Tips and Best Practices</a></li>\n\t\t<li><a href=\"#blueprint-to-stencil\">Blueprint to Stencil Features Map</a></li>\n    <li><a href=\"#interacting-with-api\">Interacting with the BigCommerce API</a></li>\n    <li><a href=\"#partnering-with-bc\">Partnering with BigCommerce</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Choosing a Development Path\n\nAre you approaching Stencil from a different theming framework, like Blueprint, BigCommerce's legacy framework? Or moving to the Stencil templating environment from a pure HTML and CSS-based design?\n\nYou have four (non-mutually exclusive) options for developing Stencil themes:\n\n* Find a Design & Solutions Partner\n* Light Customization using the Theme Editor\n* Light Customization using HTML and CSS\n* Adapting a Stencil Theme or Developing from Scratch\n\n###  Find a Design & Solutions Partner\n\nIf you prefer to have an expert collaborator customize your theme, we recommend working with one of our certified BigCommerce Design & Solutions Partners. Reference the following resources to do so:\n\n* [Partner Directory](https://partners.bigcommerce.com/directory/search?i=75)\n* [Working with a Design Partner](https://support.bigcommerce.com/articles/Learning/Working-with-a-Design-Partner) (Support Guide)\n\n### Light Customization with Stencil Theme Editor\n\nStencil can be customized without the use of any specialized development tools or techniques by using of the Stencil Theme Editor. The Stencil Theme Editor still enables customization of a theme's colors, typography, banners, headings, carousel, and footer. It also enables customization of broader layout characteristics, such as the number of products displayed in various panels, category pages, and brand pages.\n\nFor details, see the following support resources:\n\n* [Theme Editor](https://support.bigcommerce.com/s/article/Stencil-Themes)\n* [Personalizing Your Theme](https://support.bigcommerce.com/articles/Learning/Personalizing-your-New-Theme) \n\n### Light Customization with HTML and CSS\n\nIf you are most comfortable working in HTML and CSS, Stencil's *Edit Theme Files* feature allows you to directly edit most of your theme's files from the Control Panel. For details, see the following resources:\n\n* [Editing Stencil Theme Files](https://support.bigcommerce.com/s/article/Stencil-Themes#edit) \n* [Getting Started with the Stencil Framework](https://www.youtube.com/watch?v=waJ1dg_dAh8&index=11&list=PLwTYtMwfzbe7EZiIWPAmPtuwRHkY7BG-0) (Video overview of copying and editing a theme's files)\n\n### Adapt a Stencil Theme, or Develop from Scratch\n\nFor complete control over a theme's appearance and logic – including the ability to edit _all_ theme configuration files – you will want to use the Stencil Command-line interface, also known as the Stencil CLI.\n\nTo learn Stencil CLI's templating conventions, see Installing Stencil CLI. Also take a look at BigCommerce's [Getting Started with the Stencil Framework](https://www.youtube.com/playlist?list=PLwTYtMwfzbe7EZiIWPAmPtuwRHkY7BG-0) video playlist.",
+                        "header": {
+                          "anchor": "choosing-dev-path"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Front-Matter Quick Start\n\nStencil templates start with a section of \"front matter\" where you can and concisely customize each page's design and layout details. \n\nThis front-matter section uses conventions from YAML, a simple, widely used markup language. If you haven't used these conventions before, refer to our [Front-Matter Overview](/stencil-docs/front-matter-attributes/front-matter-overview).",
+                        "header": {
+                          "anchor": "front-matter-quick-start"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Handlebars Quick Start\n\nStencil uses Handlebars.js to assemble dynamic content into the storefront pages that are displayed to shoppers. The dynamic content can be drawn from a few sources, like the store's catalog.\n\nHandlebars' syntax is quite simple, and it allows you to accomplish powerful JavaScript operations with minimal JavaScript code. To learn more about Handlebars.js, see these third-party tutorials: \n\n* [Learn Handlebars in 10 Minutes or Less](http://tutorialzine.com/2015/01/learn-handlebars-in-10-minutes/)\n* [A Beginner’s Guide to Handlebars](https://www.sitepoint.com/a-beginners-guide-to-handlebars/)\n* [Getting Started with Handlebars.js](http://blog.teamtreehouse.com/getting-started-with-handlebars-js)\n* [Handlebars interactive tutorial](http://tryhandlebarsjs.com/)",
+                        "header": {
+                          "anchor": "handlebars-quick-start"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## SEO Tips and Best Practices\n\nSearch-engine optimization (SEO) helps translate an elegant theme into a successful, high-conversion storefront. Because so many shoppers reach online stores through a search engine, a search-optimized site will be more visible – attracting more traffic. \n\nThe Stencil framework is [designed for high SEO performance](https://www.bigcommerce.com/improve-organic-traffic/). However, you will want to keep SEO in mind as you build out each theme and storefront. For guidelines, please see these BigCommerce support articles (which are a series of intermediate to advanced chapters in our Guide to SEO):\n\n* [SEO Do's and Don'ts](https://support.bigcommerce.com/s/article/What-is-SEO)\n* [Developing a Keyword Strategy](https://support.bigcommerce.com/articles/Learning/Developing-a-Keyword-Strategy/)\n* [SEO Success Essentials](https://support.bigcommerce.com/articles/Learning/Bigcommerce-SEO-Success-Essentials/)\n* [Advanced SEO on BigCommerce](https://support.bigcommerce.com/s/article/Advanced-SEO-on-Bigcommerce)\n\nAlso checkout our [Guide to Keyword Research](https://support.bigcommerce.com/s/article/Value-of-Keywords).",
+                        "header": {
+                          "anchor": "seo-tips"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Blueprint-to-Stencil Features Map \n\nThis following support and video resurces are designed to help you identify the Stencil counterparts to familiar Blueprint components.\n\n* [What to Consider When Changing Your Theme](https://support.bigcommerce.com/s/article/What-to-Consider-When-Changing-Your-Theme)\n* [Stencil and the BigCommerce Control Panel](https://www.youtube.com/watch?v=d2F6F8LJXzs&list=PLwTYtMwfzbe7EZiIWPAmPtuwRHkY7BG-0&index=2) (Video tour of Blueprint-to-Stencil  changes in the BigCommerce control panel)",
+                        "header": {
+                          "anchor": "blueprint-to-stencil"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Interacting with the BigCommerce API\n\nInteracting with the BigCommerce API\nBigCommerce's growing API resources enable application developers to create private scripts or apps that support a single store, or to create public apps offered to multiple stores via BigCommerce's App Marketplace.\n\nAs a theme developer, you can rely on apps to enhance your themes' capabilities, and to extend or complement the storefront features built into the BigCommerce platform. Popular app areas include inventory management, email marketing, coupons, reviews, shipping, tax accounting, and security. For more information, see BigCommerce's:\n\n* [App Marketplace](https://www.bigcommerce.com/apps/)\n* [API documentation](https://developer-beta.bigcommerce.com/api-docs)",
+                        "header": {
+                          "anchor": "interacting-with-api"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Partnering with BigCommerce\n\nDo we belong together? No formal business relationship is required to develop themes on the BigCommerce platform. However, consider applying to become a BigCommerce Design & Solutions Partner (DSP), in order to accelerate your development of new business and revenue. For details, see our:\n\n* Overview of BigCommerce Partnerships\n* Design & Solutions Partners – basics and application links\n* Technology Partners – basics and application links\n* Partnership Application",
+                        "header": {
+                          "anchor": "partnering-with-bc"
+                        }
+                      }
+                    ]
+                  }
+                }
