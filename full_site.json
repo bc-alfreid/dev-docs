@@ -704,7 +704,7 @@
                           "blocks": [
                             {
                               "type": "html",
-                              "data": "<h1>Types of Apps</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#types-of-apps_single-click-apps\"> Single Click Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_private-apps\"> Private Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_hidden-marketplace-apps\"> Hidden Marketplace Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_scripts\"> Scripts</a></li>\n\t\t<li><a href=\"#types-of-apps_connector\"> Connector and OAuth Apps</a></li>\n\t</ul>\n</div>"
+                              "data": "<h1>Types of Apps</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#types-of-apps_single-click-apps\"> Single Click Apps</a></li>\n    <li><a href=\"#types-of-apps_connector\"> Connector Apps</a></li>\n    <li><a href=\"#types-of-apps_unlisted-marketplace-apps\"> Unlisted Marketplace Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_private-apps\"> Personal Apps</a></li>\n\t\t<li><a href=\"#types-of-apps_scripts\"> Scripts</a></li>\n\t\t\n\t</ul>\n</div>"
                             },
                             {
                               "type": "text",
@@ -719,40 +719,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Private Apps\n\nIn some cases, you might want to create an API Account in your store’s control panel as the fastest way to establish an API connection to an individual store and to start running requests. \n\nUse Cases:\n- You are not creating an application for distribution in the BigCommerce App Marketplace.\n- You are testing your app before submission, and it doesn’t need to be distributed to other stores.\n\nPrivate Apps can request an Oauth token programmatically using the Client ID and Client Secret from [Dev Tools](https://devtools.bigcommerce.com), or you can authenticate using an OAuth token from the store’s [control panel](https://forum.bigcommerce.com/s/article/Store-API-Accounts#creating). ",
-                              "header": {
-                                "anchor": "types-of-apps_private-apps"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "data": "---"
-                            },
-                            {
-                              "type": "text",
-                              "data": "## Hidden Marketplace Apps\n\nApproved partners have the option of uploading “hidden” apps to the App Marketplace. A hidden app is a published app that does not show up in the public BigCommerce marketplace. To create a hidden app you need to be a BigCommerce Partner. \n\nUse Cases:\n- A partner is beta-testing an integration before a full Marketplace launch.\n- A BigCommerce user with several stores wants to install a custom app on all of them. Submitting a hidden app offers a streamlined alternative to creating a separate draft or test apps for each store.\nTo have an app hidden, please contact <a href=\"mailto:appstore@bigcommerce.com\">appstore@bigcommerce.com</a>.",
-                              "header": {
-                                "anchor": "types-of-apps_hidden-marketplace-apps"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "data": "---"
-                            },
-                            {
-                              "type": "text",
-                              "data": "## Scripts\n\nYou can write a script to test an endpoint, check small portions of app code you are writing, or to create an application that will not be distributed in the BigCommerce Marketplace. Scripts do not have a user interface. \n\nTo get started with writing scripts all you need are API Credentials from the store’s Control Panel. Learn more about [making your first request](/api-docs/getting-started/about-api/making-requests) with the BigCommerce API. ",
-                              "header": {
-                                "anchor": "types-of-apps_scripts"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "data": "---"
-                            },
-                            {
-                              "type": "text",
-                              "data": "## Connector and Other OAuth Apps\n\nSome apps qualify to be listed in the BigCommerce App Marketplace as “Connector” apps. These apps use manual OAuth token creation instead of the single-click app flow.\n\nWhile we always recommend and prefer the single-click app flow’s programmatic OAuth exchange, certain use cases might not be compatible.\n\nUse Cases:\n- Customized integrations that vary per store.\n- Integrations that do not provide any content for an iframe.\n- Apps that do not provide Web services for OAuth exchange. (For example: offline sync apps.)\n- Apps that do not provide Web or cloud-hosted components for a dashboard.",
+                              "data": "## Connector Apps\n\nSome apps qualify to be listed in the BigCommerce App Marketplace as “Connector” apps. These apps use manual OAuth token creation instead of the single-click app flow.\n\nWhile we always recommend and prefer the single-click app flow’s programmatic OAuth exchange, certain use cases might not be compatible.\n\nUse Cases:\n- Customized integrations that vary per store.\n- Integrations that do not provide any content for an iframe.\n- Apps that do not provide Web services for OAuth exchange. (For example: offline sync apps.)\n- Apps that do not provide Web or cloud-hosted components for a dashboard.",
                               "header": {
                                 "anchor": "types-of-apps_connector"
                               }
@@ -766,6 +733,39 @@
                             {
                               "type": "text",
                               "data": "To create a connector app that uses manual OAuth token creation, make the following selections on the Technical tab when registering your app in Dev Tools: \n\n1. Set the App Type option to Connector.\n2. Enter your app’s Signup URL. This is the URL where a user would begin to configure the connection between your service and the BigCommerce store.\n4. Under OAuth scopes, select the scopes that your app requires for BigCommerce review only. Later, you will need to instruct store users to create a token with the production scopes your app needs.\n\nBigCommerce must review and approve your connector app proposal before we will accept the app’s submission to the Marketplace. \n\nIf you’re interested in submitting your integration as a connector app, please contact out to <a href=\"mailto:appstore@bigcommerce.com\">appstore@bigcommerce.com</a>. to discuss your plan."
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Unlisted Marketplace Apps\n\nApproved partners have the option to upload “unlisted” apps to the App Marketplace. An unlisted app is a published app that does not show up in the public BigCommerce marketplace. To create an unlisted app you need to be a BigCommerce Partner. \n\nUse Cases:\n- A partner is beta-testing an integration before a full Marketplace launch.\n- A BigCommerce user with several stores wants to install a custom app on all of them. Submitting an unlisted app offers a streamlined alternative to creating a separate draft or test apps for each store.\n\nTo submit an unlisted app, please contact <a href=\"mailto:appstore@bigcommerce.com\">appstore@bigcommerce.com</a>.",
+                              "header": {
+                                "anchor": "types-of-apps_unlisted-marketplace-apps"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Personal Apps\n\nIn some cases, you might want to create an app that uses the Single-click Oauth flow to install in a merchant’s control panel, but you do not want to list the app for sale in the App Marketplace. Personal Apps are draft apps, created from the [Dev Tools](https://devtools.bigcommerce.com/) workspace, that are never published to the App Marketplace and remain in draft status permanently.\n\nUse Cases:\n* You are creating a custom application for a single merchant’s store.\n* You are testing your app before submission, and it doesn’t need to be distributed to other stores.\n\n\nTo install a Personal app on a store, your Dev Tools login credentials must be the same as the store owner login credentials for the store where you intend to install the app.\n",
+                              "header": {
+                                "anchor": "types-of-apps_private-apps"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Scripts\n\nYou may wish to write a small program that can make requests against a store’s API and does not install in the store’s control panel. Scripts connect to a store solely through API Credentials: they don’t install in the control panel or present a UI to the user.\n\nUse cases:\n* You are building a lightweight solution to automate processes in your store\n* You are testing an API endpoint or a component of an app\n\nTo get started with writing scripts, all you need are API Credentials from the store’s Control Panel.\n Learn more about [making your first request](/api-docs/getting-started/about-api/making-requests) with the BigCommerce API. ",
+                              "header": {
+                                "anchor": "types-of-apps_scripts"
+                              }
                             }
                           ]
                         }
@@ -3796,13 +3796,104 @@
             }
           },
           {
-            "title": "Customers",
+            "title": "Customers & Subscribers",
             "route": {
-              "path": "/customers"
+              "path": "/customers-subscribers"
             },
             "data": {
               "blocks": [],
               "children": [
+                {
+                  "title": "Overview",
+                  "route": {
+                    "path": "/customers-subscribers-overview"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Customers</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#customers-subscribers_what-is-a-customer\">What is a Customer?</a></li>\n        <li><a href=\"#customers-subscribers_what-is-a-subscriber\">What is a Subscriber?</a></li>\n\t\t<li><a href=\"#customers-subscribers_guests\">Guests</a></li>\n    <li><a href=\"#customers-subscribers_subscribers-v-customers\">Subscribers vs. Customers</a></li>\n    <li><a href=\"#customers-subscribers_oauth-scopes\">OAuth Scopes</a></li>\n    <li><a href=\"#customers-subscribers_webhooks\">Webhooks</a></li>\n    <li><a href=\"#customer-subscribers_related-enpoints\">Related Endpoints</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## What is a Customer?\n\nA customer is anyone who has made a purchase on a store and created an account.  BigCommerce then stores email address, customer address, and name against as a record.  This information can be queried via the API. \n\n### Customer Groups\nCustomer groups allow you to organize your customers, give them discounts, and restrict access to specific products or categories. For more information see [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups).\n",
+                        "header": {
+                          "anchor": "customers-subscribers_what-is-a-customer"
+                        }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "body": "Customer Groups only available on specific plans"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Customer Login API\nThe Customer Login API allows for single sign-on.\nOnce a customer has authenticated by logging in to a third party system (CMS, portal, or app), you can use the customer login API to seamlessly log the customer into their BigCommerce customer account.\n\n### Current Customer API\nThe Current Customer API allows your application to identify logged in customers. This is useful when you need to show customer specific information."
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## What is a Subscriber?\n\nA subscriber is someone who has signed up for a store's newsletter.  \nSubscribers can be added by:\n- Signing up for the newsletter via the signup box located in the footer of most storefront themes\n- Signing up for the newsletter during checkout\n- POSTing to the Subscribers API\n\nWhere possible, the API indicates the origin of the subscriber. If the subscriber was added during checkout, the Order ID is included."
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Guests\nStore [settings](https://forum.bigcommerce.com/s/article/Checkout-Settings#checkout-settings) can be set to allow a shopper to complete checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the [Storefront APIs](/api-docs/cart-and-checkout/cart-and-checkout-overview) can help. "
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Subscribers vs. Customers\n\n1. A subscriber is not always a customer. \nSomeone can signup for the newsletter only and not create an account. \n2. A customer is not always a subscriber. \nSigning up for the newsletter is a separate action from creating an account and purchasing an item. \n3. A customer and a subscriber can be the same. \nIf a shopper checks out on the storefront and opts into the newsletter, they are not a customer and a subscriber. ",
+                        "header": {
+                          "anchor": "customers-subscribers_subscribers-v-customers"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## OAuth Scopes\n* [Customers Login](/api-docs/getting-started/basics/authentication#authentication_oauth-scopes)\n* [Customers](/api-docs/getting-started/basics/authentication#authentication_oauth-scopes)",
+                        "header": {
+                          "anchor": "customers-subscribers_oauth-scopes"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Wehooks Available\n* [Customers](/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)",
+                        "header": {
+                          "anchor": "customers-subscribers_webhooks"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Related Endpoints\n* [Customer Login API](/api-docs/customers/customer-login-api)\n* [Current Customer API](/api-docs/customers/current-customer-api)\n* [Customers API](/api-reference/customer-subscribers/customers-api)\n* [Subscribers API](/api-reference/customer-subscribers/subscribers-api)",
+                        "header": {
+                          "anchor": "customer-subscribers_related-enpoints"
+                        }
+                      }
+                    ]
+                  }
+                },
                 {
                   "title": "Customer Login API",
                   "route": {
@@ -4066,7 +4157,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Identifying Logged-In Customers Securely\n\nIf your application interacts dynamically with the BigCommerce storefront, and conveys information that is specific to a particular logged-in customer, you must confirm that customer’s identity within the insecure environment of the user’s browser.\n\nTo address this need, BigCommerce provides a Current Customer endpoint, which your app can access via JavaScript on the storefront. This endpoint returns a JWT with identifying details about the customer. The information is signed with your [OAuth client secret](/api-docs/getting-started/about-api/authentication#authentication_client-id-secret).",
+                        "data": "## Identifying Logged-In Customers Securely\n\nIf your application interacts dynamically with the BigCommerce storefront, and conveys information that is specific to a particular logged-in customer, you must confirm that customer’s identity within the insecure environment of the user’s browser.\n\nFor example, if you are creating a loyalty app and need to show a different balance depending on the customer,using a signed payload from BigCommmerce will ensure you have the right customer.\n\nTo address this need, BigCommerce provides a Current Customer endpoint, which your app can access via JavaScript on the storefront. This endpoint returns a JWT with identifying details about the customer. The information is signed with your [OAuth client secret](/api-docs/getting-started/about-api/authentication#authentication_client-id-secret).",
                         "header": {
                           "anchor": "current-customer_identifying-logged-in-customers"
                         }
@@ -8269,9 +8360,20 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "## {{eachIndex}}\n\n#### Parameters\n\n* `array` {Array}\n* `options` {Object}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{#eachIndex collection}}\n  {{item}} is {{index}}\n{{/eachIndex}}\n```\n\n### {{filter}}\n\nBlock helper that filters the given array. Renders the block for values that evaluate to `true`; otherwise, returns the inverse block.\n\n#### Parameters\n\n* `array` {Array}\n* `value` {any}\n* `options` {Object}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{#filter array \"foo\"}}AAA{{else}}BBB{{/filter}}\n//=> 'BBB\n```",
+                                    "data": "## {{eachIndex}}\n\n#### Parameters\n\n* `array` {Array}\n* `options` {Object}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{#eachIndex collection}}\n  {{item}} is {{index}}\n{{/eachIndex}}\n```",
                                     "header": {
                                       "anchor": "handlebars_eachindex"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{filter}}\n\nBlock helper that filters the given array. Renders the block for values that evaluate to `true`; otherwise, returns the inverse block.\n\n#### Parameters\n\n* `array` {Array}\n* `value` {any}\n* `options` {Object}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{#filter array \"foo\"}}AAA{{else}}BBB{{/filter}}\n//=> 'BBB\n```",
+                                    "header": {
+                                      "anchor": "handlebars_filter"
                                     }
                                   },
                                   {
@@ -8293,7 +8395,7 @@
                                     "type": "text",
                                     "data": "## {{forEach}}\n\nIterates over each item in an array, and exposes the current item in the array as context to the inner block. In addition to the current array item, the helper exposes the following variables to the inner block:\n\n* `index`\n* `total`\n* `isFirst`\n* `isLast`\n\nAlso, `@index` is exposed as a private variable, and additional private variables may be defined as hash arguments.\n\n#### Parameters\n\n* `array` {Array}\n* `returns` {String}\n\n#### Example\n\n```js\nvar accounts = [\n{'name': 'John', 'email': 'john@example.com'},\n{'name': 'Malcolm', 'email': 'malcolm@example.com'},\n{'name': 'David', 'email': 'david@example.com'}\n];\n\n// example usage\n// {{#forEach accounts}}\n//   <a href=\"mailto:{{ email }}\" title=\"Send an email to {{ name }}\">\n//     {{ name }}\n//   </a>{{#unless isLast}}, {{/unless}}\n// {{/forEach}}\n```",
                                     "header": {
-                                      "anchor": "handlebars_foreeach"
+                                      "anchor": "handlebars_foreach"
                                     }
                                   },
                                   {
@@ -8524,13 +8626,13 @@
                                   },
                                   {
                                     "type": "html",
-                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_isEmpty\">{{isEmpty}}</a></li>\n    <li><a href=\"#handlebars_iterate\">{{iterate}}</a></li>\n    <li><a href=\"#handlebars_length\">{{length}}</a></li>\n\t</ul>\n</div>"
+                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_isempty\">{{isEmpty}}</a></li>\n    <li><a href=\"#handlebars_iterate\">{{iterate}}</a></li>\n    <li><a href=\"#handlebars_length\">{{length}}</a></li>\n\t</ul>\n</div>"
                                   },
                                   {
                                     "type": "text",
                                     "data": "The following standard helpers are available to handle collections.\n\n## {{isEmpty}}\n\nBlock helper that returns a block *if* the given collection is empty. If the collection is not empty, returns the inverse block (if supplied).\n\n#### Parameters\n\n* `collection` {Object}\n* `options` {Object}\n* `returns` {String}",
                                     "header": {
-                                      "anchor": "handlebars_isEmpty"
+                                      "anchor": "handlebars_isempty"
                                     }
                                   },
                                   {
@@ -8565,7 +8667,7 @@
                       {
                         "title": "Comparison Helpers",
                         "route": {
-                          "path": "/new-subpage"
+                          "path": "/comparison-helpers"
                         },
                         "data": {
                           "blocks": [],
@@ -8583,7 +8685,7 @@
                                   },
                                   {
                                     "type": "html",
-                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_and\">{{and}}</a></li>\n    <li><a href=\"#handlebars_gt\">{{gt}}</a></li>\n    <li><a href=\"#handlebars_gte\">{{gte}}</a></li>\n    <li><a href=\"#handlebars_has\">{{has}}</a></li>\n    <li><a href=\"#handlebars_eq\">{{eq}}</a></li>\n    <li><a href=\"#handlebars_ifeven\">{{ifeven}}</a></li>\n    <li><a href=\"#handlebars_ifnth\">{{ifNth}}</a></li>\n    <li><a href=\"#handlebars_ifodd\">{{ifOdd}}</a></li>\n    <li><a href=\"#handlebars_is\">{{is}}</a></li>\n    <li><a href=\"#handlebars_isnt\">{{isnt}}</a></li>\n    <li><a href=\"#handlebars_lt\">{{lt}}</a></li>\n    <li><a href=\"#handlebars_lte\">{{lte}}</a></li>\n    <li><a href=\"#handlebars_neither\">{{neither}}</a></li>\n    <li><a href=\"#handlebars_unlesseq\">{{unlessEq}}</a></li>\n    <li><a href=\"#handlebars_unlessgt\">{{unlessGt}}</a></li>\n    <li><a href=\"#handlebars_unlesslt\">{{unlesslt}}</a></li>\n    <li><a href=\"#handlebars_gteq\">{{{unlessGteq}}</a></li>\n    <li><a href=\"#handlebars_lteq\">{{{unlessLteq}}</a></li>\n\t</ul>\n</div>"
+                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_and\">{{and}}</a></li>\n    <li><a href=\"#handlebars_gt\">{{gt}}</a></li>\n    <li><a href=\"#handlebars_gte\">{{gte}}</a></li>\n    <li><a href=\"#handlebars_has\">{{has}}</a></li>\n    <li><a href=\"#handlebars_eq\">{{eq}}</a></li>\n    <li><a href=\"#handlebars_ifeven\">{{ifeven}}</a></li>\n    <li><a href=\"#handlebars_ifnth\">{{ifNth}}</a></li>\n    <li><a href=\"#handlebars_ifodd\">{{ifOdd}}</a></li>\n    <li><a href=\"#handlebars_is\">{{is}}</a></li>\n    <li><a href=\"#handlebars_isnt\">{{isnt}}</a></li>\n    <li><a href=\"#handlebars_lt\">{{lt}}</a></li>\n    <li><a href=\"#handlebars_lte\">{{lte}}</a></li>\n    <li><a href=\"#handlebars_neither\">{{neither}}</a></li>\n    <li><a href=\"#handlebars_unlesseq\">{{unlessEq}}</a></li>\n    <li><a href=\"#handlebars_unlessgt\">{{unlessGt}}</a></li>\n    <li><a href=\"#handlebars_unlesslt\">{{unlesslt}}</a></li>\n    <li><a href=\"#handlebars_unlessgteq\">{{{unlessGteq}}</a></li>\n    <li><a href=\"#handlebars_unlesslteq\">{{{unlessLteq}}</a></li>\n\t</ul>\n</div>"
                                   },
                                   {
                                     "type": "text",
@@ -8907,16 +9009,7 @@
                           "path": "/date-helpers"
                         },
                         "data": {
-                          "blocks": [
-                            {
-                              "type": "html",
-                              "data": "<h1>Date Helpers</h1>"
-                            },
-                            {
-                              "type": "text",
-                              "data": ""
-                            }
-                          ],
+                          "blocks": [],
                           "children": [
                             {
                               "title": "Standard Date Helpers",
@@ -9087,7 +9180,7 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "The following standard helpers are available to transform strings.\n\n### {{inflect}}\n\nHandles singular/plural forms.\n\n#### Parameters\n\n* `count` {Number}\n* `singular` {String}: The singular form\n* `plural` {String}: The plural form\n* `include` {String}\n* `returns` {String}",
+                                    "data": "The following standard helpers are available to transform strings.\n\n## {{inflect}}\n\nHandles singular/plural forms.\n\n#### Parameters\n\n* `count` {Number}\n* `singular` {String}: The singular form\n* `plural` {String}: The plural form\n* `include` {String}\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_inflect"
                                     }
@@ -9098,7 +9191,7 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{ordinalize}}\n\nReturns an ordinalized number (as a string).\n\n#### Parameters\n\n* `val` {String}: The value to ordinalize.\n* `returns` {String}: The ordinalized number.\n\n#### Example\n\n```handlebars\n{{ordinalize 1}}\n//=> '1st'\n{{ordinalize 21}}\n//=> '21st'\n{{ordinalize 29}}\n//=> '29th'\n{{ordinalize 22}}\n//=> '22nd'\n```",
+                                    "data": "## {{ordinalize}}\n\nReturns an ordinalized number (as a string).\n\n#### Parameters\n\n* `val` {String}: The value to ordinalize.\n* `returns` {String}: The ordinalized number.\n\n#### Example\n\n```handlebars\n{{ordinalize 1}}\n//=> '1st'\n{{ordinalize 21}}\n//=> '21st'\n{{ordinalize 29}}\n//=> '29th'\n{{ordinalize 22}}\n//=> '22nd'\n```",
                                     "header": {
                                       "anchor": "handlebars_ordinalize"
                                     }
@@ -9134,14 +9227,25 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "The Stencil framework provides the following custom helpers to inject various resources into a page context:\n\n## {{cdn}}\n\nThe `cdn` helper is custom to Stencil. It is a URL transformer for content delivery networks.\n\nWhen you reference static assets that you have locally staged outside your `<theme-name>` directory and uploaded using WebDAV, place the `webdav:` prefix before each corresponding `assetPath` parameter. For example, a link like:\n\n```\n<img src=\"{{cdn \"webdav:img/image.jpg\"}}\">\n```\n\n...will be transformed to a result like:\n\n```\n<img src=\"https://cdn.bcapp/3dsf74g/content/img/image.jpg\">\n```\n\nThe presumed WebDAV root directory is `/content/`. (So, in this example, the `image.jpg` file has been uploaded to the WebDAV `/content/` directory.) The presumed local directory is `<theme-name>/assets/`, so you can omit that path when referencing its contained files or subdirectories.\n\n\n#### CDN Custom Endpoints\n\nYou can define custom CDN endpoints to use with the `cdn` Handlebars helper. This facilitates including large, high-resolution image assets in themes, without exceeding BigCommerce's [50 MB limit](docs/bundling-and-submitting-a-theme#ship-zip-small) when bundling the theme for upload to BigCommerce. \n\nYou could use a local version of the image in development, and a version on a CDN (for exampe, Imgix) in production. To do so, define custom CDN endpoints in your theme's [`config.json` file](/docs/configjson-reference#config-theme-settings), as highlighted in this example:\n\n```\n{\n  \"name\": \"Cornerstone\",\n  \"version\": \"1.3.5\",\n  \"settings\": {\n    \"homepage_new_products_count\": 12,\n    \"homepage_featured_products_count\": 8,\n    \"cdn\": {\n      \"customcdn\": \"https://bigcommerce.customcdn.net\"\n          }\n     }\n}\n\n \n```\n\nAfter defining an endpoint, you can use the short name in the same way as you would use a `webdav:` abbreviation:\n\n```\n<img src=\"{{cdn \"customcdn:img/image.jpg\"}}\" />\n```\n\nIn local development, that helper would return:\n\n<pre>&lt;img src=\"<b>/assets/cdn/</b>customcdn/img/image.jpg\" /&gt;\n</pre>\n\nWhereas in production, it would return:\n\n```\n<img src=\"https://bigcommerce.customcdn.net/img/image.jpg\" />\n```\n\nAs highlighted above, the helper is configured to rewrite *local* URLs to a `<theme-name>/assets/cdn/` subfolder. The `stencil bundle` command will exclude this local `assets/cdn/` subfolder from the bundle that it creates. This filtering circumvents the 50 MB size limit on the resulting .zip file.\n"
+                                    "data": "The Stencil framework provides the following custom helpers to inject various resources into a page context:\n\n## {{cdn}}\n\nThe `cdn` helper is custom to Stencil. It is a URL transformer for content delivery networks.\n\nWhen you reference static assets that you have locally staged outside your `<theme-name>` directory and uploaded using WebDAV, place the `webdav:` prefix before each corresponding `assetPath` parameter. For example, a link like:\n\n```\n<img src=\"{{cdn \"webdav:img/image.jpg\"}}\">\n```\n\n...will be transformed to a result like:\n\n```\n<img src=\"https://cdn.bcapp/3dsf74g/content/img/image.jpg\">\n```\n\nThe presumed WebDAV root directory is `/content/`. (So, in this example, the `image.jpg` file has been uploaded to the WebDAV `/content/` directory.) The presumed local directory is `<theme-name>/assets/`, so you can omit that path when referencing its contained files or subdirectories.\n\n\n#### CDN Custom Endpoints\n\nYou can define custom CDN endpoints to use with the `cdn` Handlebars helper. This facilitates including large, high-resolution image assets in themes, without exceeding BigCommerce's [50 MB limit](docs/bundling-and-submitting-a-theme#ship-zip-small) when bundling the theme for upload to BigCommerce. \n\nYou could use a local version of the image in development, and a version on a CDN (for exampe, Imgix) in production. To do so, define custom CDN endpoints in your theme's [`config.json` file](/docs/configjson-reference#config-theme-settings), as highlighted in this example:\n\n```\n{\n  \"name\": \"Cornerstone\",\n  \"version\": \"1.3.5\",\n  \"settings\": {\n    \"homepage_new_products_count\": 12,\n    \"homepage_featured_products_count\": 8,\n    \"cdn\": {\n      \"customcdn\": \"https://bigcommerce.customcdn.net\"\n          }\n     }\n}\n\n \n```\n\nAfter defining an endpoint, you can use the short name in the same way as you would use a `webdav:` abbreviation:\n\n```\n<img src=\"{{cdn \"customcdn:img/image.jpg\"}}\" />\n```\n\nIn local development, that helper would return:\n\n<pre>&lt;img src=\"<b>/assets/cdn/</b>customcdn/img/image.jpg\" /&gt;\n</pre>\n\nWhereas in production, it would return:\n\n```\n<img src=\"https://bigcommerce.customcdn.net/img/image.jpg\" />\n```\n\nAs highlighted above, the helper is configured to rewrite *local* URLs to a `<theme-name>/assets/cdn/` subfolder. The `stencil bundle` command will exclude this local `assets/cdn/` subfolder from the bundle that it creates. This filtering circumvents the 50 MB size limit on the resulting .zip file.\n",
+                                    "header": {
+                                      "anchor": "handlebars_cdn"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
                                     "data": "### <a name=\"fonts\"></a> {{getFontsCollection}}\n\nThe `getFontsCollection` helper is custom to Stencil. It returns a link tag that loads all selected font collections. It takes no parameters.",
                                     "header": {
-                                      "anchor": "handlebars-getfontscollection"
+                                      "anchor": "handlebars_getfontscollection"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -9152,7 +9256,11 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{stylesheet}}\n\nThe `stylesheet` helper is custom to Stencil. It renders a link tag to insert a stylesheet into your theme. (This is required if you want Theme Editor to rewrite the stylesheet file when a merchant customizes their theme.) This helper returns an HTML string.\n\n#### Parameters\n\n- path: String containing the path to the theme's CSS stylesheet file.\n- Other parameters are optional, appended in the form: `key=\"value\"`.\n\n#### Example\n\n```\n{{{stylesheet \"assets/css/style.css\" class=\"myStylesheet\"}}}\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{stylesheet}}\n\nThe `stylesheet` helper is custom to Stencil. It renders a link tag to insert a stylesheet into your theme. (This is required if you want Theme Editor to rewrite the stylesheet file when a merchant customizes their theme.) This helper returns an HTML string.\n\n#### Parameters\n\n- path: String containing the path to the theme's CSS stylesheet file.\n- Other parameters are optional, appended in the form: `key=\"value\"`.\n\n#### Example\n\n```\n{{{stylesheet \"assets/css/style.css\" class=\"myStylesheet\"}}}\n```",
                                     "header": {
                                       "anchor": "handlebars_stylesheet"
                                     }
@@ -9224,63 +9332,95 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "The following standard helpers are available to handle mathematical operations.\n\n### {{add}}\n\nReturns the sum of `a` plus `b`.\n\n#### Parameters\n\n* `a` {Number}\n* `b` {Number}",
+                                    "data": "The following standard helpers are available to handle mathematical operations.\n\n## {{add}}\n\nReturns the sum of `a` plus `b`.\n\n#### Parameters\n\n* `a` {Number}\n* `b` {Number}",
                                     "header": {
                                       "anchor": "handlebars_add"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{subtract}}\n\nReturn the differnece of `a` minus `b`.\n\n#### Parameters\n\n* `a` {Number}\n* `b` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{subtract}}\n\nReturn the differnece of `a` minus `b`.\n\n#### Parameters\n\n* `a` {Number}\n* `b` {Number}",
                                     "header": {
                                       "anchor": "handlebars_subtract"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{divide}}\n\nDivides `a` by `b`.\n\n#### Parameters\n\n* `a` {Number}: numerator\n* `b` {Number}: denominator",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{divide}}\n\nDivides `a` by `b`.\n\n#### Parameters\n\n* `a` {Number}: numerator\n* `b` {Number}: denominator",
                                     "header": {
                                       "anchor": "handlebars_divide"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{multiply}}\n\nMultiplies `a` by `b`.\n\n#### Parameters\n\n* `a` {Number}: factor\n* `b` {Number}: multiplier",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{multiply}}\n\nMultiplies `a` by `b`.\n\n#### Parameters\n\n* `a` {Number}: factor\n* `b` {Number}: multiplier",
                                     "header": {
                                       "anchor": "handlebars_multiply"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{floor}}\n\nGets the `Math.floor()` of the given value.\n\n#### Parameters\n\n* `value` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{floor}}\n\nGets the `Math.floor()` of the given value.\n\n#### Parameters\n\n* `value` {Number}",
                                     "header": {
                                       "anchor": "handlebars_floor"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{ceil}}\n\nGets the `Math.ceil()` [ceiling] of the given value.\n\n#### Parameters\n\n* `value` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{ceil}}\n\nGets the `Math.ceil()` [ceiling] of the given value.\n\n#### Parameters\n\n* `value` {Number}",
                                     "header": {
                                       "anchor": "handlebars_ceil"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{round}}\n\nRounds the given value.\n\n#### Parameters\n\n* `value` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{round}}\n\nRounds the given value.\n\n#### Parameters\n\n* `value` {Number}",
                                     "header": {
                                       "anchor": "handlebars_round"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{sum}}\n\nReturns the sum of all numbers in the given array.\n\n#### Parameters\n\n* `array` {Array}: Array of numbers to add up.\n* `returns` {Number}\n\n#### Example\n\n```handlebars\n{{sum \"[1, 2, 3, 4, 5]\"}}\n//=> '15'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{sum}}\n\nReturns the sum of all numbers in the given array.\n\n#### Parameters\n\n* `array` {Array}: Array of numbers to add up.\n* `returns` {Number}\n\n#### Example\n\n```handlebars\n{{sum \"[1, 2, 3, 4, 5]\"}}\n//=> '15'\n```",
                                     "header": {
                                       "anchor": "handlebars_sum"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{avg}}\n\nReturns the average of all numbers in the given array.\n\n#### Parameters\n\n* `array` {Array}: Array of numbers to add up and average.\n* `returns` {Number}\n\n#### Example\n\n```handlebars\n{{avg \"[1, 2, 3, 4, 5]\"}}\n//=> '3'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{avg}}\n\nReturns the average of all numbers in the given array.\n\n#### Parameters\n\n* `array` {Array}: Array of numbers to add up and average.\n* `returns` {Number}\n\n#### Example\n\n```handlebars\n{{avg \"[1, 2, 3, 4, 5]\"}}\n//=> '3'\n```",
                                     "header": {
                                       "anchor": "handlebars_avg"
                                     }
@@ -9315,63 +9455,95 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "The following standard helpers are available to handle and transform numbers.\n\n### {{addCommas}}\n\nAdds commas to numbers.\n\n#### Parameters\n\n* `num` {Number}\n* `returns` {Number}",
+                                    "data": "The following standard helpers are available to handle and transform numbers.\n\n## {{addCommas}}\n\nAdds commas to numbers.\n\n#### Parameters\n\n* `num` {Number}\n* `returns` {Number}",
                                     "header": {
                                       "anchor": "handlebars_addcommas"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{phoneNumber}}\n\nConverts a string or number to a formatted phone number.\n\n#### Parameters\n\n* `num` {Number|String}: The phone number to format, e.g., `8005551212`\n* `returns` {Number}: The formatted phone number: `(800) 555-1212`",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{phoneNumber}}\n\nConverts a string or number to a formatted phone number.\n\n#### Parameters\n\n* `num` {Number|String}: The phone number to format, e.g., `8005551212`\n* `returns` {Number}: The formatted phone number: `(800) 555-1212`",
                                     "header": {
                                       "anchor": "handlebars_phonenumber"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{random}}\n\nGenerates a random number between two values.\n\n#### Parameters\n\n* `min` {Number}\n* `max` {Number}\n* `returns` {String}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{random}}\n\nGenerates a random number between two values.\n\n#### Parameters\n\n* `min` {Number}\n* `max` {Number}\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_random"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{toAbbr}}\n\nAbbreviates numbers to the given number of `precision`. This is for general numbers, not size in bytes.\n\n#### Parameters\n\n* `number` {Number}\n* `precision` {Number}\n* `returns` {String}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{toAbbr}}\n\nAbbreviates numbers to the given number of `precision`. This is for general numbers, not size in bytes.\n\n#### Parameters\n\n* `number` {Number}\n* `precision` {Number}\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_toabbr"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{toExponential}}\n\nReturns a string, representing the given number in exponential notation.\n\n#### Parameters\n\n* `number` {Number}\n* `fractionDigits` {Number}: Optional. An integer specifying the number of digits to use after the decimal point. Defaults to as many digits as necessary to specify the number.\n* `returns` {Number}\n\n#### Example\n\n```js\n{{toExponential number digits}};\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{toExponential}}\n\nReturns a string, representing the given number in exponential notation.\n\n#### Parameters\n\n* `number` {Number}\n* `fractionDigits` {Number}: Optional. An integer specifying the number of digits to use after the decimal point. Defaults to as many digits as necessary to specify the number.\n* `returns` {Number}\n\n#### Example\n\n```js\n{{toExponential number digits}};\n```",
                                     "header": {
                                       "anchor": "handlebars_toexponential"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{toFixed}}\n\nFormats the given number, using fixed-point notation.\n\n#### Parameters\n\n* `number` {Number}\n* `digits` {Number}: Optional. The number of digits to use after the decimal point. This can be a value between 0 and 20, inclusive, and implementations may optionally support a larger range of values. If this argument is omitted, it is treated as 0.\n* `returns` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{toFixed}}\n\nFormats the given number, using fixed-point notation.\n\n#### Parameters\n\n* `number` {Number}\n* `digits` {Number}: Optional. The number of digits to use after the decimal point. This can be a value between 0 and 20, inclusive, and implementations may optionally support a larger range of values. If this argument is omitted, it is treated as 0.\n* `returns` {Number}",
                                     "header": {
                                       "anchor": "handlebars_tofixed"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{toFloat}}\n\n#### Parameters\n\n* `number` {Number}\n* `returns` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{toFloat}}\n\n#### Parameters\n\n* `number` {Number}\n* `returns` {Number}",
                                     "header": {
                                       "anchor": "handlebars_tofloat"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{toInt}}\n\n#### Parameters\n\n* `number` {Number}\n* `returns` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{toInt}}\n\n#### Parameters\n\n* `number` {Number}\n* `returns` {Number}",
                                     "header": {
                                       "anchor": "handlebars_toint"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{toPrecision}}\n\n#### Parameters\n\n* `number` {Number}\n* `precision` {Number}: Optional. The number of significant digits.\n* `returns` {Number}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{toPrecision}}\n\n#### Parameters\n\n* `number` {Number}\n* `precision` {Number}: Optional. The number of significant digits.\n* `returns` {Number}",
                                     "header": {
                                       "anchor": "handlebars_toprecision"
                                     }
@@ -9561,10 +9733,18 @@
                                   },
                                   {
                                     "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
                                     "data": "## Logical {{or}} Operator\n\nThe `or` operator has been customized for Stencil. It checks whether at least one of its parameters evaluates to true, and has the following syntax:\n\n```\n{{#or 1 0 0 0 0 0 0}} \n  ... /* execute this block if OR evaluates to true */\n{{/or}}\n```\n\n### Example\n\nHere is a usage example from Stencil's Cornerstone base theme, where it displays the cart's contents. The `templates/components/cart/content.html` template uses the `or` operator to determine whether an item contains either product options _or_ configurable fields. If at least one condition is true, the template displays an edit link for the item:\n\n```\n{{#or options configurable_fields}}\n    <a href=\"#\" data-item-edit=\"{{id}}\">{{lang 'cart.checkout.change'}}</a>\n{{/or}}\n```\n\n### Parameters \n\nThe `or` operator's parameters are one or more strings, numbers, arrays, or collections. Parameters can be of mixed types. ",
                                     "header": {
                                       "anchor": "handlebars_or"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -9599,7 +9779,7 @@
                                   },
                                   {
                                     "type": "html",
-                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_block\">{{block}}</a></li>\n    <li><a href=\"#handlebars_concat\">{{concat}}</a></li>\n    <li><a href=\"#handlebars_dynamiccompoenent\">{{dynamicComponent}}</a></li>\n    <li><a href=\"#handlebars_json\">{{json}}</a></li>\n    <li><a href=\"#handlebars_lang\">{{lang}}</a></li>\n    <li><a href=\"#handlebars_nl2br\">{{nl2br}}</a></li>\n    <li><a href=\"#handlebars_partial\">{{partial}}</a></li>\n    <li><a href=\"#handlebars_replace\">{{replace}}</a></li>\n    <li><a href=\"#handlebars_tolowercase\">{{toLowerCase}}</a></li>\n\t</ul>\n</div>"
+                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_block\">{{block}}</a></li>\n    <li><a href=\"#handlebars_concat\">{{concat}}</a></li>\n    <li><a href=\"#handlebars_dynamiccomponent\">{{dynamicComponent}}</a></li>\n    <li><a href=\"#handlebars_json\">{{json}}</a></li>\n    <li><a href=\"#handlebars_lang\">{{lang}}</a></li>\n    <li><a href=\"#handlebars_nl2br\">{{nl2br}}</a></li>\n    <li><a href=\"#handlebars_partial\">{{partial}}</a></li>\n    <li><a href=\"#handlebars_replace\">{{replace}}</a></li>\n    <li><a href=\"#handlebars_tolowercase\">{{toLowerCase}}</a></li>\n\t</ul>\n</div>"
                                   },
                                   {
                                     "type": "text",
@@ -9610,10 +9790,18 @@
                                   },
                                   {
                                     "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
                                     "data": "## {{concat}}\n\nThe `concat` helper is custom to Stencil. It concatenates two string objects from the page's context, which are passed as parameters. It returns a new string object.\n\n#### Example\n\n```\n{{concat breadcrumbs.[0].name breadcrumbs.[0].url}}\n```",
                                     "header": {
                                       "anchor": "handlebars_concat"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -9624,10 +9812,18 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{json}}\n\nThe `json` string helper is custom to Stencil. You can use this helper to convert a JavaScript string object (from the page's context) into a JSON string object.",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{json}}\n\nThe `json` string helper is custom to Stencil. You can use this helper to convert a JavaScript string object (from the page's context) into a JSON string object.",
                                     "header": {
                                       "anchor": "handlebars_json"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -9638,10 +9834,18 @@
                                   },
                                   {
                                     "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
                                     "data": "## {{nl2br}}\n\nThe `nl2br` helper is custom to Stencil. You can call this helper on a string object from the page's context, to convert its contained newline characters (`\\r\\n`, `\\n\\r`, `\\r`, `\\n`) to `<br>` tags. The `nl2br` helper returns a new string object.\n\n#### Example\n\nThis Handlebars statement:\n\n```\n{{nl2br settings.address}}\n```\n\n...will take this example string:\n\n```\n\"settings\": {\n  \"address\": \"\\r\\n685 Market St\\r\\nSan Francisco\\r\\n94105\\r\\nCA\\r\\n\"\n}\n```\n\n...and return\n\n```\n\"<br>685 Market St<br>San Francisco<br>94105<br>CA<br>\"\n```",
                                     "header": {
                                       "anchor": "handlebars_nl2br"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -9652,10 +9856,18 @@
                                   },
                                   {
                                     "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
                                     "data": "## {{replace}}\n\nThe `replace` string helper is custom to Stencil. It searches for the first parameter within the second parameter and, if it finds it, replaces the first parameter with the contents of the specified Handlebars block.\n\nFor example, the following code would search for the string `needle` within the scope defined by `haystack`. If found, it would replace that string with the Handlebars block defined by `<context...replacement>`:\n\n```\n{{#replace \"needle\" haystack}}\n  {{<context to use as a replacement>}}\n{{/replace}}\n```",
                                     "header": {
                                       "anchor": "handlebars_replace"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -9680,158 +9892,242 @@
                                   },
                                   {
                                     "type": "html",
-                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_camelcase\">{{camelcase}}</a></li>\n    <li><a href=\"#handlebars_capitalize\">{{capitalize}}</a></li>\n    <li><a href=\"#handlebars_capitalizeall\">{{capitalizeAll}}</a></li>\n    <li><a href=\"#handlebars_center\">{{center}}</a></li>\n    <li><a href=\"#handlebars_chop\">{{chop}}</a></li>\n    <li><a href=\"#handlebars_dashcase\">{{dashcase}}</a></li>\n    <li><a href=\"#handlebars_dotcase\">{{dotcase}}</a></li>\n    <li><a href=\"#handlebars_hyphenate\">{{hyphenate}}</a></li>\n    <li><a href=\"#handlebars_isstring\">{{isString}}</a></li>\n    <li><a href=\"#handlebars_lowercase\">{{lowercase}}</a></li>\n    <li><a href=\"#handlebars_occurrences\">{{occurrences}}</a></li>\n    <li><a href=\"#handlebars_pascalcase\">{{pascalcase}}</a></li>\n    <li><a href=\"#handlebars_pathcase\">{{pathcase}}</a></li>\n    <li><a href=\"#handlebars_plusify\">{{plusify}}</a></li>\n    <li><a href=\"#handlebars_reverse\">{{reverse}}</a></li>\n    <li><a href=\"#handlebars_sentence\">{{sentence}}</a></li>\n    <li><a href=\"#handlebars_snakecase\">{{snakecase}}</a></li>\n    <li><a href=\"#handlebars_split\">{{split}}</a></li>\n    <li><a href=\"#handlebars_startsWith\">{{startsWith}}</a></li>\n    <li><a href=\"#handlebars_titleize\">{{titleize}}</a></li>\n    <li><a href=\"#handlebars_trim\">{{trim}}</a></li>\n    <li><a href=\"#handlebars_uppercase\">{{uppercase}}</a></li>\n\t</ul>\n</div>"
+                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_camelcase\">{{camelcase}}</a></li>\n    <li><a href=\"#handlebars_capitalize\">{{capitalize}}</a></li>\n    <li><a href=\"#handlebars_capitalizeall\">{{capitalizeAll}}</a></li>\n    <li><a href=\"#handlebars_center\">{{center}}</a></li>\n    <li><a href=\"#handlebars_chop\">{{chop}}</a></li>\n    <li><a href=\"#handlebars_dashcase\">{{dashcase}}</a></li>\n    <li><a href=\"#handlebars_dotcase\">{{dotcase}}</a></li>\n    <li><a href=\"#handlebars_hyphenate\">{{hyphenate}}</a></li>\n    <li><a href=\"#handlebars_isstring\">{{isString}}</a></li>\n    <li><a href=\"#handlebars_lowercase\">{{lowercase}}</a></li>\n    <li><a href=\"#handlebars_occurrences\">{{occurrences}}</a></li>\n    <li><a href=\"#handlebars_pascalcase\">{{pascalcase}}</a></li>\n    <li><a href=\"#handlebars_pathcase\">{{pathcase}}</a></li>\n    <li><a href=\"#handlebars_plusify\">{{plusify}}</a></li>\n    <li><a href=\"#handlebars_reverse\">{{reverse}}</a></li>\n    <li><a href=\"#handlebars_sentence\">{{sentence}}</a></li>\n    <li><a href=\"#handlebars_snakecase\">{{snakecase}}</a></li>\n    <li><a href=\"#handlebars_split\">{{split}}</a></li>\n    <li><a href=\"#handlebars_startswith\">{{startsWith}}</a></li>\n    <li><a href=\"#handlebars_titleize\">{{titleize}}</a></li>\n    <li><a href=\"#handlebars_trim\">{{trim}}</a></li>\n    <li><a href=\"#handlebars_uppercase\">{{uppercase}}</a></li>\n\t</ul>\n</div>"
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{camelcase}}\n\ncamelCases the characters in the given `string`.\n\n#### Parameters\n\n* `string` {String}: The string to camelcase.\n* `returns` {String}\n\n#### Example\n\n```js\n{{camelcase \"foo bar baz\"}};\n//=> 'fooBarBaz'\n```",
+                                    "data": "## {{camelcase}}\n\ncamelCases the characters in the given `string`.\n\n#### Parameters\n\n* `string` {String}: The string to camelcase.\n* `returns` {String}\n\n#### Example\n\n```js\n{{camelcase \"foo bar baz\"}};\n//=> 'fooBarBaz'\n```",
                                     "header": {
                                       "anchor": "handlebars_camelcase"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{capitalize}}\n\nCapitalizes the first word in a sentence.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{capitalize \"foo bar baz\"}}\n//=> \"Foo bar baz\"\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{capitalize}}\n\nCapitalizes the first word in a sentence.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{capitalize \"foo bar baz\"}}\n//=> \"Foo bar baz\"\n```",
                                     "header": {
                                       "anchor": "handlebars_capitalize"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{capitalizeAll}}\n\nCapitalizes all words in a string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{capitalizeAll \"foo bar baz\"}}\n//=> \"Foo Bar Baz\"\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{capitalizeAll}}\n\nCapitalizes all words in a string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{capitalizeAll \"foo bar baz\"}}\n//=> \"Foo Bar Baz\"\n```",
                                     "header": {
                                       "anchor": "handlebars_capitalizeall"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{center}}\n\nCenters a string, using non-breaking spaces.\n\n#### Parameters\n\n* `str` {String}\n* `spaces` {String}\n* `returns` {String}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{center}}\n\nCenters a string, using non-breaking spaces.\n\n#### Parameters\n\n* `str` {String}\n* `spaces` {String}\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_center"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{chop}}\n\nLike `trim`, but removes both extraneous whitespace *and non-word characters* from the beginning and end of a string.\n\n#### Parameters\n\n* `string` {String}: The string to chop.\n* `returns` {String}\n\n#### Example\n\n```js\n{{chop \"_ABC_\"}}\n//=> 'ABC'\n\n{{chop \"-ABC-\"}}\n//=> 'ABC'\n\n{{chop \" ABC \"}}\n//=> 'ABC'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{chop}}\n\nLike `trim`, but removes both extraneous whitespace *and non-word characters* from the beginning and end of a string.\n\n#### Parameters\n\n* `string` {String}: The string to chop.\n* `returns` {String}\n\n#### Example\n\n```js\n{{chop \"_ABC_\"}}\n//=> 'ABC'\n\n{{chop \"-ABC-\"}}\n//=> 'ABC'\n\n{{chop \" ABC \"}}\n//=> 'ABC'\n```",
                                     "header": {
                                       "anchor": "handlebars_chop"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{dashcase}}\n\ndash-cases the characters in `string`. Replaces non-word characters and periods with hyphens.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{dashcase \"a-b-c d_e\"}}\n//=> 'a-b-c-d-e'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{dashcase}}\n\ndash-cases the characters in `string`. Replaces non-word characters and periods with hyphens.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{dashcase \"a-b-c d_e\"}}\n//=> 'a-b-c-d-e'\n```",
                                     "header": {
                                       "anchor": "handlebars_dashcase"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{dotcase}}\n\ndot.cases the characters in `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{dotcase \"a-b-c d_e\"}}\n//=> 'a.b.c.d.e'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{dotcase}}\n\ndot.cases the characters in `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{dotcase \"a-b-c d_e\"}}\n//=> 'a.b.c.d.e'\n```",
                                     "header": {
                                       "anchor": "handlebars_dotcase"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{hyphenate}}\n\nReplaces spaces in a string with hyphens.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{hyphenate \"foo bar baz qux\"}}\n//=> \"foo-bar-baz-qux\"\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{hyphenate}}\n\nReplaces spaces in a string with hyphens.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{hyphenate \"foo bar baz qux\"}}\n//=> \"foo-bar-baz-qux\"\n```",
                                     "header": {
                                       "anchor": "handlebars_hyphenate"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{isString}}\n\nReturns true if `value` is a string.\n\n#### Parameters\n\n* `value` {String}\n* `returns` {Boolean}\n\n#### Example\n\n```handlebars\n{{isString \"foo\"}}\n//=> 'true'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{isString}}\n\nReturns true if `value` is a string.\n\n#### Parameters\n\n* `value` {String}\n* `returns` {Boolean}\n\n#### Example\n\n```handlebars\n{{isString \"foo\"}}\n//=> 'true'\n```",
                                     "header": {
                                       "anchor": "handlebars_isstring"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{lowercase}}\n\nLowercases all characters in the given string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{lowercase \"Foo BAR baZ\"}}\n//=> 'foo bar baz'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{lowercase}}\n\nLowercases all characters in the given string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{lowercase \"Foo BAR baZ\"}}\n//=> 'foo bar baz'\n```",
                                     "header": {
                                       "anchor": "handlebars_lowercase"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{occurrences}}\n\nReturns the number of occurrences of `substring` within the given `string`.\n\n#### Parameters\n\n* `str` {String}\n* `substring` {String}\n* `returns` {Number}: Number of occurrences.\n\n#### Example\n\n```handlebars\n{{occurrences \"foo bar foo bar baz\" \"foo\"}}\n//=> 2\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{occurrences}}\n\nReturns the number of occurrences of `substring` within the given `string`.\n\n#### Parameters\n\n* `str` {String}\n* `substring` {String}\n* `returns` {Number}: Number of occurrences.\n\n#### Example\n\n```handlebars\n{{occurrences \"foo bar foo bar baz\" \"foo\"}}\n//=> 2\n```",
                                     "header": {
                                       "anchor": "handlebars_occurrences"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{pascalcase}}\n\nPascalCases the characters in `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{pascalcase \"foo bar baz\"}}\n//=> 'FooBarBaz'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{pascalcase}}\n\nPascalCases the characters in `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{pascalcase \"foo bar baz\"}}\n//=> 'FooBarBaz'\n```",
                                     "header": {
                                       "anchor": "handlebars_pascalcase"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{pathcase}}\n\npath/cases the characters in `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{pathcase \"a-b-c d_e\"}}\n//=> 'a/b/c/d/e'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{pathcase}}\n\npath/cases the characters in `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{pathcase \"a-b-c d_e\"}}\n//=> 'a/b/c/d/e'\n```",
                                     "header": {
                                       "anchor": "handlebars_pathcase"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{plusify}}\n\nReplaces spaces in the given string with pluses.\n\n#### Parameters\n\n* `str` {String}: The input string\n* `returns` {String}: Input string with spaces replaced by plus signs\n\n#### Example\n\n```handlebars\n{{plusify \"foo bar baz\"}}\n//=> 'foo+bar+baz'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{plusify}}\n\nReplaces spaces in the given string with pluses.\n\n#### Parameters\n\n* `str` {String}: The input string\n* `returns` {String}: Input string with spaces replaced by plus signs\n\n#### Example\n\n```handlebars\n{{plusify \"foo bar baz\"}}\n//=> 'foo+bar+baz'\n```",
                                     "header": {
                                       "anchor": "handlebars_plusify"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{reverse}}\n\nReverses a string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{reverse \"abcde\"}}\n//=> 'edcba'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{reverse}}\n\nReverses a string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{reverse \"abcde\"}}\n//=> 'edcba'\n```",
                                     "header": {
                                       "anchor": "handlebars_reverse"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{sentence}}\n\nSentence-cases the given string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{sentence \"hello world. goodbye world.\"}}\n//=> 'Hello world. Goodbye world.'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{sentence}}\n\nSentence-cases the given string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{sentence \"hello world. goodbye world.\"}}\n//=> 'Hello world. Goodbye world.'\n```",
                                     "header": {
                                       "anchor": "handlebars_sentence"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{snakecase}}\n\nsnake_cases the characters in the given `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{snakecase \"a-b-c d_e\"}}\n//=> 'a_b_c_d_e'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{snakecase}}\n\nsnake_cases the characters in the given `string`.\n\n#### Parameters\n\n* `string` {String}\n* `returns` {String}\n\n#### Example\n\n```js\n{{snakecase \"a-b-c d_e\"}}\n//=> 'a_b_c_d_e'\n```",
                                     "header": {
                                       "anchor": "handlebars_snakecase"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{split}}\n\nSplits `string` at the given `character`.\n\n#### Parameters\n\n* `string` {String}: The string to split.\n* `returns` {String} `character`: Default is `,`\n\n#### Example\n\n```js\n{{split \"a,b,c\" \",\"}}\n//=> ['a', 'b', 'c']\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{split}}\n\nSplits `string` at the given `character`.\n\n#### Parameters\n\n* `string` {String}: The string to split.\n* `returns` {String} `character`: Default is `,`\n\n#### Example\n\n```js\n{{split \"a,b,c\" \",\"}}\n//=> ['a', 'b', 'c']\n```",
                                     "header": {
                                       "anchor": "handlebars_split"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{startsWith}}\n\nTests whether a string begins with the given prefix.\n\n#### Parameters\n\n* `prefix` {String}\n* `testString` {String}\n* `options` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{#startsWith \"Goodbye\" \"Hello, world!\"}}\n  Whoops\n{{else}}\n  Bro, do you even hello world?\n{{/startsWith}}\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{startsWith}}\n\nTests whether a string begins with the given prefix.\n\n#### Parameters\n\n* `prefix` {String}\n* `testString` {String}\n* `options` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{#startsWith \"Goodbye\" \"Hello, world!\"}}\n  Whoops\n{{else}}\n  Bro, do you even hello world?\n{{/startsWith}}\n```",
                                     "header": {
                                       "anchor": "handlebars_startswith"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{titleize}}\n\nTitle-cases the given string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{titleize \"this is title case\"}}\n//=> 'This Is Title Case'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{titleize}}\n\nTitle-cases the given string.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}\n\n#### Example\n\n```handlebars\n{{titleize \"this is title case\"}}\n//=> 'This Is Title Case'\n```",
                                     "header": {
                                       "anchor": "handlebars_titleize"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{trim}}\n\nRemoves extraneous whitespace from the beginning and end of a string.\n\n#### Parameters\n\n* `string` {String}: The string to trim.\n* `returns` {String}\n\n#### Example\n\n```js\n{{trim \" ABC \"}}\n//=> 'ABC'\n```",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{trim}}\n\nRemoves extraneous whitespace from the beginning and end of a string.\n\n#### Parameters\n\n* `string` {String}: The string to trim.\n* `returns` {String}\n\n#### Example\n\n```js\n{{trim \" ABC \"}}\n//=> 'ABC'\n```",
                                     "header": {
                                       "anchor": "handlebars_trim"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{uppercase}}\n\nUppercases all of the characters in the given string. If used as a block helper, it will uppercase the entire block. This helper\ndoes not support inverse blocks.\n\n#### Parameters\n\n* `str` {String}: The string to uppercase.\n* `options` {Object}: Handlebars options object.\n* `returns` {String}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{uppercase}}\n\nUppercases all of the characters in the given string. If used as a block helper, it will uppercase the entire block. This helper\ndoes not support inverse blocks.\n\n#### Parameters\n\n* `str` {String}: The string to uppercase.\n* `options` {Object}: Handlebars options object.\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_uppercase"
                                     }
@@ -9859,46 +10155,66 @@
                                 "blocks": [
                                   {
                                     "type": "html",
-                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_encodeuri\">{{encodeURI}}</a></li>\n    <li><a href=\"#handlebars_decodeurl\">{{decodeURI}}</a></li>\n    <li><a href=\"#handlebars_urlresolve\">{{urlResolve}}</a></li>\n    <li><a href=\"#handlebars_urlparse\">{{urlParse}}</a></li>\n    <li><a href=\"#handlebars_stripquerystring\">{{stripQuerystring}}</a></li>\n    <li><a href=\"#handlebars_stripprotocol\">{{stripProtocol}}</a></li>\n\t</ul>\n</div>"
+                                    "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#handlebars_encodeuri\">{{encodeURI}}</a></li>\n    <li><a href=\"#handlebars_decodeuri\">{{decodeURI}}</a></li>\n    <li><a href=\"#handlebars_urlresolve\">{{urlResolve}}</a></li>\n    <li><a href=\"#handlebars_urlparse\">{{urlParse}}</a></li>\n    <li><a href=\"#handlebars_stripquerystring\">{{stripQuerystring}}</a></li>\n    <li><a href=\"#handlebars_stripprotocol\">{{stripProtocol}}</a></li>\n\t</ul>\n</div>"
                                   },
                                   {
                                     "type": "text",
-                                    "data": "The following standard helpers are available to transform URLs.\n\n\n### {{encodeURI}}\n\nEncodes a Uniform Resource Identifier (URI) component, by replacing each instance of certain characters by one, two, three, or four escape sequences that represent the UTF-8 encoding of the character.\n\n#### Parameters\n\n* `str` {String}: The un-encoded string.\n* `returns` {String}: The encoded string.",
+                                    "data": "The following standard helpers are available to transform URLs.\n\n## {{encodeURI}}\n\nEncodes a Uniform Resource Identifier (URI) component, by replacing each instance of certain characters by one, two, three, or four escape sequences that represent the UTF-8 encoding of the character.\n\n#### Parameters\n\n* `str` {String}: The un-encoded string.\n* `returns` {String}: The encoded string.",
                                     "header": {
                                       "anchor": "handlebars_encodeuri"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{decodeURI}}\n\nDecodes a Uniform Resource Identifier (URI) component.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{decodeURI}}\n\nDecodes a Uniform Resource Identifier (URI) component.\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_decodeuri"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{urlResolve}}\n\nTakes a base URL, and an href URL, and resolves them as a browser would for an anchor tag.\n\n#### Parameters\n\n* `base` {String}\n* `href` {String}\n* `returns` {String}",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{urlResolve}}\n\nTakes a base URL, and an href URL, and resolves them as a browser would for an anchor tag.\n\n#### Parameters\n\n* `base` {String}\n* `href` {String}\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_urlresolve"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{urlParse}}\n\nParses a `url` string into an object.\n\n#### Parameters\n\n* `str` {String}: URL string.\n* `returns` {String}: Returns stringified JSON.",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{urlParse}}\n\nParses a `url` string into an object.\n\n#### Parameters\n\n* `str` {String}: URL string.\n* `returns` {String}: Returns stringified JSON.",
                                     "header": {
                                       "anchor": "handlebars_urlparse"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{stripQuerystring}}\n\nStrips the query string from a `url`.\n\n#### Parameters\n\n* `url` {String}\n* `returns` {String}: The URL without the queryString.",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{stripQuerystring}}\n\nStrips the query string from a `url`.\n\n#### Parameters\n\n* `url` {String}\n* `returns` {String}: The URL without the queryString.",
                                     "header": {
                                       "anchor": "handlebars_stripquerystring"
                                     }
                                   },
                                   {
                                     "type": "text",
-                                    "data": "### {{stripProtocol}}\n\nStrips the protocol from a `url`.\n\nUseful for displaying media that might have an `http` protocol on secure connections. Will change `http://foo.bar` to `//foo.bar`\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}: The URL with the `http` protocol stripped.",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "## {{stripProtocol}}\n\nStrips the protocol from a `url`.\n\nUseful for displaying media that might have an `http` protocol on secure connections. Will change `http://foo.bar` to `//foo.bar`\n\n#### Parameters\n\n* `str` {String}\n* `returns` {String}: The URL with the `http` protocol stripped.",
                                     "header": {
                                       "anchor": "handlebars_stripprotocol"
                                     }
@@ -9940,6 +10256,10 @@
                                   },
                                   {
                                     "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
                                     "data": "## {{option}}\n\nGiven the context `{options: {a: {b: {c: 'ddd'}}}}`, returns the given value of `prop` from `this.options`.\n\n#### Parameters\n\n* `prop` {String}\n* `returns` {any}\n\n#### Example\n\n```handlebars\n{{option \"a.b.c\"}}\n<!-- results => `ddd` -->\n```",
                                     "header": {
                                       "anchor": "handlebars_option"
@@ -9947,10 +10267,18 @@
                                   },
                                   {
                                     "type": "text",
+                                    "data": "---"
+                                  },
+                                  {
+                                    "type": "text",
                                     "data": "## {{noop}}\n\nBlock helper that renders the block without taking any arguments.\n\n#### Parameters\n\n* `options` {Object}\n* `returns` {String}",
                                     "header": {
                                       "anchor": "handlebars_noop"
                                     }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "---"
                                   },
                                   {
                                     "type": "text",
@@ -11731,7 +12059,7 @@
                   }
                 },
                 {
-                  "title": "stencil-utils",
+                  "title": "stencil-utils API",
                   "route": {
                     "path": "/stencil-utils-api-reference"
                   },
@@ -11743,48 +12071,73 @@
                       },
                       {
                         "type": "html",
-                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#remote_remote-api-example\">stencil-utils API Reference</a></li>\n\t</ul>\n</div>"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#stencil-utils_api\">API [api.js]</a></li>\n    <li><a href=\"#stencil-utils_cart\">Cart API</a></li>\n    <li><a href=\"#stencil-utils_cookie\">Cookie Resource</a></li>\n    <li><a href=\"#stencil-utils_countries\">Countries Resource</a></li>\n    <li><a href=\"#stencil-utils_product-attributes\">Product Attributes Resource</a></li>\n    <li><a href=\"#stencil-utils_product\">Product Resource</a></li>\n    <li><a href=\"#stencil-utils_search\">Search Resource</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
-                        "data": "<h2> <A NAME=\"API-js\"></a>API [api.js]</h2>\n\nThe <span class=\"inline-code\">api.getPage()</span> function allows you to add Ajax functionality to your themes.<br>\n\n<br> <span id=\"getpage\"> <b>getPage Signature</b> </span> <br>\n\nThe following statement passes <code>url</code> and <code>options</code> arguments to the <code>api.getPage()</code> function:\n\n<code>utils.api.getPage(url, options, callback)</code>\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td class=\"\">url</td>\n    <td class=\"\">String</td>\n    <td class=\"\">URL to which you want to send a request (for example: localhost:4000/cart.php)</td>\n  </tr>\n  <tr>\n    <td class=\"\">options</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Can contain <span class=\"inline-code\">template</span>, <span class=\"inline-code\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a></span> (for POST methods), <span class=\"inline-code\">params</span>&nbsp;(for GET methods), and/or <span class=\"inline-code\">config</span>. <br><br>    \n      The <span class=\"inline-code\">template</span> option allows you to select a particular template, or an array of templates, for rendering one page. Each value must correspond to a file present in the theme's <span class=\"inline-code\">templates/components/</span> subdirectory. <br><br>\n      The <span class=\"inline-code\">config</span> option can be used to pass extra resources, corresponding to attributes that are valid in a page's <a href=\"/docs/using-yaml-front-matter\">front matter</a>, as an object.\n    </td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\nThe <span class=\"inline-code\">config</span> argument works like front matter: it encapsulates JSON. For a usage example of <span class=\"inline-code\">config</span>, see <NOBR><a href=\"/docs/remote-api-example\">Remote API Example</a></nobr>. <br><br>",
-                        "header": {
-                          "anchor": "remote_remote-api-example"
+                        "data": "These functions help you set up asynchronous requests to modify the customer’s cart or storefront view. By using this abstraction library, you can gain more-granular control over themes’ presentation."
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "title": "Example Code",
+                          "body": "Examples on this page are from [Stencil's Cornerstone base theme](https://github.com/bigcommerce/cornerstone/tree/master/assets/js/theme). The base path for all listed examples is: `/cornerstone/assets/js/theme/`."
                         }
                       },
                       {
                         "type": "text",
-                        "data": "### getPage Example\n\nIn the following example (from <code>common/faceted-search.js</code>), <code>api.getPage()</code> is called to help execute an <code>updateView()</code> function:\n\n```\nupdateView() {\n        $(this.options.blockerSelector).show();\n\n        api.getPage(urlUtils.getUrl(), this.requestOptions, (err, content) => {\n            $(this.options.blockerSelector).hide();\n\n            if (err) {\n                throw new Error(err);\n            }\n\n            // Refresh view with new content\n            this.refreshView(content);\n        });\n    }\n```"
+                        "data": "## API [api.js]\n\nThe `api.getPage()` function allows you to add Ajax functionality to your themes.\n\n<b>getPage Signature</b> \n\nThe following statement passes `url` and `options` arguments to the `api.getPage()` function:\n\n<code>utils.api.getPage(url, options, callback)</code>\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td class=\"\">url</td>\n    <td class=\"\">String</td>\n    <td class=\"\">URL to which you want to send a request (for example: localhost:4000/cart.php)</td>\n  </tr>\n  <tr>\n    <td>options</td>\n    <td>Object</td>\n    <td>Can contain <code>template</code>, <code><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a></code> (for POST methods), <code>params</code>&nbsp;(for GET methods), and/or `config</span>.   \n\t\tThe <code>template</code> option allows you to select a particular template, or an array of templates, for rendering one page. Each value must correspond to a file present in the theme's <code>templates/components/</code> subdirectory. \n      The `config` option can be used to pass extra resources, corresponding to attributes that are valid in a page's front matter, as an object.\n    </td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\nThe <span class=\"inline-code\">config</span> argument works like front matter: it encapsulates JSON. For a usage example of <code>config</code>, see the [Remote API Example](/stencil-docs/adding-event-hooks-to-your-theme/remote-api-example#remote_remote-api-example).\n\n### getPage Example\n\nIn the following example (from <code>common/faceted-search.js</code>), <code>api.getPage()</code> is called to help execute an <code>updateView()</code> function:\n\n```\nupdateView() {\n        $(this.options.blockerSelector).show();\n\n        api.getPage(urlUtils.getUrl(), this.requestOptions, (err, content) => {\n            $(this.options.blockerSelector).hide();\n\n            if (err) {\n                throw new Error(err);\n            }\n\n            // Refresh view with new content\n            this.refreshView(content);\n        });\n    }\n```",
+                        "header": {
+                          "anchor": "stencil-utils_api"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Cart API \n\nThe following functions allow your theme to work with cart contents in customized ways.\n\n<b>itemAdd Signature</b>\n\nThe <code>itemAdd</code> function allows your code to add an item to the cart, with options:\n\n```\nutils.api.cart.itemAdd(<a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a>, callback)\n```\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\"><A NAME=\"CartAPI-FormData\"></a>formData</td>\n    <td class=\"\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a> object </td>\n    <td class=\"\">Contains all details about the added item and its product options</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<span id=\"itemAddEx\"> <b>itemAdd Example</b> </span> <br>\n\n<span class=\"inline-code\">itemAdd</span> is called at the head of the following example (from <span class=\"inline-code\">common/product-details.js</span>) to populate the cart:<br><p></p>\n\n<pre>        // Add item to cart\n        utils.api.cart.itemAdd(new FormData(form), (err, response) => {\n            const errorMessage = err || response.data.error;\n\n            $addToCartBtn\n                .val(originalBtnVal)\n                .prop('disabled', false);\n\n            this.$overlay.hide();\n\n            // Guard statement\n            if (errorMessage) {\n                // Strip the HTML from the error message\n                const tmp = document.createElement('DIV');\n                tmp.innerHTML = errorMessage;\n\n                return alert(tmp.textContent || tmp.innerText);\n            }\n\n            // Open preview modal and update content\n            if (this.previewModal) {\n                this.previewModal.open();\n\n                this.updateCartContent(this.previewModal, response.data.cart_item.hash);\n            } else {\n                this.$overlay.show();\n                // if no modal, redirect to the cart page\n                this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);\n            }\n        }); </pre><br>\n\n\n<b>itemUpdate Signature</b><br>\n\nThe <code>itemUpdate</code> function allows your code to update a specified cart item’s quantity:\n\n`utils.api.cart.itemUpdate(itemId, qty, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The item’s ID</td>\n  </tr>\n  <tr>\n    <td class=\"\">qty</td>\n    <td class=\"\">Integer</td>\n    <td class=\"\">The item’s quantity in the cart</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n<span id=\"itemUpdateEx\"> <b>itemUpdate  Example</b> </span> <br>\n\nIn the following example (from <span class=\"inline-code\">cart.js</span>), <span class=\"inline-code\">itemUpdate</span> is called just before the final if/else test for an empty cart:<br><p></p>\n\n<pre>    cartUpdate($target) {\n        const itemId = $target.data('cartItemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantityMax'), 10);\n        const minQty = parseInt($el.data('quantityMin'), 10);\n        const minError = $el.data('quantityMinError');\n        const maxError = $el.data('quantityMaxError');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n\n        // Does not quality for min/max quantity\n        if (newQty < minQty) {\n            return swal({\n                text: minError,\n                type: 'error',\n            });\n        } else if (maxQty > 0 && newQty > maxQty) {\n            return swal({\n                text: maxError,\n                type: 'error',\n            });\n        }\n\n        this.$overlay.show();\n\n        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {\n            this.$overlay.hide();\n\n            if (response.data.status === 'succeed') {\n                // if the quantity is changed \"1\" from \"0\", we have to remove the row.\n                const remove = (newQty === 0);\n\n                this.refreshContent(remove);\n            } else {\n                $el.val(oldQty);\n                swal({\n                    text: response.data.errors.join('\\n'),\n                    type: 'error',\n                });\n            }\n        });\n    } </pre><br>\n\n\n<b>itemRemove Signature</b><br>\n\nThe <span class=\"inline-code\">itemRemove</span> function allows your code to remove items from the cart:<br>\n\n<p></p><pre>utils.api.cart.itemRemove(itemId, callback)</pre>\n <br>\n\n<table>\n  <tbody>\n\t<tr>\n    <th>Argument</td>\n    <th>Type</td>\n    <th>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>itemId</td>\n    <td>String</td>\n    <td>The item’s ID</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n<span id=\"itemRemoveEx\"> <b>itemRemove Example</b> </span><br>\n\nIn the following example (from <span class=\"inline-code\">cart.js</span>), <span class=\"inline-code\">itemRemove</span> is called before the if/else test:<br><p></p>\n\n<pre>    cartRemoveItem(itemId) {\n        this.$overlay.show();\n        utils.api.cart.itemRemove(itemId, (err, response) => {\n            if (response.data.status === 'succeed') {\n                this.refreshContent(true);\n            } else {\n                alert(response.data.errors.join('\\n'));\n            }\n        });\n    } </pre><br>\n\n\n<b>update Signature</b><br>\n\nThe <span class=\"inline-code\">update</span> function allows your code to update the set of items in the cart:<br>\n\n<p></p><pre>utils.api.cart.update(itemId, qty, callback)</pre>\n\n <br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">items</td>\n    <td class=\"\">Array</td>\n    <td class=\"\">The items in the cart</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>update Example</b><br>\n\nThe following example shows a call to <span class=\"inline-code\">update</span> within the <span class=\"inline-code\">itemUpdate</span> function:<br><p></p>\n\n<pre>    /**\n    itemUpdate(itemId, qty, callback) {\n        let callbackArg = callback;\n        let items;\n\n        if (Array.isArray(itemId) && typeof qty === 'function') {\n            callbackArg = qty;\n            items = itemId;\n        } else {\n            items = [\n                {\n                    id: itemId,\n                    quantity: qty,\n                },\n            ];\n        }\n\n        this.update(items, (err, response) => {\n            const emitData = {\n                items,\n                err,\n                response,\n            };\n\n            Hooks.emit('cart-item-update-remote', emitData);\n            callbackArg(err, response);\n        });\n    } </pre><br>\n\n\n<b>getItemGiftWrappingOptions Signature</b><br>\n\nThe <span class=\"inline-code\">getItemGiftWrappingOptions</span> function allows your code to retrieve gift-wrapping options for the current cart item, in customized ways:<br><p></p>\n\n\n<pre>utils.api.cart.getItemGiftWrappingOptions(itemId, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The cart item</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>getItemGiftWrappingOptions Example</b> <br>\n\nThe following example (from <span class=\"inline-code\">cart.js</span>) calls <span class=\"inline-code\">getItemGiftWrappingOptions</span> to display gift-wrapping options in a modal:<br><p></p>\n\n<pre>    bindGiftWrappingEvents() {\n        const modal = defaultModal();\n\n        $('[data-item-giftwrap]').on('click', (event) => {\n            const itemId = $(event.currentTarget).data('item-giftwrap');\n            const options = {\n                template: 'cart/modals/gift-wrapping-form',\n            };\n\n            event.preventDefault();\n\n            modal.open();\n\n            utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {\n                modal.updateContent(response.content);\n\n                this.bindGiftWrappingForm();\n            });\n        });\n    } </pre><br>\n\n\n<b>submitItemGiftWrappingOption Signature</b><br>\n\nThe <span class=\"inline-code\">submitItemGiftWrappingOption</span> function allows your code to handle the customer’s gift-wrapping selection for the current cart item:<br><p></p>\n\n<pre>utils.api.cart.submitItemGiftWrappingOption(itemId, qty, callback)</pre>\n<br>\n\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The cart item</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>submitItemGiftWrappingOption Example</b> <br>\n\nThis commented example shows a simple call to <span class=\"inline-code\">submitItemGiftWrappingOption</span>:\n\n<pre>    /**\n     * Submit giftwrapping options\n     *\n     * @param {String} itemId\n     * @param {Function} callback\n     */\n    submitItemGiftWrappingOption(itemId, params, callback) {\n        this.remoteRequest(`/gift-wrapping/${itemId}`, 'POST', { params }, callback);\n    } </pre><br>\n\n\n<b>getContent Signature</b><br>\n\nThe <span class=\"inline-code\">getContent</span> function allows your code to display the cart contents in customized ways:<br>\n\n<p></p><pre>utils.api.cart.getContent(options, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\"><A NAME=\"getContent-options\"></a>options</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Template containing content and totals children</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n<span id=\"getContentEx\"> <b>getContent Examples</b> </span> <br>\n\nThe following example (from <span class=\"inline-code\">common/product-details.js</span>) a call to <span class=\"inline-code\">getContent</span>, set up by a prior call to <span class=\"inline-code\">getCartContent</span>:<br><p></p>\n\n<pre>    /**\n     * Get cart contents\n     *\n     * @param {String} cartItemHash\n     * @param {Function} onComplete\n     */\n    getCartContent(cartItemHash, onComplete) {\n        const options = {\n            template: 'cart/preview',\n            params: {\n                suggest: cartItemHash,\n            },\n            config: {\n                cart: {\n                    suggestions: {\n                        limit: 4,\n                    },\n                },\n            },\n        };\n\n        utils.api.cart.getContent(options, onComplete);\n    } </pre><p></p>\n\nThis example (from <span class=\"inline-code\">cart.js</span>) shows a call to <span class=\"inline-code\">getContent</span> within the <span class=\"inline-code\">refreshContent</span> function:<br><p></p>\n\n<pre>    refreshContent(remove) {\n        const $cartItemsRows = $('[data-item-row]', this.$cartContent);\n        const $cartPageTitle = $('[data-cart-page-title]');\n        const options = {\n            template: {\n                content: 'cart/content',\n                totals: 'cart/totals',\n                pageTitle: 'cart/page-title',\n                statusMessages: 'cart/status-messages',\n            },\n        };\n\n        this.$overlay.show();\n\n        // Remove last item from cart? Reload\n        if (remove && $cartItemsRows.length === 1) {\n            return window.location.reload();\n        }\n\n        utils.api.cart.getContent(options, (err, response) => {\n            this.$cartContent.html(response.content);\n            this.$cartTotals.html(response.totals);\n            this.$cartMessages.html(response.statusMessages);\n\n            $cartPageTitle.replaceWith(response.pageTitle);\n            this.bindEvents();\n            this.$overlay.hide();\n\n            const quantity = $('[data-cart-quantity]', this.$cartContent).data('cart-quantity') || 0;\n\n            $('body').trigger('cart-quantity-update', quantity);\n        });\n    } </pre><p></p> \n\nHere is a final example of a call to <span class=\"inline-code\">getContent</span>, from <span class=\"inline-code\">global/cart-preview.js</span>:<br><p></p>\n\n<pre>    $cart.on('click', (event) => {\n        const options = {\n            template: 'common/cart-preview',\n        };\n\n        // Redirect to full cart page\n        //\n        // https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent\n        // In summary, we recommend looking for the string 'Mobi' anywhere in the User Agent to detect a mobile device.\n        if (/Mobi/i.test(navigator.userAgent)) {\n            return event.stopPropagation();\n        }\n\n        event.preventDefault();\n\n        $cartDropdown\n            .addClass(loadingClass)\n            .html($cartLoading);\n        $cartLoading\n            .show();\n\n        utils.api.cart.getContent(options, (err, response) => {\n            $cartDropdown\n                .removeClass(loadingClass)\n                .html(response);\n            $cartLoading\n                .hide();\n        });\n    }); </pre><br>\n\n\n<b><A NAME=\"getShippingQuotes\"></a>getShippingQuotes Signature</b><br>\n\nThe <span class=\"inline-code\">getShippingQuotes</span> function allows your code to retrieve shipping-cost quotes for the cart’s contents. It returns <span class=\"inline-code\">shippingQuote</span> objects that contain IDs. You must follow <span class=\"inline-code\">getShippingQuotes</span> by calling <span class=\"inline-code\"><a href=\"#submitShippingQuotes\">submitShippingQuote</a></span> on a <span class=\"inline-code\">quoteId</span>:<br>\n\n<p></p><pre>utils.api.cart.getShippingQuotes(params, renderWith, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">params</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Contains country_id, state_id, and zip_code</td>\n  </tr>\n  <tr>\n    <td class=\"\">template</td>\n    <td class=\"\">String/  Array/ Object</td>\n    <td class=\"\">The template to use for rendering</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>getShippingQuotes and submitShippingQuote Example</b> <br><p></p>\n\nThe following example (from <span class=\"inline-code\">cart/shipping-estimator.js</span>) shows calls to both <span class=\"inline-code\">getShippingQuotes</span> and <span class=\"inline-code\">submitShippingQuote</span>:<br><p></p>\n\n<pre>    bindEstimatorEvents() {\n        const $estimatorContainer = $('.shipping-estimator');\n        const $estimatorForm = $('.estimator-form');\n\n        $estimatorForm.on('submit', (event) => {\n            const params = {\n                country_id: $('[name=\"shipping-country\"]', $estimatorForm).val(),\n                state_id: $('[name=\"shipping-state\"]', $estimatorForm).val(),\n                city: $('[name=\"shipping-city\"]', $estimatorForm).val(),\n                zip_code: $('[name=\"shipping-zip\"]', $estimatorForm).val(),\n            };\n\n            event.preventDefault();\n\n            utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {\n                $('.shipping-quotes').html(response.content);\n\n                // bind the select button\n                $('.select-shipping-quote').on('click', (clickEvent) => {\n                    const quoteId = $('.shipping-quote:checked').val();\n\n                    clickEvent.preventDefault();\n\n                    utils.api.cart.submitShippingQuote(quoteId, () => {\n                        location.reload();\n                    });\n                });\n            });\n        }); </pre><br>\n\n<A NAME=\"submitShippingQuote\"></a> <b>submitShippingQuote Signature</b><br>\n\nThe <span class=\"inline-code\">submitShippingQuote</span> function must be called after <span class=\"inline-code\"><a href=\"#getShippingQuotes\">getShippingQuote</a></span>, which returns <span class=\"inline-code\">shippingQuote</span> objects that contain IDs. The cart page renders the shipping quotes. When the user selects one of the quotes, this function sends that <span class=\"inline-code\">quoteId</span> to the backend:<br>\n\n`utils.api.cart.submitShippingQuote(quoteId, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">quoteId</td>\n    <td class=\"\">Number</td>\n    <td class=\"\">ID for a shipping quote returned by <span class=\"inline-code\"><a href=\"#getShippingQuotes\">getShippingQuotes</a></span></td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n(For sample code, please see <b>getShippingQuotes and submitShippingQuote Example</b>, above.)<br><br>\n\n\n<b>applyCode Signature</b><br>\n\nThe <span class=\"inline-code\">applyCode</span> function applies a coupon code or gift certificate to the cart:<br>\n\n<p></p><pre>utils.api.cart.applyCode(code, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">code</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Alphanumeric representation of the coupon or gift-certificate code</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\nIn the following example (from <span class=\"inline-code\">cart.js</span>),  <span class=\"inline-code\">applyCode</span> is called before the final if/else test to apply a coupon code:<br><p></p>\n\n<pre>    bindPromoCodeEvents() {\n        const $couponContainer = $('.coupon-code');\n        const $couponForm = $('.coupon-form');\n        const $codeInput = $('[name=\"couponcode\"]', $couponForm);\n\n        $('.coupon-code-add').on('click', (event) => {\n            event.preventDefault();\n\n            $(event.currentTarget).hide();\n            $couponContainer.show();\n            $('.coupon-code-cancel').show();\n            $codeInput.focus();\n        });\n\n        $('.coupon-code-cancel').on('click', (event) => {\n            event.preventDefault();\n\n            $couponContainer.hide();\n            $('.coupon-code-cancel').hide();\n            $('.coupon-code-add').show();\n        });\n\n        $couponForm.on('submit', (event) => {\n            const code = $codeInput.val();\n\n            event.preventDefault();\n\n            // Empty code\n            if (!code) {\n                return alert($codeInput.data('error'));\n            }\n\n            utils.api.cart.applyCode(code, (err, response) => {\n                if (response.data.status === 'success') {\n                    this.refreshContent();\n                } else {\n                    alert(response.data.errors.join('\\n'));\n                }\n            });\n        });\n    } </pre><p></p>"
+                        "data": "## Cart API \n\nThe following functions allow your theme to work with cart contents in customized ways.\n\n<b>itemAdd Signature</b>\n\nThe `itemAdd`function allows your code to add an item to the cart, with options:\n\n```\nutils.api.cart.itemAdd(<a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a>, callback)\n```\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td class=\"\">formData</td>\n    <td><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a> object </td>\n    <td class=\"\">Contains all details about the added item and its product options</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>itemAdd Example</b> \n\n<code>itemAdd</code> is called at the head of the following example (from <code>common/product-details.js</code>) to populate the cart:\n\n```\n// Add item to cart\n        utils.api.cart.itemAdd(new FormData(form), (err, response) => {\n            const errorMessage = err || response.data.error;\n\n            $addToCartBtn\n                .val(originalBtnVal)\n                .prop('disabled', false);\n\n            this.$overlay.hide();\n\n            // Guard statement\n            if (errorMessage) {\n                // Strip the HTML from the error message\n                const tmp = document.createElement('DIV');\n                tmp.innerHTML = errorMessage;\n\n                return alert(tmp.textContent || tmp.innerText);\n            }\n\n            // Open preview modal and update content\n            if (this.previewModal) {\n                this.previewModal.open();\n\n                this.updateCartContent(this.previewModal, response.data.cart_item.hash);\n            } else {\n                this.$overlay.show();\n                // if no modal, redirect to the cart page\n                this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);\n            }\n        }); \n```\n\n\n<b>itemUpdate Signature</b><br>\n\nThe <code>itemUpdate</code> function allows your code to update a specified cart item’s quantity:\n\n`utils.api.cart.itemUpdate(itemId, qty, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The item’s ID</td>\n  </tr>\n  <tr>\n    <td class=\"\">qty</td>\n    <td class=\"\">Integer</td>\n    <td class=\"\">The item’s quantity in the cart</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n<b>itemUpdate Example</b>\n\nIn the following example (from <code>cart.js</code>), <code>itemUpdate</code> is called just before the final if/else test for an empty cart:\n\n```\n\t\t\t\tcartUpdate($target) {\n        const itemId = $target.data('cartItemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantityMax'), 10);\n        const minQty = parseInt($el.data('quantityMin'), 10);\n        const minError = $el.data('quantityMinError');\n        const maxError = $el.data('quantityMaxError');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n\n        // Does not quality for min/max quantity\n        if (newQty < minQty) {\n            return swal({\n                text: minError,\n                type: 'error',\n            });\n        } else if (maxQty > 0 && newQty > maxQty) {\n            return swal({\n                text: maxError,\n                type: 'error',\n            });\n        }\n\n        this.$overlay.show();\n\n        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {\n            this.$overlay.hide();\n\n            if (response.data.status === 'succeed') {\n                // if the quantity is changed \"1\" from \"0\", we have to remove the row.\n                const remove = (newQty === 0);\n\n                this.refreshContent(remove);\n            } else {\n                $el.val(oldQty);\n                swal({\n                    text: response.data.errors.join('\\n'),\n                    type: 'error',\n                });\n            }\n        });\n    } \n```\n\n\n<b>itemRemove Signature</b>\n\nThe <code>itemRemove</code> function allows your code to remove items from the cart:\n\n`utils.api.cart.itemRemove(itemId, callback)`\n\n<table>\n  <tbody>\n\t<tr>\n    <th>Argument</td>\n    <th>Type</td>\n    <th>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>itemId</td>\n    <td>String</td>\n    <td>The item’s ID</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n<span id=\"itemRemoveEx\"> <b>itemRemove Example</b> </span><br>\n\nIn the following example (from <span class=\"inline-code\">cart.js</span>), <span class=\"inline-code\">itemRemove</span> is called before the if/else test:<br><p></p>\n\n<pre>    cartRemoveItem(itemId) {\n        this.$overlay.show();\n        utils.api.cart.itemRemove(itemId, (err, response) => {\n            if (response.data.status === 'succeed') {\n                this.refreshContent(true);\n            } else {\n                alert(response.data.errors.join('\\n'));\n            }\n        });\n    } </pre><br>\n\n\n<b>update Signature</b><br>\n\nThe <span class=\"inline-code\">update</span> function allows your code to update the set of items in the cart:<br>\n\n<p></p><pre>utils.api.cart.update(itemId, qty, callback)</pre>\n\n <br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">items</td>\n    <td class=\"\">Array</td>\n    <td class=\"\">The items in the cart</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>update Example</b><br>\n\nThe following example shows a call to <span class=\"inline-code\">update</span> within the <span class=\"inline-code\">itemUpdate</span> function:<br><p></p>\n\n<pre>    /**\n    itemUpdate(itemId, qty, callback) {\n        let callbackArg = callback;\n        let items;\n\n        if (Array.isArray(itemId) && typeof qty === 'function') {\n            callbackArg = qty;\n            items = itemId;\n        } else {\n            items = [\n                {\n                    id: itemId,\n                    quantity: qty,\n                },\n            ];\n        }\n\n        this.update(items, (err, response) => {\n            const emitData = {\n                items,\n                err,\n                response,\n            };\n\n            Hooks.emit('cart-item-update-remote', emitData);\n            callbackArg(err, response);\n        });\n    } </pre><br>\n\n\n<b>getItemGiftWrappingOptions Signature</b><br>\n\nThe <span class=\"inline-code\">getItemGiftWrappingOptions</span> function allows your code to retrieve gift-wrapping options for the current cart item, in customized ways:<br><p></p>\n\n\n<pre>utils.api.cart.getItemGiftWrappingOptions(itemId, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The cart item</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>getItemGiftWrappingOptions Example</b> <br>\n\nThe following example (from <span class=\"inline-code\">cart.js</span>) calls <span class=\"inline-code\">getItemGiftWrappingOptions</span> to display gift-wrapping options in a modal:<br><p></p>\n\n<pre>    bindGiftWrappingEvents() {\n        const modal = defaultModal();\n\n        $('[data-item-giftwrap]').on('click', (event) => {\n            const itemId = $(event.currentTarget).data('item-giftwrap');\n            const options = {\n                template: 'cart/modals/gift-wrapping-form',\n            };\n\n            event.preventDefault();\n\n            modal.open();\n\n            utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {\n                modal.updateContent(response.content);\n\n                this.bindGiftWrappingForm();\n            });\n        });\n    } </pre><br>\n\n\n<b>submitItemGiftWrappingOption Signature</b><br>\n\nThe <span class=\"inline-code\">submitItemGiftWrappingOption</span> function allows your code to handle the customer’s gift-wrapping selection for the current cart item:<br><p></p>\n\n<pre>utils.api.cart.submitItemGiftWrappingOption(itemId, qty, callback)</pre>\n<br>\n\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The cart item</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>submitItemGiftWrappingOption Example</b> <br>\n\nThis commented example shows a simple call to <span class=\"inline-code\">submitItemGiftWrappingOption</span>:\n\n<pre>    /**\n     * Submit giftwrapping options\n     *\n     * @param {String} itemId\n     * @param {Function} callback\n     */\n    submitItemGiftWrappingOption(itemId, params, callback) {\n        this.remoteRequest(`/gift-wrapping/${itemId}`, 'POST', { params }, callback);\n    } </pre><br>\n\n\n<b>getContent Signature</b><br>\n\nThe <span class=\"inline-code\">getContent</span> function allows your code to display the cart contents in customized ways:<br>\n\n<p></p><pre>utils.api.cart.getContent(options, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\"><A NAME=\"getContent-options\"></a>options</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Template containing content and totals children</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n<span id=\"getContentEx\"> <b>getContent Examples</b> </span> <br>\n\nThe following example (from <span class=\"inline-code\">common/product-details.js</span>) a call to <span class=\"inline-code\">getContent</span>, set up by a prior call to <span class=\"inline-code\">getCartContent</span>:<br><p></p>\n\n<pre>    /**\n     * Get cart contents\n     *\n     * @param {String} cartItemHash\n     * @param {Function} onComplete\n     */\n    getCartContent(cartItemHash, onComplete) {\n        const options = {\n            template: 'cart/preview',\n            params: {\n                suggest: cartItemHash,\n            },\n            config: {\n                cart: {\n                    suggestions: {\n                        limit: 4,\n                    },\n                },\n            },\n        };\n\n        utils.api.cart.getContent(options, onComplete);\n    } </pre><p></p>\n\nThis example (from <span class=\"inline-code\">cart.js</span>) shows a call to <span class=\"inline-code\">getContent</span> within the <span class=\"inline-code\">refreshContent</span> function:<br><p></p>\n\n<pre>    refreshContent(remove) {\n        const $cartItemsRows = $('[data-item-row]', this.$cartContent);\n        const $cartPageTitle = $('[data-cart-page-title]');\n        const options = {\n            template: {\n                content: 'cart/content',\n                totals: 'cart/totals',\n                pageTitle: 'cart/page-title',\n                statusMessages: 'cart/status-messages',\n            },\n        };\n\n        this.$overlay.show();\n\n        // Remove last item from cart? Reload\n        if (remove && $cartItemsRows.length === 1) {\n            return window.location.reload();\n        }\n\n        utils.api.cart.getContent(options, (err, response) => {\n            this.$cartContent.html(response.content);\n            this.$cartTotals.html(response.totals);\n            this.$cartMessages.html(response.statusMessages);\n\n            $cartPageTitle.replaceWith(response.pageTitle);\n            this.bindEvents();\n            this.$overlay.hide();\n\n            const quantity = $('[data-cart-quantity]', this.$cartContent).data('cart-quantity') || 0;\n\n            $('body').trigger('cart-quantity-update', quantity);\n        });\n    } </pre><p></p> \n\nHere is a final example of a call to <span class=\"inline-code\">getContent</span>, from <span class=\"inline-code\">global/cart-preview.js</span>:<br><p></p>\n\n<pre>    $cart.on('click', (event) => {\n        const options = {\n            template: 'common/cart-preview',\n        };\n\n        // Redirect to full cart page\n        //\n        // https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent\n        // In summary, we recommend looking for the string 'Mobi' anywhere in the User Agent to detect a mobile device.\n        if (/Mobi/i.test(navigator.userAgent)) {\n            return event.stopPropagation();\n        }\n\n        event.preventDefault();\n\n        $cartDropdown\n            .addClass(loadingClass)\n            .html($cartLoading);\n        $cartLoading\n            .show();\n\n        utils.api.cart.getContent(options, (err, response) => {\n            $cartDropdown\n                .removeClass(loadingClass)\n                .html(response);\n            $cartLoading\n                .hide();\n        });\n    }); </pre><br>\n\n\n<b><A NAME=\"getShippingQuotes\"></a>getShippingQuotes Signature</b><br>\n\nThe <span class=\"inline-code\">getShippingQuotes</span> function allows your code to retrieve shipping-cost quotes for the cart’s contents. It returns <span class=\"inline-code\">shippingQuote</span> objects that contain IDs. You must follow <span class=\"inline-code\">getShippingQuotes</span> by calling <span class=\"inline-code\"><a href=\"#submitShippingQuotes\">submitShippingQuote</a></span> on a <span class=\"inline-code\">quoteId</span>:<br>\n\n<p></p><pre>utils.api.cart.getShippingQuotes(params, renderWith, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">params</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Contains country_id, state_id, and zip_code</td>\n  </tr>\n  <tr>\n    <td class=\"\">template</td>\n    <td class=\"\">String/  Array/ Object</td>\n    <td class=\"\">The template to use for rendering</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>getShippingQuotes and submitShippingQuote Example</b> <br><p></p>\n\nThe following example (from <span class=\"inline-code\">cart/shipping-estimator.js</span>) shows calls to both <span class=\"inline-code\">getShippingQuotes</span> and <span class=\"inline-code\">submitShippingQuote</span>:<br><p></p>\n\n<pre>    bindEstimatorEvents() {\n        const $estimatorContainer = $('.shipping-estimator');\n        const $estimatorForm = $('.estimator-form');\n\n        $estimatorForm.on('submit', (event) => {\n            const params = {\n                country_id: $('[name=\"shipping-country\"]', $estimatorForm).val(),\n                state_id: $('[name=\"shipping-state\"]', $estimatorForm).val(),\n                city: $('[name=\"shipping-city\"]', $estimatorForm).val(),\n                zip_code: $('[name=\"shipping-zip\"]', $estimatorForm).val(),\n            };\n\n            event.preventDefault();\n\n            utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {\n                $('.shipping-quotes').html(response.content);\n\n                // bind the select button\n                $('.select-shipping-quote').on('click', (clickEvent) => {\n                    const quoteId = $('.shipping-quote:checked').val();\n\n                    clickEvent.preventDefault();\n\n                    utils.api.cart.submitShippingQuote(quoteId, () => {\n                        location.reload();\n                    });\n                });\n            });\n        }); </pre><br>\n\n<A NAME=\"submitShippingQuote\"></a> <b>submitShippingQuote Signature</b><br>\n\nThe <span class=\"inline-code\">submitShippingQuote</span> function must be called after <span class=\"inline-code\"><a href=\"#getShippingQuotes\">getShippingQuote</a></span>, which returns <span class=\"inline-code\">shippingQuote</span> objects that contain IDs. The cart page renders the shipping quotes. When the user selects one of the quotes, this function sends that <span class=\"inline-code\">quoteId</span> to the backend:<br>\n\n`utils.api.cart.submitShippingQuote(quoteId, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">quoteId</td>\n    <td class=\"\">Number</td>\n    <td class=\"\">ID for a shipping quote returned by <span class=\"inline-code\"><a href=\"#getShippingQuotes\">getShippingQuotes</a></span></td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n(For sample code, please see <b>getShippingQuotes and submitShippingQuote Example</b>, above.)<br><br>\n\n\n<b>applyCode Signature</b><br>\n\nThe <span class=\"inline-code\">applyCode</span> function applies a coupon code or gift certificate to the cart:<br>\n\n<p></p><pre>utils.api.cart.applyCode(code, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">code</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Alphanumeric representation of the coupon or gift-certificate code</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\nIn the following example (from <span class=\"inline-code\">cart.js</span>),  <span class=\"inline-code\">applyCode</span> is called before the final if/else test to apply a coupon code:<br><p></p>\n\n<pre>    bindPromoCodeEvents() {\n        const $couponContainer = $('.coupon-code');\n        const $couponForm = $('.coupon-form');\n        const $codeInput = $('[name=\"couponcode\"]', $couponForm);\n\n        $('.coupon-code-add').on('click', (event) => {\n            event.preventDefault();\n\n            $(event.currentTarget).hide();\n            $couponContainer.show();\n            $('.coupon-code-cancel').show();\n            $codeInput.focus();\n        });\n\n        $('.coupon-code-cancel').on('click', (event) => {\n            event.preventDefault();\n\n            $couponContainer.hide();\n            $('.coupon-code-cancel').hide();\n            $('.coupon-code-add').show();\n        });\n\n        $couponForm.on('submit', (event) => {\n            const code = $codeInput.val();\n\n            event.preventDefault();\n\n            // Empty code\n            if (!code) {\n                return alert($codeInput.data('error'));\n            }\n\n            utils.api.cart.applyCode(code, (err, response) => {\n                if (response.data.status === 'success') {\n                    this.refreshContent();\n                } else {\n                    alert(response.data.errors.join('\\n'));\n                }\n            });\n        });\n    } </pre><p></p>",
+                        "header": {
+                          "anchor": "stencil-utils_cart"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Cookie Resource\n\nThis resource allows you to override a browser’s default alert box for cookie notifications.\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">privacyMessage</td>\n    <td class=\"\">Merchant-defined message informing customers of storefront’s cookie usage (e.g., to comply with E.U. notification requirement)</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>Cookie Examples:</b> \n\nThe following commented example (from <span class=\"inline-code\">global/cookieNotification.js)</span> shows a call to <span class=\"inline-code\">utils.hooks.on('cookie-privacy-notification', (event, privacyMessage)</span> to help comply with European Union privacy requirements:<br><p></p>\n\n```\n/**\n * European websites must notify users of cookies to comply with European Union law.\n * This will alert shoppers that this website uses cookies.\n */\nexport default function () {\n    /*\n    // Here you can override the default browser alert box by hooking to the 'cookie-privacy-notification' hook.\n    utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {\n        // You can make your own custom modal or alert box appear in your theme using the privacyMessage provided\n        myCustomAlert(privacyMessage);\n\n        // Call event.preventDefault() to prevent the default browser alert from occurring in stencil-utils\n        event.preventDefault();\n    });\n    */\n\n    utils.hooks.on('cookie-privacy-notification', (event) => {\n        event.preventDefault();\n\n        const $privacyDialog = $('.cookieMessage');\n        $privacyDialog.show();\n\n        $('body').on('click', '[data-privacy-accept]', () => {\n            utils.hooks.emit('cookie-privacy-accepted');\n            $privacyDialog.hide();\n        });\n    });\n} \n\n```"
+                        "data": "## Cookie Resource\n\nThis resource allows you to override a browser’s default alert box for cookie notifications.\n\n<table>\n  <tbody><tr>\n    <td>Argument</td>\n    <td>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>privacyMessage</td>\n    <td>Merchant-defined message informing customers of storefront’s cookie usage (e.g., to comply with E.U. notification requirement)</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>Cookie Examples:</b> \n\nThe following commented example (from`global/cookieNotification.js`) shows a call to `utils.hooks.on('cookie-privacy-notification', (event, privacyMessage)` to help comply with European Union privacy requirements:\n\n```\n/**\n * European websites must notify users of cookies to comply with European Union law.\n * This will alert shoppers that this website uses cookies.\n */\nexport default function () {\n    /*\n    // Here you can override the default browser alert box by hooking to the 'cookie-privacy-notification' hook.\n    utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {\n        // You can make your own custom modal or alert box appear in your theme using the privacyMessage provided\n        myCustomAlert(privacyMessage);\n\n        // Call event.preventDefault() to prevent the default browser alert from occurring in stencil-utils\n        event.preventDefault();\n    });\n    */\n\n    utils.hooks.on('cookie-privacy-notification', (event) => {\n        event.preventDefault();\n\n        const $privacyDialog = $('.cookieMessage');\n        $privacyDialog.show();\n\n        $('body').on('click', '[data-privacy-accept]', () => {\n            utils.hooks.emit('cookie-privacy-accepted');\n            $privacyDialog.hide();\n        });\n    });\n} \n\n```",
+                        "header": {
+                          "anchor": "stencil-utils_cookie"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Countries Resources\n\nThese functions allow your theme or app to retrieve standardized country names, by numeric ID or by string.<br>\n\n<br><b>getById Signature</b>\n\nThe <code>getById</code> function retrieves standardized country names by numeric ID:\n\n`utils.api.countries.getById(countryId, callback)`\n\n <br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">countryId</td>\n    <td class=\"\">Number</td>\n    <td class=\"\">Country code</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example a call to <code>getById</code>, followed by a call to the <span class=\"inline-code\">getByName</span> function (described below):<br><p></p>\n\n```\n/**\n     *\n     * Get country data by id wrapper\n     *\n     * @param {Number} id\n     * @param {Function} callback\n     */\n    getById(id, callback) {\n        const url = this.endpoint + id;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n\n    /**\n     * Get country data by country name\n     * @param name\n     * @param callback\n     */\n    getByName(name, callback) {\n        const url = this.endpoint + name;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n}\n```\n\n<b>getByName Signature</b>\n\nThe <span class=\"inline-code\">getByName</span> function retrieves states by country name, and returns an array of states that can be used in the callback:<br>\n\n<p></p><pre>utils.api.countries.getByName(countryName, callback)</pre>\n\n <br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">countryName</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Country name</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\nIn the following example (from <span class=\"inline-code\">common/state-country.js</span>, <span class=\"inline-code\">getByName</span> is called after the initial if test:<br><p></p>\n\n```\n$('select[data-field-type=\"Country\"]').on('change', (event) => {\n        const countryName = $(event.currentTarget).val();\n\n        if (countryName === '') {\n            return;\n        }\n\n        utils.api.country.getByName(countryName, (err, response) => {\n            if (err) {\n                alert(context.state_error);\n\n                return callback(err);\n            }\n\n            const $currentInput = $('[data-field-type=\"State\"]');\n\n            if (!_.isEmpty(response.data.states)) {\n                // The element may have been replaced with a select, reselect it\n                const $selectElement = makeStateRequired($currentInput, context);\n\n                addOptions(response.data, $selectElement, options);\n                callback(null, $selectElement);\n            } else {\n                const newElement = makeStateOptional($currentInput, context);\n\n                callback(null, newElement);\n            }\n        });\n    }); \n```"
+                        "data": "## Countries Resources\n\nThese functions allow your theme or app to retrieve standardized country names, by numeric ID or by string.\n\n<b>getById Signature</b>\n\nThe <code>getById</code> function retrieves standardized country names by numeric ID:\n\n`utils.api.countries.getById(countryId, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>countryId</td>\n    <td>Number</td>\n    <td>Country code</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example a call to <code>getById</code>, followed by a call to the <code>getByName</code> function (described below):\n\n```\n/**\n     *\n     * Get country data by id wrapper\n     *\n     * @param {Number} id\n     * @param {Function} callback\n     */\n    getById(id, callback) {\n        const url = this.endpoint + id;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n\n    /**\n     * Get country data by country name\n     * @param name\n     * @param callback\n     */\n    getByName(name, callback) {\n        const url = this.endpoint + name;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n}\n```\n\n<b>getByName Signature</b>\n\nThe `getByName` function retrieves states by country name, and returns an array of states that can be used in the callback:<br>\n\n<p></p><pre>utils.api.countries.getByName(countryName, callback)</pre>\n\n <br>\n\n<table>\n  <tbody>\n\t\t<tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">countryName</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Country name</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nIn the following example (from `common/state-country.js`, `getByName` is called after the initial if test:\n\n```\n$('select[data-field-type=\"Country\"]').on('change', (event) => {\n        const countryName = $(event.currentTarget).val();\n\n        if (countryName === '') {\n            return;\n        }\n\n        utils.api.country.getByName(countryName, (err, response) => {\n            if (err) {\n                alert(context.state_error);\n\n                return callback(err);\n            }\n\n            const $currentInput = $('[data-field-type=\"State\"]');\n\n            if (!_.isEmpty(response.data.states)) {\n                // The element may have been replaced with a select, reselect it\n                const $selectElement = makeStateRequired($currentInput, context);\n\n                addOptions(response.data, $selectElement, options);\n                callback(null, $selectElement);\n            } else {\n                const newElement = makeStateOptional($currentInput, context);\n\n                callback(null, newElement);\n            }\n        });\n    }); \n```",
+                        "header": {
+                          "anchor": "stencil-utils_countries"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">params</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td class=\"\">productId</td>\n    <td class=\"\">Number</td>\n    <td class=\"\">ID for this product</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>optionChange Examples</b><br>\n\nIn this example (from <span class=\"inline-code\">common/product-details.js</span>), <span class=\"inline-code\">optionChange</span> is called to update options in a Quick View modal:<br><p></p>\n\n<pre>        // Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos\n        if (_.isEmpty(productAttributesData) && hasOptions) {\n            const $productId = $('[name=\"product_id\"]', $form).val();\n\n            utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {\n                const attributesData = response.data || {};\n\n                this.updateProductAttributes(attributesData);\n                this.updateView(attributesData);\n            });\n        } else {\n            this.updateProductAttributes(productAttributesData);\n        } </pre><p></p>\n\n\nIn this example (from <code>cart.js</code>), <code>optionChange</code> is called before the final if test:\n\n```  \n\t\t\t\tcartEditOptions(itemId) {\n        const modal = defaultModal();\n        const options = {\n            template: 'cart/modals/configure-product',\n        };\n\n        modal.open();\n\n        utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {\n            modal.updateContent(response.content);\n\n            this.bindGiftWrappingForm();\n        });\n\n        utils.hooks.on('product-option-change', (event, option) => {\n            const $changedOption = $(option);\n            const $form = $changedOption.parents('form');\n            const $submit = $('input.button', $form);\n            const $messageBox = $('.alertMessageBox');\n            const item = $('[name=\"item_id\"]', $form).attr('value');\n\n            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {\n                const data = result.data || {};\n\n                if (err) {\n                    alert(err);\n                    return false;\n                }\n```"
+                        "data": "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n<b>optionChange Examples</b>\n\nIn this example (from <code>common/product-details.js</code>), <code>optionChange</code> is called to update options in a Quick View modal:\n\n```\n// Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos\n        if (_.isEmpty(productAttributesData) && hasOptions) {\n            const $productId = $('[name=\"product_id\"]', $form).val();\n\n            utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {\n                const attributesData = response.data || {};\n\n                this.updateProductAttributes(attributesData);\n                this.updateView(attributesData);\n            });\n        } else {\n            this.updateProductAttributes(productAttributesData);\n        } \n```\n\n\nIn this example (from <code>cart.js</code>), <code>optionChange</code> is called before the final if test:\n\n```  \n\t\t\t\tcartEditOptions(itemId) {\n        const modal = defaultModal();\n        const options = {\n            template: 'cart/modals/configure-product',\n        };\n\n        modal.open();\n\n        utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {\n            modal.updateContent(response.content);\n\n            this.bindGiftWrappingForm();\n        });\n\n        utils.hooks.on('product-option-change', (event, option) => {\n            const $changedOption = $(option);\n            const $form = $changedOption.parents('form');\n            const $submit = $('input.button', $form);\n            const $messageBox = $('.alertMessageBox');\n            const item = $('[name=\"item_id\"]', $form).attr('value');\n\n            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {\n                const data = result.data || {};\n\n                if (err) {\n                    alert(err);\n                    return false;\n                }\n```",
+                        "header": {
+                          "anchor": "stencil-utils_product-attributes"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Product Resource\n\nThe `product.getById` function allows your code to retrieve, and to present, detailed product information by product ID.\n\n<b>getById Signature</b>\n\n`utils.api.product.getById(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">productId</td>\n    <td class=\"\">Number</td>\n    <td class=\"\">ID for this product</td>\n  </tr>\n  <tr>\n    <td class=\"\">params</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example (from `global/quick-view.js`) calls `product.getById` to populate the Quick View modal:\n\n```\t\t\t\t\n\t\t\t\t$('body').on('click', '.quickview', (event) => {\n        event.preventDefault();\n\n        const productId = $(event.currentTarget).data('product-id');\n\n        modal.open({ size: 'large' });\n\n        utils.api.product.getById(productId, { template: 'products/quick-view' }, (err, response) => {\n            modal.updateContent(response);\n\n            modal.$content.find('.productView').addClass('productView--quickView');\n\n            return new ProductDetails(modal.$content.find('.quickView'), context);\n        });\n    }); \n```"
+                        "data": "## Product Resource\n\nThe `product.getById` function allows your code to retrieve, and to present, detailed product information by product ID.\n\n<b>getById Signature</b>\n\n`utils.api.product.getById(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example (from `global/quick-view.js`) calls `product.getById` to populate the Quick View modal:\n\n```\t\t\t\t\n\t\t\t\t$('body').on('click', '.quickview', (event) => {\n        event.preventDefault();\n\n        const productId = $(event.currentTarget).data('product-id');\n\n        modal.open({ size: 'large' });\n\n        utils.api.product.getById(productId, { template: 'products/quick-view' }, (err, response) => {\n            modal.updateContent(response);\n\n            modal.$content.find('.productView').addClass('productView--quickView');\n\n            return new ProductDetails(modal.$content.find('.quickView'), context);\n        });\n    }); \n```",
+                        "header": {
+                          "anchor": "stencil-utils_product"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Search Resource\n\nThe `search` function allows you to present a customized user interface for search results.\n\n<b>search Signature</b>\n\n<p></p><pre>utils.api.search.search(query, params, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">query</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Contains the customer’s search query</td>\n  </tr>\n  <tr>\n    <td class=\"\">params</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>"
+                        "data": "## Search Resource\n\nThe `search` function allows you to present a customized user interface for search results.\n\n<b>search Signature</b>\n\n`utils.api.search.search(query, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>query</td>\n    <td>String</td>\n    <td>Contains the customer’s search query</td>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>",
+                        "header": {
+                          "anchor": "stencil-utils_search"
+                        }
                       }
                     ]
                   },
                   "config": {
                     "sidebar": {
-                      "token": "API Reference"
+                      "token": "Reference"
                     }
                   }
                 }
@@ -16439,7 +16792,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Introduction</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#introduction_how-it-works\">How it Works</a></li>\n\t</ul>\n</div>"
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\" id=\"introduction\">Introduction</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#introduction_how-it-works\">How it Works</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -16464,7 +16817,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Install</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#install_requirements\">Requirements</a></li>\n        <li><a href=\"#install_ installation\">Installation</a></li>\n        <li><a href=\"#install_plugin-install-wordpress\">Plugin Installation in WordPress</a></li>\n\t</ul>\n</div>"
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Install</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#install_requirements\">Requirements</a></li>\n        <li><a href=\"#install_ installation\">Installation</a></li>\n        <li><a href=\"#install_plugin-install-wordpress\">Plugin Installation in WordPress</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -16560,7 +16913,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Plugin Settings</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#plugin-settings_api-keys\">API Keys</a></li>\n        <li><a href=\"#plugin-settings_product-sync\">Product Sync</a></li>\n        <li><a href=\"#plugin-settings_cart-settings\">Cart Settings</a></li>\n        <li><a href=\"#plugin-settings_theme-customizer\">Theme Customizer</a></li>\n        <li><a href=\"#plugin-settings_reviews\">Reviews</a></li>\n        <li><a href=\"#plugin-settings_gift-certificate-settings\">Gift Certificate Settings</a></li>\n\t</ul>\n</div>"
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Plugin Settings</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#plugin-settings_api-keys\">API Keys</a></li>\n        <li><a href=\"#plugin-settings_product-sync\">Product Sync</a></li>\n        <li><a href=\"#plugin-settings_cart-settings\">Cart Settings</a></li>\n        <li><a href=\"#plugin-settings_theme-customizer\">Theme Customizer</a></li>\n        <li><a href=\"#plugin-settings_reviews\">Reviews</a></li>\n        <li><a href=\"#plugin-settings_gift-certificate-settings\">Gift Certificate Settings</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -16693,7 +17046,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Product Import</h1>"
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Product Import</h1>"
                       },
                       {
                         "type": "text",
@@ -16711,7 +17064,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Shortcodes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shortcode_product-shortcode\">Products Shortcode</a></li>\n        <li><a href=\"#plugin-settings_api-keys\">API Keys</a></li>\n\t</ul>\n</div>"
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Shortcodes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#shortcode_product-shortcode\">Products Shortcode</a></li>\n        <li><a href=\"#plugin-settings_api-keys\">API Keys</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -16751,7 +17104,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Troubleshooting</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#troubleshooting_add-cart-error\">Error on \"Add to Cart\" button, 404 error</a></li>\n        <li><a href=\"#troubleshooting_php-getenv\">PHP getenv() Errors</a></li>\n\t</ul>\n</div>"
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Troubleshooting</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#troubleshooting_add-cart-error\">Error on \"Add to Cart\" button, 404 error</a></li>\n        <li><a href=\"#troubleshooting_php-getenv\">PHP getenv() Errors</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -16793,7 +17146,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Plugin Settings</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#templates_theme-requirements\">Theme Requirements</a></li>\n        <li><a href=\"#templates_template-overrides\">Template Overrides</a></li>\t\n  </ul>\n</div>"
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Templates</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#templates_theme-requirements\">Theme Requirements</a></li>\n        <li><a href=\"#templates_template-overrides\">Template Overrides</a></li>\t\n  </ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -16812,17 +17165,17 @@
                       }
                     ]
                   }
-                },
-                {
-                  "title": "Code Reference",
-                  "route": {
-                    "path": "/code-reference"
-                  },
-                  "data": {
-                    "blocks": []
-                  }
                 }
               ]
+            }
+          },
+          {
+            "title": "Code Reference",
+            "route": {
+              "path": "/code-reference"
+            },
+            "data": {
+              "blocks": []
             }
           }
         ]
