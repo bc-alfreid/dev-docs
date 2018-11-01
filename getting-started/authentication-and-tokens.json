@@ -1,0 +1,65 @@
+{
+                  "title": "Authentication & Tokens",
+                  "route": {
+                    "path": "/authentication-and-tokens"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Creating an API Account to Obtain OAuth Tokens</h1>"
+                      },
+                      {
+                        "type": "html",
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#authentication_creating-an-api-account\">Creating an API Account</a></li>\n    <li><a href=\"#authentication_issuing-additional\">Issuing Additional Tokens</a></li>\n    <li><a href=\"#authentication_revoking-tokens\">Revoking Tokens</a></li>\n    <li><a href=\"#authentication_copying-oauth-tokens\">Copying OAuth Tokens</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "error",
+                          "body": "If you've successfully installed Stencil you're ready to create a BigCommerce API Account. \n_If you have not yet installed Stencil, see [Installing Stencil](/stencil-docs/getting-started/installing-stencil)._",
+                          "title": "Status Check"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Creating an API Account \n\nYou can create and manage API Credentials in the BigCommerce control panel by creating an API account, as described below. Only the store owner can create API accounts; accounts are limited to 50 per store.\n\nTo create your API account and its corresponding token, use the following steps:\n\n1. Using the store owner's credentials, log into the control panel of the store for which you are developing. \n\n2. From the left nav, select `Advanced Settings` > `API Accounts`. This will display the Store API Accounts page.\n\n3. From the resulting Store API Accounts page, select the `Create API Account` button.\n\n4. In the `Name` field, summarize the purpose for which you will use these credentials. This name is for internal use only, so assign any name that you will recognize.\n\n_The BigCommerce platform does not validate this name, however, we recommend naming accounts by purpose to help you keep track of which accounts you need to keep active. You should assign a name that will make the account's purpose clear to you and other store administrators._\n\n5. Under OAuth Scopes, set the `Themes` selector to either `modify` or `read-only`.\n\n_The read-only scope is sufficient to authorize/initialize a Stencil theme. However, the modify scope will achieve the same goal, while also authorizing this account to upload themes to the store from the command line._\n\n6. Select `Save` at the page’s lower right-hand corner.\n\n_Doing so will display a modal, from which you can copy your `Client ID` and `Access Token` values. The modal will also prompt your browser to download a .txt file that contains your credentials. You will need these values to authorize and initialize your Stencil theme. If you're ready to do so now, move ahead to [Authorizing and Initializing Stencil](/stencil-docs/getting-started/launching-stencil/authorizing-and-initializing)._",
+                        "header": {
+                          "anchor": "authentication_creating-an-api-account"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Issuing Additional Tokens\n\nTo issue store tokens for additional themes or developers, repeat the process outlined in Creating an API Account.\n\n(Even if you originally initialized your theme using a legacy API [Basic-Auth] token, you will need to generate any new tokens using the new OAuth flow.)\n\nYou can create up to 50 API accounts/tokens per store. If you hit this limit and still need to create new tokens, you will need to delete existing accounts. Deleting an account will invalidate the corresponding token, which will affect any developer using that token.\n",
+                        "header": {
+                          "anchor": "authentication_issuing-additional"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Revoking OAuth Tokens\n\n**Note**: After completing the below process, there is no undo. The following process completely deletes the selected account(s), revoking the corresponding token(s).\n\nTo revoke an OAuth token, use the following steps to delete the associated API account:\n\n1. Log into the store, using the store owner’s username/password.\n\n2. Select `Advanced Settings` from the left hand nav.\n\n3. Select `API Accounts`. This will display the Store API Accounts page, shown below.\n\n2.In the `Actions` column on the right, select the trash-can button next to the account you want to delete.\n\n_*You can also use the check boxes at left to select multiple accounts to delete them all at once._",
+                        "header": {
+                          "anchor": "authentication_revoking-tokens"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1540929611689",
+                        "header": {
+                          "title": "Revoking API Credentials"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Copying OAuth Tokens \n\nTo access an existing OAuth token to authorize your theme:\n\n1. Open the `.txt` file that the BigCommerce control panel generated when you created the API account.\n\n_If you did not retain this file, you will need to generate a new token by repeating the Creating an API Account procedure._\n\n2. Note the Client ID and Access Token hashes in the file (or in the control-panel modal for your newly created token).\n\n3. If you are a merchant granting an outside theme developer access to your store, provide the Client ID and Access Token values to the developer. The developer will need these when [Authorizing and Initializing Stencil](/stencil-docs/getting-started/launching-stencil/authorizing-and-initializing). If you are a merchant developing a theme against your own store, you will use the same two values in the same [Authorizing and Initializing Stencil](/stencil-docs/getting-started/launching-stencil/authorizing-and-initializing) step.",
+                        "header": {
+                          "anchor": "authentication_copying-oauth-tokens "
+                        }
+                      }
+                    ]
+                  }
+                }
