@@ -1,0 +1,336 @@
+{
+                  "title": "Launching Stencil",
+                  "route": {
+                    "path": "/launching-stencil"
+                  },
+                  "data": {
+                    "children": [
+                      {
+                        "title": "Authorizing and Initializing Stencil",
+                        "route": {
+                          "path": "/authorizing-and-initializing"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Authorizing and Initializing Stencil</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#authorizing_prerequisites\">Prerequisites</a></li>\n    <li><a href=\"#authorizing_authorizing-oauth\">Authorizing with OAuth Tokens</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Prerequisites\n\nThe following are required from performing previous steps prior to authorizing and Initializing your Stencil theme:\n\n* An [API account](/stencil-docs/getting-started/authentication-and-tokens) with the Themes scope set to `read-only` or `modify`\n* a `Client ID` and `Access Token`, which are both generated when an API account is created\n\n**Note:** _`modify` access is required to run the `stencil push` command, which uploads and applies a theme to your store._",
+                              "header": {
+                                "anchor": "authorizing_prerequisites"
+                              }
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "body": "If you are sharing a theme across storefronts, we strongly recommend that you clone a separate subdirectory (each containing its own `.stencil` file) for each store. This helps isolate and secure each merchant's data.\n\nYou can clone your `/cornerstone/` subdirectory now to create your first isolated copy, and then switch to the resulting new subdirectory to continue. (Prior to March 2017, Stencil's default subdirectory name was `/stencil/`.)",
+                                "title": " Best Practice: Isolate Stores by Subdirectory"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Authorizing with OAuth Tokens\n\nUse these steps to authorize and initialize Stencil.\n\nUse the following steps to authorize your theme using an OAuth API account:\n\n1. Have your store API account's `Client ID` and `Access Token` hashes ready. \n(Refer back to [Authentication & Tokens](/stencil-docs/getting-started/authentication-and-tokens))\n\n2. Starting from the subdirectory for the appropriate theme (and store), initialize Stencil CLI by running the following command (_Windows users need to run this in git bash_):\n\n`stencil init`\n\n3. You will be prompted to provide the homepage URL of the production store against which you want to develop. This can be your own store, or a client store that you are customizing.\n\n4. Next, you will be prompted to enter the port where you would like to run your store on your local machine. This can be any port you like, but we recommend using port 3000.\n\n5. Next, you will be prompted: `What is your Stencil OAuth Client ID?` Enter your store API account's Client ID.\n\n(If you used this Client ID when you last ran `stencil init`, you'll see it hinted on the command line, and can just confirm it.)\n\n6. Finally, you will be prompted: `What is your Stencil OAuth Access Token?` If you entered these credentials when you last ran stencil init, you'll see the token hinted in cleartext. If not, paste your `Access Token` hash onto the command line. Then press Enter.\n\nYour terminal window should now confirm that you have successfully initialized Stencil CLI on your local machine. With Stencil CLI initialized, you are ready to start Stencil and begin development.",
+                              "header": {
+                                "anchor": "authorizing_authorizing-oauth"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Running Stencil Locally",
+                        "route": {
+                          "path": "/running-stencil-locally"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Running Stencil Locally</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#running_quick\">Quick Reference</a></li>\n    <li><a href=\"#running_local-launch-theme\">Local Launch: Theme Only</a></li>\n    <li><a href=\"#running_local-launch-theme-and-editor\">Local Launch: Theme and Theme Editor</a></li>\n    <li><a href=\"#running_disabling\">Local Launch: Disabling Caching</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Quick Reference\n\n<table> \n\t<tr>\n\t\t<th>Launch type</th>\n\t\t<th>Command</th>\n\t\t<th>Theme Port URL</th>\n\t\t<th>Theme Editor Port URL</th>\n\t</tr>\n\t<tr>\n\t\t<td>Theme Only</td>\n\t\t<td><code>stencil start</code></td>\n\t\t<td>http://localhost:3000 (or custom \n\t\tport)</td>\n\t\t<td>N/A</td>\n\t</tr>\n\t<tr>\n\t\t<td>Theme and Theme Editor</td>\n\t\t<td><code>stencil start -e</code>\n\t\t</td>\n\t\t<td>http://localhost:3000 (or custom \n\t\tport)</td>\n\t\t<td>http://localhost:8181</td>\n\t</tr>\n\t<tr>\n\t\t<td>Theme <b>and</b> Theme Editor \n\t\t</td>\n\t\t<td><code>stencil start -e --theme-\n\t\teditor-port 9000</code></td>\n\t\t<td>http://localhost:3000 (or custom \n\t\tport)</td>\n\t\t<td>http://localhost:9000\n(#### = custom port)</td>\n\t</tr>\n",
+                              "header": {
+                                "anchor": "running_quick"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Local Launch: Theme Only\n\nAfter initializing Stencil, issue the following command in your theme directory (_Windows users need to run this in git bash_):\n\n`stencil start`\n\nWhen you navigate to your designated port (e.g http://localhost:3000), you should see the storefront you selected with the local Stencil theme applied.\n\n## Troubleshooting Token Errors\n\nIf you receive the following error message, \n\n`Unauthorized, please use a valid username/token`\n\nthen store token authentication has failed.\n\nIn this case, please track back and review the following articles:\n\n* [Authentication & Tokens](/stencil-docs/getting-started/authentication-and-tokens): How to issue or reissue tokens in the BigCommerce control panel.\n* [Authorizing and Initializing Stencil:](/stencil-docs/getting-started/launching-stencil/authorizing-and-initializing): How to initialize Stencil with your username and token.",
+                              "header": {
+                                "anchor": "running_local-launch-theme"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Local Launch: Theme and Theme Editor\n\nIf you want to view or reconfigure the Theme Editor/Store Design settings, you can run Stencil locally while also launching a local version of Theme Editor. This will help you see the UX changes that result from editing the `schema.json` file. \n\nTo run Stencil locally while also launching a local version of Theme Editor, start in your theme directory and run the same command as above (`stencil start`), but append the `-e` option:\n\n`stencil start -e`\n\nThe Theme Editor server will run in parallel with the stencil theme at [http://localhost:8181](http://localhost:8181/).\n\n### Customizing Theme Editor's Port\n\nYou can override Theme Editor's default port by appending the \"--theme-editor-port [port]\" option. For example, to specify port `9000`, you would enter:\n\n`stencil start -e --theme-editor-port 9000\n`\n\nTo verify Theme Editor's launch, you would then go to http://localhost:9000. Using this option, you can specify any port between `1024` and `65535`.",
+                              "header": {
+                                "anchor": "running_local-launch-theme-and-editor"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Local Launch: Disabling Caching\n\nBy default, Stencil caches API resource data per storefront page. This minimizes server traffic while you develop your theme locally.\nIf you prefer to see your changes reflected immediately in your live store, you can turn off caching by appending the `--no-cache` or `-n` option:\n\n`stencil start --no-cache`\n`stencil start -n`\n\n### To re-enable caching:\n\nKill the current Stencil server (_ctrl + c will do the job_) and restart Stencil, this time omitting the `--no-cache` or `-n` option.\n\n`stencil start` \n",
+                              "header": {
+                                "anchor": "running_disabling"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Troubleshooting Your Setup",
+                        "route": {
+                          "path": "/troubleshooting-your-setup"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Troubleshooting Your Setup</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#troubleshooting_unsupported\">Unsupported Node Version</a></li>\n    <li><a href=\"#troubleshooting_npm-install\"><code>npm install</code> errors</a></li>\n    <li><a href=\"#troubleshooting_npm-install-stencil-init\">npm install and stencil init Errors</a></li>\n    <li><a href=\"#troubleshooting_stencil-init\">\"stencil init/stencil start errors</a></li>\n    <li><a href=\"#troubleshooting_stencil-start-missing-module\"><code>stencil start</code>/missing module Errors</a></li>\n    <li><a href=\"#troubleshooting_uncaught\">\"Uncaught TypeError: Illegal invocation\" error</a></li>\n    <li><a href=\"#troubleshooting_mac-os\">Mac OS: \"Xcode/iOS license...\" Errors upon Stencil Commands</a></li>\n    <li><a href=\"#troubleshooting_etimeout\">ETIMEOUT Errors on Node >4.4.0</a></li>\n    <li><a href=\"#troubleshooting_stencil-command-not-found\"><code>stencil</code> command not found</a></li>\n    <li><a href=\"#troubleshooting_500-errors\">500 Errors</a></li>\n    <li><a href=\"#troubleshooting_lint-errors\">Lint Errors upon Bundling</a></li>\n    <li><a href=\"#troubleshooting_module-not-found\">\"Module Not Found\" Errors upon Bundling</a></li>\n    <li><a href=\"#troubleshooting_short\">Short or Undescriptive JavaScript Diagnostics</a></li>\n    <li><a href=\"#troubleshooting_tr-300\">TR-300 Error upon Theme Upload</a></li>\n    <li><a href=\"#troubleshooting_uninstalling\">Uninstalling and Reinstalling Stencil CLI</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "title": "First Check the Terminal Window",
+                                "body": "For any unexpected behavior that you encounter while developing your Stencil theme, first check your terminal window where you started Stencil CLI. \n\nIn some cases, the terminal will provide a verbose error message specifying where to look for problems. In any case, it has the potential to provide further insight on the issue. Diagnostic suggestions are listed on this page for error messages that may not be helpful in revealing the issue you're experiencing."
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Unsupported Node Version\n\nIf you receive the following error message, please reinstall Node.js to a supported \"LTS\" (\"Long-Term Support\") version:\n\n```\nDebug: internal, implementation, error\n        TypeError: Uncaught error: Object #<Object> has no method 'parse'\n        at internals.implementation \n        (/usr/local/lib/node_modules/stencil-cli/server/plugins/CssCompiler/index.js:32:26)\n```\n\nOn Mac OS, we have tested Stencil CLI most robustly on Node.js version 4.4.0. On Linux, we have tested most robustly on version 4.1.2. On Windows, we have tested most robustly on version 4.6.1. You’ll find detailed steps (for each operating system) in these instructions' Installing Stencil Prerequisites by OS section.",
+                              "header": {
+                                "anchor": "troubleshooting_unsupported"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## `npm install` Errors\n\nThe following headings represent errors that may occur when running the `npm install` command. The content under each heading issues a fix for the issue.\n\n### \"Unmet Peer Dependency\"\n\nIf you get any `Unmet Peer Dependency` errors when issuing the `npm install` command – or at other times – make sure you are running the `npm install` command **inside** your theme directory.\n\nIf running the `npm install ` command inside your theme directory does not resolve the error, try one of the following:\n\n* Try removing your theme directory's `/node_modules/` subdirectory, by running `rm -rf node_modules`\n\n* Run the `npm cache clean` command\n\n* Re-run `npm install`\n\n\n### Permissions (EPERM or EACCES) Error\n\nIf you get a file-permissions error such as `EPERM` or `EACCES` when issuing the `npm install` command, try one of the workarounds listed on this [external](https://docs.npmjs.com/getting-started/fixing-npm-permissions) page. \n\n### \"js/bundle\" Errors\n\nIf you get errors of the following type upon executing the `stencil init` command:\n\n```\nPotentially unhandled rejection [6] TypeError: Error loading \"js/bundle\" \nat file:/Users/<username>/Desktop/Fortune-1.4.6/assets/js/bundle.js\n\nError evaluating file:/Users/<username>/Desktop/Fortune-1.4.6/assets/js/bundle.js\n\nCannot read property 'createElement' of undefined...\n```\n\ntry the following workaround:\n\n1. Download and unzip a fresh copy of the theme.\n\n3. Refresh theme dependencies by running `npm install && jspm install`\n\n3. Run `stencil init`.\n\n*You will see the same error message as before, but proceed.*\n\n4. Delete the `<theme-name>/assets/js/bundle.js` file.\n\n5. Run `stencil init` again.\nThis should now execute properly.\n6. Run `stencil start`\n\n8. Verify your theme's launch at: http://localhost:3000.",
+                              "header": {
+                                "anchor": "troubleshooting_npm-install"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## `npm install` and `stencil init` Errors\n\nIf you get unexpected error messages when issuing the `npm install` or `stencil init` commands, check your Node.js version and ensure it aligns with a version that is compatible for the Stencil framework.",
+                              "header": {
+                                "anchor": "troubleshooting_npm-install-stencil-init"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## `stencil init`/`stencil start` Errors\n\nIf you get unexpected error messages or unexpected results upon executing the `stencil init`, `stencil start`, or other Stencil CLI commands, make sure you are working in the subdirectory for the specific theme you intend to launch. \n\nOne way of checking what directory you are working in is by running the `pwd` command in your terminal.",
+                              "header": {
+                                "anchor": "troubleshooting_stencil-init"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## `stencil start`/missing module Errors\n\nIf executing `stencil start` provokes errors like the following\n\n```\nmodule.js:327\nthrow err;\n^\n\nError: Cannot find module 'webpack'\nat Function.Module._resolveFilename (module.js:325:15)\nat Function.Module._load (module.js:276:25)\nat Module.require (module.js:353:17)\nat require (internal/module.js:12:17)\nat Object. (/Users/jane.doe/themes/cornerstone/stencil.conf.js:2:15)\nat Module._compile (module.js:409:26)\nat Object.Module._extensions..js (module.js:416:10)\nat Module.load (module.js:343:32)\nat Function.Module._load (module.js:300:12)\nat Module.require (module.js:353:17)\n```\n\nswitch to your theme directory and run `npm install`. Running this command will add the missing JavaScript library dependencies.\n\nIf you receive the same error again after running `npm install`, you should completely uninstall and reinstall both the Stencil framework and Node.js.",
+                              "header": {
+                                "anchor": "troubleshooting_stencil-start-missing-module"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## \"Uncaught TypeError: Illegal invocation\" error\n\nIf you receive an `Uncaught TypeError: Illegal invocation` console error, and previously installed Stencil using the original jspm-based installation flow and later switched to our current webpack installation flow, please remove your theme's `/node_modules/` subdirectory, then re-run `npm install` inside your theme's directory.",
+                              "header": {
+                                "anchor": "troubleshooting_uncaught"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Mac OS: \"Xcode/iOS license...\" Errors upon Stencil Commands\n\nOn Mac OS, if you have recently installed a new version of Xcode, the command line will display the following error when you next try to use or reinstall Stencil: \n\n`error: Agreeing to the Xcode/iOS license requires admin privileges, please re-run as root via sudo.`\n\nTo resolve this error, do the following:\n* Launch Xcode.\n* Accept its user agreement.\n* Quit Xcode.\n* Re-execute your Stencil command.\n",
+                              "header": {
+                                "anchor": "troubleshooting_mac-os"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## ETIMEOUT Errors on Node >4.4.0\n\nIf you are running a version of Node.js higher than 4.4.0, and you receive an `ETIMEOUT` error when running Stencil CLI, re-install the latest version of Stencil CLI to resolve this error by following the workflow in Installing Stencil CLI/Framework.",
+                              "header": {
+                                "anchor": "troubleshooting_etimeout"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## `stencil` command not found\n\n### Reinstall Stencil CLI\n\nIf you receive the error message -bash: `stencil: command not found`, ensure that you have followed the steps on Installing Stencil CLI/Framework or attempt to reinstall the Stencil CLI. \n\n### Redirect Bash shell\n\nIf you receive the error message -bash: stencil: command not found, enter echo $NVM_DIR. If this command returns nothing, then run source ~/.bash_profile and try running running stencil commands again.\n\n### Check/Specify `nvm` Version\n\nIf you receive a `stencil: command not found` error message upon executing stencil start from inside your theme subdirectory: Check whether nvm has installed multiple versions of Node.js, by entering the following command:\n\n`ls ~/.nvm/versions/node`\n\nIf this reports more than one version, specify your platform's supported Node.js `<version_number>` by entering: \n\n`nvm use <version_number>`\n\nTo prevent this error from recurring, add the same `nvm use <version_number>` command to your ~/.bash_profile file.\n",
+                              "header": {
+                                "anchor": "troubleshooting_stencil-command-not-found"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## `stencil start` errors\n\n### \"Unauthorized...username/token\" Error\n\nIf executing the `stencil start` command generates an `Unauthorized, please use a valid username/token` error: Please make sure that the `.stencil` file contains the correct store URL. Also, verify that you have copied the correct username and token. If you continue to get the same error, please reissue tokens.\n\n### \"Unable to load registry %bitbucket%\"\n\nIf you have downloaded and installed a Marketplace theme (other than Cornerstone), and after running stencil start, received the error `Unable to load registry %bitbucket%`: Try this workaround.\n\n1. Back up your current theme directory/directories. \n(In a default installation, the theme directory is named `.../cornerstone/`. Prior to March 2017, this directory's name defaulted to `.../stencil/`. Use the same substitutions for other code examples on this page.)\n\n2. To ensure that you install refreshed dependencies, delete your `<theme-name>/node_modules/` and `<theme-name>/assets/jspm_packages/` subdirectories. (You can check installed versions of dependencies by examining your `<theme-name>/package.json` file.)\n\n3. Starting inside your theme directory, enter this alternate sequence of commands:\n\n```\nnpm install -g jspm-git\nnpm install\njspm config registries.bitbucket.baseurl git+ssh://git@bitbucket.org/\njspm config registries.bitbucket.handler jspm-git\njspm install\n```\n\n4. Re-launch your theme."
+                            },
+                            {
+                              "type": "text",
+                              "data": "## 500 Errors\n\nIf you see errors like or _similar_ to below:\n\n`{\"statusCode\":500,\"error\":\"Internal Server Error\",\"message\":\"An internal server error occurred\"}`\n\nthey often indicate a template syntax error, such as unmatched or missing punctuation. Check your terminal window for more details.",
+                              "header": {
+                                "anchor": "troubleshooting_500-errors"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Lint Errors upon Bundling\n\nIf bundling your theme triggers multiple lint errors related to the `bundle.js` file, your theme is missing the `.eslintignore` file. Please retrieve this file from the [Cornerstone repo](https://github.com/bigcommerce/cornerstone), then re-run `stencil bundle`.\n",
+                              "header": {
+                                "anchor": "troubleshooting_lint-errors"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## \"Module Not Found\" Errors upon Bundling\n\nIf you see the following error when running stencil bundle, this is a past bug that has since been corrected.\n\n`[ModuleNotFoundError: Module not found: Error: Cannot resolve module 'pace' in...]`\n\nTo remove the error, please update your Cornerstone version. ",
+                              "header": {
+                                "anchor": "troubleshooting_module-not-found"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Short or Undescriptive JavaScript Diagnostics\n\nIf JavaScript errors in your browser's developer tools are not reporting filenames and line numbers, try changing your `webpack.conf.js` file's sourcemap entry from:\n\n`devtool: 'eval-cheap-module-source-map'`\n\nto:\n\n`devtool: 'eval-source-map'`\n\nThe `eval-cheap-module-source-map` option performs faster rebuilds, but omits line numbers. The `eval-source-map` option is slower, but more verbose. ",
+                              "header": {
+                                "anchor": "troubleshooting_short"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## TR-300 Error upon Theme Upload\n\nIf uploading your theme triggers a TR-300 error, this can indicate an included source-map file (`bundle.js.map`) that exceeds its size limit of 5 MB. If your `bundle.js.map` exceeds that limit, the workaround is to move this file outside your theme directory before re-running `stencil bundle`. ",
+                              "header": {
+                                "anchor": "troubleshooting_tr-300"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Uninstalling and Reinstalling Stencil CLI\n\nIf you encounter persistent problems in initializing or starting Stencil, you have the option of completely removing Stencil CLI and doing a fresh reinstall. You would do so as follows:\n\n1. From your command line, issue the command:\n`npm uninstall -g @bigcommerce/stencil-cli`\n\n2. Navigate back to the Installing and Launching Stencil section and repeat all installation steps to reinstall dependencies and restore your theme, according to your development scenario.\n\nA more-drastic measure is to **also** uninstall and reinstall Stencil CLI's Node.js prerequisites (along with uninstalling Stencil CLI). We do not recommend this, as it might disable other Node.js applications on your local machine.",
+                              "header": {
+                                "anchor": "troubleshooting_uninstalling"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Stencil CLI Options and Commands",
+                        "route": {
+                          "path": "/stencil-cli-options-and-commands"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Stencil CLI Options and Commands</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#stencil_basic-cli\">Basic CLI Options and Commands</a></li>\n    <li><a href=\"#stencil_stencil-start\">Stencil Start Options</a></li>\n    <li><a href=\"#stencil_stencil-push\">Stencil Push Options</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Basic CLI Options and Commands\n\nThe syntax to run a basic Stencil CLI command is: `stencil <commands> [options] <parameter>`.\n\nTo see the basic options and commands that the Stencil CLI package supports, enter any of the following forms of the help option on your command line:\n\n`stencil <command> [option] <parameter>`\n\nTo see the basic options and commands that the Stencil CLI package supports, enter any of the following forms of the help option on your command line:\n\n```\nstencil\nstencil help\nstencil --help\nstencil -h\n```\n\nYour terminal window will display options and commands listed in the tables below. \n\t\n<table>\n  <tr>\n    <th>Option</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>-h, --help</td>\n    <td>Outputs usage information.</td>\n  </tr>\n  <tr>\n    <td>-V, --version</td>\n    <td>Outputs the version number (which is read from package.json file</span>).</td>\n  </tr>\n</table>\n\n<p></p>\n<table>\n  <tr>\n    <th>Command</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>init</td>\n    <td >Interactively creates a .stencil file, which configures how to run a BigCommerce store locally.</td>\n  </tr>\n  <tr>\n    <td>start</td>\n    <td>Starts up the BigCommerce store, using theme files in the current directory. \n\n<b>Note:</b> If stencil start generates an \"Unauthorized, please use a valid username/token error: Please make sure that the .stencil file contains the correct store URL and (for OAuth) the correct URL prefix). Also, verify that you have copied the correct credentials, as outlined here. If you continue to get the same error, please reissue tokens, as outlined here.\n    </td>\n  </tr>\n \n  \n  <tr>\n    <td>bundle</td>\n    <td>Bundles up the theme into a structured .zip file, which can be uploaded to BigCommerce. (Please see restrictions here).</td>\n  </tr>\n  \n  <tr>\n    <td></a>push</td>\n    <td>Bundles up the theme into a structured .zip file; then directly uploads (pushes) the .zip to BigCommerce.(Please see</nobr> usage instructions here. The same restrictions apply as for the bundle command.)</td>\n  </tr>\n  \n  <tr>\n    <td>release</td>\n    <td>Creates a new release in a theme's GitHub repository. Developers outside BigCommerce can use this for forks (not master) of Stencil's Cornerstone base theme, or for their own parallel themes independent of Cornerstone.</td>\n  </tr>\n    \n  <tr>\n    <td>help &lt;command&gt;</td>\n    <td>return all the options available to use for the specified command. For example, <code>stencil help bundle</code> will return the options that are available to use specifically with the stencil bundle command.\t\n    </td>\n  </tr>  \n</table>\n",
+                              "header": {
+                                "anchor": "#stencil_basic-cli"
+                              }
+                            },
+                            {
+                              "type": "image",
+                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538055264839",
+                              "header": {
+                                "title": "Basic Stencil CLI Options and Commands"
+                              }
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "title": "'stencil start' and 'stencil push' Options",
+                                "body": "The `stencil start` and `stencil push` CLI Commands have additional custom options that can be used with the command, which are detailed below."
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Stencil Start Options\n\nTo see Stencil CLI's additional options for the `stencil start` command (described above), enter the following on your command line:\n\n`stencil help start` \n\nYour terminal screen should read similar to the image below.\n",
+                              "header": {
+                                "anchor": "#stencil_stencil-start"
+                              }
+                            },
+                            {
+                              "type": "image",
+                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538029681278",
+                              "config": {
+                                "maxWidth": "1300",
+                                "maxHeight": "1300"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Stencil Push Options\n\nTo see Stencil CLI's additional options for the stencil push command (described above), enter the following on your command line:\n\n`stencil help push`\n\nYour terminal screen should read similar to the image below.",
+                              "header": {
+                                "anchor": "stencil_stencil-push"
+                              }
+                            },
+                            {
+                              "type": "image",
+                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538055086025",
+                              "config": {
+                                "maxHeight": "800",
+                                "maxWidth": "800"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "You can use the `-f` or `--filename` option in cases where you have already run `stencil bundle` to bundle your theme, but the resulting .zip file has not yet uploaded to BigCommerce. Use the generated .zip file's **filename** as a parameter to identify the generated file in your theme directory. An example of the command is outlined below.\n\n`stencil push -f Cornerstone-2.3.2.zip`\n\nIn this example, `Cornerstone-2.3.2.zip` is the name of the file that was generated after running `stencil bundle`.\n\nWhen you run `stencil push` with the `-f` or `--filename` option, Stencil CLI skips all its bundling steps and diagnostics. It proceeds directly to uploading the specified file, displaying its processing progress bar to show upload status.\n\n"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Cornerstone File Structure",
+                        "route": {
+                          "path": "/cornerstone-file-structure"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Cornerstone File Structure</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#cornerstone_cornerstone-file-structure\">The Cornerstone Theme File Structure</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## The Cornerstone Theme File Structure\n\nCornerstone is the base Stencil theme, and it is also the default theme for all newly initialized local storefronts. Cornerstone provides the standard file structure, base design pattern, and default file assets necessary to start developing a custom storefront experience.\n\nThe Cornerstone file structure consists of four main subdirectories. Within those subdirectories, you'll be directed to specific files in the Development Quick Start tutorial and in Stencil reference material:\n\n### `template/pages`\n`templates/pages` contains all the base template pages used in a BigCommerce online storefront. The pages are grouped by page category. In order to prevent any rendering errors, please avoid changing page names. For details, please see Templates Files > Templates Direcotry > [Pages Subdirectory](/stencil-docs/template-files/templates-directory/pages-subdirectory).\n\n\n### `template/components`\n`templates/components` Components consist of code snippets and partials that can be reused throughout your theme. This directory is grouped by component type. For details, please see Templates Files > Templates Direcotry > [Components Subdirectory](/stencil-docs/template-files/templates-directory/components-subdirectory).\n\n### `template/layout`\n`templates/layout` define the overall structure (header, footer, etc.) for your storefront. You can implement multiple layouts here, for different use cases – to make it easy to switch between different look-and-feel variations for the same theme. For details, please see Templates Files > Templates Direcotry > [Layout Subdirectory](/stencil-docs/template-files/templates-directory/layout-subdirectory).\n\n### `assets/`\n`assets/` (images, CSS and JavaScript files) will be located in this directory. For details, please see CSS And Design Assets > [Assets Directory](/stencil-docs/css-and-design-assets/assets-directory).\n\n### `lang/`\n`lang/` contains translation files, including the required `en.json`. For details, please see the _Internationalization/Localization_ section of the documentation.\n\nWhen developing in your local environment, all files that you change in your Stencil theme directory (`/cornerstone/` in our default installation) will be reflected immediately at [http://localhost:3000](http://localhost:3000).\n",
+                              "header": {
+                                "anchor": "cornerstone_cornerstone-file-structure"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "blocks": []
+                  }
+                }
