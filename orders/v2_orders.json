@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "",
-    "title": "Orders",
-    "description": "Orders APIs integrate with point-of-sale, shipping, distribution, and inventory-management systems. \n\n### Order\nThe Order object contains a record of the purchase agreement between a shopper and a merchant. To learn more about creating orders, see [Orders API Guide](/api-docs/orders/orders-guide). \n\n### Order Coupons\nCoupon code applied to an order.\n\n### Order Messages\nMessages associated with an order.\n\n### Order Products\nProduct line items belonging to an order.\n\n### Order Shipping Addresses\nCustomer shipping address belonging to an order.\n\n### Order Statuses\nEach order status represents a state in the order-fulfillment workflow.\n\n### Order Taxes\nEach tax applied to an order. This information can be useful for reporting purposes. All values are read-only.\n\n### Order Shipments\nTracks a package consignment from an order that is shipped from the seller to the buyer.\n\n### Order Shipping Addresses Quotes\nRead Only. Get's all shipping quotes from an order."
+    "title": "Orders APIs",
+    "description": "Orders APIs integrate with point-of-sale, shipping, distribution, and inventory-management systems. \n\n### Order\nThe Order object contains a record of the purchase agreement between a shopper and a merchant. To learn more about creating orders, see [Orders API Guide](/api-docs/orders/orders-api-guide). \n\n### Order Coupons\nCoupon code applied to an order.\n\n### Order Messages\nMessages associated with an order.\n\n### Order Products\nProduct line items belonging to an order.\n\n### Order Shipping Addresses\nCustomer shipping address belonging to an order.\n\n### Order Statuses\nEach order status represents a state in the order-fulfillment workflow.\n\n### Order Taxes\nEach tax applied to an order. This information can be useful for reporting purposes. All values are read-only.\n\n### Order Shipments\nTracks a package consignment from an order that is shipped from the seller to the buyer.\n\n### Order Shipping Addresses Quotes\nRead Only. Get's all shipping quotes from an order."
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{store_hash}/v2",
@@ -267,18 +267,10 @@
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
-        },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        }
       },
       "put": {
-        "description": "## Properties that can be updated\n* customer_id\n* statud_id\n* Add a new product\n* Add a custom product\n* billing_address\n\n## Read-only Properties\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   coupons\n*   shipping_address\n\n\n> If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders updated via the API.\n\n\n## Changing the Order Status\n\nThe `status` property cannot be edited directly, because it is generated based on the `status_id`.\n\nUse the `status_id` property to set the order to a specific state. The list of available statuses is provided by the [Order Statuses](#) resource. If the store has subscribed to Avalara Premium, tax documents are submitted when the `status_id` property changes. The following table details the behavior for `PUT` operations. See also the list of [Paid Statuses](#).\n\n| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |\n| --- | --- | --- | --- |\n| Any | None | `Pending` | None |\n| Paid or `Refunded` | Paid | Paid | None |\n| Unpaid or `Refunded` | Unpaid | Unpaid | None |\n| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |\n| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |\n\n## Calculated Fields\n\nEdits to the following properties will trigger a recalculation of the subtotal and total:\n\n*   products\n*   discount_amount\n*   shipping_cost_ex_tax\n*   shipping_cost_inc_tax\n*   handling_cost_ex_tax\n*   handling_cost_inc_tax\n*   wrapping_cost_ex_tax\n*   wrapping_cost_inc_tax\n*   billing_address\n*   shipping_addresses\n\n\n## Limitation on Coupons/Discounts\n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. You should modify the above fields only if you have created the order via the POST operation, or if you intend to manually override the subtotals and totals.\n\n## Adding an Existing Product\n| Name             | Type  | Description                                                                                                                                                                                                                                                                                                |\n| ---------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| product\\_id      | int   | The ID of the product that you want to add to the order (required).                                                                                                                                                                                                                                        |\n| quantity         | int   | How many products of this type to add to the order (required).                                                                                                                                                                                                                                             |\n| product\\_options | array | These values might be required, depending on how the product's options are set up. If the options are required, pass in the \\[\\`id\\`\\](\\#options-object-properties) of the product option (not the option itself) and the \\[\\`value\\`\\](\\#option-value-object-properties) of the option (not the product). |\n| price\\_inc\\_tax  | int   | If you include a value here, it will overwrite the price (including tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_inc\\_tax\\`, you must also include a value for \\`price\\_ex\\_tax\\`.                                                        |\n| price\\_ex\\_tax   | int   | If you include a value here, it will overwrite the price (excluding tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_ex\\_tax\\`, you must also include a value for \\`price\\_inc\\_tax\\`.                                                        |\n\n## Add a New Product\n| Name            | Type    | Description                                                                                                        |\n| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |\n| name            | int     | The name of the custom product tax. (Required.)                                                                    |\n| quantity        | int     | The quantity of the purchase for this custom product tax. (Required. Can be positive or negative. Cannot be zero.) |\n| price\\_inc\\_tax | decimal | The price of the custom product, including tax. (Required.)                                                        |\n| price\\_ex\\_tax  | decimal | The price of the custom product, excluding tax. (Required.)                                                        |\n| sku             | text    | The SKU of the custom product. (Optional.)                                                                         |",
+        "description": "## Properties that can be updated\n* customer_id\n* status_id\n* Add a new product\n* Add a custom product\n* billing_address\n\n## Read-only Properties\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   coupons\n*   shipping_address\n\n\n> If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders updated via the API.\n\n\n## Changing the Order Status\n\nThe `status` property cannot be edited directly, because it is generated based on the `status_id`.\n\nUse the `status_id` property to set the order to a specific state. The list of available statuses is provided by the [Order Statuses](#) resource. If the store has subscribed to Avalara Premium, tax documents are submitted when the `status_id` property changes. The following table details the behavior for `PUT` operations. See also the list of [Paid Statuses](#).\n\n| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |\n| --- | --- | --- | --- |\n| Any | None | `Pending` | None |\n| Paid or `Refunded` | Paid | Paid | None |\n| Unpaid or `Refunded` | Unpaid | Unpaid | None |\n| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |\n| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |\n\n## Calculated Fields\n\nEdits to the following properties will trigger a recalculation of the subtotal and total:\n\n*   products\n*   discount_amount\n*   shipping_cost_ex_tax\n*   shipping_cost_inc_tax\n*   handling_cost_ex_tax\n*   handling_cost_inc_tax\n*   wrapping_cost_ex_tax\n*   wrapping_cost_inc_tax\n*   billing_address\n*   shipping_addresses\n\n\n## Limitation on Coupons/Discounts\n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. You should modify the above fields only if you have created the order via the POST operation, or if you intend to manually override the subtotals and totals.\n\n## Adding an Existing Product\n| Name             | Type  | Description                                                                                                                                                                                                                                                                                                |\n| ---------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| product\\_id      | int   | The ID of the product that you want to add to the order (required).                                                                                                                                                                                                                                        |\n| quantity         | int   | How many products of this type to add to the order (required).                                                                                                                                                                                                                                             |\n| product\\_options | array | These values might be required, depending on how the product's options are set up. If the options are required, pass in the \\[\\`id\\`\\](\\#options-object-properties) of the product option (not the option itself) and the \\[\\`value\\`\\](\\#option-value-object-properties) of the option (not the product). |\n| price\\_inc\\_tax  | int   | If you include a value here, it will overwrite the price (including tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_inc\\_tax\\`, you must also include a value for \\`price\\_ex\\_tax\\`.                                                        |\n| price\\_ex\\_tax   | int   | If you include a value here, it will overwrite the price (excluding tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_ex\\_tax\\`, you must also include a value for \\`price\\_inc\\_tax\\`.                                                        |\n\n## Add a New Product\n| Name            | Type    | Description                                                                                                        |\n| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |\n| name            | int     | The name of the custom product tax. (Required.)                                                                    |\n| quantity        | int     | The quantity of the purchase for this custom product tax. (Required. Can be positive or negative. Cannot be zero.) |\n| price\\_inc\\_tax | decimal | The price of the custom product, including tax. (Required.)                                                        |\n| price\\_ex\\_tax  | decimal | The price of the custom product, excluding tax. (Required.)                                                        |\n| sku             | text    | The SKU of the custom product. (Optional.)                                                                         |",
         "summary": "Update an Order",
         "tags": [
           "Orders"
@@ -662,18 +654,10 @@
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
-        },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        }
       },
       "delete": {
-        "description": "Archives an order.\n\n## Deletion Blocked by Automatic Tax\n\nAny attempt to DELETE an order on a store with automatic tax enabled will fail, and will return `405 Method not allowed.`",
+        "description": "Archives an order.\n\n**Deletion Blocked by Automatic Tax**\n\nAny attempt to DELETE an order on a store with automatic tax enabled will fail, and will return `405 Method not allowed.`",
         "summary": "Delete an Order",
         "tags": [
           "Orders"
@@ -719,15 +703,7 @@
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
-        },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        }
       },
       "parameters": [
         {
@@ -1505,15 +1481,7 @@
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
         },
-        "summary": "Get All Orders",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        "summary": "Get All Orders"
       },
       "post": {
         "description": "When creating an order the shipping address is the same as the billing address and can not be changed. \n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. \n\n## Requirements\n\nThe following properties of the order are required. The request won’t be fulfilled unless these properties are valid.\n\n*   products\n*   billing_address\n\n## Ready Only\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   cart_id\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   is_deleted\n*   coupons\n\n## Taxes\nIf a store has automatic tax enabled, BigCommerce does not compute sales tax on orders created via the API.\n\nAbbreviated state names in shipping and billing addresses will prevent tax documents from being submitted to Avalara. To ensure successful Avalara tax-document submission, spell state names out in full. For example, supplying CA as a state name leads to no tax-document submission. Supplying California as a state name leads to a successful submission.\n\n## Overriding Preset Values\n\nYou can create overrides for calculated values such as product prices, subtotal and totals by sending a fixed value in the request. If values are not supplied for these properties, they will be automatically calculated based on the pre-set store values and tax rules.\n\n## Order Products\n\n*   Existing products can be added to the order with a reference to their `product_id`.\n*   Custom products can be added to the order using the [products array](/api-docs/api-reference/v2-api/v2-orders/models/orderproducts).\n*   If price is not specified, it will automatically pick up the price from the store’s product catalog. However, you can override this via `price_inc_tax` and `price_ex_tax`.\n*   If `price_inc_tax` and `price_ex_tax` are specified, price and rulesets are ignored, and the `price_inc_tax` or `price_ex_tax` are written to `base_price` according to the store settings.\n*   When the store is subscribed to Avalara Premium, a value of `API Tax Override` is written to the Order Tax object's `name` field.\n*   Tax will be calculated based on the tax rules specified in the store, except in the case of automatic taxes. However, in both cases, you can optionally override the tax values by specifying `price_inc_tax` and `price_ex_tax`.\n*   For products that are configured to track stock, the quantity specified on the order will reduce the stock on hand. When there is not enough inventory to fulfill the order, the order will be rejected with an \"out of stock\" error code.\n*   For products that have min and max quantities specified in their settings, the API will honor these, and will reject orders appropriately.\n*   For products where product options are required, the API will validate these requirements to ensure that the product options are specified.\n*   Product quantity must be specified.\n\n#### Calculation of Totals\n\n*   When not specified, order subtotal and total are automatically calculated.\n*   You can override order subtotal and/or total. If you choose to override one, we strongly recommend that override both, because the system will not be able to accurately calculate the other.\n\n#### Order Properties\n\n*   Billing address is mandatory.\n*   Shipping address is not mandatory, and can optionally be specified as composite records.\n    *   When the shipping address is not specified, the system will fall back to using the billing address as the shipping address.\n    *   Multiple shipments are not supported, so the API will assume the first address in the collection.\n*   In the shipping and billing addresses, there is no requirement to specify `country` when `country_ISO2` is specified.\n    *   The value specified for `country_ISO2` will always override any value specified for `country`.\n*   Coupon redemption is not currently supported.\n*   To specify a guest checkout, set `customer_id` to `0`.\n*   `order_source` cannot be specified, and will be set to `external`.\n    *   You can optionally specify a value for `external_source` to specify which external source the order is coming from - e.g., POS system X, accounting system Y, etc.\n\n## Changing the Order Status\n\n*   You can specify `status_id`, which will automatically set the corresponding `status`. When `status_id` is not specified, it will be automatically set to `1`, which will set `status` to `Pending`.\n\n*   `POST` or `PUT` orders on stores with Avalara Premium cause tax documents to be submitted. If a store has subscribed to Avalara Premium, BigCommerce automatically submits tax documents to Avalara when the order achieves a paid status. The following statuses are of the paid type:\n    *   Shipped\n    *   Partially Shipped\n    *   Awaiting Pickup\n    *   Awaiting Shipment\n    *   Completed\n    *   Awaiting Fulfillment\n*   BigCommerce considers all statuses other than those above to be of the unpaid type, except `Refunded`, which is considered neither paid or unpaid. Orders that are created using the `POST` method, and that include a status of the paid type, cause the submission of tax documents to Avalara.",
@@ -1838,15 +1806,7 @@
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
-        },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        }
       },
       "delete": {
         "description": "Archives all orders.",
@@ -1883,15 +1843,7 @@
           "AllowDynamicQueryParameters": false,
           "AllowDynamicFormParameters": false,
           "IsMultiContentStreaming": false
-        },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        }
       }
     },
     "/orders/{order_id}/coupons": {
@@ -1999,14 +1951,6 @@
         },
         "tags": [
           "Order Coupons"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "parameters": [
@@ -2631,14 +2575,6 @@
         },
         "tags": [
           "Order Products"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "parameters": [
@@ -2965,14 +2901,6 @@
         },
         "tags": [
           "Order Shipping Addresses"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "parameters": [
@@ -3168,14 +3096,6 @@
         },
         "tags": [
           "Order Statues"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -3268,14 +3188,6 @@
         },
         "tags": [
           "Order Statues"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "parameters": [
@@ -3289,7 +3201,7 @@
     },
     "/orders/{order_id}/taxes": {
       "get": {
-        "description": "Gets all order taxes using `order_id`.\nEach tax applied to an order. This information can be useful for reporting purposes. All values are read-only.",
+        "description": "Gets all order taxes using `order_id`.\nEach tax applied to an order. This information can be useful for reporting purposes. \nPass in the query parameter `?details=true` to return extra details about order taxes.\n`order_product_id` and `line_item_type` are also returned\n\nAll values are read-only.",
         "summary": "Get All Order Taxes",
         "parameters": [
           {
@@ -3334,6 +3246,13 @@
             "exclusiveMaximum": false,
             "exclusiveMinimum": false,
             "description": "Count per page"
+          },
+          {
+            "in": "query",
+            "name": "details",
+            "type": "string",
+            "default": "true",
+            "description": "To return detailed tax information, pass in the details query."
           }
         ],
         "responses": {
@@ -3401,7 +3320,8 @@
                   "priority_amount": "esse sint consectetur in Excepteur",
                   "line_amount": "tempor"
                 }
-              ]
+              ],
+              "details=true": "[\n    {\n        \"id\": 173,\n        \"order_id\": 195,\n        \"order_address_id\": 95,\n        \"tax_rate_id\": 3,\n        \"tax_class_id\": 2,\n        \"name\": \"All\",\n        \"class\": \"Shipping\",\n        \"rate\": \"8.2500\",\n        \"priority\": 0,\n        \"priority_amount\": \"0.6600\",\n        \"line_amount\": \"0.6600\",\n        \"order_product_id\": null,\n        \"line_item_type\": \"shipping\"\n    },\n    {\n        \"id\": 174,\n        \"order_id\": 195,\n        \"order_address_id\": 95,\n        \"tax_rate_id\": 4,\n        \"tax_class_id\": 2,\n        \"name\": \"All - Texas\",\n        \"class\": \"Shipping\",\n        \"rate\": \"8.2500\",\n        \"priority\": 0,\n        \"priority_amount\": \"0.6600\",\n        \"line_amount\": \"0.6600\",\n        \"order_product_id\": null,\n        \"line_item_type\": \"shipping\"\n    },\n    {\n        \"id\": 175,\n        \"order_id\": 195,\n        \"order_address_id\": 95,\n        \"tax_rate_id\": 3,\n        \"tax_class_id\": 0,\n        \"name\": \"All\",\n        \"class\": \"\",\n        \"rate\": \"8.2500\",\n        \"priority\": 0,\n        \"priority_amount\": \"0.6600\",\n        \"line_amount\": \"0.6600\",\n        \"order_product_id\": 137,\n        \"line_item_type\": \"product\"\n    },\n    {\n        \"id\": 176,\n        \"order_id\": 195,\n        \"order_address_id\": 95,\n        \"tax_rate_id\": 4,\n        \"tax_class_id\": 0,\n        \"name\": \"All - Texas\",\n        \"class\": \"\",\n        \"rate\": \"8.2500\",\n        \"priority\": 0,\n        \"priority_amount\": \"0.6600\",\n        \"line_amount\": \"0.6600\",\n        \"order_product_id\": 137,\n        \"line_item_type\": \"product\"\n    }\n]"
             }
           }
         },
@@ -3414,14 +3334,6 @@
         },
         "tags": [
           "Order Taxes"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "parameters": [
@@ -3617,14 +3529,6 @@
         },
         "tags": [
           "Order Shipments"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "post": {
@@ -3798,14 +3702,6 @@
         },
         "tags": [
           "Order Shipments"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -3853,14 +3749,6 @@
         },
         "tags": [
           "Order Shipments"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "parameters": [
@@ -4084,14 +3972,6 @@
         },
         "tags": [
           "Order Shipments"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -4150,14 +4030,6 @@
         },
         "tags": [
           "Order Shipments"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "parameters": [
@@ -4608,14 +4480,6 @@
         "description": "Gets a shipping address associated with an order.\nReturned in the response is shipping_quotes object. Please use the Get Shipping Quotes Endpoint. Using the response will return a 204 for the shipping quote. ",
         "tags": [
           "Order Shipping Addresses"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -5139,6 +5003,20 @@
           "items": {
             "$ref": "#/definitions/FormFields"
           }
+        },
+        "channel_id": {
+          "type": "number",
+          "example": 1,
+          "description": "Shows where the order originated. The channel_id will default to 1. Read-Only. "
+        },
+        "tax_provider_id": {
+          "type": "string",
+          "description": "BasicTaxProvider - Tax is set to manual. \n\nAvaTaxProvider - This is for when the tax provider has been set to automatic and the order was NOT created by the API. Used for Avalara. \n\n\"\" (blank) - When the tax provider is unknown. This includes legacy orders and orders previously created via API.\nThis can be set when creating an order using a POST. \n\n",
+          "enum": [
+            "BasicTaxProvider",
+            "AvaTaxProvider",
+            ""
+          ]
         }
       },
       "required": [
@@ -5721,6 +5599,20 @@
           "description": "(Float, Float-As-String, Integer)",
           "example": "1.5200",
           "type": "string"
+        },
+        "order_product_id": {
+          "type": "string",
+          "description": "If the `line_item_type` is `item` or `handling` then this field will be the order product id. Otherwise the field will return as null."
+        },
+        "line_item_type": {
+          "type": "string",
+          "enum": [
+            "item",
+            "shipping",
+            "handling",
+            "gift-wrapping"
+          ],
+          "description": "Type of tax on item"
         }
       }
     },
@@ -6384,7 +6276,7 @@
       "name": "Order Taxes"
     },
     {
-      "name": "Order Statues"
+      "name": "Order Status"
     },
     {
       "name": "Order Shipments"
