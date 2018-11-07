@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Catalog",
+    "title": "Catalog APIs",
     "version": "",
-    "description": "The Catalog API manages products, brands and categories for a store. To learn more about the Catalog resources see [Catalog Products](/api-docs/catalog/products/products-overview) and [Categories](/api-docs/catalog/categories/categories-overview).",
+    "description": "### Catalog\n\nThe Catalog API manages products, brands and categories for a store. To learn more about the Catalog resources see [Catalog Products](/api-docs/catalog/products/products-overview) and [Categories](/api-docs/catalog/categories/categories-overview).",
     "termsOfService": "",
     "license": {
       "name": ""
@@ -179,14 +179,6 @@
           }
         },
         "summary": "Get All Products",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Products",
           "Catalog"
@@ -483,14 +475,6 @@
         "tags": [
           "Products",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -558,14 +542,6 @@
         "tags": [
           "Products",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -698,14 +674,6 @@
         "tags": [
           "Products",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "put": {
@@ -935,14 +903,6 @@
         "tags": [
           "Products",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -957,14 +917,6 @@
         "tags": [
           "Products",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -1067,14 +1019,6 @@
           }
         },
         "summary": "Get Product Images",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Images",
           "Catalog"
@@ -1141,14 +1085,6 @@
           }
         },
         "summary": "Create a Product Image",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "consumes": [
           "application/json",
           "multipart/form-data"
@@ -1218,14 +1154,6 @@
           }
         },
         "summary": "Get a Product Image by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Images",
           "Catalog"
@@ -1290,14 +1218,6 @@
           }
         },
         "summary": "Update Product Image",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Images",
           "Catalog"
@@ -1312,14 +1232,6 @@
           }
         },
         "summary": "Delete Product Image by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -1417,14 +1329,6 @@
         "tags": [
           "Product Videos",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "post": {
@@ -1488,14 +1392,6 @@
         "tags": [
           "Product Videos",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -1558,11 +1454,6 @@
         "tags": [
           "Product Videos",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          }
         ]
       },
       "put": {
@@ -1626,14 +1517,6 @@
         "tags": [
           "Product Videos",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -1648,14 +1531,6 @@
         "tags": [
           "Product Videos",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -1840,15 +1715,7 @@
           "Product Variants",
           "Catalog"
         ],
-        "summary": "Get Variants by Product Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        "summary": "Get Variants by Product Id"
       },
       "post": {
         "description": "Variants need to be created one at a time using this endpoint.To use a variant array and create products and variants in the same call use the /product endpoint during product creation.",
@@ -1950,15 +1817,7 @@
           "Product Variants",
           "Catalog"
         ],
-        "summary": "Create a Product Variant",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        "summary": "Create a Product Variant"
       }
     },
     "/catalog/products/{product_id}/variants/{variant_id}": {
@@ -2046,14 +1905,6 @@
         "tags": [
           "Product Variants",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "put": {
@@ -2108,14 +1959,6 @@
         "tags": [
           "Product Variants",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -2130,14 +1973,6 @@
         "tags": [
           "Product Variants",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -2232,14 +2067,6 @@
           }
         },
         "summary": "Get Product Variant Metafields by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Variants Metafields",
           "Catalog"
@@ -2296,14 +2123,6 @@
           }
         },
         "summary": "Create a Product Variant Metafield",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Variants Metafields",
           "Catalog"
@@ -2399,14 +2218,6 @@
           }
         },
         "summary": "Get All Product Variant Metafields",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Variants Metafields",
           "Catalog"
@@ -2473,14 +2284,6 @@
           }
         },
         "summary": "Update Product Variant Metafields",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Variants Metafields",
           "Catalog"
@@ -2495,14 +2298,6 @@
           }
         },
         "summary": "Delete Variant Metafield by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -2578,14 +2373,6 @@
         "tags": [
           "Product Variants",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -3211,14 +2998,6 @@
           }
         },
         "summary": "Create Variant Option Value",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Variant Options",
           "Catalog"
@@ -3279,14 +3058,6 @@
           }
         },
         "summary": "Get Variant Option Value by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Variant Options",
           "Catalog"
@@ -3340,14 +3111,6 @@
           }
         },
         "summary": "Update a Variant Option Value",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Variant Options",
           "Catalog"
@@ -3362,14 +3125,6 @@
           }
         },
         "summary": "Delete Variant Option Value y Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -3492,14 +3247,6 @@
           }
         },
         "summary": "Get All Product Modifiers",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Modifiers",
           "Catalog"
@@ -3630,14 +3377,6 @@
           }
         },
         "summary": "Create a Product Modifier",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Modifiers",
           "Catalog"
@@ -3742,14 +3481,6 @@
         },
         "summary": "Get a Modifier by Id",
         "description": "Get a modifier by `product_id` and `modifier_id`. Optional parameters can be passed in.",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Modifiers",
           "Catalog"
@@ -3901,14 +3632,6 @@
           }
         },
         "summary": "Update a Modifier by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Modifiers",
           "Catalog"
@@ -3923,14 +3646,6 @@
           }
         },
         "summary": "Delete Modifier by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Content-Type"
@@ -4039,14 +3754,6 @@
           }
         },
         "summary": "Get Modifier Values",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Modifiers",
           "Catalog"
@@ -4121,14 +3828,6 @@
             }
           }
         },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "summary": "Create Modifier Value",
         "tags": [
           "Product Modifiers",
@@ -4288,14 +3987,6 @@
           }
         },
         "summary": "Update a Modifier Value",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Modifiers",
           "Catalog"
@@ -4310,14 +4001,6 @@
           }
         },
         "summary": "Delete Modifier Value by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -4405,14 +4088,6 @@
           }
         },
         "summary": "Create Modifier Image",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Modifiers",
           "Catalog"
@@ -4427,14 +4102,6 @@
           }
         },
         "summary": "Delete Modifier Image",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -4549,14 +4216,6 @@
           }
         },
         "summary": "Get Complex Rules",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Complex Rules",
           "Catalog"
@@ -4696,14 +4355,6 @@
         },
         "summary": "Create a Complex Rule",
         "description": "Creates a complex rule on a product using the `product_id`.",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Complex Rules",
           "Catalog"
@@ -4781,14 +4432,6 @@
           }
         },
         "summary": "Get a Complex Rule by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Complex Rules",
           "Catalog"
@@ -4885,14 +4528,6 @@
           }
         },
         "summary": "Update a Complex Rule",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Complex Rules",
           "Catalog"
@@ -4907,14 +4542,6 @@
           }
         },
         "summary": "Delete Complex Rule by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Content-Type"
@@ -4992,14 +4619,6 @@
           }
         },
         "summary": "Get Custom Fields",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Custom Fields",
           "Catalog"
@@ -5061,14 +4680,6 @@
           }
         },
         "summary": "Create a Custom Fields",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Custom Fields",
           "Catalog"
@@ -5126,14 +4737,6 @@
           }
         },
         "summary": "Get a Custom Field by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Custom Fields",
           "Catalog"
@@ -5195,14 +4798,6 @@
           }
         },
         "summary": "Update a Custom Field",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Custom Fields",
           "Catalog"
@@ -5223,14 +4818,6 @@
           }
         },
         "summary": "Delete Custom Field by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -5327,14 +4914,6 @@
           }
         },
         "summary": "Get Bulk Pricing Rules",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Bulk Pricing Rules",
           "Catalog"
@@ -5352,13 +4931,36 @@
               "$ref": "#/definitions/BulkPricingRulePost"
             },
             "x-examples": {
-              "application/json": {},
-              "new": {
-                "quantity_min": 10,
-                "quantity_max": 50,
-                "type": "price",
-                "amount": 10
-              }
+              "application/json": [
+                {
+                  "id": 59,
+                  "quantity_min": 1,
+                  "quantity_max": 10,
+                  "type": "price",
+                  "amount": 1
+                },
+                {
+                  "id": 60,
+                  "quantity_min": 11,
+                  "quantity_max": 20,
+                  "type": "price",
+                  "amount": 1.5
+                },
+                {
+                  "id": 61,
+                  "quantity_min": 21,
+                  "quantity_max": 30,
+                  "type": "price",
+                  "amount": 1.75
+                },
+                {
+                  "id": 62,
+                  "quantity_min": 31,
+                  "quantity_max": 0,
+                  "type": "price",
+                  "amount": 2
+                }
+              ]
             }
           },
           {
@@ -5376,14 +4978,48 @@
             },
             "examples": {
               "application/json": {
-                "data": {
-                  "quantity_min": 10,
-                  "quantity_max": 50,
-                  "type": "price",
-                  "amount": 1,
-                  "id": 53
-                },
-                "meta": {}
+                "data": [
+                  {
+                    "id": 59,
+                    "quantity_min": 1,
+                    "quantity_max": 10,
+                    "type": "price",
+                    "amount": 1
+                  },
+                  {
+                    "id": 60,
+                    "quantity_min": 11,
+                    "quantity_max": 20,
+                    "type": "price",
+                    "amount": 1.5
+                  },
+                  {
+                    "id": 61,
+                    "quantity_min": 21,
+                    "quantity_max": 30,
+                    "type": "price",
+                    "amount": 1.75
+                  },
+                  {
+                    "id": 62,
+                    "quantity_min": 31,
+                    "quantity_max": 0,
+                    "type": "price",
+                    "amount": 2
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 4,
+                    "count": 4,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "links": {
+                      "current": "?page=1&limit=50"
+                    }
+                  }
+                }
               }
             }
           },
@@ -5406,14 +5042,6 @@
             }
           }
         },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "summary": "Create a Bulk Pricing Rule",
         "tags": [
           "Product Bulk Pricing Rules",
@@ -5474,14 +5102,6 @@
           }
         },
         "summary": "Get a Bulk Pricing Rule by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Bulk Pricing Rules",
           "Catalog"
@@ -5553,14 +5173,6 @@
           }
         },
         "summary": "Update a Bulk Pricing Rule",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Bulk Pricing Rules",
           "Catalog"
@@ -5581,14 +5193,6 @@
           }
         },
         "summary": "Delete a Bulk Pricing Rule by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -5695,14 +5299,6 @@
           }
         },
         "summary": "Get All Product Metafields",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Metafields",
           "Catalog"
@@ -5757,14 +5353,6 @@
           }
         },
         "summary": "Create a Product Metafield",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Metafields",
           "Catalog"
@@ -5829,14 +5417,6 @@
           }
         },
         "summary": "Get a Product Metafield by Id",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Metafields",
           "Catalog"
@@ -5903,14 +5483,6 @@
           }
         },
         "summary": "Update a Product Metafield",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Metafields",
           "Catalog"
@@ -5925,14 +5497,6 @@
           }
         },
         "summary": "Delete Product Metafield",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -6024,14 +5588,6 @@
           }
         },
         "summary": "Get Product Reviews",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Product Reviews",
           "Catalog"
@@ -6103,14 +5659,6 @@
         "tags": [
           "Product Reviews",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -6175,14 +5723,6 @@
         "tags": [
           "Product Reviews",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "put": {
@@ -6236,14 +5776,6 @@
             }
           }
         },
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "summary": "Update a Product Review",
         "tags": [
           "Product Reviews",
@@ -6262,14 +5794,6 @@
         "tags": [
           "Product Reviews",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -6482,14 +6006,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "post": {
@@ -6579,14 +6095,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -6621,14 +6129,6 @@
           }
         },
         "summary": "Delete Category",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Category",
           "Catalog"
@@ -6697,14 +6197,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "put": {
@@ -6788,14 +6280,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -6810,14 +6294,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -6914,14 +6390,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "post": {
@@ -7008,14 +6476,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -7093,14 +6553,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "put": {
@@ -7181,14 +6633,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -7203,14 +6647,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -7288,14 +6724,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -7307,14 +6735,6 @@
           }
         },
         "summary": "Delete a Category Image",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "tags": [
           "Category",
           "Catalog"
@@ -7401,14 +6821,6 @@
         "tags": [
           "Category",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -7707,14 +7119,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "post": {
@@ -7788,14 +7192,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -7824,15 +7220,7 @@
           "Brands",
           "Catalog"
         ],
-        "summary": "Delete Brands",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ]
+        "summary": "Delete Brands"
       }
     },
     "/catalog/brands/{brand_id}": {
@@ -7896,14 +7284,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "put": {
@@ -7989,14 +7369,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -8011,14 +7383,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -8137,14 +7501,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "post": {
@@ -8217,14 +7573,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -8302,14 +7650,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "put": {
@@ -8376,14 +7716,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       },
       "delete": {
@@ -8398,14 +7730,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -8482,14 +7806,6 @@
           "Brands",
           "Catalog"
         ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "consumes": [
           "multipart/form-data",
           "application/json"
@@ -8507,14 +7823,6 @@
         "tags": [
           "Brands",
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ],
         "parameters": [
           {
@@ -8554,6 +7862,9 @@
           },
           {
             "$ref": "#/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/parameters/product_id"
           }
         ],
         "responses": {
@@ -10192,7 +9503,7 @@
             }
           },
           "404": {
-            "description": "The resource was not found.\n",
+            "description": "The resource was not found.",
             "schema": {
               "$ref": "#/definitions/NotFound"
             }
@@ -10201,14 +9512,6 @@
         "summary": "Get All Variants",
         "tags": [
           "Catalog"
-        ],
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
         ]
       }
     },
@@ -10244,14 +9547,6 @@
           }
         },
         "summary": "Get a Catalog Summary",
-        "security": [
-          {
-            "X-Auth-Client": []
-          },
-          {
-            "X-Auth-Token": []
-          }
-        ],
         "parameters": [
           {
             "$ref": "#/parameters/Accept"
@@ -10778,6 +10073,12 @@
       "in": "header",
       "type": "string",
       "default": "application/json"
+    },
+    "product_id": {
+      "name": "product_id",
+      "in": "query",
+      "type": "string",
+      "description": "A comma-separated list of ids of Products whose prices were requested. For example:\n`?product_id=:id`\n`?product_id:in=77,80,81`"
     }
   },
   "definitions": {
