@@ -3822,7 +3822,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1> Customer Login API </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#customer-login_introduction\"> JWT</a></li>\n    <li><a href=\"#customer-login_jwt\"> JWT</a></li>\n\t\t<li><a href=\"#customer-login_oauth-scope\">OAuth Scope</a></li>\n    <li><a href=\"#customer-login_sample-code\">Sample Code</a></li>\n    <li><a href=\"#customer-login_access-url\">Acces URL</a></li>\n    <li><a href=\"#customer-login_logging-in-a-customer\">Loggin In a Customer</a></li>\n    <li><a href=\"#customer-login_troubleshooting-customer-login-api\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                        "data": "<h1> Customer Login API </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#customer-login_introduction\"> Introduction</a></li>\n    <li><a href=\"#customer-login_jwt\"> JWT</a></li>\n\t\t<li><a href=\"#customer-login_oauth-scope\">OAuth Scope</a></li>\n    <li><a href=\"#customer-login_sample-code\">Sample Code</a></li>\n    <li><a href=\"#customer-login_access-url\">Acces URL</a></li>\n    <li><a href=\"#customer-login_logging-in-a-customer\">Loggin In a Customer</a></li>\n    <li><a href=\"#customer-login_troubleshooting-customer-login-api\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -4055,9 +4055,9 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Troubleshooting\n\n* If the server generating the iat is out of sync, the login token will fail if the timestamp indicates a time in the future or an expired token.\n\n* The login URL can be visited only once. Once a GET request is run against the link, the token is invalidated. \n\n* Tokens can be validated or generated for testing purposes using the debugger at https://jwt.io/.\n\n* Tokens will be valid for a very short timeframe after they are first generated, so tokens should not be generated in advance. Instead, the application should generate the token and then immediately redirect the user’s browser to `/login/token/{token}`. If you're seeing issues related to your system time differing from BC's server time, you can use the <a href=\"/api/v2/#get-a-timestamp\">/v2/time</a> endpoint as a source of truth.",
+                        "data": "## Troubleshooting\n\n* If the server generating the iat is out of sync, the login token will fail if the timestamp indicates a time in the future or an expired token.\n\n* The login URL can be visited only once. Once a GET request is run against the link, the token is invalidated. \n\n* Tokens can be validated or generated for testing purposes using the debugger at https://jwt.io/.\n\n* Tokens will be valid for a very short timeframe after they are first generated, so tokens should not be generated in advance. Instead, the application should generate the token and then immediately redirect the user’s browser to `/login/token/{token}`. If you're seeing issues related to your system time differing from BC's server time, you can use the <a href=\"/api-reference/store/store-information-api/time-zone/gettime\">/v2/time</a> endpoint as a source of truth.",
                         "header": {
-                          "anchor": "troubleshooting-customer-login-api\""
+                          "anchor": "customer-login_troubleshooting-customer-login-api"
                         }
                       }
                     ]
@@ -4149,7 +4149,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Storefront Cart and Checkout\n\nThe Storefront APIs are for managing the contents of a shopper's cart using JavaScript in the context of a storefront session. \n\n### When to Use the Storefront APIs\n\n* Analytics and Tracking\n* Retrieving cart data client-side\n* Quick Order Form\n* Upsell applications\n\n### Using the Fetch API\nThe [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is an alternative to [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) for making http requests in JavaScript. You can use the Fetch API to interact with the Storefront APIs and return a shopper's cart, checkout or order. \n\nFetch API is supported by most modern browsers, but it is not supported in Internet Explorer. We recommend using a [Polyfill](https://github.com/github/fetch) for Internet Explorer 10+ and XMLHttpRequest for earlier versions.\n\nHere we use `credentials: 'include'` to make a fetch request with credentials.\nYou can run fetch requests from the browser console to test, or you can  use the [Scripts API](http://) to add inject JavaScript into your theme's footer.",
+                        "data": "## Storefront Cart and Checkout\n\nThe Storefront APIs are for managing the contents of a shopper's cart using JavaScript in the context of a storefront session. \n\n### When to Use the Storefront APIs\n\n* Analytics and Tracking\n* Retrieving cart data client-side\n* Quick Order Form\n* Upsell applications\n\n### Using the Fetch API\nThe [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is an alternative to [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) for making http requests in JavaScript. You can use the Fetch API to interact with the Storefront APIs and return a shopper's cart, checkout or order. \n\nFetch API is supported by most modern browsers, but it is not supported in Internet Explorer. We recommend using a [Polyfill](https://github.com/github/fetch) for Internet Explorer 10+ and XMLHttpRequest for earlier versions.\n\nHere we use `credentials: 'include'` to make a fetch request with credentials.\nYou can run fetch requests from the browser console to test, or you can  use the [Scripts API](/api-docs/scripts/scripts-overview) to add inject JavaScript into your theme's footer.",
                         "header": {
                           "anchor": "cart-checkout_storefront-cart-and-checkout"
                         }
@@ -6721,7 +6721,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Configuration Files\n\nEach theme contains two related JSON files of key-value pairs: `config.json` and `schema.json`. These files' keys provide the following features:\n\nKeys that you include in `schema.json` – together with their corresponding `config.json` default values – define the settings that merchants can customize through the Theme Editor graphical interface.\nOther `config.json` keys contain metadata about the theme, such as the theme's name, version, and resource controls.\nKeys located under the `config.json > variations` object define variations of the theme. For example, a theme might have a \"Light\" variation and a \"Bold\" variation, each with different typography and colors. Each theme can include as many variations as you like.\nKeys located under both files' `settings` objects define the theme's look, feel, and functionality.\n\nFor documentation on the principal keys included in Stencil's reference Cornerstone theme, see this section's [config.json Metadata](/stencil-docs/development-quickstart/config-json-metadata) and [schema.json Metadata](/stencil-docs/development-quickstart/schema-json-metadata) entries. For an introduction to the graphical editor, see\n[Stencil Theme Editor Overview](/stencil-docs/stencil-theme-editor/stencil-theme-editor-overview).",
+                        "data": "## Configuration Files\n\nEach theme contains two related JSON files of key-value pairs: `config.json` and `schema.json`. These files' keys provide the following features:\n\nKeys that you include in `schema.json` – together with their corresponding `config.json` default values – define the settings that merchants can customize through the Theme Editor graphical interface.\nOther `config.json` keys contain metadata about the theme, such as the theme's name, version, and resource controls.\nKeys located under the `config.json > variations` object define variations of the theme. For example, a theme might have a \"Light\" variation and a \"Bold\" variation, each with different typography and colors. Each theme can include as many variations as you like.\nKeys located under both files' `settings` objects define the theme's look, feel, and functionality.\n\nFor documentation on the principal keys included in Stencil's reference Cornerstone theme, see this section's [config.json Metadata](/stencil-docs/stencil-theme-editor/config-json-metadata) and [schema.json Metadata](/stencil-docs/stencil-theme-editor/schema-json-metadata) entries. For an introduction to the graphical editor, see\n[Stencil Theme Editor Overview](/stencil-docs/stencil-theme-editor/stencil-theme-editor-overview).",
                         "header": {
                           "anchor": "configuring_configuration-files"
                         }
@@ -7684,6 +7684,104 @@
                   },
                   "data": {
                     "children": [
+                      {
+                        "title": "PayPal Smart Buttons",
+                        "route": {
+                          "path": "/paypal-smart-buttons"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>PayPal Smart Buttons</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#paypal-smart_overview\">PayPal Smart Buttons Overview</a></li>\n    <li><a href=\"#paypal-smart_include-smart-buttons\">Include Smart Buttons on a Stencil Theme</a></li>\n    <li><a href=\"#paypal-smart_mutually-exclusive\">Mutually Exclusive Options</a></li>\n    <li><a href=\"#paypal-smart_additional-resources\">Additional Resources</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## PayPal Smart Buttons Overview\n\nPayPal Smart Buttons are available on Cornerstone versions 2.6.0+. Theme developers can enable Smart Buttons on a custom Stencil theme by adding settings to the `config.json` file. Merchants will have the ability to customize some style aspects of the PayPal payment buttons at checkout using Theme Editor/Store Design for stores that have PayPal powered by Braintree enabled. In order to make PayPal Smart Buttons customizable through Theme Editor/Store Design, a theme developer will need to make its customization properties available by adding its schema to the `schema.json` file. ",
+                              "header": {
+                                "anchor": "paypal-smart_overview"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Enable Smart Buttons on Your Stencil Theme\n\nTo enable Smart Buttons on Cornerstone versions pre-2.6.0 or Marketplace themes, append the following highlighted `paymentbuttons` settings to the `settings` object within your `config.json` file:",
+                              "header": {
+                                "anchor": "paypal-smart_include-smart-buttons"
+                              }
+                            },
+                            {
+                              "type": "code",
+                              "data": " \"settings\": {\n    \"...\",\n    \"color_badge_product_sale_badges\": \"#007dc6\",\n    \"color_text_product_sale_badges\": \"#ffffff\",\n    \"color_hover_product_sale_badges\": \"#000000\",\n    \"restrict_to_login\": false,\n    \"swatch_option_size\": \"22x22\",\n    \"social_icon_placement_top\": false,\n    \"social_icon_placement_bottom\": \"bottom_none\",\n    \"geotrust_ssl_common_name\": \"\",\n    \"geotrust_ssl_seal_size\": \"M\",\n    \"navigation_design\": \"simple\",\n    \"price_ranges\": true,\n    \"pdp-price-label\": \"\",\n    \"pdp-sale-price-label\": \"Now:\",\n    \"pdp-non-sale-price-label\": \"Was:\",\n    \"pdp-retail-price-label\": \"MSRP:\",\n    \"paymentbuttons-paypal-layout\": \"horizontal\",\n    \"paymentbuttons-paypal-color\": \"gold\",\n    \"paymentbuttons-paypal-shape\": \"pill\",\n    \"paymentbuttons-paypal-size\": \"small\",\n    \"paymentbuttons-paypal-label\": \"checkout\",\n    \"paymentbuttons-paypal-tagline\": true,\n    \"paymentbuttons-paypal-fundingicons\": false\n  },",
+                              "header": {
+                                "subtitle": "config.json",
+                                "title": "\"settings\" object"
+                              },
+                              "config": {
+                                "mode": "json",
+                                "highlightRange": [
+                                  {
+                                    "from": "18",
+                                    "to": "24"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "type": "warning",
+                                "body": "Adding the above keys to the `config.json` file will enable Smart Buttons on a Stencil theme, however, the merchant will **not** be able to customize button styles through Theme Editor/Store Design unless setting configurations are added to `schema.json`."
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Making Smart Buttons Customizable via Theme Editor/Store Design\n\nMerchants who enable PayPal powered by Braintree can customize PayPal Smart Buttons via the Theme Editor or Store Design. As a theme developer, you can enable PayPal Smart Button customization via [Theme Editor/Store Design](/stencil-docs/stencil-theme-editor/schema-json-metadata), by appending the following object to the `schema.json` file:\n"
+                            },
+                            {
+                              "type": "code",
+                              "data": "{\n      \"name\": \"Payment Buttons\",\n      \"enable\": \"smartButtons\",\n      \"settings\": [\n          {\n            \"type\": \"checkbox\",\n            \"label\": \"Show Paypal tagline\",\n            \"force_reload\": true,\n            \"id\": \"paymentbuttons-paypal-tagline\"\n          },\n          {\n            \"type\": \"checkbox\",\n            \"label\": \"Show funding icons\",\n            \"force_reload\": true,\n            \"id\": \"paymentbuttons-paypal-fundingicons\"\n          },\n          {\n              \"type\": \"select\",\n              \"label\": \"Button color\",\n              \"id\": \"paymentbuttons-paypal-color\",\n              \"force_reload\": true,\n              \"options\": [\n                {\n                  \"value\": \"gold\",\n                  \"label\": \"Gold\"\n                },\n                {\n                  \"value\": \"blue\",\n                  \"label\": \"Blue\"\n                },\n                {\n                  \"value\": \"silver\",\n                  \"label\": \"Silver\"\n                },\n                {\n                  \"value\": \"black\",\n                  \"label\": \"Black\"\n                }\n              ]\n          },\n          {\n              \"type\": \"select\",\n              \"label\": \"Button shape\",\n              \"id\": \"paymentbuttons-paypal-shape\",\n              \"force_reload\": true,\n              \"options\": [\n                {\n                  \"value\": \"pill\",\n                  \"label\": \"Pill\"\n                },\n                {\n                  \"value\": \"rect\",\n                  \"label\": \"Rectangle\"\n                }\n              ]\n          },\n          {\n              \"type\": \"select\",\n              \"label\": \"Button size\",\n              \"id\": \"paymentbuttons-paypal-size\",\n              \"force_reload\": true,\n              \"options\": [\n                {\n                  \"value\": \"small\",\n                  \"label\": \"Small\"\n                },\n                {\n                  \"value\": \"medium\",\n                  \"label\": \"Medium\"\n                },\n                {\n                  \"value\": \"large\",\n                  \"label\": \"Large\"\n                },\n                {\n                  \"value\": \"responsive\",\n                  \"label\": \"Responsive\"\n                }\n              ]\n          },\n          {\n              \"type\": \"select\",\n              \"label\": \"Button content\",\n              \"id\": \"paymentbuttons-paypal-label\",\n              \"force_reload\": true,\n              \"options\": [\n                {\n                  \"value\": \"checkout\",\n                  \"label\": \"Paypal Checkout\"\n                },\n                {\n                  \"value\": \"pay\",\n                  \"label\": \"Pay with Paypal\"\n                },\n                {\n                  \"value\": \"buynow\",\n                  \"label\": \"Buy Now\"\n                },\n                {\n                  \"value\": \"paypal\",\n                  \"label\": \"Paypal\"\n                }\n              ]\n          },\n          {\n            \"type\": \"select\",\n            \"label\": \"Display style\",\n            \"id\": \"paymentbuttons-paypal-layout\",\n            \"force_reload\": true,\n            \"options\": [\n              {\n                \"value\": \"horizontal\",\n                \"label\": \"Show buttons horizontally\"\n              },\n              {\n                \"value\": \"vertical\",\n                \"label\": \"Show buttons vertically\"\n              }\n            ]\n",
+                              "header": {
+                                "subtitle": "schema.json",
+                                "title": "Addition to schema.json file in order to enable Theme Editor/Store Design customization"
+                              },
+                              "config": {
+                                "mode": "json"
+                              }
+                            },
+                            {
+                              "type": "callout",
+                              "data": {
+                                "body": "Some customization options are mutually exclusive, meaning when used in combination with other customization options, the smart button button will completely fail to render on the page. \n\nAll mutually exclusive options are tied to the layout setting `vertical.` If your layout setting is `vertical,` take note of the following customization **restrictions**:\n\n* If you have a layout setting of `vertical`, you **can not** have a button size of `small`.\n* If you have a layout setting of `vertical`, you **can not** customize the `branding` of the button.\n* If you have a layout setting of `vertical`, you **can not** customize the `tagline` of the button.\n* If you have a layout setting of `vertical`, you **can not** customize the `funding icons` settings.",
+                                "title": "Mutually Exclusive Options",
+                                "type": "error"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "---"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Additional Resources\n\n* [PayPal Checkout Customization](https://developer.paypal.com/demo/checkout/#/pattern/checkout)\n",
+                              "header": {
+                                "anchor": "paypal-smart_additional-resources"
+                              }
+                            }
+                          ]
+                        }
+                      },
                       {
                         "title": "Enable & Restyle Optimized One-Page Checkout",
                         "route": {
