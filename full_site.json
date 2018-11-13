@@ -41,11 +41,6 @@
       "title": "BigCommerce Dev Center - API & Theme Documentation",
       "data": {
         "$ref": "./Home.html"
-      },
-      "config": {
-        "sidebar": {
-          "token": ""
-        }
       }
     },
     "/api-docs": {
@@ -235,6 +230,11 @@
                               }
                             }
                           ]
+                        },
+                        "config": {
+                          "sidebar": {
+                            "token": "TUTORIAL"
+                          }
                         }
                       },
                       {
@@ -1655,6 +1655,11 @@
                               }
                             }
                           ]
+                        },
+                        "config": {
+                          "sidebar": {
+                            "token": "TUTORIAL"
+                          }
                         }
                       },
                       {
@@ -1670,7 +1675,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Orders\n\n| Name | Description |\n| ---| --- |\n| store/order/* | Subscribe to all store/order events  |\n| store/order/created | A new order is created. It can be manual or created on the storefront | \n| store/order/updated| Order is updated |\n| store/order/archived | Order is archived |\n| store/order/deleted | Order is deleted |\n| store/order/statusUpdated | Order status is changed |\n| store/order/message/created | Order message is created by customer or in control panel |",
+                              "data": "## Orders\n\n| Name | Description |\n| ---| --- |\n| store/order/* | Subscribe to all store/order events  |\n| store/order/created |Fires if an order is created using the control panel, an app or via the API.| \n| store/order/updated| Fires when an already created order is updated. Any changes to an existing order will fire this webhook. Updates can include changing the status, updating a coupon or changing an address.|\n| store/order/archived | Order is archived |\n| store/order/statusUpdated | This will only fire if the order status has changed. Such as Pending to Awaiting Payment |\n| store/order/message/created | Order message is created by customer or in control panel |",
                               "header": {
                                 "anchor": "webhook-events_orders"
                               }
@@ -1692,7 +1697,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Products\n\n| Name | Description |\n| --- | --- |\n| store/product/*| Subscribe to all store/product events |\n|store/product/deleted| Product is deleted|\n| store/product/created | A new product is created |\n| store/product/updated |Occurs when product details are edited. For a full list of product fields that trigger an updated event, see **Product Updated Events** below |\n| store/product/inventory/updated| Product inventory is updated. |\n| store/product/inventory/order/updated| When an order is placed and product inventory is changed. If subscribed, the webhook will fire for products where inventory is being tracked by sku or by base product. |\n\n### Notes on `store/product/inventory/order/updated`\nThe response for `store/product/inventory/order/updated` includes an inventory object containing:\n\n**value**: the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `+2`\n\n**method** : Will always return relative.\n\n**id**: The product id\n\n**product_id**: The product id\n\n### Product Updated Events\n\nChanges to any of the following fields will trigger a `store/product/updated` event:\n\n- _Brand_\n- _Product Type_\n- _Category_\n- _Inventory_\n- _Number Sold_\n- _Availibility_\n- _Thumbnail Changed_\n- _Visibility_\n- _Featured_\n- _Name_\n- _Description_\n- _Sort Order_\n- _Price_\n- _Dimensions_\n- _Condition_\n- _Tax Price_",
+                              "data": "## Products\n\n| Name | Description |\n| --- | --- |\n| store/product/*| Subscribe to all store/product events |\n|store/product/deleted| Product is deleted|\n| store/product/created | A new product is created |\n| store/product/updated |Occurs when product details are edited. For a full list of product fields that trigger an updated event, see **Product Updated Events** below |\n| store/product/inventory/updated| Product inventory is updated. |\n| store/product/inventory/order/updated| Fires if a product’s inventory is decremented or incremented, including when an order is placed. Webhook responds to inventory updates made using the Control Panel, CSV import, API or an app.|\n\n### Notes on `store/product/inventory/order/updated`\nThe response for `store/product/inventory/order/updated` includes an inventory object containing:\n\n**value**: the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `+2`\n\n**method** : Will always return relative.\n\n**id**: The product id\n\n**product_id**: The product id\n\n### Product Updated Events\n\nChanges to any of the following fields will trigger a `store/product/updated` event:\n\n- _Brand_\n- _Product Type_\n- _Category_\n- _Inventory_\n- _Number Sold_\n- _Availibility_\n- _Thumbnail Changed_\n- _Visibility_\n- _Featured_\n- _Name_\n- _Description_\n- _Sort Order_\n- _Price_\n- _Dimensions_\n- _Condition_\n- _Tax Price_",
                               "header": {
                                 "anchor": "webhook-events_products"
                               }
@@ -1732,7 +1737,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## SKU\n\n| Name | Description |\n| --- | --- |\n| store/sku/* |Subscribe to all store/sku events |\n| store/sku/created | A new sku is created |\n| store/sku/updated | Sku is updated |\n| store/sku/deleted| Sku is deleted |\n| store/sku/inventory/updated| |\n| store/sku/inventory/order/updated| This webhook will fire if inventory is being tracked by sku on a product. It will also fire the store/product/inventory/order/updated webhook. |\n\n### Notes on `store/sku/inventory/order/updated`\n\nIncluded in the response is a data object:\n\n**value**: the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `+2`\n\n**method** : Will always return relative.\n\n**type**: Will always be sku\n\n**variant_id**: Id of the variant",
+                              "data": "## SKU\n\n| Name | Description |\n| --- | --- |\n| store/sku/* |Subscribe to all store/sku events |\n| store/sku/created | A new sku is created |\n| store/sku/updated | Sku is updated |\n| store/sku/deleted| Sku is deleted |\n| store/sku/inventory/updated| |\n| store/sku/inventory/order/updated| This will fire when the inventory is updated via API, the Control Panel, when an order is placed and when an order is refunded and the inventory returned to stock. Inventory changes due to an order and determined by the store's settings. |\n\n### Notes on `store/sku/inventory/order/updated`\n\nIncluded in the response is a data object:\n\n**value**: the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `+2`\n\n**method** : Will always return relative.\n\n**type**: Will always be sku\n\n**variant_id**: Id of the variant",
                               "header": {
                                 "anchor": "webhook-events_sku"
                               }
@@ -3809,6 +3814,103 @@
               "blocks": [],
               "children": [
                 {
+                  "title": "Overview ",
+                  "route": {
+                    "path": "/customers-subscribers-overview"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<h1>Customer & Subscribers</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#customers-subscribers_what-is-a-customer\">What is a Customer?</a></li>\n    \t\t<li><a href=\"#customers-subscribers_what-is-a-subscriber\">What is a Subscriber?</a></li>\n        <li><a href=\"#customers-subscribers_guests\">Guests</a></li>\n        <li><a href=\"#customers-subscribers_subscribers-v-customers\">Subscribers vs. Customers</a></li>\n        <li><a href=\"#customers-subscribers_oauth-scopes\">OAuth Scopes</a></li>\n        <li><a href=\"#customers-subscribers_webhooks\">Webhooks</a></li>\n        <li><a href=\"#customer-subscribers_related-enpoints\">Related Endpoints</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## What is a Customer?\n\nA customer is anyone who has made a purchase on a store and created an account.  BigCommerce then stores email address, customer address, and name against as a record.  This information can be queried via the API. \n\n### Customer Groups\nCustomer groups allow you to organize your customers, give them discounts, and restrict access to specific products or categories. For more information see [Customer Groups](https://support.bigcommerce.com/s/article/Customer-Groups).\n",
+                        "header": {
+                          "anchor": "customers-subscribers_what-is-a-customer"
+                        }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "body": "Customer Groups only available on specific plans"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Customer Login API\nThe Customer Login API allows for single sign-on.\nOnce a customer has authenticated by logging in to a third party system (CMS, portal, or app), you can use the customer login API to seamlessly log the customer into their BigCommerce customer account.\n\n### Current Customer API\nThe Current Customer API allows your application to identify logged in customers. This is useful when you need to show customer specific information."
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## What is a Subscriber?\n\nA subscriber is someone who has signed up for a store's newsletter.  \nSubscribers can be added by:\n- Signing up for the newsletter via the signup box located in the footer of most storefront themes\n- Signing up for the newsletter during checkout\n- POSTing to the Subscribers API\n\nWhere possible, the API indicates the origin of the subscriber. If the subscriber was added during checkout, the Order ID is included.",
+                        "header": {
+                          "anchor": "customers-subscribers_what-is-a-subscriber"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Guests\nStore [settings](https://forum.bigcommerce.com/s/article/Checkout-Settings#checkout-settings) can be set to allow a shopper to complete checkout without creating an account. These shoppers are not captured as customers or stored in the BigCommerce system. If you want to capture guest data, using the [Storefront APIs](/api-docs/cart-and-checkout/cart-and-checkout-overview) can help. ",
+                        "header": {
+                          "anchor": "customers-subscribers_guests"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Subscribers vs. Customers\n\n1. A subscriber is not always a customer. \nSomeone can signup for the newsletter only and not create an account. \n2. A customer is not always a subscriber. \nSigning up for the newsletter is a separate action from creating an account and purchasing an item. \n3. A customer and a subscriber can be the same. \nIf a shopper checks out on the storefront and opts into the newsletter, they are not a customer and a subscriber. ",
+                        "header": {
+                          "anchor": "customers-subscribers_subscribers-v-customers"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## OAuth Scopes\n* [Customers Login](/api-docs/getting-started/basics/authentication#authentication_oauth-scopes)\n* [Customers](/api-docs/getting-started/basics/authentication#authentication_oauth-scopes)",
+                        "header": {
+                          "anchor": "customers-subscribers_oauth-scopes"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Wehooks Available\n* [Customers](/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)",
+                        "header": {
+                          "anchor": "customers-subscribers_webhooks"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Related Endpoints\n* [Customer Login API](/api-docs/customers/customer-login-api)\n* [Current Customer API](/api-docs/customers/current-customer-api)\n* [Customers API](/api-reference/customer-subscribers/customers-api)\n* [Subscribers API](/api-reference/customer-subscribers/subscribers-api)",
+                        "header": {
+                          "anchor": "customer-subscribers_related-enpoints"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
                   "title": "Customer Login API",
                   "route": {
                     "path": "/customer-login-api"
@@ -3817,7 +3919,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1> Customer Login API </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#customer-login_introduction\"> JWT</a></li>\n    <li><a href=\"#customer-login_jwt\"> JWT</a></li>\n\t\t<li><a href=\"#customer-login_oauth-scope\">OAuth Scope</a></li>\n    <li><a href=\"#customer-login_sample-code\">Sample Code</a></li>\n    <li><a href=\"#customer-login_access-url\">Acces URL</a></li>\n    <li><a href=\"#customer-login_logging-in-a-customer\">Loggin In a Customer</a></li>\n    <li><a href=\"#customer-login_troubleshooting-customer-login-api\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                        "data": "<h1> Customer Login API </h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#customer-login_introduction\"> Introduction</a></li>\n    <li><a href=\"#customer-login_jwt\"> JWT</a></li>\n\t\t<li><a href=\"#customer-login_oauth-scope\">OAuth Scope</a></li>\n    <li><a href=\"#customer-login_sample-code\">Sample Code</a></li>\n    <li><a href=\"#customer-login_access-url\">Acces URL</a></li>\n    <li><a href=\"#customer-login_logging-in-a-customer\">Logging In a Customer</a></li>\n    <li><a href=\"#customer-login_troubleshooting-customer-login-api\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -4050,12 +4152,17 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Troubleshooting\n\n* If the server generating the iat is out of sync, the login token will fail if the timestamp indicates a time in the future or an expired token.\n\n* The login URL can be visited only once. Once a GET request is run against the link, the token is invalidated. \n\n* Tokens can be validated or generated for testing purposes using the debugger at https://jwt.io/.\n\n* Tokens will be valid for a very short timeframe after they are first generated, so tokens should not be generated in advance. Instead, the application should generate the token and then immediately redirect the user’s browser to `/login/token/{token}`. If you're seeing issues related to your system time differing from BC's server time, you can use the <a href=\"/api/v2/#get-a-timestamp\">/v2/time</a> endpoint as a source of truth.",
+                        "data": "## Troubleshooting\n\n* If the server generating the iat is out of sync, the login token will fail if the timestamp indicates a time in the future or an expired token.\n\n* The login URL can be visited only once. Once a GET request is run against the link, the token is invalidated. \n\n* Tokens can be validated or generated for testing purposes using the debugger at https://jwt.io/.\n\n* Tokens will be valid for a very short timeframe after they are first generated, so tokens should not be generated in advance. Instead, the application should generate the token and then immediately redirect the user’s browser to `/login/token/{token}`. If you're seeing issues related to your system time differing from BC's server time, you can use the <a href=\"/api-reference/store/store-information-api/time-zone/gettime\">/v2/time</a> endpoint as a source of truth.",
                         "header": {
-                          "anchor": "troubleshooting-customer-login-api\""
+                          "anchor": "customer-login_troubleshooting-customer-login-api"
                         }
                       }
                     ]
+                  },
+                  "config": {
+                    "sidebar": {
+                      "token": "TUTORIAL"
+                    }
                   }
                 },
                 {
@@ -4139,7 +4246,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Storefront Cart and Checkout\n\nThe Storefront APIs are for managing the contents of a shopper's cart using JavaScript in the context of a storefront session. \n\n### When to Use the Storefront APIs\n\n* Analytics and Tracking\n* Retrieving cart data client-side\n* Quick Order Form\n* Upsell applications\n\n### Using the Fetch API\nThe [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is an alternative to [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) for making http requests in JavaScript. You can use the Fetch API to interact with the Storefront APIs and return a shopper's cart, checkout or order. \n\nFetch API is supported by most modern browsers, but it is not supported in Internet Explorer. We recommend using a [Polyfill](https://github.com/github/fetch) for Internet Explorer 10+ and XMLHttpRequest for earlier versions.\n\nHere we use `credentials: 'include'` to make a fetch request with credentials.\nYou can run fetch requests from the browser console to test, or you can  use the [Scripts API](http://) to add inject JavaScript into your theme's footer.",
+                        "data": "## Storefront Cart and Checkout\n\nThe Storefront APIs are for managing the contents of a shopper's cart using JavaScript in the context of a storefront session. \n\n### When to Use the Storefront APIs\n\n* Analytics and Tracking\n* Retrieving cart data client-side\n* Quick Order Form\n* Upsell applications\n\n### Using the Fetch API\nThe [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is an alternative to [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) for making http requests in JavaScript. You can use the Fetch API to interact with the Storefront APIs and return a shopper's cart, checkout or order. \n\nFetch API is supported by most modern browsers, but it is not supported in Internet Explorer. We recommend using a [Polyfill](https://github.com/github/fetch) for Internet Explorer 10+ and XMLHttpRequest for earlier versions.\n\nTo learn more about using the Fetch API with the Storefront see our tutorial [here](/api-docs/cart-and-checkout/working-sf-apis). \n\nYou can run fetch requests from the browser console to test, or you can  use the [Scripts API](/api-docs/scripts/scripts-overview) to add inject JavaScript into your theme's footer.",
                         "header": {
                           "anchor": "cart-checkout_storefront-cart-and-checkout"
                         }
@@ -4407,6 +4514,13 @@
                         },
                         "config": {
                           "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "warning",
+                          "body": "When a signed in customer proceeds to the create consignment step with an incomplete shipping address, the shipping address will auto-populate with the the most recently used address from the customer's address book."
                         }
                       },
                       {
@@ -4777,7 +4891,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "Then create the products array which includes the custom product and the existing product with product options. Using the option_id and option_value id from the previous request we can build the products array. \n\n`product_options` > `id` = `option_values` > `option_id`\n`product_options` > `value` = `option_values` > `id`\n\nThe `product_options` > `value` must be passed in as a string."
+                        "data": "Then create the products array which includes the custom product and the existing product with product options. Using the option_id and option_value id from the previous request we can build the products array. \n\n`product_options` > `id` = `option_values` > `option_id`\n\n`product_options` > `value` = `option_values` > `id`\n\nThe `product_options` > `value` must be passed in as a string."
                       },
                       {
                         "type": "code",
@@ -7576,6 +7690,93 @@
                         }
                       },
                       {
+                        "title": "Google AMP",
+                        "route": {
+                          "path": "/google-amp"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Google AMP</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#google-amp_overview\">Google AMP Overview</a></li>\n    <li><a href=\"#google-amp_implement\">Implement Google AMP into your Stencil theme</a></li>\n    <li><a href=\"#google-amp_location-of-amp-files\">Location of AMP Files within Cornerstone</a></li>\n    <li><a href=\"#google-amp_local-testing\">Local Testing</a></li>\n    <li><a href=\"#google-amp_additional-resources\">Additional Resources</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Google AMP Overview\n\nGoogle AMP aka Accelerated Mobile Pages is an [open source initiative](https://www.ampproject.org/) to make websites load faster across mobile devices.",
+                              "header": {
+                                "anchor": "google-amp_overview"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Implement Google AMP into your Stencil theme\n\nGoogle AMP will be automatically added if your store's theme is based on Cornerstone themes 1.6.0+.\n\nPlease see the user documentation on configuring Google AMP into your store via the [Control Panel](https://support.bigcommerce.com/articles/Public/Google-AMP?_ga=2.135679409.1406470381.1541441523-967431010.1523308107).\n\nIf you are using a custom theme for your storefront, you will have to perform a few extra steps in order to fully configure Google AMP on your store. Reference the text information and code samples below to do so. If you do not have a custom theme, you can bypass the remainder of this article.\n\nAfter you have completed the previous steps, move onto these steps if you have a custom storefront theme activated.\n\nEnsure the Google Analytics ID has been added in the control panel. This is what will be used to track AMP analytics. You can use more than one ID to track [AMP traffic vs non-AMP traffic](https://developers.google.com/analytics/devguides/collection/amp-analytics/#amp_vs_non-amp_traffic).\n\nIn the `/amp/category.html`, `layout/amp.html` and `amp/product.html` template files replace `theme_settings` with `settings`.\n\nExample: In `layout/amp.html` (referenced below) replace `theme_settings.amp_analytics_id` with\n`settings.amp_analytics_id`.",
+                              "header": {
+                                "anchor": "google-amp_implement"
+                              }
+                            },
+                            {
+                              "type": "code",
+                              "data": "{{{snippet 'htmlhead'}}}\n         <script async custom-element=\"amp-form\" src=\"https://cdn.ampproject.org/v0/amp-form-0.1.js\"></script>\n         <script async custom-element=\"amp-sidebar\" src=\"https://cdn.ampproject.org/v0/amp-sidebar-0.1.js\"></script>\n\t\t\t  {{#if settings.amp_analytics_id}}\n         \t\t\t<script async custom-element=\"amp-analytics\" src=\"https://cdn.ampproject.org/v0/amp-analytics-0.1.js\"></script>\n         {{/if}}\n         {{#block \"amp-scripts\"}}{{/block}}",
+                              "header": {
+                                "title": "templates/layout/amp.html"
+                              },
+                              "config": {
+                                "highlightRange": [
+                                  {
+                                    "from": "4",
+                                    "to": "4"
+                                  }
+                                ],
+                                "mode": "js"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "In [config.json](https://github.com/bigcommerce/cornerstone/blob/master/config.json) (referenced below) make sure `google_amp` is still in the features array. See below for code snippet."
+                            },
+                            {
+                              "type": "code",
+                              "data": "  \"features\": [\n      \"fully_responsive\",\n      \"mega_navigation\",\n      \"multi_tiered_sidebar_menu\",\n      \"masonry_design\",\n      \"frontpage_slideshow\",\n      \"quick_add_to_cart\",\n      \"switchable_product_view\",\n      \"product_comparison_table\",\n      \"complex_search_filtering\",\n      \"customizable_product_selector\",\n      \"cart_suggested_products\",\n      \"free_customer_support\",\n      \"free_theme_upgrades\",\n      \"high_res_product_images\",\n      \"product_filtering\",\n      \"advanced_quick_view\",\n      \"product_showcase\",\n      \"persistent_cart\",\n      \"one_page_check_out\",\n      \"product_videos\",\n      \"google_amp\",\n      \"customized_checkout\"\n    ]",
+                              "header": {
+                                "title": "config.json"
+                              },
+                              "config": {
+                                "mode": "json"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "If you are having any implementation issues, review the [full Pull Request #964](https://github.com/bigcommerce/cornerstone/pull/946/files) for changes that need to be made to implement Google AMP. "
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Location of AMP Files within Cornerstone\n\n\nIn versions 1.6.0+ of Cornerstone, there are a few key file locations where the AMP information is located:\n\n* Base AMP layout template is located in [templates/layout/amp.html](https://github.com/bigcommerce/cornerstone/blob/master/config.json).\n* The files for Google AMP are located in [/templates/pages/amp](https://github.com/bigcommerce/cornerstone/tree/master/templates/pages/amp). This is where `product.html` and `category.html` are located. (Note: there may be other files in this folder, but the product and category pages are the only one pages that currently support Google AMP).\n* The CSS is located in [templates/components/amp/css](https://github.com/bigcommerce/cornerstone/tree/master/templates/components/amp/css).\n\nAfter the Google Analytics ID has been added via Control Panel, you can toggle AMP on the product and category pages using the [settings](https://support.bigcommerce.com/articles/Public/Google-AMP?_ga=2.205799699.1406470381.1541441523-967431010.1523308107) there.\n",
+                              "header": {
+                                "anchor": "google-amp_location-of-amp-files"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Local Testing\n\nYou are able to test your AMP enabled pages at the following endpoints when running your store locally:\n\n* `localhost:3000/amp/category_url/`\n* `localhost:3000/amp/product_url/`",
+                              "header": {
+                                "anchor": "google-amp_local-testing"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Additional Resources\n\n* [Adding Analytics to your AMP Pages](https://developers.google.com/analytics/devguides/collection/amp-analytics/)\n* [Adding Google AMP in the Control Panel](https://support.bigcommerce.com/articles/Public/Google-AMP?_ga=2.228533533.1406470381.1541441523-967431010.1523308107)\n* [Google AMP Home Page](https://www.ampproject.org/)\n* [Google Developer AMP Resources](https://developers.google.com/amp/)",
+                              "header": {
+                                "anchor": "google-amp_additional-resources"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
                         "title": "Using Disqus with Stencil",
                         "route": {
                           "path": "/new-subpage"
@@ -7627,7 +7828,7 @@
                         },
                         "config": {
                           "sidebar": {
-                            "token": "tutorial"
+                            "token": "Tutorial"
                           }
                         }
                       }
@@ -7692,7 +7893,7 @@
                       {
                         "title": "Authoring, Testing, & Uploading Custom Templates",
                         "route": {
-                          "path": "/new-subpage-2"
+                          "path": "/authoring-testing-uploading-custom-templates"
                         },
                         "data": {
                           "blocks": [
@@ -7840,11 +8041,11 @@
                           "blocks": [
                             {
                               "type": "html",
-                              "data": "<h1>Customizing Invoices/h1>"
+                              "data": "<h1>Customizing Invoices</h1>"
                             },
                             {
                               "type": "html",
-                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#customizing_email\">Customizing the Email Invoice Template</a></li>\n\t\t<li><a href=\"#customizing_merchant\">Customizing the Merchant Printable Invoice</a></li>\n    <li><a href=\"#customizing_customer\">Customizing the Customer Printable Invoice/a></li>\n\t</ul>\n</div>"
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#customizing_email\">Customizing the Email Invoice Template</a></li>\n\t\t<li><a href=\"#customizing_merchant\">Customizing the Merchant Printable Invoice</a></li>\n    <li><a href=\"#customizing_customer\">Customizing the Customer Printable Invoice</a></li>\n\t</ul>\n</div>"
                             },
                             {
                               "type": "callout",
@@ -7923,6 +8124,31 @@
                             {
                               "type": "text",
                               "data": "This invoice becomes available in a shopper’s orders after completing an order. A shopper can generate this invoice by clicking `Print Invoice` on the right-hand side of the page.\n\nAs a developer, you can customize this invoice by editing your theme’s `invoice.html` file that is present in your theme's files. In Cornerstone, this file is located in `/cornerstone/templates/pages/account/orders/invoice.html`."
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Customizing Printable Packing Slips",
+                        "route": {
+                          "path": "/customizing-printable-packing-slips"
+                        },
+                        "data": {
+                          "blocks": [
+                            {
+                              "type": "html",
+                              "data": "<h1>Customizing Printable Packing Slips</h1>"
+                            },
+                            {
+                              "type": "html",
+                              "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#customizing_packing\">Customizing Printable Packing Slips</a></li>\n\t</ul>\n</div>"
+                            },
+                            {
+                              "type": "text",
+                              "data": "## Customizing Printable Packing Slips\n\nCustomizing your Stencil theme's printable packing slips currently requires a workaround, which relies on a template and variables from BigCommerce's legacy Blueprint themes framework. Here are the workaround steps:\n\nDownload this zipped HTML file, which contains the skeleton of a printable packing slip.\n\nEdit the HTML file to match your desired customization.\n\n(To navigate through the Blueprint variables contained in the HTML skeleton, please see the reference material starting here.)\n\nSet your theme's checkout type to Custom one-page checkout (for developers).\n\n(Use the steps in this support article.)\n\nUse WebDAV to upload your customized HTML file to WebDAV's /template/ folder.\n\nThis folder becomes available once you enable Custom one-page checkout (for developers).\nFor specific steps, please see this support article.\nAlso see this article about Shrinking Your Theme by Excluding Static Assets to learn more about using WebDAV with Stencil themes.\nWe recommend the freeware WebDAV client CyberDuck (Windows and Mac OS), for which your store's control panel offers a downloadable connection file prefilled with most store credentials.\nOnce you have completed the above steps, you are free to switch your theme's checkout type to\nOne-page checkout or Optimized one-page checkout.",
+                              "header": {
+                                "anchor": "customizing_packing"
+                              }
                             }
                           ]
                         }
@@ -8755,11 +8981,6 @@
                         }
                       }
                     ]
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "Overview"
-                    }
                   }
                 },
                 {
@@ -10760,11 +10981,6 @@
                         }
                       }
                     ]
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "Reference"
-                    }
                   }
                 }
               ]
@@ -10848,7 +11064,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -10871,7 +11087,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -10894,7 +11110,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -10917,7 +11133,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -10940,7 +11156,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -10963,7 +11179,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -10986,7 +11202,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11009,7 +11225,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11032,7 +11248,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11055,7 +11271,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11078,7 +11294,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11101,7 +11317,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11124,7 +11340,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11147,7 +11363,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11170,7 +11386,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11193,7 +11409,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11216,7 +11432,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11239,7 +11455,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11262,7 +11478,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11285,7 +11501,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11308,7 +11524,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             },
@@ -11331,7 +11547,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "global object"
+                                  "token": "Global Object"
                                 }
                               }
                             }
@@ -11348,7 +11564,7 @@
                             {
                               "title": "Common Objects",
                               "route": {
-                                "path": "/new-subpage"
+                                "path": "/common-onjects-overview"
                               },
                               "data": {
                                 "blocks": [
@@ -11414,7 +11630,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "COmmon Object"
+                                  "token": "Common Object"
                                 }
                               }
                             },
@@ -11460,7 +11676,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "COmmon Object"
+                                  "token": "Common Object"
                                 }
                               }
                             },
@@ -11480,11 +11696,6 @@
                                     "data": "<b>Description:</b> A model for a product’s basic, primary properties. Typically used for list components that show multiple products, each in its own \"card\" or panel.\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>id</td>\n    <td>ID of the product </td>\n  </tr>\n  <tr>\n    <td>sku</td>\n    <td>The product's SKU (stock keeping unit)/product code, as a string; if the SKU field is not populated, then null\n </td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Name of the product</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL to product detail page for the product</td>\n  </tr>\n  <tr>\n    <td>availability</td>\n    <td>Typical shipping time for the product; used to populate \"Usually ships within…\" fields</td>\n  </tr>\n  <tr>\n    <td>rating</td>\n    <td>Product’s rating</td>\n  </tr>\n  <tr>\n    <td>ratings</td>\n    <td>Number of reviews on which the rating is based</td>\n  </tr>\n  <tr>\n\t\t<td><b>brand</b></td>\n    <td>Brand properties for the product (includes the name property</td>\n  </tr>\n  <tr>\n    <td><i>name</i></td>\n    <td>Product’s brand name</td>\n  </tr>\n  <tr>\n    <td>add_to_cart_url</td>\n    <td>URL that adds this product to customer’s cart</td>\n  </tr>\n  <tr>\n    <td>price</td>\n    <td class=\"\">References the <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/catalog-price\">catalog price object</a>, to access price properties in both raw-numeric and formatted/string formats</td>\n  </tr>\n  <tr>\n    <td>summary</td>\n    <td>Summary description of the product</td>\n  </tr>\n  <tr>\n    <td>image</td>\n    <td>Default image for the product, in <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/stencil-image\">Stencil image format</a> <!-- <a href=\"/docs/handlebars-image-helpers\">Stencil image format</a> --> </td>\n  </tr>\n  <tr>\n    <td>images</td>\n    <td>Array of a product's images, in <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/stencil-image\">Stencil image format</a>; currently limited to 5 images </td>\n  </tr>\n  <tr>\n    <td>date_added</td>\n    <td>Date the product was added to this BigCommerce storefront</td>\n  </tr>\n  <tr>\n    <td>pre_order</td>\n    <td>Product’s availability for pre-order</td>\n  </tr>\n  <tr>\n    <td>release_date</td>\n    <td>Release date, if the product is set to pre-order status</td>\n  </tr>\n  <tr>\n    <td>show_cart_action</td>\n    <td>Boolean that indicates whether the product is available for purchase</td>\n  </tr>\n  <tr>\n    <td>has_options</td>\n    <td>Boolean that indicates whether customer is required to specify options when ordering the product</td>\n  </tr>\n  \n  <tr>\n    <td>stock_level</td>\n    <td>If inventory tracking is turned on: The number of items available for sale (0 or more). If inventory tracking is turned off: A \"null\" string. </td>\n  </tr>\n     \n  <tr>\n    <td>low_ stock_level</td>\n    <td>If inventory tracking is turned on: Sets a threshold low-stock level. You can use conditional logic to display a \"limited availability\" badge if the <code>stock_level</code> property's value falls below this threshold. If inventory tracking is turned off: A \"null\" string. </td>\n  </tr>\n   \n  <tr>\n    <td>qty_in_cart</td>\n    <td>Quantity of this item in the customer’s cart</td>\n  </tr>\n  <tr>\n    <td>out_of_stock_message</td>\n    <td>Text to display when the product is out of stock</td>\n  </tr>\n  \n  <tr>\n\t\t<td><b>custom_fields</b></td>\n    <td>Array of <a href=\"https://support.bigcommerce.com/articles/Public/Custom-Fields\">custom fields</a> for this product; custom fields can be used for purposes like: alternate brand name, merchandising title for the product, product type, \"gift idea\" indicator, etc.\n</td>\n  </tr>\n\n  <tr>\n\t\t<td><i>id</i></td>\n    <td>Unique (integer) identifier for this custom field</td>\n  </tr>\n\n  <tr>\n    <td><i>name</i></td>\n    <td>Name of this custom field</td>\n  </tr>\n\n  <tr>\n    <td><i>value</i></td>\n    <td>Value for this custom field</td>\n  </tr>\n</table>\n\n<b>Available through:</b>\n\n<b>Object:</b> <code>{{comparisons}} </code> \n\n<b>Arrays/Elements:</b> <code>{{product.related_products}}, {{product.similar_by_views}}, {{category.products}}, {{cart.suggested_products}}, {{customer.recently_viewed_products}} </code>\n\n<!-- :\"Common Product Card Model\" moved from \"Product Objects\" page -->"
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Common Object"
-                                }
                               }
                             }
                           ]
@@ -11493,7 +11704,7 @@
                       {
                         "title": "Other Objects/Properties",
                         "route": {
-                          "path": "/new-subpage"
+                          "path": "/other-objects"
                         },
                         "data": {
                           "children": [
@@ -11955,11 +12166,6 @@
                         }
                       }
                     ]
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "Reference"
-                    }
                   }
                 }
               ],
@@ -12511,11 +12717,6 @@
                         }
                       }
                     ]
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "reference"
-                    }
                   }
                 },
                 {
@@ -12546,44 +12747,151 @@
                       },
                       {
                         "type": "text",
-                        "data": "## API [api.js]\n\nThe `api.getPage()` function allows you to add Ajax functionality to your themes.\n\n<b>getPage Signature</b> \n\nThe following statement passes `url` and `options` arguments to the `api.getPage()` function:\n\n<code>utils.api.getPage(url, options, callback)</code>\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td class=\"\">url</td>\n    <td class=\"\">String</td>\n    <td class=\"\">URL to which you want to send a request (for example: localhost:4000/cart.php)</td>\n  </tr>\n  <tr>\n    <td>options</td>\n    <td>Object</td>\n    <td>Can contain <code>template</code>, <code><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a></code> (for POST methods), <code>params</code>&nbsp;(for GET methods), and/or `config</span>.   \n\t\tThe <code>template</code> option allows you to select a particular template, or an array of templates, for rendering one page. Each value must correspond to a file present in the theme's <code>templates/components/</code> subdirectory. \n      The `config` option can be used to pass extra resources, corresponding to attributes that are valid in a page's front matter, as an object.\n    </td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\nThe <span class=\"inline-code\">config</span> argument works like front matter: it encapsulates JSON. For a usage example of <code>config</code>, see the [Remote API Example](/stencil-docs/adding-event-hooks-to-your-theme/remote-api-example#remote_remote-api-example).\n\n### getPage Example\n\nIn the following example (from <code>common/faceted-search.js</code>), <code>api.getPage()</code> is called to help execute an <code>updateView()</code> function:\n\n```\nupdateView() {\n        $(this.options.blockerSelector).show();\n\n        api.getPage(urlUtils.getUrl(), this.requestOptions, (err, content) => {\n            $(this.options.blockerSelector).hide();\n\n            if (err) {\n                throw new Error(err);\n            }\n\n            // Refresh view with new content\n            this.refreshView(content);\n        });\n    }\n```",
+                        "data": "## API [api.js]\n\nThe `api.getPage()` function allows you to add Ajax functionality to your themes.\n\n**getPage Signature**\n\nThe following statement passes `url` and `options` arguments to the `api.getPage()` function:\n\n`utils.api.getPage(url, options, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>String</td>\n    <td>URL to which you want to send a request (for example: localhost:4000/cart.php)</td>\n  </tr>\n  <tr>\n    <td>options</td>\n    <td>Object</td>\n\t\t<td>Can contain <code>template</code>, <code><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a></code> (for POST methods), <code>params</code>&nbsp;(for GET methods), and/or <code>config</code>.   \n\t\tThe <code>template</code> option allows you to select a particular template, or an array of templates, for rendering one page. Each value must correspond to a file present in the theme's <code>templates/components/</code> subdirectory. \n      The `config` option can be used to pass extra resources, corresponding to attributes that are valid in a page's front matter, as an object.\n    </td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\nThe <code>config</code> argument works like front matter: it encapsulates JSON. For a usage example of <code>config</code>, see the [Remote API Example](/stencil-docs/adding-event-hooks-to-your-theme/remote-api-example#remote_remote-api-example).\n\n### getPage Example\n\nIn the following example (from `common/faceted-search.js`), `api.getPage()` is called to help execute an `updateView()` function:",
                         "header": {
                           "anchor": "stencil-utils_api"
                         }
                       },
                       {
+                        "type": "code",
+                        "data": "updateView() {\n        $(this.options.blockerSelector).show();\n\n        api.getPage(urlUtils.getUrl(), this.requestOptions, (err, content) => {\n            $(this.options.blockerSelector).hide();\n\n            if (err) {\n                throw new Error(err);\n            }\n\n            // Refresh view with new content\n            this.refreshView(content);\n        });\n    }",
+                        "header": {
+                          "title": "getPage Example"
+                        }
+                      },
+                      {
                         "type": "text",
-                        "data": "## Cart API \n\nThe following functions allow your theme to work with cart contents in customized ways.\n\n<b>itemAdd Signature</b>\n\nThe `itemAdd`function allows your code to add an item to the cart, with options:\n\n```\nutils.api.cart.itemAdd(<a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a>, callback)\n```\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td class=\"\">formData</td>\n    <td><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a> object </td>\n    <td class=\"\">Contains all details about the added item and its product options</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>itemAdd Example</b> \n\n<code>itemAdd</code> is called at the head of the following example (from <code>common/product-details.js</code>) to populate the cart:\n\n```\n// Add item to cart\n        utils.api.cart.itemAdd(new FormData(form), (err, response) => {\n            const errorMessage = err || response.data.error;\n\n            $addToCartBtn\n                .val(originalBtnVal)\n                .prop('disabled', false);\n\n            this.$overlay.hide();\n\n            // Guard statement\n            if (errorMessage) {\n                // Strip the HTML from the error message\n                const tmp = document.createElement('DIV');\n                tmp.innerHTML = errorMessage;\n\n                return alert(tmp.textContent || tmp.innerText);\n            }\n\n            // Open preview modal and update content\n            if (this.previewModal) {\n                this.previewModal.open();\n\n                this.updateCartContent(this.previewModal, response.data.cart_item.hash);\n            } else {\n                this.$overlay.show();\n                // if no modal, redirect to the cart page\n                this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);\n            }\n        }); \n```\n\n\n<b>itemUpdate Signature</b><br>\n\nThe <code>itemUpdate</code> function allows your code to update a specified cart item’s quantity:\n\n`utils.api.cart.itemUpdate(itemId, qty, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The item’s ID</td>\n  </tr>\n  <tr>\n    <td class=\"\">qty</td>\n    <td class=\"\">Integer</td>\n    <td class=\"\">The item’s quantity in the cart</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n<b>itemUpdate Example</b>\n\nIn the following example (from <code>cart.js</code>), <code>itemUpdate</code> is called just before the final if/else test for an empty cart:\n\n```\n\t\t\t\tcartUpdate($target) {\n        const itemId = $target.data('cartItemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantityMax'), 10);\n        const minQty = parseInt($el.data('quantityMin'), 10);\n        const minError = $el.data('quantityMinError');\n        const maxError = $el.data('quantityMaxError');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n\n        // Does not quality for min/max quantity\n        if (newQty < minQty) {\n            return swal({\n                text: minError,\n                type: 'error',\n            });\n        } else if (maxQty > 0 && newQty > maxQty) {\n            return swal({\n                text: maxError,\n                type: 'error',\n            });\n        }\n\n        this.$overlay.show();\n\n        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {\n            this.$overlay.hide();\n\n            if (response.data.status === 'succeed') {\n                // if the quantity is changed \"1\" from \"0\", we have to remove the row.\n                const remove = (newQty === 0);\n\n                this.refreshContent(remove);\n            } else {\n                $el.val(oldQty);\n                swal({\n                    text: response.data.errors.join('\\n'),\n                    type: 'error',\n                });\n            }\n        });\n    } \n```\n\n\n<b>itemRemove Signature</b>\n\nThe <code>itemRemove</code> function allows your code to remove items from the cart:\n\n`utils.api.cart.itemRemove(itemId, callback)`\n\n<table>\n  <tbody>\n\t<tr>\n    <th>Argument</td>\n    <th>Type</td>\n    <th>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>itemId</td>\n    <td>String</td>\n    <td>The item’s ID</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n<span id=\"itemRemoveEx\"> <b>itemRemove Example</b> </span><br>\n\nIn the following example (from <span class=\"inline-code\">cart.js</span>), <span class=\"inline-code\">itemRemove</span> is called before the if/else test:<br><p></p>\n\n<pre>    cartRemoveItem(itemId) {\n        this.$overlay.show();\n        utils.api.cart.itemRemove(itemId, (err, response) => {\n            if (response.data.status === 'succeed') {\n                this.refreshContent(true);\n            } else {\n                alert(response.data.errors.join('\\n'));\n            }\n        });\n    } </pre><br>\n\n\n<b>update Signature</b><br>\n\nThe <span class=\"inline-code\">update</span> function allows your code to update the set of items in the cart:<br>\n\n<p></p><pre>utils.api.cart.update(itemId, qty, callback)</pre>\n\n <br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">items</td>\n    <td class=\"\">Array</td>\n    <td class=\"\">The items in the cart</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>update Example</b><br>\n\nThe following example shows a call to <span class=\"inline-code\">update</span> within the <span class=\"inline-code\">itemUpdate</span> function:<br><p></p>\n\n<pre>    /**\n    itemUpdate(itemId, qty, callback) {\n        let callbackArg = callback;\n        let items;\n\n        if (Array.isArray(itemId) && typeof qty === 'function') {\n            callbackArg = qty;\n            items = itemId;\n        } else {\n            items = [\n                {\n                    id: itemId,\n                    quantity: qty,\n                },\n            ];\n        }\n\n        this.update(items, (err, response) => {\n            const emitData = {\n                items,\n                err,\n                response,\n            };\n\n            Hooks.emit('cart-item-update-remote', emitData);\n            callbackArg(err, response);\n        });\n    } </pre><br>\n\n\n<b>getItemGiftWrappingOptions Signature</b><br>\n\nThe <span class=\"inline-code\">getItemGiftWrappingOptions</span> function allows your code to retrieve gift-wrapping options for the current cart item, in customized ways:<br><p></p>\n\n\n<pre>utils.api.cart.getItemGiftWrappingOptions(itemId, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The cart item</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>getItemGiftWrappingOptions Example</b> <br>\n\nThe following example (from <span class=\"inline-code\">cart.js</span>) calls <span class=\"inline-code\">getItemGiftWrappingOptions</span> to display gift-wrapping options in a modal:<br><p></p>\n\n<pre>    bindGiftWrappingEvents() {\n        const modal = defaultModal();\n\n        $('[data-item-giftwrap]').on('click', (event) => {\n            const itemId = $(event.currentTarget).data('item-giftwrap');\n            const options = {\n                template: 'cart/modals/gift-wrapping-form',\n            };\n\n            event.preventDefault();\n\n            modal.open();\n\n            utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {\n                modal.updateContent(response.content);\n\n                this.bindGiftWrappingForm();\n            });\n        });\n    } </pre><br>\n\n\n<b>submitItemGiftWrappingOption Signature</b><br>\n\nThe <span class=\"inline-code\">submitItemGiftWrappingOption</span> function allows your code to handle the customer’s gift-wrapping selection for the current cart item:<br><p></p>\n\n<pre>utils.api.cart.submitItemGiftWrappingOption(itemId, qty, callback)</pre>\n<br>\n\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">itemId</td>\n    <td class=\"\">String</td>\n    <td class=\"\">The cart item</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>submitItemGiftWrappingOption Example</b> <br>\n\nThis commented example shows a simple call to <span class=\"inline-code\">submitItemGiftWrappingOption</span>:\n\n<pre>    /**\n     * Submit giftwrapping options\n     *\n     * @param {String} itemId\n     * @param {Function} callback\n     */\n    submitItemGiftWrappingOption(itemId, params, callback) {\n        this.remoteRequest(`/gift-wrapping/${itemId}`, 'POST', { params }, callback);\n    } </pre><br>\n\n\n<b>getContent Signature</b><br>\n\nThe <span class=\"inline-code\">getContent</span> function allows your code to display the cart contents in customized ways:<br>\n\n<p></p><pre>utils.api.cart.getContent(options, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\"><A NAME=\"getContent-options\"></a>options</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Template containing content and totals children</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n<span id=\"getContentEx\"> <b>getContent Examples</b> </span> <br>\n\nThe following example (from <span class=\"inline-code\">common/product-details.js</span>) a call to <span class=\"inline-code\">getContent</span>, set up by a prior call to <span class=\"inline-code\">getCartContent</span>:<br><p></p>\n\n<pre>    /**\n     * Get cart contents\n     *\n     * @param {String} cartItemHash\n     * @param {Function} onComplete\n     */\n    getCartContent(cartItemHash, onComplete) {\n        const options = {\n            template: 'cart/preview',\n            params: {\n                suggest: cartItemHash,\n            },\n            config: {\n                cart: {\n                    suggestions: {\n                        limit: 4,\n                    },\n                },\n            },\n        };\n\n        utils.api.cart.getContent(options, onComplete);\n    } </pre><p></p>\n\nThis example (from <span class=\"inline-code\">cart.js</span>) shows a call to <span class=\"inline-code\">getContent</span> within the <span class=\"inline-code\">refreshContent</span> function:<br><p></p>\n\n<pre>    refreshContent(remove) {\n        const $cartItemsRows = $('[data-item-row]', this.$cartContent);\n        const $cartPageTitle = $('[data-cart-page-title]');\n        const options = {\n            template: {\n                content: 'cart/content',\n                totals: 'cart/totals',\n                pageTitle: 'cart/page-title',\n                statusMessages: 'cart/status-messages',\n            },\n        };\n\n        this.$overlay.show();\n\n        // Remove last item from cart? Reload\n        if (remove && $cartItemsRows.length === 1) {\n            return window.location.reload();\n        }\n\n        utils.api.cart.getContent(options, (err, response) => {\n            this.$cartContent.html(response.content);\n            this.$cartTotals.html(response.totals);\n            this.$cartMessages.html(response.statusMessages);\n\n            $cartPageTitle.replaceWith(response.pageTitle);\n            this.bindEvents();\n            this.$overlay.hide();\n\n            const quantity = $('[data-cart-quantity]', this.$cartContent).data('cart-quantity') || 0;\n\n            $('body').trigger('cart-quantity-update', quantity);\n        });\n    } </pre><p></p> \n\nHere is a final example of a call to <span class=\"inline-code\">getContent</span>, from <span class=\"inline-code\">global/cart-preview.js</span>:<br><p></p>\n\n<pre>    $cart.on('click', (event) => {\n        const options = {\n            template: 'common/cart-preview',\n        };\n\n        // Redirect to full cart page\n        //\n        // https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent\n        // In summary, we recommend looking for the string 'Mobi' anywhere in the User Agent to detect a mobile device.\n        if (/Mobi/i.test(navigator.userAgent)) {\n            return event.stopPropagation();\n        }\n\n        event.preventDefault();\n\n        $cartDropdown\n            .addClass(loadingClass)\n            .html($cartLoading);\n        $cartLoading\n            .show();\n\n        utils.api.cart.getContent(options, (err, response) => {\n            $cartDropdown\n                .removeClass(loadingClass)\n                .html(response);\n            $cartLoading\n                .hide();\n        });\n    }); </pre><br>\n\n\n<b><A NAME=\"getShippingQuotes\"></a>getShippingQuotes Signature</b><br>\n\nThe <span class=\"inline-code\">getShippingQuotes</span> function allows your code to retrieve shipping-cost quotes for the cart’s contents. It returns <span class=\"inline-code\">shippingQuote</span> objects that contain IDs. You must follow <span class=\"inline-code\">getShippingQuotes</span> by calling <span class=\"inline-code\"><a href=\"#submitShippingQuotes\">submitShippingQuote</a></span> on a <span class=\"inline-code\">quoteId</span>:<br>\n\n<p></p><pre>utils.api.cart.getShippingQuotes(params, renderWith, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">params</td>\n    <td class=\"\">Object</td>\n    <td class=\"\">Contains country_id, state_id, and zip_code</td>\n  </tr>\n  <tr>\n    <td class=\"\">template</td>\n    <td class=\"\">String/  Array/ Object</td>\n    <td class=\"\">The template to use for rendering</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n\n<b>getShippingQuotes and submitShippingQuote Example</b> <br><p></p>\n\nThe following example (from <span class=\"inline-code\">cart/shipping-estimator.js</span>) shows calls to both <span class=\"inline-code\">getShippingQuotes</span> and <span class=\"inline-code\">submitShippingQuote</span>:<br><p></p>\n\n<pre>    bindEstimatorEvents() {\n        const $estimatorContainer = $('.shipping-estimator');\n        const $estimatorForm = $('.estimator-form');\n\n        $estimatorForm.on('submit', (event) => {\n            const params = {\n                country_id: $('[name=\"shipping-country\"]', $estimatorForm).val(),\n                state_id: $('[name=\"shipping-state\"]', $estimatorForm).val(),\n                city: $('[name=\"shipping-city\"]', $estimatorForm).val(),\n                zip_code: $('[name=\"shipping-zip\"]', $estimatorForm).val(),\n            };\n\n            event.preventDefault();\n\n            utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {\n                $('.shipping-quotes').html(response.content);\n\n                // bind the select button\n                $('.select-shipping-quote').on('click', (clickEvent) => {\n                    const quoteId = $('.shipping-quote:checked').val();\n\n                    clickEvent.preventDefault();\n\n                    utils.api.cart.submitShippingQuote(quoteId, () => {\n                        location.reload();\n                    });\n                });\n            });\n        }); </pre><br>\n\n<A NAME=\"submitShippingQuote\"></a> <b>submitShippingQuote Signature</b><br>\n\nThe <span class=\"inline-code\">submitShippingQuote</span> function must be called after <span class=\"inline-code\"><a href=\"#getShippingQuotes\">getShippingQuote</a></span>, which returns <span class=\"inline-code\">shippingQuote</span> objects that contain IDs. The cart page renders the shipping quotes. When the user selects one of the quotes, this function sends that <span class=\"inline-code\">quoteId</span> to the backend:<br>\n\n`utils.api.cart.submitShippingQuote(quoteId, callback)`\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">quoteId</td>\n    <td class=\"\">Number</td>\n    <td class=\"\">ID for a shipping quote returned by <span class=\"inline-code\"><a href=\"#getShippingQuotes\">getShippingQuotes</a></span></td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n(For sample code, please see <b>getShippingQuotes and submitShippingQuote Example</b>, above.)<br><br>\n\n\n<b>applyCode Signature</b><br>\n\nThe <span class=\"inline-code\">applyCode</span> function applies a coupon code or gift certificate to the cart:<br>\n\n<p></p><pre>utils.api.cart.applyCode(code, callback)</pre>\n<br>\n\n<table>\n  <tbody><tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">code</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Alphanumeric representation of the coupon or gift-certificate code</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\nIn the following example (from <span class=\"inline-code\">cart.js</span>),  <span class=\"inline-code\">applyCode</span> is called before the final if/else test to apply a coupon code:<br><p></p>\n\n<pre>    bindPromoCodeEvents() {\n        const $couponContainer = $('.coupon-code');\n        const $couponForm = $('.coupon-form');\n        const $codeInput = $('[name=\"couponcode\"]', $couponForm);\n\n        $('.coupon-code-add').on('click', (event) => {\n            event.preventDefault();\n\n            $(event.currentTarget).hide();\n            $couponContainer.show();\n            $('.coupon-code-cancel').show();\n            $codeInput.focus();\n        });\n\n        $('.coupon-code-cancel').on('click', (event) => {\n            event.preventDefault();\n\n            $couponContainer.hide();\n            $('.coupon-code-cancel').hide();\n            $('.coupon-code-add').show();\n        });\n\n        $couponForm.on('submit', (event) => {\n            const code = $codeInput.val();\n\n            event.preventDefault();\n\n            // Empty code\n            if (!code) {\n                return alert($codeInput.data('error'));\n            }\n\n            utils.api.cart.applyCode(code, (err, response) => {\n                if (response.data.status === 'success') {\n                    this.refreshContent();\n                } else {\n                    alert(response.data.errors.join('\\n'));\n                }\n            });\n        });\n    } </pre><p></p>",
+                        "data": "## Cart API \n\nThe following functions allow your theme to work with cart contents in customized ways.\n\n<b>itemAdd Signature</b>\n\nThe `itemAdd`function allows your code to add an item to the cart, with options:\n\n<code>utils.api.cart.itemAdd(<a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a>, callback)</code>\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>formData</td>\n    <td><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FormData\">FormData</a> object </td>\n    <td>Contains all details about the added item and its product options</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>itemAdd Example</b> \n\n<code>itemAdd</code> is called at the head of the following example (from <code>common/product-details.js</code>) to populate the cart:\n\n```\n// Add item to cart\n        utils.api.cart.itemAdd(new FormData(form), (err, response) => {\n            const errorMessage = err || response.data.error;\n\n            $addToCartBtn\n                .val(originalBtnVal)\n                .prop('disabled', false);\n\n            this.$overlay.hide();\n\n            // Guard statement\n            if (errorMessage) {\n                // Strip the HTML from the error message\n                const tmp = document.createElement('DIV');\n                tmp.innerHTML = errorMessage;\n\n                return alert(tmp.textContent || tmp.innerText);\n            }\n\n            // Open preview modal and update content\n            if (this.previewModal) {\n                this.previewModal.open();\n\n                this.updateCartContent(this.previewModal, response.data.cart_item.hash);\n            } else {\n                this.$overlay.show();\n                // if no modal, redirect to the cart page\n                this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);\n            }\n        }); \n```\n\n\n<b>itemUpdate Signature</b>\n\nThe <code>itemUpdate</code> function allows your code to update a specified cart item’s quantity:\n\n`utils.api.cart.itemUpdate(itemId, qty, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>itemId</td>\n    <td>String</td>\n    <td>The item’s ID</td>\n  </tr>\n  <tr>\n    <td>qty</td>\n    <td>Integer</td>\n    <td>The item’s quantity in the cart</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody></table>\n\n<b>itemUpdate Example</b>\n\nIn the following example (from <code>cart.js</code>), <code>itemUpdate</code> is called just before the final if/else test for an empty cart:\n\n```\n\t\t\t\tcartUpdate($target) {\n        const itemId = $target.data('cartItemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantityMax'), 10);\n        const minQty = parseInt($el.data('quantityMin'), 10);\n        const minError = $el.data('quantityMinError');\n        const maxError = $el.data('quantityMaxError');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n\n        // Does not quality for min/max quantity\n        if (newQty < minQty) {\n            return swal({\n                text: minError,\n                type: 'error',\n            });\n        } else if (maxQty > 0 && newQty > maxQty) {\n            return swal({\n                text: maxError,\n                type: 'error',\n            });\n        }\n\n        this.$overlay.show();\n\n        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {\n            this.$overlay.hide();\n\n            if (response.data.status === 'succeed') {\n                // if the quantity is changed \"1\" from \"0\", we have to remove the row.\n                const remove = (newQty === 0);\n\n                this.refreshContent(remove);\n            } else {\n                $el.val(oldQty);\n                swal({\n                    text: response.data.errors.join('\\n'),\n                    type: 'error',\n                });\n            }\n        });\n    } \n```\n\n\n<b>itemRemove Signature</b>\n\nThe <code>itemRemove</code> function allows your code to remove items from the cart:\n\n`utils.api.cart.itemRemove(itemId, callback)`\n\n<table>\n  <tbody>\n\t<tr>\n    <th>Argument</td>\n    <th>Type</td>\n    <th>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>itemId</td>\n    <td>String</td>\n    <td>The item’s ID</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n<b>itemRemove Example</b>\n\nIn the following example (from <code>cart.js</code>), <code>itemRemove</code> is called before the if/else test:\n\n```\n\t\t\t\tcartRemoveItem(itemId) {\n        this.$overlay.show();\n        utils.api.cart.itemRemove(itemId, (err, response) => {\n            if (response.data.status === 'succeed') {\n                this.refreshContent(true);\n            } else {\n                alert(response.data.errors.join('\\n'));\n            }\n        });\n    } \n```\n\n\n<b>update Signature</b>\n\nThe <code>update</code> function allows your code to update the set of items in the cart:\n\n`utils.api.cart.update(itemId, qty, callback)`\n\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>items</td>\n    <td>Array</td>\n    <td>The items in the cart</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\n\n`update Example`\n\nThe following example shows a call to `update` within the `itemUpdate` function:\n\n```\n/**\n    itemUpdate(itemId, qty, callback) {\n        let callbackArg = callback;\n        let items;\n\n        if (Array.isArray(itemId) && typeof qty === 'function') {\n            callbackArg = qty;\n            items = itemId;\n        } else {\n            items = [\n                {\n                    id: itemId,\n                    quantity: qty,\n                },\n            ];\n        }\n\n        this.update(items, (err, response) => {\n            const emitData = {\n                items,\n                err,\n                response,\n            };\n\n            Hooks.emit('cart-item-update-remote', emitData);\n            callbackArg(err, response);\n        });\n    } \n```\n\n\n**getItemGiftWrappingOptions Signature**\n\nThe `getItemGiftWrappingOptions` function allows your code to retrieve gift-wrapping options for the current cart item, in customized ways:\n\n\n`utils.api.cart.getItemGiftWrappingOptions(itemId, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>itemId</td>\n    <td>String</td>\n    <td>The cart item</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n**getItemGiftWrappingOptions Example**\n\nThe following example (from `cart.js`) calls `getItemGiftWrappingOptions` to display gift-wrapping options in a modal:\n\n```\n\tbindGiftWrappingEvents() {\n        const modal = defaultModal();\n\n        $('[data-item-giftwrap]').on('click', (event) => {\n            const itemId = $(event.currentTarget).data('item-giftwrap');\n            const options = {\n                template: 'cart/modals/gift-wrapping-form',\n            };\n\n            event.preventDefault();\n\n            modal.open();\n\n            utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {\n                modal.updateContent(response.content);\n\n                this.bindGiftWrappingForm();\n            });\n        });\n    }\n```\n\n\n<b>submitItemGiftWrappingOption Signature</b>\n\nThe `submitItemGiftWrappingOption` function allows your code to handle the customer’s gift-wrapping selection for the current cart item:\n\n`utils.api.cart.submitItemGiftWrappingOption(itemId, qty, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>itemId</td>\n    <td>String</td>\n    <td>The cart item</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>submitItemGiftWrappingOption Example</b> \n\nThis commented example shows a simple call to `submitItemGiftWrappingOption`:\n\n```\n/**\n     * Submit giftwrapping options\n     *\n     * @param {String} itemId\n     * @param {Function} callback\n     */\n    submitItemGiftWrappingOption(itemId, qty, callback) {\n        this.remoteRequest(`/gift-wrapping/${itemId}`, 'POST', { params }, callback);\n    } \n```\n\n\n**getContent Signature**\n\nThe `getContent` function allows your code to display the cart contents in customized ways:\n\n`utils.api.cart.getContent(options, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>options</td>\n    <td>Object</td>\n    <td>Template containing content and totals children</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\n**getContent Examples**\n\nThe following example from `common/product-details.js` a call to `getContent`, set up by a prior call to `getCartContent`:\n\n<pre>    /**\n     * Get cart contents\n     *\n     * @param {String} cartItemHash\n     * @param {Function} onComplete\n     */\n    getCartContent(cartItemHash, onComplete) {\n        const options = {\n            template: 'cart/preview',\n            params: {\n                suggest: cartItemHash,\n            },\n            config: {\n                cart: {\n                    suggestions: {\n                        limit: 4,\n                    },\n                },\n            },\n        };\n\n        utils.api.cart.getContent(options, onComplete);\n    } </pre>\n\nThis example (from <code>cart.js</code>) shows a call to <code>getContent</code> within the <code>refreshContent</code> function:\n\n```\nrefreshContent(remove) {\n        const $cartItemsRows = $('[data-item-row]', this.$cartContent);\n        const $cartPageTitle = $('[data-cart-page-title]');\n        const options = {\n            template: {\n                content: 'cart/content',\n                totals: 'cart/totals',\n                pageTitle: 'cart/page-title',\n                statusMessages: 'cart/status-messages',\n            },\n        };\n\n        this.$overlay.show();\n\n        // Remove last item from cart? Reload\n        if (remove && $cartItemsRows.length === 1) {\n            return window.location.reload();\n        }\n\n        utils.api.cart.getContent(options, (err, response) => {\n            this.$cartContent.html(response.content);\n            this.$cartTotals.html(response.totals);\n            this.$cartMessages.html(response.statusMessages);\n\n            $cartPageTitle.replaceWith(response.pageTitle);\n            this.bindEvents();\n            this.$overlay.hide();\n\n            const quantity = $('[data-cart-quantity]', this.$cartContent).data('cart-quantity') || 0;\n\n            $('body').trigger('cart-quantity-update', quantity);\n        });\n    } \n```\n\nHere is a final example of a call to <code>getContent</code>, from <code>global/cart-preview.js</code>:\n\n``` \n$cart.on('click', (event) => {\n        const options = {\n            template: 'common/cart-preview',\n        };\n\n        // Redirect to full cart page\n        //\n        // https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent\n        // In summary, we recommend looking for the string 'Mobi' anywhere in the User Agent to detect a mobile device.\n        if (/Mobi/i.test(navigator.userAgent)) {\n            return event.stopPropagation();\n        }\n\n        event.preventDefault();\n\n        $cartDropdown\n            .addClass(loadingClass)\n            .html($cartLoading);\n        $cartLoading\n            .show();\n\n        utils.api.cart.getContent(options, (err, response) => {\n            $cartDropdown\n                .removeClass(loadingClass)\n                .html(response);\n            $cartLoading\n                .hide();\n        });\n    });\n```\n\n\n**getShippingQuotes Signature**\n\nThe `getShippingQuotes` function allows your code to retrieve shipping-cost quotes for the cart’s contents. It returns `shippingQuote` objects that contain IDs. You must follow `getShippingQuotes` by calling `submitShippingQuote` on a `quoteId`:\n\n`utils.api.cart.getShippingQuotes(params, renderWith, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains country_id, state_id, and zip_code</td>\n  </tr>\n  <tr>\n    <td>template</td>\n    <td>String/Array/Object</td>\n    <td>The template to use for rendering</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\n\n**getShippingQuotes and submitShippingQuote Example**\n\nThe following example from `cart/shipping-estimator.js` shows calls to both `getShippingQuotes` and `submitShippingQuote`:",
                         "header": {
                           "anchor": "stencil-utils_cart"
                         }
                       },
                       {
+                        "type": "code",
+                        "data": "bindEstimatorEvents() {\n        const $estimatorContainer = $('.shipping-estimator');\n        const $estimatorForm = $('.estimator-form');\n\n        $estimatorForm.on('submit', (event) => {\n            const params = {\n                country_id: $('[name=\"shipping-country\"]', $estimatorForm).val(),\n                state_id: $('[name=\"shipping-state\"]', $estimatorForm).val(),\n                city: $('[name=\"shipping-city\"]', $estimatorForm).val(),\n                zip_code: $('[name=\"shipping-zip\"]', $estimatorForm).val(),\n            };\n\n            event.preventDefault();\n\n            utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {\n                $('.shipping-quotes').html(response.content);\n\n                // bind the select button\n                $('.select-shipping-quote').on('click', (clickEvent) => {\n                    const quoteId = $('.shipping-quote:checked').val();\n\n                    clickEvent.preventDefault();\n\n                    utils.api.cart.submitShippingQuote(quoteId, () => {\n                        location.reload();\n                    });\n                });\n            });\n        }); \n\t",
+                        "header": {
+                          "subtitle": "cart/shipping-estimator.js",
+                          "title": "getShippingQuotes and SubmitShippingQuote Example"
+                        }
+                      },
+                      {
                         "type": "text",
-                        "data": "## Cookie Resource\n\nThis resource allows you to override a browser’s default alert box for cookie notifications.\n\n<table>\n  <tbody><tr>\n    <td>Argument</td>\n    <td>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>privacyMessage</td>\n    <td>Merchant-defined message informing customers of storefront’s cookie usage (e.g., to comply with E.U. notification requirement)</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>Cookie Examples:</b> \n\nThe following commented example (from`global/cookieNotification.js`) shows a call to `utils.hooks.on('cookie-privacy-notification', (event, privacyMessage)` to help comply with European Union privacy requirements:\n\n```\n/**\n * European websites must notify users of cookies to comply with European Union law.\n * This will alert shoppers that this website uses cookies.\n */\nexport default function () {\n    /*\n    // Here you can override the default browser alert box by hooking to the 'cookie-privacy-notification' hook.\n    utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {\n        // You can make your own custom modal or alert box appear in your theme using the privacyMessage provided\n        myCustomAlert(privacyMessage);\n\n        // Call event.preventDefault() to prevent the default browser alert from occurring in stencil-utils\n        event.preventDefault();\n    });\n    */\n\n    utils.hooks.on('cookie-privacy-notification', (event) => {\n        event.preventDefault();\n\n        const $privacyDialog = $('.cookieMessage');\n        $privacyDialog.show();\n\n        $('body').on('click', '[data-privacy-accept]', () => {\n            utils.hooks.emit('cookie-privacy-accepted');\n            $privacyDialog.hide();\n        });\n    });\n} \n\n```",
+                        "data": "**submitShippingQuote Signature**\n\nThe `submitShippingQuote` function must be called after `getShippingQuote`, which returns `shippingQuote` objects that contain IDs. The cart page renders the shipping quotes. When the user selects one of the quotes, this function sends that `quoteId` to the backend:\n\n`utils.api.cart.submitShippingQuote(quoteId, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>quoteId</td>\n    <td>Number</td>\n    <td>ID for a shipping quote returned by <code>getShippingQuotes</code></td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n\t</table>\n\n(For sample code, see `getShippingQuotes` and `submitShippingQuote` examples above.)"
+                      },
+                      {
+                        "type": "text",
+                        "data": "<b>applyCode Signature</b>\n\nThe `applyCode` function applies a coupon code or gift certificate to the cart:\n\n`utils.api.cart.applyCode(code, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>code</td>\n    <td>String</td>\n    <td>Alphanumeric representation of the coupon or gift-certificate code</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n</tbody>\n</table>\n\nIn the following example from `cart.js`,  `applyCode` is called before the final if/else test to apply a coupon code:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "bindPromoCodeEvents() {\n        const $couponContainer = $('.coupon-code');\n        const $couponForm = $('.coupon-form');\n        const $codeInput = $('[name=\"couponcode\"]', $couponForm);\n\n        $('.coupon-code-add').on('click', (event) => {\n            event.preventDefault();\n\n            $(event.currentTarget).hide();\n            $couponContainer.show();\n            $('.coupon-code-cancel').show();\n            $codeInput.focus();\n        });\n\n        $('.coupon-code-cancel').on('click', (event) => {\n            event.preventDefault();\n\n            $couponContainer.hide();\n            $('.coupon-code-cancel').hide();\n            $('.coupon-code-add').show();\n        });\n\n        $couponForm.on('submit', (event) => {\n            const code = $codeInput.val();\n\n            event.preventDefault();\n\n            // Empty code\n            if (!code) {\n                return alert($codeInput.data('error'));\n            }\n\n            utils.api.cart.applyCode(code, (err, response) => {\n                if (response.data.status === 'success') {\n                    this.refreshContent();\n                } else {\n                    alert(response.data.errors.join('\\n'));\n                }\n            });\n        });\n    }",
+                        "header": {
+                          "subtitle": "cart.js",
+                          "title": "applyCode"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Cookie Resource\n\nThis resource allows you to override a browser’s default alert box for cookie notifications.\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>privacyMessage</td>\n    <td>Merchant-defined message informing customers of storefront’s cookie usage (e.g., to comply with E.U. notification requirement)</td>\n  </tr>\n</tbody>\n</table>\n\n\n<b>Cookie Example:</b> \n\nThe following example (from`global/cookieNotification.js`) shows a call to `utils.hooks.on('cookie-privacy-notification', (event, privacyMessage)` to help comply with European Union privacy requirements:",
                         "header": {
                           "anchor": "stencil-utils_cookie"
                         }
                       },
                       {
+                        "type": "code",
+                        "data": "/**\n * European websites must notify users of cookies to comply with European Union law.\n * This will alert shoppers that this website uses cookies.\n */\nexport default function () {\n  \n    /*\n    // Here you can override the default browser alert box by hooking to the 'cookie-privacy-notification' hook.\n    utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {\n        // You can make your own custom modal or alert box appear in your theme using the privacyMessage provided\n        myCustomAlert(privacyMessage);\n\n        // Call event.preventDefault() to prevent the default browser alert from occurring in stencil-utils\n        event.preventDefault();\n    });\n    */\n\n    utils.hooks.on('cookie-privacy-notification', (event) => {\n        event.preventDefault();\n\n        const $privacyDialog = $('.cookieMessage');\n        $privacyDialog.show();\n\n        $('body').on('click', '[data-privacy-accept]', () => {\n            utils.hooks.emit('cookie-privacy-accepted');\n            $privacyDialog.hide();\n        });\n    });\n} ",
+                        "header": {
+                          "title": "Cookie Example",
+                          "subtitle": "global/cookieNotification.js"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
                         "type": "text",
-                        "data": "## Countries Resources\n\nThese functions allow your theme or app to retrieve standardized country names, by numeric ID or by string.\n\n<b>getById Signature</b>\n\nThe <code>getById</code> function retrieves standardized country names by numeric ID:\n\n`utils.api.countries.getById(countryId, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>countryId</td>\n    <td>Number</td>\n    <td>Country code</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example a call to <code>getById</code>, followed by a call to the <code>getByName</code> function (described below):\n\n```\n/**\n     *\n     * Get country data by id wrapper\n     *\n     * @param {Number} id\n     * @param {Function} callback\n     */\n    getById(id, callback) {\n        const url = this.endpoint + id;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n\n    /**\n     * Get country data by country name\n     * @param name\n     * @param callback\n     */\n    getByName(name, callback) {\n        const url = this.endpoint + name;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n}\n```\n\n<b>getByName Signature</b>\n\nThe `getByName` function retrieves states by country name, and returns an array of states that can be used in the callback:<br>\n\n<p></p><pre>utils.api.countries.getByName(countryName, callback)</pre>\n\n <br>\n\n<table>\n  <tbody>\n\t\t<tr>\n    <td class=\"\">Argument</td>\n    <td class=\"\">Type</td>\n    <td class=\"\">Description/Usage</td>\n  </tr>\n  <tr>\n    <td class=\"\">countryName</td>\n    <td class=\"\">String</td>\n    <td class=\"\">Country name</td>\n  </tr>\n  <tr>\n    <td class=\"\">callback</td>\n    <td class=\"\">Function</td>\n    <td class=\"\">Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nIn the following example (from `common/state-country.js`, `getByName` is called after the initial if test:\n\n```\n$('select[data-field-type=\"Country\"]').on('change', (event) => {\n        const countryName = $(event.currentTarget).val();\n\n        if (countryName === '') {\n            return;\n        }\n\n        utils.api.country.getByName(countryName, (err, response) => {\n            if (err) {\n                alert(context.state_error);\n\n                return callback(err);\n            }\n\n            const $currentInput = $('[data-field-type=\"State\"]');\n\n            if (!_.isEmpty(response.data.states)) {\n                // The element may have been replaced with a select, reselect it\n                const $selectElement = makeStateRequired($currentInput, context);\n\n                addOptions(response.data, $selectElement, options);\n                callback(null, $selectElement);\n            } else {\n                const newElement = makeStateOptional($currentInput, context);\n\n                callback(null, newElement);\n            }\n        });\n    }); \n```",
+                        "data": "## Countries Resources\n\nThese functions allow your theme or app to retrieve standardized country names, by numeric ID or by string.\n\n**getById Signature**\n\nThe `getById` function retrieves standardized country names by numeric ID:\n\n`utils.api.countries.getById(countryId, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>countryId</td>\n    <td>Number</td>\n    <td>Country code</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example a call to `getById`, followed by a call to the `getByName` function (described below):",
                         "header": {
                           "anchor": "stencil-utils_countries"
                         }
                       },
                       {
+                        "type": "code",
+                        "data": "/*   \n\t*Get country data by id wrapper\n     * @param {Number} id\n     * @param {Function} callback\n*/\n\n    getById(id, callback) {\n        const url = this.endpoint + id;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n\n/*\n     * Get country data by country name\n     * @param name\n     * @param callback\n*/\n    getByName(name, callback) {\n        const url = this.endpoint + name;\n\n        this.remoteRequest(url, 'GET', {}, callback);\n    }\n}",
+                        "header": {
+                          "title": "getById Example"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
                         "type": "text",
-                        "data": "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n<b>optionChange Examples</b>\n\nIn this example (from <code>common/product-details.js</code>), <code>optionChange</code> is called to update options in a Quick View modal:\n\n```\n// Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos\n        if (_.isEmpty(productAttributesData) && hasOptions) {\n            const $productId = $('[name=\"product_id\"]', $form).val();\n\n            utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {\n                const attributesData = response.data || {};\n\n                this.updateProductAttributes(attributesData);\n                this.updateView(attributesData);\n            });\n        } else {\n            this.updateProductAttributes(productAttributesData);\n        } \n```\n\n\nIn this example (from <code>cart.js</code>), <code>optionChange</code> is called before the final if test:\n\n```  \n\t\t\t\tcartEditOptions(itemId) {\n        const modal = defaultModal();\n        const options = {\n            template: 'cart/modals/configure-product',\n        };\n\n        modal.open();\n\n        utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {\n            modal.updateContent(response.content);\n\n            this.bindGiftWrappingForm();\n        });\n\n        utils.hooks.on('product-option-change', (event, option) => {\n            const $changedOption = $(option);\n            const $form = $changedOption.parents('form');\n            const $submit = $('input.button', $form);\n            const $messageBox = $('.alertMessageBox');\n            const item = $('[name=\"item_id\"]', $form).attr('value');\n\n            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {\n                const data = result.data || {};\n\n                if (err) {\n                    alert(err);\n                    return false;\n                }\n```",
+                        "data": "**getByName Signature**\n\nThe `getByName` function retrieves states by country name, and returns an array of states that can be used in the callback:\n\n`utils.api.countries.getByName(countryName, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <td>Argument</td>\n    <td>Type</td>\n    <td>Description/Usage</td>\n  </tr>\n  <tr>\n    <td>countryName</td>\n    <td>String</td>\n    <td>Country name</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nIn the following example from `common/state-country.js`, `getByName` is called after the initial if test:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "$('select[data-field-type=\"Country\"]').on('change', (event) => {\n        const countryName = $(event.currentTarget).val();\n\n        if (countryName === '') {\n            return;\n        }\n\n        utils.api.country.getByName(countryName, (err, response) => {\n            if (err) {\n                alert(context.state_error);\n\n                return callback(err);\n            }\n\n            const $currentInput = $('[data-field-type=\"State\"]');\n\n            if (!_.isEmpty(response.data.states)) {\n                // The element may have been replaced with a select, reselect it\n                const $selectElement = makeStateRequired($currentInput, context);\n\n                addOptions(response.data, $selectElement, options);\n                callback(null, $selectElement);\n            } else {\n                const newElement = makeStateOptional($currentInput, context);\n\n                callback(null, newElement);\n            }\n        });\n    }); ",
+                        "header": {
+                          "title": "getByName Example",
+                          "subtitle": "common/state-country.js"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Product Attributes Resource\n\nThe `optionChange` function is fired when the customer selects a product option for the current cart item (for example, changing a shirt’s color from a default \"yellow\" to \"green\"):\n\n<b>optionChange Signature</b>\n\n`utils.api.productAttributes.optionChange(productId, params, callback)`\n\n<table>\n  <tbody>\n\t\t<tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains a collection of IDs that map to product properties (color, size, etc.)</td>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\n**optionChange Examples**\n\nIn this example (from `common/product-details.js`), `optionChange` is called to update options in a Quick View modal:",
                         "header": {
                           "anchor": "stencil-utils_product-attributes"
                         }
                       },
                       {
+                        "type": "code",
+                        "data": "// Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos\n        if (_.isEmpty(productAttributesData) && hasOptions) {\n            const $productId = $('[name=\"product_id\"]', $form).val();\n\n            utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {\n                const attributesData = response.data || {};\n\n                this.updateProductAttributes(attributesData);\n                this.updateView(attributesData);\n            });\n        } else {\n            this.updateProductAttributes(productAttributesData);\n        } ",
+                        "header": {
+                          "title": "optionChange Example #1",
+                          "subtitle": "common/product-details.js"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
                         "type": "text",
-                        "data": "## Product Resource\n\nThe `product.getById` function allows your code to retrieve, and to present, detailed product information by product ID.\n\n<b>getById Signature</b>\n\n`utils.api.product.getById(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example (from `global/quick-view.js`) calls `product.getById` to populate the Quick View modal:\n\n```\t\t\t\t\n\t\t\t\t$('body').on('click', '.quickview', (event) => {\n        event.preventDefault();\n\n        const productId = $(event.currentTarget).data('product-id');\n\n        modal.open({ size: 'large' });\n\n        utils.api.product.getById(productId, { template: 'products/quick-view' }, (err, response) => {\n            modal.updateContent(response);\n\n            modal.$content.find('.productView').addClass('productView--quickView');\n\n            return new ProductDetails(modal.$content.find('.quickView'), context);\n        });\n    }); \n```",
+                        "data": "In this example from `cart.js`, `optionChange` is called before the final `if` test:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "cartEditOptions(itemId) {\n        const modal = defaultModal();\n        const options = {\n            template: 'cart/modals/configure-product',\n        };\n\n        modal.open();\n\n        utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {\n            modal.updateContent(response.content);\n\n            this.bindGiftWrappingForm();\n        });\n\n        utils.hooks.on('product-option-change', (event, option) => {\n            const $changedOption = $(option);\n            const $form = $changedOption.parents('form');\n            const $submit = $('input.button', $form);\n            const $messageBox = $('.alertMessageBox');\n            const item = $('[name=\"item_id\"]', $form).attr('value');\n\n            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {\n                const data = result.data || {};\n\n                if (err) {\n                    alert(err);\n                    return false;\n                }\n",
+                        "header": {
+                          "subtitle": "cart.js",
+                          "title": "optionChange Example #2"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Product Resource\n\nThe `product.getById` function allows your code to retrieve, and to present, detailed product information by product ID.\n\n<b>getById Signature</b>\n\n`utils.api.product.getById(productId, params, callback)`\n\n<table>\n  <tbody><tr>\n    <th>Argument</th>\n    <th>Type</th>\n    <th>Description/Usage</th>\n  </tr>\n  <tr>\n    <td>productId</td>\n    <td>Number</td>\n    <td>ID for this product</td>\n  </tr>\n  <tr>\n    <td>params</td>\n    <td>Object</td>\n    <td>Contains request options and/or presentation template</td>\n  </tr>\n  <tr>\n    <td>callback</td>\n    <td>Function</td>\n    <td>Asynchronous function call to handle the results</td>\n  </tr>\n\t</tbody>\n</table>\n\n\nThe following example (from `global/quick-view.js`) calls `product.getById` to populate the Quick View modal:",
                         "header": {
                           "anchor": "stencil-utils_product"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "\t$('body').on('click', '.quickview', (event) => {\n        event.preventDefault();\n\n        const productId = $(event.currentTarget).data('product-id');\n\n        modal.open({ size: 'large' });\n\n        utils.api.product.getById(productId, { template: 'products/quick-view' }, (err, response) => {\n            modal.updateContent(response);\n\n            modal.$content.find('.productView').addClass('productView--quickView');\n\n            return new ProductDetails(modal.$content.find('.quickView'), context);\n        });\n    }); ",
+                        "header": {
+                          "subtitle": "global/quick-view.js",
+                          "title": "getById Example"
+                        },
+                        "config": {
+                          "mode": "js"
                         }
                       },
                       {
@@ -13911,7 +14219,7 @@
     "/changelog": {
       "title": "Changelog",
       "data": {
-        "$ref": "./Changelog_Test.html"
+        "$ref": "./Changelog.html"
       }
     },
     "/legacy": {
