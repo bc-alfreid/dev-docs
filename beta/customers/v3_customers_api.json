@@ -1,0 +1,1864 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Customer Attributes API",
+    "version": "",
+    "description": "## Customers\n## Customer Addresses\n## Customer Attributes",
+    "termsOfService": ""
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{store_hash}/v3",
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "BigCommerce Customers API Definition."
+    },
+    {
+      "name": "Customer Addresses"
+    },
+    {
+      "name": "Customer Attributes"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/customers": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Returns all customers in a store. To limit results use an available query parameter.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterCustomerIdParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateCreatedParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateModifiedParam"
+          },
+          {
+            "$ref": "#/parameters/FilterCustomerDateSinceParam"
+          },
+          {
+            "$ref": "#/parameters/FilterEmailParam"
+          },
+          {
+            "$ref": "#/parameters/FilterNameParam"
+          },
+          {
+            "$ref": "#/parameters/FilterCustomerRegistrationIPAddressParam"
+          },
+          {
+            "$ref": "#/parameters/FilterCompanyParam"
+          },
+          {
+            "$ref": "#/parameters/FilterCustomerGroupParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomerCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 11,
+                    "address_count": 2,
+                    "addresses": [
+                      {
+                        "id": 16,
+                        "address1": "123 Main Street",
+                        "address2": "",
+                        "address_type": "residential",
+                        "city": "Austin",
+                        "company": "",
+                        "country": "United States",
+                        "country_code": "US",
+                        "customer_id": 11,
+                        "first_name": "Jane",
+                        "last_name": "Doe",
+                        "phone": "1234567890",
+                        "postal_code": "78751",
+                        "state_or_province": "Texas"
+                      },
+                      {
+                        "id": 23,
+                        "address1": "111 E West Street",
+                        "address2": "654",
+                        "address_type": "commercial",
+                        "city": "Akron",
+                        "company": "BigCommerce",
+                        "country": "United States",
+                        "country_code": "US",
+                        "customer_id": 11,
+                        "first_name": "Jane",
+                        "last_name": "Doe",
+                        "phone": "1234567890",
+                        "postal_code": "44325",
+                        "state_or_province": "Ohio"
+                      }
+                    ],
+                    "attributes": [],
+                    "authentication": {
+                      "force_password_reset": false
+                    },
+                    "company": "",
+                    "customer_group_id": 0,
+                    "email": "janedoe@email.com",
+                    "first_name": "Jane",
+                    "last_name": "Doe",
+                    "notes": "",
+                    "phone": "1234567890",
+                    "registration_ip_address": "",
+                    "tax_exempt_category": "",
+                    "date_created": "2018-09-05T13:43:54Z",
+                    "date_modified": "2018-09-05T13:45:03Z"
+                  },
+                  {
+                    "id": 12,
+                    "address_count": 1,
+                    "addresses": [
+                      {
+                        "id": 17,
+                        "address1": "Bennelong Point",
+                        "address2": "",
+                        "address_type": "commercial",
+                        "city": "Sydney",
+                        "company": "",
+                        "country": "Australia",
+                        "country_code": "AU",
+                        "customer_id": 12,
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "phone": "1234567890",
+                        "postal_code": "2000",
+                        "state_or_province": "New South Wales"
+                      }
+                    ],
+                    "attributes": [],
+                    "authentication": {
+                      "force_password_reset": false
+                    },
+                    "company": "",
+                    "customer_group_id": 0,
+                    "email": "johndoe@email.com",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "notes": "",
+                    "phone": "1234567890",
+                    "registration_ip_address": "",
+                    "tax_exempt_category": "",
+                    "date_created": "2018-09-05T13:46:16Z",
+                    "date_modified": "2018-09-05T13:56:52Z"
+                  },
+                  {
+                    "id": 14,
+                    "address_count": 1,
+                    "addresses": [
+                      {
+                        "id": 24,
+                        "address1": "St Katharine's & Wapping",
+                        "address2": "",
+                        "address_type": "residential",
+                        "city": "London",
+                        "company": "",
+                        "country": "United Kingdom",
+                        "country_code": "GB",
+                        "customer_id": 14,
+                        "first_name": "Nathaniel",
+                        "last_name": "Hornblower",
+                        "phone": "5122134567",
+                        "postal_code": "EC3N 4AB",
+                        "state_or_province": "UK"
+                      }
+                    ],
+                    "attributes": [],
+                    "authentication": {
+                      "force_password_reset": false
+                    },
+                    "company": "",
+                    "customer_group_id": 0,
+                    "email": "nathanielhornblower@testing.com",
+                    "first_name": "Nathaniel",
+                    "last_name": "Hornblower",
+                    "notes": "",
+                    "phone": "123456788900",
+                    "registration_ip_address": "64.183.182.114",
+                    "tax_exempt_category": "",
+                    "date_created": "2018-11-13T17:55:36Z",
+                    "date_modified": "2018-11-13T17:55:36Z"
+                  },
+                  {
+                    "id": 15,
+                    "address_count": 1,
+                    "addresses": [
+                      {
+                        "id": 25,
+                        "address1": "221B Baker Street",
+                        "address2": "",
+                        "address_type": "residential",
+                        "city": "London",
+                        "company": "",
+                        "country": "United Kingdom",
+                        "country_code": "GB",
+                        "customer_id": 15,
+                        "first_name": "Patricia",
+                        "last_name": "Moriarty",
+                        "phone": "1234567890",
+                        "postal_code": "NW1 5LR",
+                        "state_or_province": "UK"
+                      }
+                    ],
+                    "attributes": [],
+                    "authentication": {
+                      "force_password_reset": false
+                    },
+                    "company": "",
+                    "customer_group_id": 0,
+                    "email": "patriciamoriarty@test.com",
+                    "first_name": "Patricia",
+                    "last_name": "Moriarty",
+                    "notes": "",
+                    "phone": "5122134567",
+                    "registration_ip_address": "64.183.182.114",
+                    "tax_exempt_category": "",
+                    "date_created": "2018-11-13T17:57:33Z",
+                    "date_modified": "2018-11-13T17:57:33Z"
+                  },
+                  {
+                    "id": 16,
+                    "address_count": 1,
+                    "addresses": [
+                      {
+                        "id": 26,
+                        "address1": "Mauna Kea Access Rd",
+                        "address2": "",
+                        "address_type": "residential",
+                        "city": "Hilo",
+                        "company": "",
+                        "country": "United States",
+                        "country_code": "US",
+                        "customer_id": 16,
+                        "first_name": "Dwayne",
+                        "last_name": "Cole",
+                        "phone": "8081234567",
+                        "postal_code": "96720",
+                        "state_or_province": "Hawaii"
+                      }
+                    ],
+                    "attributes": [],
+                    "authentication": {
+                      "force_password_reset": false
+                    },
+                    "company": "",
+                    "customer_group_id": 0,
+                    "email": "dwaynecole@testing.com",
+                    "first_name": "Dwayne",
+                    "last_name": "Cole",
+                    "notes": "",
+                    "phone": "1234567890",
+                    "registration_ip_address": "64.183.182.114",
+                    "tax_exempt_category": "",
+                    "date_created": "2018-11-13T18:10:04Z",
+                    "date_modified": "2018-11-13T18:10:04Z"
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 5,
+                    "count": 5,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get All Customers"
+      },
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Create a new customer. Only one customer can be created at a time.\n\nRequired Fields:\n\n* `first_name`\n* `last_name`\n* `email`\n\nTo learn more about password authentication see [Customer Passwords](https://developer-beta.bigcommerce.com/api-reference/customer-subscribers/customers-api/customer-passwords/postcustomerscustomeridvalidate)",
+        "parameters": [
+          {
+            "name": "customers",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomerCollectionRequest"
+            },
+            "x-examples": {
+              "application/json": [
+                {
+                  "email": "dwaynecole@testing.com",
+                  "first_name": "Dwayne",
+                  "last_name": "Cole",
+                  "phone": "1234567890",
+                  "addresses": [
+                    {
+                      "address1": "Mauna Kea Access Rd",
+                      "address_type": "residential",
+                      "city": "Hilo",
+                      "country": "United States",
+                      "country_code": "US",
+                      "first_name": "Dwayne",
+                      "last_name": "Cole",
+                      "phone": "8081234567",
+                      "postal_code": "96720",
+                      "state_or_province": "Hawaii"
+                    }
+                  ]
+                }
+              ]
+            },
+            "description": "The input must be an array object."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomerCollectionResponse"
+            },
+            "examples": {
+              "application/json": "{\n    \"data\": [\n        {\n            \"id\": 18,\n            \"address_count\": 1,\n            \"addresses\": [\n                {\n                    \"id\": 27,\n                    \"address1\": \"Mauna Kea Access Rd\",\n                    \"address2\": \"\",\n                    \"address_type\": \"residential\",\n                    \"city\": \"Hilo\",\n                    \"company\": \"\",\n                    \"country\": \"United States\",\n                    \"country_code\": \"US\",\n                    \"customer_id\": 18,\n                    \"first_name\": \"Dwayne\",\n                    \"last_name\": \"Cole\",\n                    \"phone\": \"8081234567\",\n                    \"postal_code\": \"96720\",\n                    \"state_or_province\": \"Hawaii\"\n                }\n            ],\n            \"attributes\": [],\n            \"authentication\": {\n                \"force_password_reset\": false\n            },\n            \"company\": \"\",\n            \"customer_group_id\": 0,\n            \"email\": \"dwaynecole@testing.com\",\n            \"first_name\": \"Dwayne\",\n            \"last_name\": \"Cole\",\n            \"notes\": \"\",\n            \"phone\": \"1234567890\",\n            \"registration_ip_address\": \"\",\n            \"tax_exempt_category\": \"\",\n            \"date_created\": \"2018-11-13T18:38:31Z\",\n            \"date_modified\": \"2018-11-13T18:38:31Z\"\n        }\n    ],\n    \"meta\": {}\n}"
+            }
+          },
+          "422": {
+            "description": "The `Customer` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Create a Customer"
+      },
+      "put": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Update a Customer. The path does not use extra query parameters or a path. The id is passed in with the update request.\n\nAddress can not be updated via this endpoint. See the [Customer Address]() PUT to update an address. \n\nAccepted fields:\n`first_name`\n`last_name`\n`email`\n`phone`",
+        "parameters": [
+          {
+            "name": "customers",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerCollectionUpdate"
+              }
+            },
+            "x-examples": {
+              "application/json": [
+                {
+                  "id": 20,
+                  "email": "golightly5@testing.com",
+                  "phone": "1234567840"
+                }
+              ]
+            },
+            "description": "The input must be an array object."
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomerCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 20,
+                    "address_count": 1,
+                    "addresses": [
+                      {
+                        "id": 29,
+                        "address1": "5555 Hermann Park Dr",
+                        "address2": "",
+                        "address_type": "commercial",
+                        "city": "Houston",
+                        "company": "",
+                        "country": "United States",
+                        "country_code": "US",
+                        "customer_id": 20,
+                        "first_name": "Alice",
+                        "last_name": "Golightly",
+                        "phone": "8901234567",
+                        "postal_code": "77030",
+                        "state_or_province": "Texas"
+                      }
+                    ],
+                    "attributes": [],
+                    "authentication": {
+                      "force_password_reset": false
+                    },
+                    "company": "",
+                    "customer_group_id": 0,
+                    "email": "golightly5@testing.com",
+                    "first_name": "Alice",
+                    "last_name": "Golightly",
+                    "notes": "",
+                    "phone": "1234567840",
+                    "registration_ip_address": "",
+                    "tax_exempt_category": "",
+                    "date_created": "2018-11-13T20:42:16Z",
+                    "date_modified": "2018-11-13T20:46:42Z"
+                  }
+                ],
+                "meta": {}
+              }
+            }
+          },
+          "422": {
+            "description": "The `Customer` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Update a Customer"
+      },
+      "delete": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Delete a customers from the store. It is recommeded to use the `id` query parameter to prevent deleting all store customers.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterIdParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "summary": "Delete Customers"
+      }
+    },
+    "/customers/addresses": {
+      "get": {
+        "description": "Gets all customer addresses. To limit results use an available query parameter.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterCustomerIdParam"
+          },
+          {
+            "$ref": "#/parameters/FilterNameParam"
+          },
+          {
+            "$ref": "#/parameters/FilterCompanyParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateCreatedParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateModifiedParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddressCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 16,
+                    "address1": "123 Main Street",
+                    "address2": "",
+                    "address_type": "residential",
+                    "city": "Austin",
+                    "company": "",
+                    "country": "United States",
+                    "country_code": "US",
+                    "customer_id": 11,
+                    "first_name": "Jane",
+                    "last_name": "Doe",
+                    "phone": "1234567890",
+                    "postal_code": "78751",
+                    "state_or_province": "Texas"
+                  },
+                  {
+                    "id": 17,
+                    "address1": "Bennelong Point",
+                    "address2": "",
+                    "address_type": "commercial",
+                    "city": "Sydney",
+                    "company": "",
+                    "country": "Australia",
+                    "country_code": "AU",
+                    "customer_id": 12,
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "phone": "1234567890",
+                    "postal_code": "2000",
+                    "state_or_province": "New South Wales"
+                  },
+                  {
+                    "id": 23,
+                    "address1": "111 E West Street",
+                    "address2": "654",
+                    "address_type": "commercial",
+                    "city": "Akron",
+                    "company": "BigCommerce",
+                    "country": "United States",
+                    "country_code": "US",
+                    "customer_id": 11,
+                    "first_name": "Jane",
+                    "last_name": "Doe",
+                    "phone": "1234567890",
+                    "postal_code": "44325",
+                    "state_or_province": "Ohio"
+                  },
+                  {
+                    "id": 24,
+                    "address1": "St Katharine's & Wapping",
+                    "address2": "",
+                    "address_type": "residential",
+                    "city": "London",
+                    "company": "",
+                    "country": "United Kingdom",
+                    "country_code": "GB",
+                    "customer_id": 14,
+                    "first_name": "Nathaniel",
+                    "last_name": "Hornblower",
+                    "phone": "5122134567",
+                    "postal_code": "EC3N 4AB",
+                    "state_or_province": "UK"
+                  },
+                  {
+                    "id": 25,
+                    "address1": "221B Baker Street",
+                    "address2": "",
+                    "address_type": "residential",
+                    "city": "London",
+                    "company": "",
+                    "country": "United Kingdom",
+                    "country_code": "GB",
+                    "customer_id": 15,
+                    "first_name": "Patricia",
+                    "last_name": "Moriarty",
+                    "phone": "1234567890",
+                    "postal_code": "NW1 5LR",
+                    "state_or_province": "UK"
+                  },
+                  {
+                    "id": 27,
+                    "address1": "Mauna Kea Access Rd",
+                    "address2": "",
+                    "address_type": "residential",
+                    "city": "Hilo",
+                    "company": "",
+                    "country": "United States",
+                    "country_code": "US",
+                    "customer_id": 18,
+                    "first_name": "Dwayne",
+                    "last_name": "Cole",
+                    "phone": "8081234567",
+                    "postal_code": "96720",
+                    "state_or_province": "Hawaii"
+                  },
+                  {
+                    "id": 28,
+                    "address1": "Rue de Rivoli",
+                    "address2": "",
+                    "address_type": "commercial",
+                    "city": "Paris",
+                    "company": "",
+                    "country": "France",
+                    "country_code": "FR",
+                    "customer_id": 19,
+                    "first_name": "Caden",
+                    "last_name": "Whitfield",
+                    "phone": "+33(0)140205050",
+                    "postal_code": "75001",
+                    "state_or_province": "France"
+                  },
+                  {
+                    "id": 29,
+                    "address1": "5555 Hermann Park Dr",
+                    "address2": "",
+                    "address_type": "commercial",
+                    "city": "Houston",
+                    "company": "",
+                    "country": "United States",
+                    "country_code": "US",
+                    "customer_id": 20,
+                    "first_name": "Alice",
+                    "last_name": "Golightly",
+                    "phone": "8901234567",
+                    "postal_code": "77030",
+                    "state_or_province": "Texas"
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 8,
+                    "count": 8,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get All Customer Addresses",
+        "tags": [
+          "Customer Addresses"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "addresses",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CreateCustomerAddress"
+              }
+            },
+            "x-examples": {
+              "application/json": [
+                {
+                  "first_name": "Jon",
+                  "city": "Austin",
+                  "customer_id": 11,
+                  "country_code": "US",
+                  "state_or_province": "Texas",
+                  "last_name": "Doe",
+                  "address1": "122 First Street",
+                  "postal_code": "78726",
+                  "phone": "6789012345"
+                }
+              ]
+            },
+            "description": "The request must be passed in as an array object."
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddressCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 30,
+                    "address1": "122 First Street",
+                    "address2": "",
+                    "address_type": "residential",
+                    "city": "Austin",
+                    "company": "",
+                    "country": "United States",
+                    "country_code": "US",
+                    "customer_id": 11,
+                    "first_name": "Jon",
+                    "last_name": "Doe",
+                    "phone": "6789012345",
+                    "postal_code": "78726",
+                    "state_or_province": "Texas"
+                  }
+                ],
+                "meta": {}
+              }
+            }
+          },
+          "422": {
+            "description": "The `Address` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Create a Customer Address",
+        "tags": [
+          "Customer Addresses"
+        ],
+        "description": "Creates a Customer Address.\n\nTo create an address the `customer_id` must be passed in. To get the id send a GET request to the Get All Customers Endpoint."
+      },
+      "put": {
+        "description": "To create an address the `id` of the address must be passed in with the request body. This can be retrived from either the Get Customers endpoint or the Get Customer Address endpoint.\n\nResponse example Get Customers:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 11,\n            \"address_count\": 2,\n            \"addresses\": [\n                {\n                   ** \"id\": 16,**\n                    \"address1\": \"123 Main Street\",\n                    \"address2\": \"\",\n                    \"address_type\": \"residential\",\n                    \"city\": \"Austin\",\n                    \"company\": \"\",\n                    \"country\": \"United States\",\n                    \"country_code\": \"US\",\n                    \"customer_id\": 11,\n                    \"first_name\": \"Jane\",\n                    \"last_name\": \"Doe\",\n                    \"phone\": \"1234567890\",\n                    \"postal_code\": \"78751\",\n                    \"state_or_province\": \"Texas\"\n                }\n\t....\n\t\n```\n\nResponse example Get Addresses:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            **\"id\": 16,**\n            \"address1\": \"123 Main Street\",\n            \"address2\": \"\",\n            \"address_type\": \"residential\",\n            \"city\": \"Austin\",\n            \"company\": \"\",\n            \"country\": \"United States\",\n            \"country_code\": \"US\",\n            \"customer_id\": 11,\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Doe\",\n            \"phone\": \"1234567890\",\n            \"postal_code\": \"78751\",\n            \"state_or_province\": \"Texas\"\n        }\n\t\t\t...\n```",
+        "parameters": [
+          {
+            "name": "addresses",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressCollectionRequest"
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of updated customer addresses.\n",
+            "schema": {
+              "$ref": "#/definitions/AddressCollectionResponse"
+            }
+          },
+          "422": {
+            "description": "The `Address` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Update a Customer",
+        "tags": [
+          "Customer Addresses"
+        ]
+      },
+      "delete": {
+        "description": "Delete a customer from the store.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterIdParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "summary": "Delete Customer Address",
+        "tags": [
+          "Customer Addresses"
+        ]
+      }
+    },
+    "/customers/attributes": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Returns a paginated Customer attributes list",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterNameParam"
+          },
+          {
+            "$ref": "#/parameters/FilterCustomerAttributeTypeParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateCreatedParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateModifiedParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of customer attribute objects and metadata.\n",
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeCollectionResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "name": "attributes",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeCollectionRequest"
+            },
+            "x-examples": {
+              "application/json": {
+                "attributes": [
+                  {
+                    "id": 85439540,
+                    "name": "in Excepteur elit",
+                    "type": "amet",
+                    "date_modified": "1954-07-01T16:55:48.941Z",
+                    "date_created": "1988-05-31T16:57:19.221Z"
+                  },
+                  {
+                    "id": 6306496,
+                    "name": "officia",
+                    "type": "cupidatat ut nulla proident ullamco",
+                    "date_modified": "1988-07-27T14:21:22.973Z",
+                    "date_created": "1967-07-26T21:21:15.668Z"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of updated customer attributes.\n",
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeCollectionResponse"
+            }
+          },
+          "422": {
+            "description": "The `Attribute` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Create Customer Attributes",
+        "description": "Can be created without being assigned to a customer. \n"
+      },
+      "put": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Update Customer attribute objects.\n",
+        "parameters": [
+          {
+            "name": "attributes",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeCollectionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of updated customer attributes.\n",
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeCollectionResponse"
+            }
+          },
+          "422": {
+            "description": "The `Attribute` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Deletes a Customer attribute objects from the store.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterIdParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response.\n"
+          }
+        }
+      }
+    },
+    "/customers/attribute-values": {
+      "get": {
+        "description": "Gets All Customer Attribute Values. To limit results use an available query parameter.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterCustomerIdParam"
+          },
+          {
+            "$ref": "#/parameters/FilterAttributeIdParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateCreatedParam"
+          },
+          {
+            "$ref": "#/parameters/FilterDateModifiedParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeValueCollectionResponse"
+            }
+          }
+        },
+        "summary": "Get All Customer Attribute Values",
+        "tags": [
+          "Customer Attributes"
+        ]
+      },
+      "put": {
+        "description": "Upsert Customer attribute values.",
+        "parameters": [
+          {
+            "name": "attributes",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeValueCollectionRequest"
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomerAttributeValueCollectionResponse"
+            }
+          },
+          "422": {
+            "description": "The `CustomerAttributeValue` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.\n",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Upsert Customer Attribute Values",
+        "tags": [
+          "Customer Attributes"
+        ]
+      },
+      "delete": {
+        "description": "Deletes a Customer attribute values from the store.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/FilterIdParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "summary": "Delete All Attribute Valies",
+        "tags": [
+          "Customer Attributes"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "IdsRequest": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Ids Request"
+    },
+    "Pagination": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Total number of items in the result set.\n"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Total number of items in the collection response.\n"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The amount of items returned in the collection per page, controlled by the limit parameter.\n"
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The page you are currently on within the collection.\n"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages in the collection.\n"
+        },
+        "links": {
+          "type": "object",
+          "description": "Pagination links for the previous and next parts of the whole collection.\n",
+          "properties": {
+            "previous": {
+              "type": "string",
+              "description": "Link to the previous page returned in the response.\n"
+            },
+            "current": {
+              "type": "string",
+              "description": "Link to the current page returned in the response.\n"
+            },
+            "next": {
+              "type": "string",
+              "description": "Link to the next page returned in the response.\n"
+            }
+          }
+        }
+      },
+      "title": "Pagination"
+    },
+    "CollectionMeta": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/Pagination"
+        }
+      },
+      "title": "Collection Meta"
+    },
+    "ErrorResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseError"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "$ref": "#/definitions/DetailedErrors"
+            }
+          }
+        }
+      ],
+      "title": "Error Response"
+    },
+    "BaseError": {
+      "type": "object",
+      "description": "Error payload for the BigCommerce API.",
+      "properties": {
+        "status": {
+          "description": "The HTTP status code.\n",
+          "type": "integer"
+        },
+        "title": {
+          "description": "The error title describing the particular error.\n",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "title": "Base Error"
+    },
+    "DetailedErrors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Detailed Errors"
+    },
+    "CustomerCollectionRequest": {
+      "type": "object",
+      "title": "Customer Collection Create",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The email of the customer. Must be unique.\n"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "company": {
+          "type": "string",
+          "description": "The company of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "customer_since_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date of which the customer was registered in the system.\n"
+        },
+        "registration_ip_address": {
+          "type": "string",
+          "format": "ip-address",
+          "description": "The IP address from which this customer was registered.\n"
+        },
+        "notes": {
+          "type": "string",
+          "description": "The customer notes.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "tax_exempt_category": {
+          "type": "string",
+          "description": "The tax exempt category code for the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "authentication": {
+          "$ref": "#/definitions/CustomerAuthentication"
+        },
+        "customer_group_id": {
+          "type": "integer",
+          "description": "Id of the group which this customer belongs to.\n",
+          "x-nullable": true
+        },
+        "address_count": {
+          "type": "integer",
+          "description": "Total number of customer addresses\n"
+        },
+        "addresses": {
+          "type": "array",
+          "description": "Array of customer addresses. Limited to 10",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "attribute_count": {
+          "type": "integer",
+          "description": "Total number of customer attributes\n"
+        },
+        "attributes": {
+          "type": "array",
+          "description": "Array of customer attributes.",
+          "items": {
+            "$ref": "#/definitions/CustomerAttributeValue"
+          }
+        }
+      },
+      "required": [
+        "email",
+        "first_name",
+        "last_name"
+      ],
+      "description": "Create a Customer."
+    },
+    "CustomerCollectionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Customer"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      },
+      "title": "Customer Collection Response"
+    },
+    "Customer": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CustomerBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "date_modified": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The date on which the customer was modified.\n"
+            },
+            "date_created": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The date of which the customer was created.\n"
+            }
+          }
+        }
+      ],
+      "title": "Customer"
+    },
+    "CustomerBase": {
+      "type": "object",
+      "description": "Common Customer properties.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique numeric ID of the customer.\n",
+          "x-required": [
+            "put"
+          ]
+        },
+        "email": {
+          "type": "string",
+          "description": "The email of the customer. Must be unique.\n"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "company": {
+          "type": "string",
+          "description": "The company of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "customer_since_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date of which the customer was registered in the system.\n"
+        },
+        "registration_ip_address": {
+          "type": "string",
+          "format": "ip-address",
+          "description": "The IP address from which this customer was registered.\n"
+        },
+        "notes": {
+          "type": "string",
+          "description": "The customer notes.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "tax_exempt_category": {
+          "type": "string",
+          "description": "The tax exempt category code for the customer.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "authentication": {
+          "$ref": "#/definitions/CustomerAuthentication"
+        },
+        "customer_group_id": {
+          "type": "integer",
+          "description": "Id of the group which this customer belongs to.\n",
+          "x-nullable": true
+        },
+        "address_count": {
+          "type": "integer",
+          "description": "Total number of customer addresses\n"
+        },
+        "addresses": {
+          "type": "array",
+          "description": "Array of customer addresses. Limited to 10",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "attribute_count": {
+          "type": "integer",
+          "description": "Total number of customer attributes\n"
+        },
+        "attributes": {
+          "type": "array",
+          "description": "Array of customer attributes.",
+          "items": {
+            "$ref": "#/definitions/CustomerAttributeValue"
+          }
+        }
+      },
+      "required": [
+        "email",
+        "first_name",
+        "last_name"
+      ],
+      "title": "Customer Base"
+    },
+    "CustomerAttributeValue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Attribute value ID.\n"
+        },
+        "customer_id": {
+          "type": "integer",
+          "description": "Customer ID.\n"
+        },
+        "attribute_id": {
+          "type": "integer",
+          "description": "Attribute ID.\n"
+        },
+        "value": {
+          "type": "string",
+          "description": "Attribute value.\n"
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date on which the customer attribute value was modified.\n"
+        },
+        "date_created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date of which the customer attribute value was created.\n"
+        }
+      },
+      "title": "Customer Attribute Value"
+    },
+    "CustomerAttribute": {
+      "type": "object",
+      "title": "Customer Attribute",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Attribute ID.\n",
+          "x-required": [
+            "put"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Attribute name.\n"
+        },
+        "type": {
+          "type": "string",
+          "description": "Attribute type.\n",
+          "enum": [
+            "string",
+            "number",
+            "date"
+          ]
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date on which the customer attribute was modified.\n"
+        },
+        "date_created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date of which the customer attribute was created.\n"
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique numeric ID of the address.\n",
+          "x-required": [
+            "put"
+          ]
+        },
+        "customer_id": {
+          "type": "integer",
+          "description": "The customer ID.\n"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "company": {
+          "type": "string",
+          "description": "The company of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address1": {
+          "type": "string",
+          "description": "The address 1 line.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address2": {
+          "type": "string",
+          "description": "The address 2 line.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "city": {
+          "type": "string",
+          "description": "The city of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "state_or_province": {
+          "type": "string",
+          "description": "The state or province name\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "The postal code of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The country code of the customer address.\n",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "country": {
+          "type": "string",
+          "description": "The country name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address_type": {
+          "type": "string",
+          "description": "The address type. Residential or Commercial\n",
+          "enum": [
+            "residential",
+            "commercial"
+          ]
+        }
+      },
+      "example": {
+        "id": 1,
+        "address1": "Addr 1",
+        "address2": "",
+        "address_type": "residential",
+        "city": "San Francisco",
+        "company": "History",
+        "country": "United States of America",
+        "country_code": "US",
+        "customer_id": 8504,
+        "first_name": "Ronald",
+        "last_name": "Swimmer",
+        "phone": "707070707",
+        "postal_code": "33333",
+        "state_or_province": "California"
+      },
+      "title": "Address"
+    },
+    "CustomerAuthentication": {
+      "type": "object",
+      "properties": {
+        "force_password_reset": {
+          "type": "boolean",
+          "description": "If `true`, this customer will be forced to change password on next login.\n"
+        },
+        "new_password": {
+          "type": "string",
+          "description": "New password for customer. Write only field\n"
+        }
+      },
+      "title": "Customer Authentication"
+    },
+    "AddressCollectionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      },
+      "title": "Address Collection Response"
+    },
+    "AddressCollectionRequest": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        }
+      },
+      "title": "Address Collection Request"
+    },
+    "CustomerAttributeCollectionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomerAttribute"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      },
+      "title": "Customer Attribute Collection Response"
+    },
+    "CustomerAttributeCollectionRequest": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomerAttribute"
+          }
+        }
+      },
+      "title": "Customer Attribute Collection Request"
+    },
+    "CustomerAttributeValueCollectionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomerAttributeValue"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/CollectionMeta"
+        }
+      },
+      "title": "Customer Attribute  ValueCollection Response"
+    },
+    "CustomerAttributeValueCollectionRequest": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomerAttributeValue"
+          }
+        }
+      },
+      "title": "Customer Attribute Value Collection Request"
+    },
+    "CustomerCollectionUpdate": {
+      "$ref": "#/definitions/CustomerBase",
+      "title": "Customer Collection Update",
+      "description": "Update a Customer"
+    },
+    "CreateCustomerAddress": {
+      "type": "object",
+      "example": {
+        "id": 1,
+        "address1": "Addr 1",
+        "address2": "",
+        "address_type": "residential",
+        "city": "San Francisco",
+        "company": "History",
+        "country": "United States of America",
+        "country_code": "US",
+        "customer_id": 8504,
+        "first_name": "Ronald",
+        "last_name": "Swimmer",
+        "phone": "707070707",
+        "postal_code": "33333",
+        "state_or_province": "California"
+      },
+      "title": "Create Customer Address",
+      "properties": {
+        "customer_id": {
+          "type": "integer",
+          "description": "The customer ID.\n"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "company": {
+          "type": "string",
+          "description": "The company of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address1": {
+          "type": "string",
+          "description": "The address 1 line.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address2": {
+          "type": "string",
+          "description": "The address 2 line.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "city": {
+          "type": "string",
+          "description": "The city of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "state_or_province": {
+          "type": "string",
+          "description": "The state or province name\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "The postal code of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The country code of the customer address.\n",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "country": {
+          "type": "string",
+          "description": "The country name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address_type": {
+          "type": "string",
+          "description": "The address type. Residential or Commercial\n",
+          "enum": [
+            "residential",
+            "commercial"
+          ]
+        }
+      },
+      "required": [
+        "customer_id",
+        "first_name",
+        "last_name",
+        "address1",
+        "city",
+        "state_or_province",
+        "postal_code",
+        "country_code",
+        "phone"
+      ]
+    }
+  },
+  "parameters": {
+    "FilterEmailParam": {
+      "name": "email",
+      "description": "Filter items by email.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterNameParam": {
+      "name": "name",
+      "description": "Filter items by first_name and last_name.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterIdParam": {
+      "name": "id",
+      "description": "Filter items by id.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterDateModifiedParam": {
+      "name": "date_modified",
+      "description": "Filter items by date_modified.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "FilterDateCreatedParam": {
+      "name": "date_created",
+      "description": "Filter items by date_created.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "FilterCustomerDateSinceParam": {
+      "name": "customer_since_date",
+      "description": "Filter items by customer_since_date.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "FilterCustomerRegistrationIPAddressParam": {
+      "name": "registration_ip_address",
+      "description": "Filter items by registration_ip_address.\n",
+      "required": false,
+      "in": "query",
+      "type": "string",
+      "format": "ip-adrress"
+    },
+    "FilterCompanyParam": {
+      "name": "company",
+      "description": "Filter items by company.\n",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "FilterCustomerGroupParam": {
+      "name": "customer_group_id",
+      "description": "Filter items by customer_group_id.\n",
+      "required": false,
+      "in": "query",
+      "type": "integer"
+    },
+    "FilterCustomerIdParam": {
+      "name": "customer_id",
+      "in": "query",
+      "description": "The ID of the `Customer`.\n",
+      "required": false,
+      "type": "integer"
+    },
+    "FilterCustomerAttributeTypeParam": {
+      "name": "type",
+      "in": "query",
+      "description": "The type of the customer attrribute.\n",
+      "required": false,
+      "type": "string"
+    },
+    "FilterAttributeIdParam": {
+      "name": "attribute_id",
+      "in": "query",
+      "description": "The attribute id for which we should return values.\n",
+      "required": false,
+      "type": "integer"
+    },
+    "Accept": {
+      "name": "Accept",
+      "in": "header",
+      "type": "string",
+      "default": "application/json"
+    },
+    "Content-Type": {
+      "name": "Content-Type",
+      "in": "header",
+      "type": "string",
+      "default": "application/json"
+    }
+  },
+  "securityDefinitions": {
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header"
+    },
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "name": "X-Auth-Client",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "X-Auth-Token": []
+    },
+    {
+      "X-Auth-Client": []
+    }
+  ]
+}
