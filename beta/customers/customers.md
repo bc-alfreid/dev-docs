@@ -108,6 +108,19 @@ This did work
       ]
 ```
 
+14. For Authentication will confirming passwords be available? Is this being deprecated?
+
+Confirming Passwords
+An additional optional password_confirmation field can also be sent, providing password confirmation as a service:
+```
+{
+    "_authentication": {
+       "password": "12w69Y217PYR96J",
+       "password_confirmation": "12w69Y217PYR96J"
+    }
+}
+```
+
 # Documentation (please ignore the formatting)
 
 <h1> Customers API </h1>
