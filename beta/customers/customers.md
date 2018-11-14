@@ -1,5 +1,5 @@
-Based on the schema to create a customer is an object array. But its actually an array object to create customers. 
-Customer Collection Request
+Based on the schema, to  create a customer its an object array(see below). But its actually an array object to create customers. 
+Customer Collection Request is what I based this on. I also removed customer_id and id from the request and updated the required fields.
 
 {
   "customers": [
@@ -516,3 +516,94 @@ I got 504 Gateway Timeout errors frequently. I just kept retrying until it worke
 
 ---
 
+The update has no query or path for customer id. Might confuse end users since all our other apis have something similar. 
+
+PUT customer does not accept address as part of the update. Are the fields below the only ones that can be updated?
+
+email
+first name
+last name
+authentication
+company
+customer_group_id
+notes
+tax_exempt_category
+
+---
+Will the /DELETE endpoints delete all objects (customer, address etc) if the id is not passed in? (Didn't want to test my store :) )
+
+---
+
+Get Address
+`name` and `customer_id` are not working as query params
+https://api.bigcommerce.com/stores/jrah6gmn/v3/customers/addresses?customer_id=20
+
+{
+    "status": 422,
+    "title": "The filter(s): customer_id are not valid filter parameter(s).",
+    "type": "https://developer.bigcommerce.com/api#api-status-codes",
+    "errors": {}
+}
+
+---
+
+DetailedErrors is an empty object. Any reason why?
+
+---
+IdsRequest is an empty i
+
+string, number, date
+
+---
+{
+    "status": 422,
+    "title": "Max batch size allowed is 1",
+    "type": "https://developer.bigcommerce.com/api#api-status-codes",
+    "errors": {}
+}
+Will the batch size ever increase, for example creating customer attributes.
+---
+When creating customer attributes can the dates also be apart of the request?
+
+---
+
+I was trying to update a customer address https://api.bigcommerce.com/stores/jrah6gmn/v3/customers/addresses
+[{
+	"id":16, //add id
+	"address1": "555 East Street"
+}]
+
+and it wanted a pn as well. Do they always have to pass in the pn during an update? If true, is there a reason why?
+
+I did check that add and it has a pn. 
+
+{
+    "data": [
+        {
+            "id": 16,
+            "address1": "123 Main Street",
+            "address2": "",
+            "address_type": "residential",
+            "city": "Austin",
+            "company": "",
+            "country": "United States",
+            "country_code": "US",
+            "customer_id": 11,
+            "first_name": "Jane",
+            "last_name": "Doe",
+            "phone": "1234567890",
+            "postal_code": "78751",
+            "state_or_province": "Texas"
+        }....
+This did work,
+[{
+	"id":16,
+	"address1": "555 East Street",
+	"phone": "1234567890"
+}]
+
+---
+
+How do I assign attributes to a customer. I was not able to figure out the format?
+
+---
