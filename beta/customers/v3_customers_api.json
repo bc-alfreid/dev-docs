@@ -308,7 +308,10 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CustomerCollectionRequest"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerCollectionRequest"
+              }
             },
             "x-examples": {
               "application/json": [
@@ -334,7 +337,7 @@
                 }
               ]
             },
-            "description": "The input must be an array object."
+            "description": "The request must be passed in as an array object."
           }
         ],
         "responses": {
@@ -360,7 +363,7 @@
         "tags": [
           "Customers"
         ],
-        "description": "Update a Customer. The path does not use extra query parameters or a path. The id is passed in with the update request.\n\nAddress can not be updated via this endpoint. See the [Customer Address]() PUT to update an address. \n\nAccepted fields:\n`first_name`\n`last_name`\n`email`\n`phone`",
+        "description": "Update a Customer. The path does not use extra query parameters or a path. The id is passed in with the update request.\n\nAddress can not be updated via this endpoint. See the [Customer Address]() PUT to update an address. \n\nRequired fields:\n* id of the customer being updated",
         "parameters": [
           {
             "name": "customers",
@@ -381,7 +384,7 @@
                 }
               ]
             },
-            "description": "The input must be an array object."
+            "description": "The request must be passed in as an array object."
           },
           {
             "$ref": "#/parameters/Accept"
@@ -733,10 +736,10 @@
         "tags": [
           "Customer Addresses"
         ],
-        "description": "Creates a Customer Address.\n\nTo create an address the `customer_id` must be passed in. To get the id send a GET request to the Get All Customers Endpoint."
+        "description": "Creates a Customer Address.\n\nTo create an address the `customer_id` must be passed in. To get the id send a GET request to the Get All Customers Endpoint.\n\nRequired Fields: \n* `first_name`"
       },
       "put": {
-        "description": "To create an address the `id` of the address must be passed in with the request body. This can be retrived from either the Get Customers endpoint or the Get Customer Address endpoint.\n\nResponse example Get Customers:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 11,\n            \"address_count\": 2,\n            \"addresses\": [\n                {\n                   ** \"id\": 16,**\n                    \"address1\": \"123 Main Street\",\n                    \"address2\": \"\",\n                    \"address_type\": \"residential\",\n                    \"city\": \"Austin\",\n                    \"company\": \"\",\n                    \"country\": \"United States\",\n                    \"country_code\": \"US\",\n                    \"customer_id\": 11,\n                    \"first_name\": \"Jane\",\n                    \"last_name\": \"Doe\",\n                    \"phone\": \"1234567890\",\n                    \"postal_code\": \"78751\",\n                    \"state_or_province\": \"Texas\"\n                }\n\t....\n\t\n```\n\nResponse example Get Addresses:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            **\"id\": 16,**\n            \"address1\": \"123 Main Street\",\n            \"address2\": \"\",\n            \"address_type\": \"residential\",\n            \"city\": \"Austin\",\n            \"company\": \"\",\n            \"country\": \"United States\",\n            \"country_code\": \"US\",\n            \"customer_id\": 11,\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Doe\",\n            \"phone\": \"1234567890\",\n            \"postal_code\": \"78751\",\n            \"state_or_province\": \"Texas\"\n        }\n\t\t\t...\n```",
+        "description": "To update an address the `id` of the address must be passed in with the request body. This can be retrived from either the Get Customers endpoint or the Get Customer Address endpoint.\n\nRequired:\n* id of the address being updated\n* phone - The same number that is already on the customer address can be passed in. \n\n### Response example Get Customers:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 11,\n            \"address_count\": 2,\n            \"addresses\": [\n                {\n                   ** \"id\": 16,**\n                    \"address1\": \"123 Main Street\",\n                    \"address2\": \"\",\n                    \"address_type\": \"residential\",\n                    \"city\": \"Austin\",\n                    \"company\": \"\",\n                    \"country\": \"United States\",\n                    \"country_code\": \"US\",\n                    \"customer_id\": 11,\n                    \"first_name\": \"Jane\",\n                    \"last_name\": \"Doe\",\n                    \"phone\": \"1234567890\",\n                    \"postal_code\": \"78751\",\n                    \"state_or_province\": \"Texas\"\n                }\n\t....\n\t\n```\n\n### Response example Get Addresses:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            **\"id\": 16,**\n            \"address1\": \"123 Main Street\",\n            \"address2\": \"\",\n            \"address_type\": \"residential\",\n            \"city\": \"Austin\",\n            \"company\": \"\",\n            \"country\": \"United States\",\n            \"country_code\": \"US\",\n            \"customer_id\": 11,\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Doe\",\n            \"phone\": \"1234567890\",\n            \"postal_code\": \"78751\",\n            \"state_or_province\": \"Texas\"\n        }\n\t\t\t...\n```",
         "parameters": [
           {
             "name": "addresses",
@@ -744,7 +747,17 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/AddressCollectionRequest"
-            }
+            },
+            "x-examples": {
+              "application/json": [
+                {
+                  "id": 16,
+                  "address1": "555 East Street",
+                  "phone": "1234567890"
+                }
+              ]
+            },
+            "description": "The request must be passed in as an array object."
           },
           {
             "$ref": "#/parameters/Accept"
@@ -755,9 +768,32 @@
         ],
         "responses": {
           "200": {
-            "description": "An array of updated customer addresses.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/AddressCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 16,
+                    "address1": "555 East Street",
+                    "address2": "",
+                    "address_type": "residential",
+                    "city": "Austin",
+                    "company": "",
+                    "country": "United States",
+                    "country_code": "US",
+                    "customer_id": 11,
+                    "first_name": "Jane",
+                    "last_name": "Doe",
+                    "phone": "1234567890",
+                    "postal_code": "78751",
+                    "state_or_province": "Texas"
+                  }
+                ],
+                "meta": {}
+              }
             }
           },
           "422": {
@@ -767,7 +803,7 @@
             }
           }
         },
-        "summary": "Update a Customer",
+        "summary": "Update a Customer Address",
         "tags": [
           "Customer Addresses"
         ]
@@ -798,10 +834,7 @@
     },
     "/customers/attributes": {
       "get": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Returns a paginated Customer attributes list",
+        "description": "Gets All Customer Attributes. To limit results use an available query parameter.",
         "parameters": [
           {
             "$ref": "#/parameters/FilterNameParam"
@@ -814,56 +847,98 @@
           },
           {
             "$ref": "#/parameters/FilterDateModifiedParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
           "200": {
-            "description": "An array of customer attribute objects and metadata.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/CustomerAttributeCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 1,
+                    "name": "Hat Size",
+                    "type": "string",
+                    "date_created": "2018-11-13T21:42:06Z",
+                    "date_modified": "2018-11-13T21:42:06Z"
+                  },
+                  {
+                    "id": 2,
+                    "name": "Shoe Size",
+                    "type": "number",
+                    "date_created": "2018-11-14T16:34:57Z",
+                    "date_modified": "2018-11-14T16:34:57Z"
+                  }
+                ],
+                "meta": {
+                  "pagination": {
+                    "total": 2,
+                    "count": 2,
+                    "per_page": 50,
+                    "current_page": 1,
+                    "total_pages": 1
+                  }
+                }
+              }
             }
           }
-        }
+        },
+        "summary": "Get Customer Attributes",
+        "tags": [
+          "Customer Attributes"
+        ]
       },
       "post": {
-        "tags": [
-          "Customers"
-        ],
         "parameters": [
           {
             "name": "attributes",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CustomerAttributeCollectionRequest"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerAttributeCollectionRequest"
+              }
             },
             "x-examples": {
-              "application/json": {
-                "attributes": [
-                  {
-                    "id": 85439540,
-                    "name": "in Excepteur elit",
-                    "type": "amet",
-                    "date_modified": "1954-07-01T16:55:48.941Z",
-                    "date_created": "1988-05-31T16:57:19.221Z"
-                  },
-                  {
-                    "id": 6306496,
-                    "name": "officia",
-                    "type": "cupidatat ut nulla proident ullamco",
-                    "date_modified": "1988-07-27T14:21:22.973Z",
-                    "date_created": "1967-07-26T21:21:15.668Z"
-                  }
-                ]
-              }
-            }
+              "application/json": [
+                {
+                  "name": "Hat Size",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "The request must be passed in as an array object."
           }
         ],
         "responses": {
           "200": {
-            "description": "An array of updated customer attributes.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/CustomerAttributeCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 2,
+                    "name": "Shoe Size",
+                    "type": "number",
+                    "date_created": "2018-11-14T16:34:57Z",
+                    "date_modified": "2018-11-14T16:34:57Z"
+                  }
+                ],
+                "meta": {}
+              }
             }
           },
           "422": {
@@ -874,28 +949,60 @@
           }
         },
         "summary": "Create Customer Attributes",
-        "description": "Can be created without being assigned to a customer. \n"
+        "description": "Can be created without being assigned to a customer. Only one attribute can be created at a time. \n\nRequired:\n* `name`\n* `type`",
+        "tags": [
+          "Customer Attributes"
+        ]
       },
       "put": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Update Customer attribute objects.\n",
+        "description": "Update customer attributes.\n\nRequired: \n* id of the attribute being updated",
         "parameters": [
           {
             "name": "attributes",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CustomerAttributeCollectionRequest"
-            }
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerAttribute"
+              }
+            },
+            "x-examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "Age"
+                }
+              ]
+            },
+            "description": "The request must be passed in as an array object."
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
           "200": {
-            "description": "An array of updated customer attributes.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/CustomerAttributeCollectionResponse"
+            },
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": 1,
+                    "name": "Age",
+                    "type": "string",
+                    "date_created": "2018-11-13T21:42:06Z",
+                    "date_modified": "2018-11-14T16:46:23Z"
+                  }
+                ],
+                "meta": {}
+              }
             }
           },
           "422": {
@@ -904,23 +1011,34 @@
               "$ref": "#/definitions/ErrorResponse"
             }
           }
-        }
+        },
+        "summary": "Update Customer Attributes",
+        "tags": [
+          "Customer Attributes"
+        ]
       },
       "delete": {
-        "tags": [
-          "Customers"
-        ],
-        "description": "Deletes a Customer attribute objects from the store.\n",
+        "description": "Delete customer attributes.",
         "parameters": [
           {
             "$ref": "#/parameters/FilterIdParam"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
           }
         ],
         "responses": {
           "204": {
-            "description": "An empty response.\n"
+            "description": ""
           }
-        }
+        },
+        "tags": [
+          "Customer Attributes"
+        ],
+        "summary": "Delete Customer Attributes"
       }
     },
     "/customers/attribute-values": {
@@ -960,7 +1078,7 @@
         ]
       },
       "put": {
-        "description": "Upsert Customer attribute values.",
+        "description": "Upsert Customer attribute values. Upsert looks for an existing value and if none are found, create a new record.",
         "parameters": [
           {
             "name": "attributes",
@@ -968,7 +1086,8 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/CustomerAttributeValueCollectionRequest"
-            }
+            },
+            "description": "The request must be passed in as an array object."
           },
           {
             "$ref": "#/parameters/Accept"
@@ -1008,7 +1127,7 @@
             "description": ""
           }
         },
-        "summary": "Delete All Attribute Valies",
+        "summary": "Delete All Attribute Values",
         "tags": [
           "Customer Attributes"
         ]
@@ -1124,7 +1243,7 @@
     },
     "CustomerCollectionRequest": {
       "type": "object",
-      "title": "Customer Collection Create",
+      "title": "Create Customer",
       "properties": {
         "email": {
           "type": "string",
@@ -1256,6 +1375,7 @@
     "CustomerBase": {
       "type": "object",
       "description": "Common Customer properties.",
+      "title": "Customer Base",
       "properties": {
         "id": {
           "type": "integer",
@@ -1344,13 +1464,7 @@
             "$ref": "#/definitions/CustomerAttributeValue"
           }
         }
-      },
-      "required": [
-        "email",
-        "first_name",
-        "last_name"
-      ],
-      "title": "Customer Base"
+      }
     },
     "CustomerAttributeValue": {
       "type": "object",
@@ -1386,7 +1500,7 @@
     },
     "CustomerAttribute": {
       "type": "object",
-      "title": "Customer Attribute",
+      "title": "Update Customer Attribute Request",
       "properties": {
         "id": {
           "type": "integer",
@@ -1418,7 +1532,10 @@
           "format": "date-time",
           "description": "The date of which the customer attribute was created.\n"
         }
-      }
+      },
+      "required": [
+        "id"
+      ]
     },
     "Address": {
       "type": "object",
@@ -1558,15 +1675,114 @@
     },
     "AddressCollectionRequest": {
       "type": "object",
+      "example": {
+        "id": 1,
+        "address1": "Addr 1",
+        "address2": "",
+        "address_type": "residential",
+        "city": "San Francisco",
+        "company": "History",
+        "country": "United States of America",
+        "country_code": "US",
+        "customer_id": 8504,
+        "first_name": "Ronald",
+        "last_name": "Swimmer",
+        "phone": "707070707",
+        "postal_code": "33333",
+        "state_or_province": "California"
+      },
+      "title": "Update Customer Address Request",
       "properties": {
-        "addresses": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Address"
-          }
+        "id": {
+          "type": "integer",
+          "description": "The unique numeric ID of the address.\n",
+          "x-required": [
+            "put"
+          ]
+        },
+        "customer_id": {
+          "type": "integer",
+          "description": "The customer ID.\n"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "company": {
+          "type": "string",
+          "description": "The company of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address1": {
+          "type": "string",
+          "description": "The address 1 line.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address2": {
+          "type": "string",
+          "description": "The address 2 line.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "city": {
+          "type": "string",
+          "description": "The city of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "state_or_province": {
+          "type": "string",
+          "description": "The state or province name\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "The postal code of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The country code of the customer address.\n",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "country": {
+          "type": "string",
+          "description": "The country name of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the customer address.\n",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "address_type": {
+          "type": "string",
+          "description": "The address type. Residential or Commercial\n",
+          "enum": [
+            "residential",
+            "commercial"
+          ]
         }
       },
-      "title": "Address Collection Request"
+      "required": [
+        "id"
+      ],
+      "description": "Update Customer Address."
     },
     "CustomerAttributeCollectionResponse": {
       "type": "object",
@@ -1585,15 +1801,26 @@
     },
     "CustomerAttributeCollectionRequest": {
       "type": "object",
+      "title": "Create Customer Attributes Request",
       "properties": {
-        "attributes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CustomerAttribute"
-          }
+        "name": {
+          "type": "string",
+          "description": "Attribute name.\n"
+        },
+        "type": {
+          "type": "string",
+          "description": "Attribute type.\n",
+          "enum": [
+            "string",
+            "number",
+            "date"
+          ]
         }
       },
-      "title": "Customer Attribute Collection Request"
+      "required": [
+        "name",
+        "type"
+      ]
     },
     "CustomerAttributeValueCollectionResponse": {
       "type": "object",
@@ -1624,8 +1851,8 @@
     },
     "CustomerCollectionUpdate": {
       "$ref": "#/definitions/CustomerBase",
-      "title": "Customer Collection Update",
-      "description": "Update a Customer"
+      "title": "Update Customer Request",
+      "description": "Update a Customer."
     },
     "CreateCustomerAddress": {
       "type": "object",
@@ -1645,7 +1872,7 @@
         "postal_code": "33333",
         "state_or_province": "California"
       },
-      "title": "Create Customer Address",
+      "title": "Create Customer Address Request",
       "properties": {
         "customer_id": {
           "type": "integer",
@@ -1736,7 +1963,8 @@
         "postal_code",
         "country_code",
         "phone"
-      ]
+      ],
+      "description": "Create Customer Address."
     }
   },
   "parameters": {
