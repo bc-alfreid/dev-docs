@@ -93,3 +93,113 @@ This did work
 ```
 12. > The ability to get the hat size from the Customer Resource Object in stencil. This is coming later right, no need to go into this? 
 
+13. It would be neat if the attribute name also returned in the /GET Customers response. That way they don't have to do a join to see the name. 
+
+```
+      "attributes": [
+        {
+          "id": 1,
+          "customer_id": 11,
+          "attribute_id": 1,
+          "attribute_value": "55",
+          "date_created": "2018-11-14T18:58:08Z",
+          "date_modified": "2018-11-14T18:58:08Z"
+        }
+      ]
+```
+
+# Documentation (please ignore the formatting)
+
+<h1> Customers API </h1>
+<h3> On this Page </h3>
+<ul>
+	<li><a href="#payments_postman-collection">Introduction</a></li>
+  	<li><a href="#payments_postman-collection">Postman Collection</a></li>
+  	<li><a href="#payments_workflow">Workflow</a></li>
+  	<li><a href="#payments_technical-details">Technical Details</a></li>
+	<li><a href="#payments_postman-collection">Differences between existing Customer API</a></li>
+  	<li><a href="#payments_current-limitations">Current Limitations</a></li>
+  	<li><a href="#payments_webhooks">Webhooks </a></li>
+	<li><a href="#payments_oauth-scopes">OAuth Scopes</a></li>
+  	<li><a href="#payments_sample-app-diagram">Sample App Diagram</a></li>
+</ul>
+
+---
+## Introduction
+The Customer Attributes API allows for data to be stored aganist a customer. For example by creating an attribute of hat size, then storing the value of 10 aganist a customer. When that customer is queried it will return an attribute of hat size with a value of 9. 
+
+---
+## Postman Collection
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/86ccd56a3d6a7701f065)
+---
+
+## Workflow
+
+### Create a Customer Attribute
+
+Creating a [customer attribute](#link to /POST here) requires the name of the attribute and the data type of the attribute. 
+
+[
+  {
+    "name": "Hat Size",
+    "type": "string"
+  }
+]
+
+The name accepts a string. As a best practice, the name should be descriptive of the data it is associated with. 
+The type accepts a string and it can be set to string, number or date. 
+
+Note: Once the data type is set, it can not be changed. The attribute will need to be deleted then created again with the new data type. This will also delete it from the customer.
+
+### Create a Customer Attribute Value
+
+---
+## Technical Details
+
+### Customer Attribute
+A customer attribute contains a description of the data(name) and the type(string, number, data). 
+Attribute names are not available on the customer object. The attribute name is available 
+
+### Customer Attribute Value
+A customer attribute values are stored directly on the customer object and return as part of the response when doing a /GET or /PUT aganist the customer resource. 
+
+### Example Customer Attribute 
+(this response has been shortned)
+
+```
+      "attributes": [
+        {
+          "id": 1,
+          "customer_id": 11,
+          "attribute_id": 1,
+          "attribute_value": "55",
+          "date_created": "2018-11-14T18:58:08Z",
+          "date_modified": "2018-11-14T18:58:08Z"
+        }
+      ]
+ ```
+
+---
+
+## Differences between existing Customer API
+
+### Request URL
+
+The new Customers API has been streamlined. Now instead of needed a different url to get a single customer vs all customers. One url used with a query parameter added to return the only the data needed. This is the same for all CRUD actions on the new customers API.
+
+Single Customer 
+`/customers?customer_id=12`
+
+Single Customer
+`/customers/{customer_id}`
+
+ 
+### Querying
+
+### Response
+
+---
+## Current Limitation
+
+
+
