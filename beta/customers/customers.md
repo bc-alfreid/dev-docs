@@ -1,6 +1,12 @@
-Based on the schema, to  create a customer its an object array(see below). But its actually an array object to create customers. 
-Customer Collection Request is what I based this on. I also removed customer_id and id from the request and updated the required fields.
+How do I assign attributes to a customer. I was not able to figure out the format?
 
+---
+
+Based on the schema, to  create a customer its an object array(see below). But its actually an array object to create customers. 
+
+Customer Collection Request is what I based this on. I also removed customer_id and id from the request and updated the required fields. A few others were object arrays based on the schema, but that was only for the response. THe create/update needed an array object.
+
+```
 {
   "customers": [
     {
@@ -298,285 +304,81 @@ Customer Collection Request is what I based this on. I also removed customer_id 
           "phone": "nostru",
           "address_type": "commercial"
         },
-        {
-          "id": -88969372,
-          "customer_id": -27189947,
-          "first_name": "p",
-          "last_name": "c",
-          "company": "ut",
-          "address1": "e",
-          "address2": "laborum",
-          "city": "",
-          "state_or_province": "offi",
-          "postal_code": "cupidatat",
-          "country_code": "pr",
-          "country": "in",
-          "phone": "occ",
-          "address_type": "commercial"
-        },
-        {
-          "id": -20199238,
-          "customer_id": -77102979,
-          "first_name": "vo",
-          "last_name": "Excepteu",
-          "company": "dolor",
-          "address1": "ea i",
-          "address2": "consequat ",
-          "city": "aute dolor",
-          "state_or_province": "s",
-          "postal_code": "u",
-          "country_code": "el",
-          "country": "lab",
-          "phone": "nisi f",
-          "address_type": "residential"
-        }
-      ],
-      "attribute_count": -79383009,
-      "attributes": [
-        {
-          "id": 20493285,
-          "customer_id": 89272726,
-          "attribute_id": -35351196,
-          "value": "amet et nulla officia",
-          "date_modified": "1957-05-18T01:18:03.717Z",
-          "date_created": "1988-03-24T21:08:08.085Z"
-        },
-        {
-          "id": -17890916,
-          "customer_id": -40736723,
-          "attribute_id": 19648416,
-          "value": "esse est anim",
-          "date_modified": "1956-11-15T13:41:17.071Z",
-          "date_created": "1961-11-04T07:50:55.521Z"
-        },
-        {
-          "id": -48917170,
-          "customer_id": 41193978,
-          "attribute_id": 47257638,
-          "value": "mollit Duis commodo",
-          "date_modified": "2005-05-17T19:55:42.093Z",
-          "date_created": "2005-09-20T04:41:30.250Z"
-        },
-        {
-          "id": -89109101,
-          "customer_id": -49335207,
-          "attribute_id": 46906191,
-          "value": "Dui",
-          "date_modified": "1947-03-01T17:38:47.070Z",
-          "date_created": "1943-08-01T12:57:05.609Z"
-        },
-        {
-          "id": 69508836,
-          "customer_id": 96951211,
-          "attribute_id": -47387768,
-          "value": "aute",
-          "date_modified": "1957-11-19T23:58:26.492Z",
-          "date_created": "2003-06-12T18:35:49.599Z"
-        }
-      ]
-    },
-    {
-      "email": "proident dolore irure et",
-      "first_name": "ad",
-      "last_name": "",
-      "id": -39900742,
-      "company": "ulla",
-      "phone": "quis",
-      "customer_since_date": "2003-11-13T09:03:26.074Z",
-      "registration_ip_address": "ad nisi consectetur",
-      "notes": "la",
-      "tax_exempt_category": "deserunt e",
-      "authentication": {
-        "force_password_reset": false,
-        "new_password": "enim incididunt ad cillum"
-      },
-      "customer_group_id": 82754619,
-      "address_count": 10200868,
-      "addresses": [
-        {
-          "id": -15504314,
-          "customer_id": -50525998,
-          "first_name": "cupidat",
-          "last_name": "dol",
-          "company": "",
-          "address1": "nulla",
-          "address2": "o",
-          "city": "ea est ",
-          "state_or_province": "ex ",
-          "postal_code": "",
-          "country_code": "ea",
-          "country": "id in",
-          "phone": "ut ut r",
-          "address_type": "commercial"
-        },
-        {
-          "id": 9845663,
-          "customer_id": -28931906,
-          "first_name": "vol",
-          "last_name": "i",
-          "company": "laborum",
-          "address1": "Duis q",
-          "address2": "Lor",
-          "city": "irure",
-          "state_or_province": "",
-          "postal_code": "offici",
-          "country_code": "cu",
-          "country": "ad",
-          "phone": "nu",
-          "address_type": "commercial"
-        },
-        {
-          "id": -31284857,
-          "customer_id": -19365964,
-          "first_name": "irure ",
-          "last_name": "esse m",
-          "company": "sint ali",
-          "address1": "non co",
-          "address2": "amet",
-          "city": "ad dolor",
-          "state_or_province": "deserunt",
-          "postal_code": "aliquip ",
-          "country_code": "co",
-          "country": "occ",
-          "phone": "conse",
-          "address_type": "residential"
-        },
-        {
-          "id": 69646202,
-          "customer_id": 6234934,
-          "first_name": "al",
-          "last_name": "Lorem dol",
-          "company": "et",
-          "address1": "",
-          "address2": "sed cill",
-          "city": "a",
-          "state_or_province": "anim",
-          "postal_code": "do fu",
-          "country_code": "ve",
-          "country": "anim et",
-          "phone": "officia se",
-          "address_type": "commercial"
-        },
-        {
-          "id": -13346764,
-          "customer_id": -86462473,
-          "first_name": "occae",
-          "last_name": "deserunt",
-          "company": "nostrud e",
-          "address1": "",
-          "address2": "",
-          "city": "ad deserun",
-          "state_or_province": "",
-          "postal_code": "",
-          "country_code": "se",
-          "country": "n",
-          "phone": "incididu",
-          "address_type": "commercial"
-        }
-      ],
-      "attribute_count": -2481022,
-      "attributes": [
-        {
-          "id": 34926007,
-          "customer_id": 87095916,
-          "attribute_id": 14268882,
-          "value": "fugiat pariatur nisi id",
-          "date_modified": "2012-06-16T14:22:44.782Z",
-          "date_created": "1988-10-17T14:04:16.722Z"
-        }
-      ]
-    }
-  ]
-}
-
-Passing in [{}] returns a 422. 
-{
-    "status": 422,
-    "title": "JSON data is missing or invalid",
-    "type": "https://developer.bigcommerce.com/api#api-status-codes",
-    "errors": {
-        "last_name": "error.path.missing",
-        "email": "error.path.missing",
-        "first_name": "error.path.missing"
-    }
-}
-
-While passing in {[]} returns a 400 input invalid
-{
-    "status": 400,
-    "title": "Input is invalid",
-    "type": "https://developer.bigcommerce.com/api#api-status-codes",
-    "errors": {}
-}
-
-I changed this to an array object in the documentation. 
+...
+```
 
 ---
+
 I got 504 Gateway Timeout errors frequently. I just kept retrying until it worked
 
 ---
 
-The update has no query or path for customer id. Might confuse end users since all our other apis have something similar. 
+Are the fields below the only ones that can be updated?
 
-PUT customer does not accept address as part of the update. Are the fields below the only ones that can be updated?
-
-email
-first name
-last name
-authentication
-company
-customer_group_id
-notes
-tax_exempt_category
+- email
+- first name
+- last name
+- authentication
+- company
+- customer_group_id
+- notes
+- tax_exempt_category
 
 ---
-Will the /DELETE endpoints delete all objects (customer, address etc) if the id is not passed in? (Didn't want to test my store :) )
+Will the /DELETE endpoints delete all objects (customer, address etc) if the id is not passed in as part of the query? (Didn't want to test my store :) )
 
 ---
 
 Get Address
 `name` and `customer_id` are not working as query params
 https://api.bigcommerce.com/stores/jrah6gmn/v3/customers/addresses?customer_id=20
-
+```
 {
     "status": 422,
     "title": "The filter(s): customer_id are not valid filter parameter(s).",
     "type": "https://developer.bigcommerce.com/api#api-status-codes",
     "errors": {}
 }
-
+```
 ---
 
 DetailedErrors is an empty object. Any reason why?
 
 ---
-IdsRequest is an empty i
+IdsRequest is an empty array. What is this used for?
 
-string, number, date
+https://bigcommerce-customer-attributes-beta.docs.stoplight.io/api-reference/models/idsrequest
 
 ---
+Will the batch size ever increase, for example creating customer attributes.
+
+```
 {
     "status": 422,
     "title": "Max batch size allowed is 1",
     "type": "https://developer.bigcommerce.com/api#api-status-codes",
     "errors": {}
 }
-Will the batch size ever increase, for example creating customer attributes.
+```
 ---
-When creating customer attributes can the dates also be apart of the request?
+
+When creating customer attributes can the dates also be apart of the request? Such as setting your own date_created?
 
 ---
 
 I was trying to update a customer address https://api.bigcommerce.com/stores/jrah6gmn/v3/customers/addresses
+```
 [{
-	"id":16, //add id
+	"id":16, //address id
 	"address1": "555 East Street"
 }]
+```
 
-and it wanted a pn as well. Do they always have to pass in the pn during an update? If true, is there a reason why?
+and it required a phone number as well. Do they always have to pass in the pn during an update? If true, is there a reason why?
 
 I did check that add and it has a pn. 
 
+```
 {
     "data": [
         {
@@ -595,15 +397,13 @@ I did check that add and it has a pn.
             "postal_code": "78751",
             "state_or_province": "Texas"
         }....
+```
+
 This did work,
 [{
 	"id":16,
 	"address1": "555 East Street",
 	"phone": "1234567890"
 }]
-
----
-
-How do I assign attributes to a customer. I was not able to figure out the format?
 
 ---
