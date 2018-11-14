@@ -246,7 +246,7 @@
                           "blocks": [
                             {
                               "type": "html",
-                              "data": "<h1>Authentication</h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#authentication_what-are-oauth-credentials\">What are OAuth Credentials?</a></li>\n\t\t<li><a href=\"#authentication_getting-api-credentials\"> Getting API Credentials </a></li>\n\t\t<li><a href=\"#authentication_revoking-api-credentials\"> Revoking API Credtials</a></li>\n\t\t<li><a href=\"#authentication_client-id-secret\"> Getting Client ID and Client Secret</a></li>\n\t\t<li><a href=\"#authentication_when-to-use\"> Use Cases by Token Type</a></li>\n    <li><a href=\"#authentication_migration-legacy-oauth\">Migrating from Legacy to OAuth</a></li>\n\t\t<li><a href=\"#authentication_oauth-scopes\"> OAuth Scopes</a></li>\n\t</ul>\n</div>"
+                              "data": "<h1>Authentication</h1>\n\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n\t\t<li><a href=\"#authentication_what-are-oauth-credentials\">What are OAuth Credentials?</a></li>\n\t\t<li><a href=\"#authentication_getting-api-credentials\"> Getting API Credentials </a></li>\n\t\t<li><a href=\"#authentication_revoking-api-credentials\"> Revoking API Credentials</a></li>\n\t\t<li><a href=\"#authentication_client-id-secret\"> Getting Client ID and Client Secret</a></li>\n\t\t<li><a href=\"#authentication_when-to-use\"> Use Cases by Token Type</a></li>\n    <li><a href=\"#authentication_migration-legacy-oauth\">Migrating from Legacy to OAuth</a></li>\n\t\t<li><a href=\"#authentication_oauth-scopes\"> OAuth Scopes</a></li>\n\t</ul>\n</div>"
                             },
                             {
                               "type": "text",
@@ -626,7 +626,7 @@
                           "blocks": [
                             {
                               "type": "html",
-                              "data": "<h1>Hello World!</h<h1>API Status Codes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#api-status-codes_2-success\">2xx Success</a></li>\n        <li><a href=\"#api-status-codes_3-redirection\">3xx Redirection</a></li>\n        <li><a href=\"#api-status-codes_4-client-error\">4xx Client Error</a></li>\n        <li><a href=\"#api-status-codes_5-server-error\">5xx Server Error</a></li>\n        <li><a href=\"#api-status-codes_troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
+                              "data": "<h1>API Status Codes</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#api-status-codes_2-success\">2xx Success</a></li>\n        <li><a href=\"#api-status-codes_3-redirection\">3xx Redirection</a></li>\n        <li><a href=\"#api-status-codes_4-client-error\">4xx Client Error</a></li>\n        <li><a href=\"#api-status-codes_5-server-error\">5xx Server Error</a></li>\n        <li><a href=\"#api-status-codes_troubleshooting\">Troubleshooting</a></li>\n\t</ul>\n</div>"
                             },
                             {
                               "type": "text",
@@ -4287,7 +4287,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Server-to-Server Cart and Checkout\n\nThe Server-to-Server APIs are for managing the contents of a shopping cart and checkout remotely, from a server. Using the Cart, Checkout and Payment API allows for a fully headless ecommerce solution.\n\n### CaaS\n\n[Commerce-as-a-Service](https://www.bigcommerce.com/commerce-as-a-service/) is made possible with the Server-to-Server APIs. It lets the underlying cart, checkout, order and payment APIs be called from a separate app, allowing you to create a completely custom checkout without ever touching the BigCommerce storefront.\n\n\n## When to Use\n* Modifying cart contents, such as price matching\n* Taking a shopper through cart and checkout using an app\n* Quote Builder - Building a cart then restoring it on the storefront\n* Native mobile apps\n* Pre-filling customer information",
+                        "data": "## Server-to-Server Cart and Checkout\n\n*The Server-to-Server Checkout API is currently available to Early Access participants who have opted in to the beta.*\n\nThe Server-to-Server APIs are for managing the contents of a shopping cart and checkout remotely, from a server. Using the Cart, Checkout and Payment API allows for a fully headless ecommerce solution.\n\n### CaaS\n\n[Commerce-as-a-Service](https://www.bigcommerce.com/commerce-as-a-service/) is made possible with the Server-to-Server APIs. It lets the underlying cart, checkout, order and payment APIs be called from a separate app, allowing you to create a completely custom checkout without ever touching the BigCommerce storefront.\n\n\n## When to Use\n* Modifying cart contents, such as price matching\n* Taking a shopper through cart and checkout using an app\n* Quote Builder - Building a cart then restoring it on the storefront\n* Native mobile apps\n* Pre-filling customer information",
                         "header": {
                           "anchor": "cart-checkout_server-to-server-cart-and-checkout"
                         }
