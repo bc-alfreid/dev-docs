@@ -121,6 +121,49 @@ An additional optional password_confirmation field can also be sent, providing p
 }
 ```
 
+15. I tried to create an attribute value that had a type of number but the request only accepted a string. Will that change? Its a bit confusing to me. 
+
+```
+[
+  {
+    "customer_id": 12,
+    "attribute_id": 2,
+    "value": "10"
+  }
+ ]
+```
+This ended up working even though the type was number:
+```
+
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Age",
+            "type": "string",
+            "date_created": "2018-11-13T21:42:06Z",
+            "date_modified": "2018-11-14T16:46:23Z"
+        },
+        {
+            "id": 2,
+            "name": "Shoe Size",
+            "type": "number",
+            "date_created": "2018-11-14T16:34:57Z",
+            "date_modified": "2018-11-14T16:34:57Z"
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "total": 2,
+            "count": 2,
+            "per_page": 50,
+            "current_page": 1,
+            "total_pages": 1
+        }
+    }
+}
+```
+
 # Documentation (please ignore the formatting)
 
 <h1> Customers API </h1>
@@ -151,12 +194,14 @@ The Customer Attributes API allows for data to be stored aganist a customer. For
 
 Creating a [customer attribute](#link to /POST here) requires the name of the attribute and the data type of the attribute. 
 
+```
 [
   {
     "name": "Hat Size",
     "type": "string"
   }
 ]
+```
 
 The name accepts a string. As a best practice, the name should be descriptive of the data it is associated with. 
 The type accepts a string and it can be set to string, number or date. 
@@ -164,6 +209,9 @@ The type accepts a string and it can be set to string, number or date.
 Note: Once the data type is set, it can not be changed. The attribute will need to be deleted then created again with the new data type. This will also delete it from the customer.
 
 ### Create a Customer Attribute Value
+
+Creating a [customer attribute value](#link to PUT here) is done by creating the value and addig it to the customer in one call. 
+
 
 ---
 ## Technical Details
