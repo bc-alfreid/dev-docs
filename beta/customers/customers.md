@@ -163,7 +163,19 @@ This ended up working even though the type was number:
     }
 }
 ```
+Error when using a number
+```
+ {
+    "status": 422,
+    "title": "JSON data is missing or invalid",
+    "type": "https://developer.bigcommerce.com/api#api-status-codes",
+    "errors": {
+        "": "error.expected.jsstring"
+    }
+}
+```
 
+---
 # Documentation (please ignore the formatting)
 
 <h1> Customers API </h1>
