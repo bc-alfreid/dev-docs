@@ -18,6 +18,9 @@
     },
     {
       "name": "Customer Attributes"
+    },
+    {
+      "name": "Customer Attribute Values"
     }
   ],
   "schemes": [
@@ -295,7 +298,8 @@
             }
           }
         },
-        "summary": "Get All Customers"
+        "summary": "Get All Customers",
+        "operationId": "getallcustomers"
       },
       "post": {
         "tags": [
@@ -357,7 +361,8 @@
             }
           }
         },
-        "summary": "Create a Customer"
+        "summary": "Create a Customer",
+        "operationId": "createcustomers"
       },
       "put": {
         "tags": [
@@ -451,7 +456,8 @@
             }
           }
         },
-        "summary": "Update a Customer"
+        "summary": "Update a Customer",
+        "operationId": "updatecustomers"
       },
       "delete": {
         "tags": [
@@ -474,7 +480,8 @@
             "description": ""
           }
         },
-        "summary": "Delete Customers"
+        "summary": "Delete Customers",
+        "operationId": "deletecustomers"
       }
     },
     "/customers/addresses": {
@@ -657,7 +664,8 @@
         "summary": "Get All Customer Addresses",
         "tags": [
           "Customer Addresses"
-        ]
+        ],
+        "operationId": "getallcustomeraddresses"
       },
       "post": {
         "parameters": [
@@ -736,7 +744,8 @@
         "tags": [
           "Customer Addresses"
         ],
-        "description": "Creates a Customer Address.\n\nTo create an address the `customer_id` must be passed in. To get the id send a GET request to the Get All Customers Endpoint.\n\nRequired Fields: \n* `first_name`"
+        "description": "Creates a Customer Address.\n\nTo create an address the `customer_id` must be passed in. To get the id send a GET request to the Get All Customers Endpoint.\n\nRequired Fields: \n* `first_name`",
+        "operationId": "createcustomeraddresss"
       },
       "put": {
         "description": "To update an address the `id` of the address must be passed in with the request body. This can be retrived from either the Get Customers endpoint or the Get Customer Address endpoint.\n\nRequired:\n* id of the address being updated\n* phone - The same number that is already on the customer address can be passed in. \n\n### Response example Get Customers:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 11,\n            \"address_count\": 2,\n            \"addresses\": [\n                {\n                   ** \"id\": 16,**\n                    \"address1\": \"123 Main Street\",\n                    \"address2\": \"\",\n                    \"address_type\": \"residential\",\n                    \"city\": \"Austin\",\n                    \"company\": \"\",\n                    \"country\": \"United States\",\n                    \"country_code\": \"US\",\n                    \"customer_id\": 11,\n                    \"first_name\": \"Jane\",\n                    \"last_name\": \"Doe\",\n                    \"phone\": \"1234567890\",\n                    \"postal_code\": \"78751\",\n                    \"state_or_province\": \"Texas\"\n                }\n\t....\n\t\n```\n\n### Response example Get Addresses:\nThis example has been abbreviated. In the example the address id is 16.\n\n```\n{\n    \"data\": [\n        {\n            **\"id\": 16,**\n            \"address1\": \"123 Main Street\",\n            \"address2\": \"\",\n            \"address_type\": \"residential\",\n            \"city\": \"Austin\",\n            \"company\": \"\",\n            \"country\": \"United States\",\n            \"country_code\": \"US\",\n            \"customer_id\": 11,\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Doe\",\n            \"phone\": \"1234567890\",\n            \"postal_code\": \"78751\",\n            \"state_or_province\": \"Texas\"\n        }\n\t\t\t...\n```",
@@ -806,7 +815,8 @@
         "summary": "Update a Customer Address",
         "tags": [
           "Customer Addresses"
-        ]
+        ],
+        "operationId": "updatecustomeraddress"
       },
       "delete": {
         "description": "Delete a customer from the store.",
@@ -829,7 +839,8 @@
         "summary": "Delete Customer Address",
         "tags": [
           "Customer Addresses"
-        ]
+        ],
+        "operationId": "deletecustomeraddress"
       }
     },
     "/customers/attributes": {
@@ -895,7 +906,8 @@
         "summary": "Get Customer Attributes",
         "tags": [
           "Customer Attributes"
-        ]
+        ],
+        "operationId": "getcustomerattribues"
       },
       "post": {
         "parameters": [
@@ -952,7 +964,8 @@
         "description": "Can be created without being assigned to a customer. Only one attribute can be created at a time. \n\nRequired:\n* `name`\n* `type`",
         "tags": [
           "Customer Attributes"
-        ]
+        ],
+        "operationId": "createcustomerattributes"
       },
       "put": {
         "description": "Update customer attributes.\n\nRequired: \n* id of the attribute being updated",
@@ -1015,7 +1028,8 @@
         "summary": "Update Customer Attributes",
         "tags": [
           "Customer Attributes"
-        ]
+        ],
+        "operationId": "updatecustomerattributes"
       },
       "delete": {
         "description": "Delete customer attributes.",
@@ -1038,7 +1052,8 @@
         "tags": [
           "Customer Attributes"
         ],
-        "summary": "Delete Customer Attributes"
+        "summary": "Delete Customer Attributes",
+        "operationId": "deletecustomerattributes"
       }
     },
     "/customers/attribute-values": {
@@ -1073,8 +1088,9 @@
           }
         },
         "summary": "Get All Customer Attribute Values",
+        "operationId": "getallcustomerattributevalues",
         "tags": [
-          "Customer Attributes"
+          "Customer Attribute Values"
         ]
       },
       "put": {
@@ -1111,8 +1127,9 @@
           }
         },
         "summary": "Upsert Customer Attribute Values",
+        "operationId": "upsertcustomerattributevalues",
         "tags": [
-          "Customer Attributes"
+          "Customer Attribute Values"
         ]
       },
       "delete": {
@@ -1128,8 +1145,9 @@
           }
         },
         "summary": "Delete All Attribute Values",
+        "operationId": "deletecustomerattributevalues",
         "tags": [
-          "Customer Attributes"
+          "Customer Attribute Values"
         ]
       }
     }
