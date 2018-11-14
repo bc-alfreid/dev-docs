@@ -121,7 +121,6 @@ This did work
   	<li><a href="#payments_current-limitations">Current Limitations</a></li>
   	<li><a href="#payments_webhooks">Webhooks </a></li>
 	<li><a href="#payments_oauth-scopes">OAuth Scopes</a></li>
-  	<li><a href="#payments_sample-app-diagram">Sample App Diagram</a></li>
 </ul>
 
 ---
@@ -187,19 +186,71 @@ A customer attribute values are stored directly on the customer object and retur
 
 The new Customers API has been streamlined. Now instead of needed a different url to get a single customer vs all customers. One url used with a query parameter added to return the only the data needed. This is the same for all CRUD actions on the new customers API.
 
-Single Customer 
-`/customers?customer_id=12`
+- Single Customer on V3
+	--`/customers?customer_id=12`
 
-Single Customer
-`/customers/{customer_id}`
+Single Customer on V2
+--	`/customers/{customer_id}`
 
  
 ### Querying
+Since this endpoint is more streamlined using queries is front and center. To see which filters are available, see [Filtering](https://developer-beta.bigcommerce.com/api-docs/getting-started/basics/filtering). 
 
-### Response
+Get Customer Address by name and company. 
+`/customers/addresses?name=Jane&company=BigCommerce`
+
+Get Attribute Values where the attribute id is one and the customer id is one.
+`/customers/attribute-values?attribute_id:in=1&customer_id:in=1`
+
+### Requests
+
+Requests on this endpoint require at array object for all Create and Update Actions. 
+
+Update a Customer V3
+`/customers?customer_id=12`
+
+```
+[
+  {
+    "id": 20,
+    "email": "golightly5@testing.com",
+    "phone": "1234567840"
+  }
+]
+```
+
+Update a Customer on V2
+`/customers/{customer_id}`
+```
+{
+  "first_name": "Jane",
+  "email": "jane@email.com",
+  "phone": "1234567890"
+}
+```
+
+### Authentication Object
+
+On the new Customers endpoint, when creating a customer there are two ways to set customers passwords. The password can be entered into the `new_password` field or when a customer logs in for the first time by setting `force_password_reset` to true, it will force the customer to go through the password reset process. 
+
+Password Confirmation is not available, this can be done by creating a customer using the [V2 endpoint](add create customer v2 here).  
 
 ---
 ## Current Limitation
+
+
+---
+### Endpoints Still on V2
+- [Customer Groups]()
+- [Password Validation]()
+
+---
+## Webhooks
+- [Customers]()
+---
+## OAuth Scopes
+- [Customers]()
+
 
 
 
