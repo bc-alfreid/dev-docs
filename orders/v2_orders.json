@@ -270,7 +270,7 @@
         }
       },
       "put": {
-        "description": "## Properties that can be updated\n* customer_id\n* status_id\n* Add a new product\n* Add a custom product\n* billing_address\n\n## Read-only Properties\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   coupons\n*   shipping_address\n\n\n> If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders updated via the API.\n\n\n## Changing the Order Status\n\nThe `status` property cannot be edited directly, because it is generated based on the `status_id`.\n\nUse the `status_id` property to set the order to a specific state. The list of available statuses is provided by the [Order Statuses](#) resource. If the store has subscribed to Avalara Premium, tax documents are submitted when the `status_id` property changes. The following table details the behavior for `PUT` operations. See also the list of [Paid Statuses](#).\n\n| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |\n| --- | --- | --- | --- |\n| Any | None | `Pending` | None |\n| Paid or `Refunded` | Paid | Paid | None |\n| Unpaid or `Refunded` | Unpaid | Unpaid | None |\n| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |\n| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |\n\n## Calculated Fields\n\nEdits to the following properties will trigger a recalculation of the subtotal and total:\n\n*   products\n*   discount_amount\n*   shipping_cost_ex_tax\n*   shipping_cost_inc_tax\n*   handling_cost_ex_tax\n*   handling_cost_inc_tax\n*   wrapping_cost_ex_tax\n*   wrapping_cost_inc_tax\n*   billing_address\n*   shipping_addresses\n\n\n## Limitation on Coupons/Discounts\n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. You should modify the above fields only if you have created the order via the POST operation, or if you intend to manually override the subtotals and totals.\n\n## Adding an Existing Product\n| Name             | Type  | Description                                                                                                                                                                                                                                                                                                |\n| ---------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| product\\_id      | int   | The ID of the product that you want to add to the order (required).                                                                                                                                                                                                                                        |\n| quantity         | int   | How many products of this type to add to the order (required).                                                                                                                                                                                                                                             |\n| product\\_options | array | These values might be required, depending on how the product's options are set up. If the options are required, pass in the \\[\\`id\\`\\](\\#options-object-properties) of the product option (not the option itself) and the \\[\\`value\\`\\](\\#option-value-object-properties) of the option (not the product). |\n| price\\_inc\\_tax  | int   | If you include a value here, it will overwrite the price (including tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_inc\\_tax\\`, you must also include a value for \\`price\\_ex\\_tax\\`.                                                        |\n| price\\_ex\\_tax   | int   | If you include a value here, it will overwrite the price (excluding tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_ex\\_tax\\`, you must also include a value for \\`price\\_inc\\_tax\\`.                                                        |\n\n## Add a New Product\n| Name            | Type    | Description                                                                                                        |\n| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |\n| name            | int     | The name of the custom product tax. (Required.)                                                                    |\n| quantity        | int     | The quantity of the purchase for this custom product tax. (Required. Can be positive or negative. Cannot be zero.) |\n| price\\_inc\\_tax | decimal | The price of the custom product, including tax. (Required.)                                                        |\n| price\\_ex\\_tax  | decimal | The price of the custom product, excluding tax. (Required.)                                                        |\n| sku             | text    | The SKU of the custom product. (Optional.)                                                                         |",
+        "description": "## Properties that can be updated\n* customer_id\n* status_id\n* Add a new product\n* Add a custom product\n* billing_address\n\n## Read-only Properties\n\n*   id\n*   date_modified\n*   date_shipped\n*   status\n*   order_source\n*   subtotal_tax\n*   shipping_cost_tax\n*   shipping_cost_tax_class_id\n*   handling_cost_tax\n*   handling_cost_tax_class_id\n*   wrapping_cost_tax\n*   wrapping_cost_tax_class_id\n*   total_tax\n*   payment_status\n*   currency_id\n*   currency_code\n*   currency_exchange_rate\n*   default_currency_id\n*   default_currency_code\n*   coupon_discount\n*   store_credit_amount\n*   gift_certificate_amount\n*   shipping_address_count\n*   coupons\n*   shipping_address\n\n\n> If a store has automatic tax enabled, BigCommerce does not compute sales tax on orders updated via the API.\n\n\n## Changing the Order Status\n\nThe `status` property cannot be edited directly, because it is generated based on the `status_id`.\n\nUse the `status_id` property to set the order to a specific state. The list of available statuses is provided by the [Order Statuses](/api-reference/orders/orders-api/order-statues/getorderstatuses) resource. If the store has subscribed to Avalara Premium, tax documents are submitted when the `status_id` property changes. The following table details the behavior for `PUT` operations.\n\n| Existing Status | Status Passed | Resultant Status | Avalara Tax Document Submission |\n| --- | --- | --- | --- |\n| Any | None | `Pending` | None |\n| Paid or `Refunded` | Paid | Paid | None |\n| Unpaid or `Refunded` | Unpaid | Unpaid | None |\n| Paid or `Refunded` | Unpaid | Unpaid | Tax document voided |\n| Unpaid or `Refunded` | Paid | Paid | Tax document submitted |\n\n## Calculated Fields\n\nEdits to the following properties will trigger a recalculation of the subtotal and total:\n\n*   products\n*   discount_amount\n*   shipping_cost_ex_tax\n*   shipping_cost_inc_tax\n*   handling_cost_ex_tax\n*   handling_cost_inc_tax\n*   wrapping_cost_ex_tax\n*   wrapping_cost_inc_tax\n*   billing_address\n*   shipping_addresses\n\n\n## Limitation on Coupons/Discounts\n\nThe Orders resource currently does not support coupon redemptions or discounts, apart from manual discount. You should modify the above fields only if you have created the order via the POST operation, or if you intend to manually override the subtotals and totals.\n\n## Adding an Existing Product\n| Name             | Type  | Description                                                                                                                                                                                                                                                                                                |\n| ---------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| product\\_id      | int   | The ID of the product that you want to add to the order (required).                                                                                                                                                                                                                                        |\n| quantity         | int   | How many products of this type to add to the order (required).                                                                                                                                                                                                                                             |\n| product\\_options | array | These values might be required, depending on how the product's options are set up. If the options are required, pass in the \\[\\`id\\`\\](\\#options-object-properties) of the product option (not the option itself) and the \\[\\`value\\`\\](\\#option-value-object-properties) of the option (not the product). |\n| price\\_inc\\_tax  | int   | If you include a value here, it will overwrite the price (including tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_inc\\_tax\\`, you must also include a value for \\`price\\_ex\\_tax\\`.                                                        |\n| price\\_ex\\_tax   | int   | If you include a value here, it will overwrite the price (excluding tax) already specified for the product. This property is optional, but if you do include a value for \\`price\\_ex\\_tax\\`, you must also include a value for \\`price\\_inc\\_tax\\`.                                                        |\n\n## Add a New Product\n| Name            | Type    | Description                                                                                                        |\n| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |\n| name            | int     | The name of the custom product tax. (Required.)                                                                    |\n| quantity        | int     | The quantity of the purchase for this custom product tax. (Required. Can be positive or negative. Cannot be zero.) |\n| price\\_inc\\_tax | decimal | The price of the custom product, including tax. (Required.)                                                        |\n| price\\_ex\\_tax  | decimal | The price of the custom product, excluding tax. (Required.)                                                        |\n| sku             | text    | The SKU of the custom product. (Optional.)                                                                         |",
         "summary": "Update an Order",
         "tags": [
           "Orders"
@@ -657,8 +657,8 @@
         }
       },
       "delete": {
-        "description": "Archives an order.\n\n**Deletion Blocked by Automatic Tax**\n\nAny attempt to DELETE an order on a store with automatic tax enabled will fail, and will return `405 Method not allowed.`",
-        "summary": "Delete an Order",
+        "description": "Archives an order.\n\nAny attempt to archive an order on a store with automatic tax enabled will fail, and will return `405 Method not allowed.`",
+        "summary": "Archive an Order",
         "tags": [
           "Orders"
         ],
@@ -1037,13 +1037,7 @@
             "format": "date"
           },
           {
-            "name": "pagination",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "exclusiveMaximum": false,
-            "exclusiveMinimum": false,
-            "description": "The number of pages to return"
+            "$ref": "#/parameters/page\t"
           },
           {
             "name": "limit",
@@ -3095,7 +3089,7 @@
           "IsMultiContentStreaming": false
         },
         "tags": [
-          "Order Statues"
+          "Order Status"
         ]
       }
     },
@@ -3187,7 +3181,7 @@
           "IsMultiContentStreaming": false
         },
         "tags": [
-          "Order Statues"
+          "Order Status"
         ]
       },
       "parameters": [
@@ -6410,13 +6404,15 @@
       "name": "Accept",
       "in": "header",
       "type": "string",
-      "default": "application/json"
+      "default": "application/json",
+      "required": true
     },
     "Content-Type": {
       "name": "Content-Type",
       "in": "header",
       "type": "string",
-      "default": "application/json"
+      "default": "application/json",
+      "required": true
     },
     "status": {
       "name": "status",
