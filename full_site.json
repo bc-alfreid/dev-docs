@@ -230,11 +230,6 @@
                               }
                             }
                           ]
-                        },
-                        "config": {
-                          "sidebar": {
-                            "token": "TUTORIAL"
-                          }
                         }
                       },
                       {
@@ -1655,11 +1650,6 @@
                               }
                             }
                           ]
-                        },
-                        "config": {
-                          "sidebar": {
-                            "token": "TUTORIAL"
-                          }
                         }
                       },
                       {
@@ -1671,7 +1661,7 @@
                           "blocks": [
                             {
                               "type": "html",
-                              "data": "<h1>List of Webhook Events</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#webhook-events_orders\">Orders</a></li>\n        <li><a href=\"#webhook-events_products\">Products</a></li>\n        <li><a href=\"#webhook-events_category\">Category</a></li>\n        <li><a href=\"#webhook-events_sku\">SKU</a></li>\n        <li><a href=\"#webhook-events_customer\">Customer</a></li>\n        <li><a href=\"#webhook-events_store\">Store</a></li>\n        <li><a href=\"#webhook-events_cart\">Cart</a></li>\n        <li><a href=\"#webhook-events_shipment\">Shipment</a></li>\n\t</ul>\n</div>"
+                              "data": "<h1>List of Webhook Events</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#webhook-events_orders\">Orders</a></li>\n        <li><a href=\"#webhook-events_products\">Products</a></li>\n        <li><a href=\"#webhook-events_category\">Category</a></li>\n        <li><a href=\"#webhook-events_sku\">SKU</a></li>\n        <li><a href=\"#webhook-events_customer\">Customer</a></li>\n        <li><a href=\"#webhook-events_store\">Store</a></li>\n        <li><a href=\"#webhook-events_cart\">Cart</a></li>\n        <li><a href=\"#webhook-events_shipment\">Shipment</a></li>\n    \t\t<li><a href=\"#webhook-events_subscriber\">Subscriber</a></li>\n    \n\t</ul>\n</div>"
                             },
                             {
                               "type": "text",
@@ -1854,7 +1844,7 @@
                               "type": "text",
                               "data": "## Subscriber\n\n| Name | Description |\n| --- | --- |\n| store/subscriber/* | Subscribe to all store/subscriber events |\n| store/subscriber/created | Subscriber is created |\n| store/subscriber/updated| Subscriber is updated |\n| store/subscriber/deleted | Subscriber is deleted |",
                               "header": {
-                                "anchor": "webhook-events_shipment"
+                                "anchor": "webhook-events_subscriber"
                               }
                             },
                             {
@@ -4192,11 +4182,6 @@
                         }
                       }
                     ]
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "TUTORIAL"
-                    }
                   }
                 },
                 {
@@ -4617,11 +4602,6 @@
                         }
                       }
                     ]
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "TUTORIAL"
-                    }
                   }
                 },
                 {
@@ -5568,7 +5548,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Choosing a Development Path\n\nAre you approaching Stencil from a different theming framework, like Blueprint, BigCommerce's legacy framework? Or moving to the Stencil templating environment from a pure HTML and CSS-based design?\n\nYou have four (non-mutually exclusive) options for developing Stencil themes:\n\n* Find a Design & Solutions Partner\n* Light Customization using the Theme Editor\n* Light Customization using HTML and CSS\n* Adapting a Stencil Theme or Developing from Scratch\n\n###  Find a Design & Solutions Partner\n\nIf you prefer to have an expert collaborator customize your theme, we recommend working with one of our certified BigCommerce Design & Solutions Partners. Reference the following resources to do so:\n\n* [Partner Directory](https://partners.bigcommerce.com/directory/search?i=75)\n* [Working with a Design Partner](https://support.bigcommerce.com/articles/Learning/Working-with-a-Design-Partner) (Support Guide)\n\n### Light Customization with Stencil Theme Editor\n\nStencil can be customized without the use of any specialized development tools or techniques by using of the Stencil Theme Editor. The Stencil Theme Editor still enables customization of a theme's colors, typography, banners, headings, carousel, and footer. It also enables customization of broader layout characteristics, such as the number of products displayed in various panels, category pages, and brand pages.\n\nFor details, see the following support resources:\n\n* [Theme Editor](https://support.bigcommerce.com/s/article/Stencil-Themes)\n* [Personalizing Your Theme](https://support.bigcommerce.com/articles/Learning/Personalizing-your-New-Theme) \n\n### Light Customization with HTML and CSS\n\nIf you are most comfortable working in HTML and CSS, Stencil's *Edit Theme Files* feature allows you to directly edit most of your theme's files from the Control Panel. For details, see the following resources:\n\n* [Editing Stencil Theme Files](https://support.bigcommerce.com/s/article/Stencil-Themes#edit) \n* [Getting Started with the Stencil Framework](https://www.youtube.com/watch?v=waJ1dg_dAh8&index=11&list=PLwTYtMwfzbe7EZiIWPAmPtuwRHkY7BG-0) (Video overview of copying and editing a theme's files)\n\n### Adapt a Stencil Theme, or Develop from Scratch\n\nFor complete control over a theme's appearance and logic – including the ability to edit _all_ theme configuration files – you will want to use the Stencil Command-line interface, also known as the Stencil CLI.\n\nTo learn Stencil CLI's templating conventions, see Installing Stencil CLI. Also take a look at BigCommerce's [Getting Started with the Stencil Framework](https://www.youtube.com/playlist?list=PLwTYtMwfzbe7EZiIWPAmPtuwRHkY7BG-0) video playlist.",
+                        "data": "## Choosing a Development Path\n\nAre you approaching Stencil from a different theming framework, like Blueprint, BigCommerce's legacy framework? Or moving to the Stencil templating environment from a pure HTML and CSS-based design?\n\nYou have four (non-mutually exclusive) options for developing Stencil themes:\n\n* Find an Agency Partner\n* Light Customization using the Theme Editor\n* Light Customization using HTML and CSS\n* Adapting a Stencil Theme or Developing from Scratch\n\n###  Find an Agency Partner\n\nIf you prefer to have an expert collaborator customize your theme, we recommend working with one of our certified certified BigCommerce Agency Partners. Reference the following resources to do so:\n\n* [Partner Directory](https://partners.bigcommerce.com/directory/search?i=75)\n* [Working with a Design Partner](https://support.bigcommerce.com/articles/Learning/Working-with-a-Design-Partner) (Support Guide)\n\n### Light Customization with Stencil Theme Editor\n\nStencil can be customized without the use of any specialized development tools or techniques by using of the Stencil Theme Editor. The Stencil Theme Editor still enables customization of a theme's colors, typography, banners, headings, carousel, and footer. It also enables customization of broader layout characteristics, such as the number of products displayed in various panels, category pages, and brand pages.\n\nFor details, see the following support resources:\n\n* [Theme Editor](https://support.bigcommerce.com/s/article/Stencil-Themes)\n* [Personalizing Your Theme](https://support.bigcommerce.com/articles/Learning/Personalizing-your-New-Theme) \n\n### Light Customization with HTML and CSS\n\nIf you are most comfortable working in HTML and CSS, Stencil's *Edit Theme Files* feature allows you to directly edit most of your theme's files from the Control Panel. For details, see the following resources:\n\n* [Editing Stencil Theme Files](https://support.bigcommerce.com/s/article/Stencil-Themes#edit) \n* [Getting Started with the Stencil Framework](https://www.youtube.com/watch?v=waJ1dg_dAh8&index=11&list=PLwTYtMwfzbe7EZiIWPAmPtuwRHkY7BG-0) (Video overview of copying and editing a theme's files)\n\n### Adapt a Stencil Theme, or Develop from Scratch\n\nFor complete control over a theme's appearance and logic – including the ability to edit _all_ theme configuration files – you will want to use the Stencil Command-line interface, also known as the Stencil CLI.\n\nTo learn Stencil CLI's templating conventions, see Installing Stencil CLI. Also take a look at BigCommerce's [Getting Started with the Stencil Framework](https://www.youtube.com/playlist?list=PLwTYtMwfzbe7EZiIWPAmPtuwRHkY7BG-0) video playlist.",
                         "header": {
                           "anchor": "choosing-dev-path"
                         }
@@ -5634,7 +5614,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Partnering with BigCommerce\n\nNo formal business relationship is required to develop themes on the BigCommerce platform. However, consider applying to become a BigCommerce Design & Solutions Partner (DSP), in order to accelerate your development of new business and revenue. For details, see our:\n\n* [Overview of BigCommerce Partnerships](https://www.bigcommerce.com/partners/)\n* [Design & Solutions Partners](https://www.bigcommerce.com/partners/design-solution/) – basics and application links\n* [Technology Partners](https://www.bigcommerce.com/partners/developers/) – basics and application links\n* [Partnership Application](https://partners.bigcommerce.com/English/register_email.aspx)",
+                        "data": "## Partnering with BigCommerce\n\nNo formal business relationship is required to develop themes on the BigCommerce platform. However, consider applying to become a become a BigCommerce Agency Partner, in order to accelerate your development of new business and revenue. For details, see our:\n\n* [Overview of BigCommerce Partnerships](https://www.bigcommerce.com/partners/)\n* [Agency Partners](https://www.bigcommerce.com/partners/design-solution/) – basics and application links\n* [Technology Partners](https://www.bigcommerce.com/partners/developers/) – basics and application links\n* [Partnership Application](https://partners.bigcommerce.com/English/register_email.aspx)",
                         "header": {
                           "anchor": "partnering-with-bc"
                         }
@@ -9193,6 +9173,14 @@
                               }
                             },
                             {
+                              "type": "callout",
+                              "data": {
+                                "type": "error",
+                                "body": "While you can implement data tags with Blueprint themes, we do not currently have specific documentation on how to do this. The data tag HTML structure, however, will be the same as it is in a Stencil theme. ",
+                                "title": "GAEE for Blueprint"
+                              }
+                            },
+                            {
                               "type": "text",
                               "data": "## Prerequisites\n\nIn order to implement Data Tags in your store, you must have an operating ECommerce store on the BC Platform, and your store’s checkout must be using Optimized One-Page Checkout.\n\nData Tags will work on any theme. For this tutorial, we will be adding data tags to the Cornerstone theme. \n\n### Downloading a Theme\nThis tutorial will be based off of Cornerstone. If you do not already have a local copy of Cornerstone on your machine, see [Downloading the Cornerstone Theme](/stencil-docs/getting-started/advanced-installation-options/downloading-the-cornerstone-theme).\n\nIf you would like to implement Data Tags on your custom theme and do not already have a copy of your custom theme downloaded, see [Downloading/Customizing Marketplace Themes](/stencil-docs/getting-started/advanced-installation-options/downloadining-a-marketplace-theme).\n\nNote: the remainder of this tutorial will be working off the refer to the theme’s base folder as ‘cornerstone’.",
                               "header": {
@@ -9411,11 +9399,6 @@
                               "data": "## Additional Resources\n* [Enabling Disqus for Product Reviews (Blueprint)](https://forum.bigcommerce.com/s/article/How-do-I-enable-Disqus-as-my-Comment-Service?_ga=2.224340315.1984523106.1539568940-967431010.1523308107#get-code)\n* [Using Disqus for Blog Comments](https://forum.bigcommerce.com/s/article/Using-Disqus-Comments?_ga=2.224340315.1984523106.1539568940-967431010.1523308107)"
                             }
                           ]
-                        },
-                        "config": {
-                          "sidebar": {
-                            "token": "Tutorial"
-                          }
                         }
                       }
                     ],
@@ -10462,11 +10445,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Tutorial"
-                                }
                               }
                             },
                             {
@@ -10569,11 +10547,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "tutorial"
-                                }
                               }
                             }
                           ]
@@ -12712,7 +12685,7 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> Elements of marketing banners at page’s top and/or bottom\n\n<b>Handlebars Expressions:</b> `{{banner}}`, `{{{banner}}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n\t\t<td><b>banners</b></td>\n    <td>Blocks of static HTML content to define banners</td>\n  </tr>\n  <tr>\n\t\t<td><i>top</i></td>\n    <td>Array of HTML content/strings, for custom top-banner content; banners are populated from the BigCommerce control panel</td>\n  </tr>\n  <tr>\n\t\t<td><i>bottom</i></td>\n    <td>Array of HTML content/strings, for custom bottom-banner content; banners are populated from the BigCommerce control panel</td>\n  </tr>\n</table>"
+                                    "data": "<b>Description:</b> Elements of marketing banners at page’s top and/or bottom\n\n<b>Handlebars Expressions:</b> `{{banner}}`, `{{{banner}}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n\t\t<td>banners</td>\n    <td>Blocks of static HTML content to define banners</td>\n  </tr>\n  <tr>\n\t\t<td><span class=\"indent1\">top</span></td>\n    <td>Array of HTML content/strings, for custom top-banner content; banners are populated from the BigCommerce control panel</td>\n  </tr>\n  <tr>\n\t\t<td><span class=\"indent1\">bottom</span></td>\n    <td>Array of HTML content/strings, for custom bottom-banner content; banners are populated from the BigCommerce control panel</td>\n  </tr>\n</table>"
                                   },
                                   {
                                     "type": "callout",
@@ -12726,7 +12699,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12749,7 +12722,53 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
+                                }
+                              }
+                            },
+                            {
+                              "title": "Carousel",
+                              "route": {
+                                "path": "/carousel"
+                              },
+                              "data": {
+                                "blocks": [
+                                  {
+                                    "type": "html",
+                                    "data": "<h1>Carousel</h1>"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "<b>Description:</b> A list of images, text, and style assets for a storefront’s image slide show\n\n<b>Handlebars Expression: </b> `{{carousel}}`\n\n<b>Object Properties:</b>\n\n<table>  \n  <tr>    \n    <td>Property</td>    \n    <td>Description</td>  \n  </tr>    \n  <tr>    \n    <td>swap_frequency</td>    \n    <td>Indicates how often (in seconds) the slides will change; the value must be between 1 and 90,000 seconds</td>  \n  </tr>    \n  <tr>    \n    <td>slides</td>    \n    <td>Object containing properties for each slide in the slideshow</td>  \n  </tr>    \n  <tr>    \n    <td><span class=\"indent1\">image</span></td>    \n    <td>Path to the image file used on this slide</td>  \n  </tr>  \n  <tr>    \n    <td><span class=\"indent1\">alt_text</span></td>    \n    <td>Alt text for the image</td>  \n  </tr>  \n  <tr>    \n    <td><span class=\"indent1\">url</span></td>    \n    <td>URL to which the image will link</td>  \n  </tr>  \n  <tr>    \n    <td><span class=\"indent1\">heading</span></td>    \n    <td>Heading message defined by the merchant</td>  \n  </tr>  \n  <tr>    \n  <td><span class=\"indent1\">heading_color</span></td>    \n  <td>Color of the heading text</td>  \n  </tr>  \n  <tr>    \n    <td><span class=\"indent1\">text</span></td>    \n    <td>Subheading defined by the merchant</td>  \n  </tr>  \n  <tr>    \n    <td><span class=\"indent1\">text_color</span></td>    \n    <td>Color of the subheading text</td>  \n  </tr>  \n  <tr>    \n    <td><span class=\"indent1\">button_text</span></td>    \n    <td>Text displayed on a call-to-action button defined by the merchant</td>  \n</tr>  \n  <tr>    \n  <td><span class=\"indent1\">button_text_color</span></td>    \n  <td>Color of the button</td>  \n</tr>\n</table>"
+                                  }
+                                ]
+                              },
+                              "config": {
+                                "sidebar": {
+                                  "token": "global object"
+                                }
+                              }
+                            },
+                            {
+                              "title": "Currency Selector",
+                              "route": {
+                                "path": "/currency-selector"
+                              },
+                              "data": {
+                                "blocks": [
+                                  {
+                                    "type": "html",
+                                    "data": "<h1>Currency Selector</h1>"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "<b>Description:</b> A list of all supported currencies, and the currency that is actively in use in the storefront\n\n<b>Handlebars Expression:</b> `{{currency_selector}}`\n\n<b>Object Properties:</b>\n\n<table>  \n<tr>    \n  <th>Property</th>   \n  <th>Description</th>  \n</tr>  \n<tr>    \n  <td>active_currency_id</td>    \n  <td>ID of the currency actively in use in the storefront</td>  \n</tr>  \n<tr>    \n  <td>active_currency_flag</td>    \n  <td>Country flag used to represent the active currency</td>  \n</tr> \n<tr>    \n  <td>active_currency_name</td>    \n  <td>Name of the active currency</td>  \n</tr>\n<tr>    \n  <td>active_currency_code</td>    \n  <td>Code for the active currency</td>  \n</tr>  \n<tr>    \n  <td>currencies</td>    \n  <td>List of all the currencies supported for this storefront</td>  \n</tr> \n<tr>    \n  <td><span class=\"indent1\">is_active</span></td>    \n  <td>Boolean that indicates whether this currency is active for use in the storefront</td>  \n</tr> \n<tr>    \n  <td><span class=\"indent1\">switch_url</span></td>    \n  <td>The URL to invoke a switch to this currency</td> \n</tr> \n<tr>    \n <td><span class=\"indent1\"> id</span></td>    \n <td>ID of the currency</td>  \n</tr> \n<tr>    \n <td><span class=\"indent1\"> name</span></td>    \n <td>Name of the currency</td>  \n</tr> \n <tr>    \n  <td><span class=\"indent1\"> flag</span></td>    \n  <td>Country flag used to visually represent the currency</td>  \n </tr>\n </table>"
+                                  }
+                                ]
+                              },
+                              "config": {
+                                "sidebar": {
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12777,29 +12796,6 @@
                               }
                             },
                             {
-                              "title": "Currency Selector",
-                              "route": {
-                                "path": "/currency-selector"
-                              },
-                              "data": {
-                                "blocks": [
-                                  {
-                                    "type": "html",
-                                    "data": "<h1>Currency Selector</h1>"
-                                  },
-                                  {
-                                    "type": "text",
-                                    "data": "<b>Description:</b> A list of all supported currencies, and the currency that is actively in use in the storefront\n\n<b>Handlebars Expression:</b> `{{currency_selector}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>active_currency_id</td>\n    <td>ID of the currency actively in use in the storefront</td>\n  </tr>\n  <tr>\n    <td>active_currency_flag</td>\n    <td>Country flag used to represent the active currency</td>\n  </tr>\n  <tr>\n    <td>active_currency_name</td>\n    <td>Name of the active currency</td>\n  </tr>\n  <tr>\n    <td>active_currency_code</td>\n    <td>Code for the active currency</td>\n  </tr>\n  <tr>\n\t\t<td><b>currencies</b></td>\n    <td>List of all the currencies supported for this storefront (each contains properties listed below)</td>\n  </tr>\n  <tr>\n\t\t<td><i>is_active</i></td>\n    <td>Boolean that indicates whether this currency is active for use in the storefront</td>\n  </tr>\n  <tr>\n\t\t<td><i>switch_url</i></td>\n    <td>The URL to invoke a switch to this currency</td>\n  </tr>\n  <tr>\n\t\t<td><i>id</i></td>\n    <td>ID of the currency</td>\n  </tr>\n  <tr>\n\t\t<td><i>name</i></td>\n    <td>Name of the currency</td>\n  </tr>\n  <tr>\n\t\t<td><i>flag</i></td>\n    <td>Country flag used to visually represent the currency</td>\n  </tr>\n</table>"
-                                  }
-                                ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Global Object"
-                                }
-                              }
-                            },
-                            {
                               "title": "Faceted Search",
                               "route": {
                                 "path": "/faceted-search"
@@ -12812,13 +12808,13 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> Faceted-search object for searching globally, by category, or by brand\n\n<b>Handlebars Expression:</b> `{{faceted_search}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>facets</td>\n    <td>List of all search facets available</td>\n  </tr>\n  <tr>\n\t\t<td><b>selected</b></td>\n\t\t<td>Container for the selected search facets (selected facets contain properties below</i>)</td>\n  </tr>\n  <tr>\n    <td><i>remove_all_url<i></td>\n    <td>URL to remove all selected search restrictions</td>\n  </tr>\n  <tr>\n    <td><i>items<i></td>\n    <td>Currently enabled search facets</td>\n  </tr>\n</table>"
+                                    "data": "<b>Description:</b> Faceted-search object for searching globally, by category, or by brand\n\n<b>Handlebars Expression:</b> `{{faceted_search}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>facets</td>\n    <td>List of all search facets available</td>\n  </tr>\n  <tr>\n\t\t<td><b>selected</b></td>\n\t\t<td>Container for the selected search facets (selected facets contain properties below</i>)</td>\n  </tr>\n  <tr>\n\t<td><span class=\"indent1\">remove_all_url</span></td>\n    <td>URL to remove all selected search restrictions</td>\n  </tr>\n  <tr>\n    <td><span class=\"indent1\">items</span></td>\n    <td>Currently enabled search facets</td>\n  </tr>\n</table>"
                                   }
                                 ]
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12841,7 +12837,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12864,30 +12860,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
-                                }
-                              }
-                            },
-                            {
-                              "title": "Carousel",
-                              "route": {
-                                "path": "/carousel"
-                              },
-                              "data": {
-                                "blocks": [
-                                  {
-                                    "type": "html",
-                                    "data": "<h1>Carousel</h1>"
-                                  },
-                                  {
-                                    "type": "text",
-                                    "data": "<b>Description:</b> A list of images, text, and style assets for a storefront’s image slide show\n\n<b>Handlebars Expression: </b> `{{carousel}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  \n  <tr>\n    <td>swap_frequency</td>\n    <td>Indicates how often (in seconds) the slides will change; the value must be between 1 and 90,000 seconds</td>\n  </tr>\n  \n  <tr>\n\t\t<td><b>slides</b></td>\n\t\t<td>Object containing properties for each slide in the slideshow (<i>each slide contains the below properties: image, alt_text, url, heading, heading_color, text, text_color, button_text, button_text_color</i>)</td>\n  </tr>\n  <tr>\n    <td><i>image</i></td>\n    <td>Path to the image file used on this slide</td>\n  </tr>\n  <tr>\n\t\t<td><i>alt_text</i></td>\n    <td>Alt text for the image</td>\n  </tr>\n  <tr>\n\t\t<td><i>url</i></td>\n    <td>URL to which the image will link</td>\n  </tr>\n  <tr>\n    <td>heading</td>\n    <td>Heading message defined by the merchant</td>\n  </tr>\n  <tr>\n\t\t<td><i>heading_color</i></td>\n    <td>Color of the heading text</td>\n  </tr>\n  <tr>\n\t\t<td><i>text</i></td>\n    <td>Subheading defined by the merchant</td>\n  </tr>\n  <tr>\n\t\t<td><i>text_color</i></td>\n    <td>Color of the subheading text</td>\n  </tr>\n  <tr>\n\t\t<td><i>button_text</i></td>\n    <td>Text displayed on a call-to-action button defined by the merchant</td>\n  </tr>\n  <tr>\n\t\t<td><i>button_text_color</i></td>\n    <td>Color of the button</td>\n  </tr>\n</table>"
-                                  }
-                                ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12899,10 +12872,6 @@
                               "data": {
                                 "blocks": [
                                   {
-                                    "type": "html",
-                                    "data": "<h1>HTML Head</h1>"
-                                  },
-                                  {
                                     "type": "text",
                                     "data": "<b>Description:</b> Data to be included in the HTML `<head>` element<br>\n\n<b>Handlebars Expression:</b>`{{head}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>character_set</td>\n    <td>The character set to specify</td>\n  </tr>\n  <tr>\n    <td>meta_tags</td>\n    <td>Meta tags to improve store SEO</td>\n  </tr>\n  <tr>\n    <td>title</td>\n    <td>Current page’s title</td>\n  </tr>\n  <tr>\n    <td>stylesheets</td>\n    <td>CSS files to be included</td>\n  </tr>\n  <tr>\n    <td>scripts</td>\n    <td>Scripts to be loaded in the &lt;head&gt; tag</td>\n  </tr>\n  <tr>\n    <td>favicon</td>\n    <td>The store’s favicon (Favorite icon)</td>\n  </tr>\n  <tr>\n    <td>rsslinks</td>\n    <td>RSS feeds to improve SEO</td>\n  </tr>\n</table>"
                                   }
@@ -12910,7 +12879,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12933,7 +12902,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12956,7 +12925,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12979,7 +12948,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -12996,13 +12965,13 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> Defines elements of merchant’s store page\n\n<b>Handlebars Expression:</b> `{{page}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>title</td>\n    <td>Page title, to be used as the HTML title tag</td>\n  </tr>\n  <tr>\n    <td>description</td>\n    <td>Description for the page, to be used as the HTML `meta > description` tag</td>\n  </tr>\n  <tr>\n    <td>content</td>\n    <td >HTML content of the page</td>\n  </tr>\n  <tr>\n\t\t<td><b>sub_pages</b> (each subpage will have the properties below: <i>title</i>, <i>url</i>)</td>\n    <td>Array of child pages</td>\n  </tr>\n  <tr>\n\t\t<td><i>title</i></td>\n    <td>Title of this child page</td>\n  </tr>\n  <tr>\n\t\t<td><i>url</i></td>\n    <td>URL of this child page</td>\n  </tr>\n</table>"
+                                    "data": "<b>Description:</b> Defines elements of merchant’s store page\n\n<b>Handlebars Expression:</b> `{{page}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <td>Property</td>\n    <td>Description</td>\n  </tr>\n  <tr>\n    <td>title</td>\n    <td>Page title, to be used as the HTML <code>title</code> tag</td>\n  </tr>\n  <tr>\n    <td>description</td>\n    <td>Description for the page, to be used as the HTML <code>meta &gt; description</code> tag</td>\n  </tr>\n  <tr>\n    <td>content</td>\n    <td>HTML content of the page</td>\n  </tr>\n  <tr>\n    <td>sub_pages</td>\n    <td>Array of child pages</td>\n  </tr>\n  <tr>\n    <td><span class=\"indent1\">title</span></td>\n    <td>Title of this child page</td>\n  </tr>\n  <tr>\n    <td><span class=\"indent1\">url</span></td>\n    <td>URL of this child page</td>\n  </tr>\n</table>"
                                   }
                                 ]
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13019,13 +12988,13 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> A list of all web content pages for the BigCommerce storefront<br>\n\n<b>Handlebars Expression:</b> `{{pages}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Name of the page</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL of the page</td>\n  </tr>\n  <tr>\n\t\t<td><b>children</b></td>\n\t\t<td>List of child pages for this page (each child page will have a <i>name</i> and <i>url</i>)</td>\n  </tr>\n  <tr>\n\t\t<td><i>name</i></td>\n    <td>Name of the child page</td>\n  </tr>\n  <tr>\n\t\t<td><i>url</i></td>\n    <td>URL of the child page</td>\n  </tr>\n</table>"
+                                    "data": "<b>Description:</b> A list of all web content pages for the BigCommerce storefront\n\n<b>Handlebars Expression:</b> `{{pages}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th> \n\t</tr> \n    <tr>\n      <td>name</td>\n      <td>Name of the page</td>\n    </tr> \n    <tr>\n      <td>url</td>\n      <td>URL of the page</td>\n    </tr>\n    <tr>\n      <td>children</td>\n      <td>List of child pages for this page</td>\n    </tr>\n    <tr>\n      <td><span class=\"indent1\"> name</span></td>\n      <td>Name of the child page</td>\n    </tr>\n    <tr>\n      <td><span class=\"indent1\"> url</span></td>\n      <td>URL of the child page</td>\n    </tr>\n</table>"
                                   }
                                 ]
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13048,7 +13017,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13065,13 +13034,13 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> Defines pagination of storefront pages\n\n<b>Handlebars Expression:</b> `{{pagination}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>next</td>\n    <td>Link to next page, if any</td>\n  </tr>\n  <tr>\n    <td>previous</td>\n    <td>Link to previous page, if any</td>\n  </tr>\n  <tr>\n    <td>sort</td>\n    <td>Field to sort by</td>\n  </tr>\n  <tr>\n    <td>current</td>\n    <td>Number representing which page (in the current collection) the customer is viewing</td>\n  </tr>\n  <tr>\n    <td>total</td>\n    <td>Total number of results, across all pages</td>\n  </tr>\n  <tr>\n\t\t<td><b>links</b></td>\n    <td>Array of pages that surround the current page; displayed as a set of links, dynamically sized based on the current page number (each link in the array contains the below properties: <i>url, number</i>)</td>\n  </tr>\n  <tr>\n\t\t<td><i>url</i></td>\n    <td>URL to this page of results</td>\n  </tr>\n  <tr>\n\t\t<td><i>number</i></td>\n    <td>The page number of this link, based on an index starting at 1</td>\n  </tr>\n</table>"
+                                    "data": "<b>Description:</b> Defines pagination of storefront pages\n\n<b>Handlebars Expression:</b> `{{pagination}}`\n\n<b>Object Properties:</b>\n\n<table>\n    <tr>   \n      <th>Property</th>   \n      <th>Description</th> \n    </tr> \n    <tr>   \n      <td>next</td>   \n      <td>Link to next page, if any</td> \n    </tr> \n    <tr>   \n      <td>previous</td>   \n      <td>Link to previous page, if any</td> \n    </tr> \n    <tr>   \n      <td>sort</td>   \n      <td>Field to sort by</td> \n    </tr> \n    <tr>   \n      <td>current</td>   \n      <td>Number representing which page (in the current collection) the customer is viewing</td> \n    </tr> \n      <tr>   \n        <td>total</td>   \n        <td>Total number of results, across all pages</td> \n      </tr> \n        <tr>   \n          <td>links</td>   \n          <td>Array of pages that surround the current page; displayed as a set of links, dynamically sized based on the current page number</td> \n        </tr> \n        <tr>   \n          <td><span class=\"indent1\">url</span></td>   \n          <td>URL to this page of results</td> \n        </tr> \n        <tr>   \n          <td><span class=\"indent1\">number</span></td>   \n          <td>The page number of this link, based on an index starting at 1</td> \n      </tr>\n    </table>"
                                   }
                                 ]
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13088,13 +13057,14 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b> Defines search parameters for the merchant’s site<br>\n\n<b>Handlebars Expression:</b> `{{forms.search}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>query</td>\n    <td>Active search query, if available</td>\n  </tr>\n\n  <tr>\n    <td>section</td>\n    <td>Active search-results section: either content or product</td>\n  </tr>\n  \n  <tr>\n    <td>content_url</td>\n    <td>URL to the content section</td>\n  </tr>\n  \n  <tr>\n    <td>product_url</td>\n    <td>URL to the product section</td>\n  </tr>\n  \n  \n  <tr>\n    <td>name</td>\n    <td>Brand name</td>\n  </tr>\n  <tr>\n    <td>suggested_query</td>\n    <td>An alternative query – related to the current query – that can be offered to substitute for misspelled entries</td>\n  </tr>\n  <tr>\n    <td>has_suggestions</td>\n    <td>Boolean – true if there is at least one of brand results, category results, or a (non-null) suggested_query</td>\n  </tr>\n  <tr>\n    <td>brand_results</td>\n    <td>Array of brands that match the search query; default sorting is by brand id, from lowest to highest</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL of the brand</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Displayed name for the brand</td>\n  </tr>\n  <tr>\n    <td>category_results</td>\n    <td>An array of category paths matching the search query; used to populate category suggestions</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL of the category</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Displayed name for the category</td>\n  </tr>\n  <tr>\n    <td>values</td>\n    <td>Values of the submitted search form</td>\n  </tr>\n  <tr>\n    <td>brand</td>\n    <td>Any brand ID that customer has selected from drop-down list</td>\n  </tr>\n  <tr>\n    <td>price_from</td>\n    <td>Any minimum price the customer has specified</td>\n  </tr>\n  <tr>\n    <td>price_to</td>\n    <td>Any maximum price the customer has specified</td>\n  </tr>\n  <tr>\n    <td>featured_products</td>\n    <td>Whether customer has chosen to view featured products: null = no preference; 1 = only featured products; 2 = only non-featured products</td>\n  </tr>\n  <tr>\n    <td>free_shipping</td>\n    <td>Value indicating customer’s preference for free shipping within search results: null = no preference; 1 = free shipping only; 2 = paid shipping only</td>\n  </tr>\n  <tr>\n    <td>result_count</td>\n    <td>Combined number of returned results for product and content search</td>\n  </tr>\n  <tr>\n    <td>category_options</td>\n    <td>Array of options to present to customer as search-by-category fields</td>\n  </tr>\n  <tr>\n    <td>id</td>\n    <td>Category ID</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Displayed name of the category</td>\n  </tr>\n  <tr>\n    <td>state</td>\n    <td>If category contains children, and customer selects a child category: Whether that category’s display will default to closed (collapsed) or opened (expanded)</td>\n  </tr>\n  <tr>\n    <td>children</td>\n    <td>Array of objects representing a child category; recursively replicates the structure of its parent</td>\n  </tr>\n  <tr>\n    <td>content_results</td>\n    <td>Search results across blog posts and storefront pages (not products or categories)</td>\n  </tr>\n  <tr>\n    <td>title</td>\n    <td>Title of the result (title embedded in blog post or page)</td>\n  </tr>\n  <tr>\n    <td>content</td>\n    <td>Summary of text from the blog post or page (first 200 characters)</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL to the result</td>\n  </tr>\n  <tr>\n    <td>type</td>\n    <td>Either post (for blog posts) or page (for storefront pages)</td>\n  </tr>\n  <tr>\n\t\t<td><b>product_results</b></td>\n    <td>Results of customer’s last search by product (each result contains the below properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>products</i></td>\n    <td>List of search results for a product; points to <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model\">product card model</a></td>\n  </tr>\n  <tr>\n    <td><i>show_compare</i></td>\n    <td>Boolean corresponding to merchant’s control-panel selection whether or not to enable product comparisons </td>\n  </tr>\n  <tr>\n    <td><i>faceted_search_enabled</i></td>\n    <td>Boolean that defines whether product-filtering search is enabled for the store</td>\n  </tr>\n  <tr>\n    <td><i>facets</i></td>\n    <td>All available search filters</td>\n  </tr>\n  <tr>\n    <td><i>pagination</i></td>\n    <td>References pagination model</td>\n  </tr>\n  <tr>\n    <td><i>selected</i></td>\n    <td>Currently selected filters</td>\n  </tr>\n</table>\n"
+                                    "data": "<b>Description:</b> Defines search parameters for the merchant’s site<br>\n\n<b>Handlebars Expression:</b> `{{forms.search}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>query</td>\n    <td>Active search query, if available</td>\n  </tr>\n\n  <tr>\n    <td>section</td>\n    <td>Active search-results section: either content or product</td>\n  </tr>\n  \n  <tr>\n    <td>content_url</td>\n    <td>URL to the content section</td>\n  </tr>\n  \n  <tr>\n    <td>product_url</td>\n    <td>URL to the product section</td>\n  </tr>\n  \n  \n  <tr>\n    <td>name</td>\n    <td>Brand name</td>\n  </tr>\n  <tr>\n    <td>suggested_query</td>\n    <td>An alternative query – related to the current query – that can be offered to substitute for misspelled entries</td>\n  </tr>\n  <tr>\n    <td>has_suggestions</td>\n    <td>Boolean – true if there is at least one of brand results, category results, or a (non-null) suggested_query</td>\n  </tr>\n  <tr>\n    <td>brand_results</td>\n    <td>Array of brands that match the search query; default sorting is by brand id, from lowest to highest</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL of the brand</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Displayed name for the brand</td>\n  </tr>\n  <tr>\n    <td>category_results</td>\n    <td>An array of category paths matching the search query; used to populate category suggestions</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL of the category</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Displayed name for the category</td>\n  </tr>\n  <tr>\n    <td>values</td>\n    <td>Values of the submitted search form</td>\n  </tr>\n  <tr>\n    <td>brand</td>\n    <td>Any brand ID that customer has selected from drop-down list</td>\n  </tr>\n  <tr>\n    <td>price_from</td>\n    <td>Any minimum price the customer has specified</td>\n  </tr>\n  <tr>\n    <td>price_to</td>\n    <td>Any maximum price the customer has specified</td>\n  </tr>\n  <tr>\n    <td>featured_products</td>\n    <td>Whether customer has chosen to view featured products: null = no preference; 1 = only featured products; 2 = only non-featured products</td>\n  </tr>\n  <tr>\n    <td>free_shipping</td>\n    <td>Value indicating customer’s preference for free shipping within search results: null = no preference; 1 = free shipping only; 2 = paid shipping only</td>\n  </tr>\n  <tr>\n    <td>result_count</td>\n    <td>Combined number of returned results for product and content search</td>\n  </tr>\n  <tr>\n    <td>category_options</td>\n    <td>Array of options to present to customer as search-by-category fields</td>\n  </tr>\n  <tr>\n    <td>id</td>\n    <td>Category ID</td>\n  </tr>\n  <tr>\n    <td>name</td>\n    <td>Displayed name of the category</td>\n  </tr>\n  <tr>\n    <td>state</td>\n    <td>If category contains children, and customer selects a child category: Whether that category’s display will default to closed (collapsed) or opened (expanded)</td>\n  </tr>\n  <tr>\n    <td>children</td>\n    <td>Array of objects representing a child category; recursively replicates the structure of its parent</td>\n  </tr>\n  <tr>\n    <td>content_results</td>\n    <td>Search results across blog posts and storefront pages (not products or categories)</td>\n  </tr>\n  <tr>\n    <td>title</td>\n    <td>Title of the result (title embedded in blog post or page)</td>\n  </tr>\n  <tr>\n    <td>content</td>\n    <td>Summary of text from the blog post or page (first 200 characters)</td>\n  </tr>\n  <tr>\n    <td>url</td>\n    <td>URL to the result</td>\n  </tr>\n  <tr>\n    <td>type</td>\n    <td>Either post (for blog posts) or page (for storefront pages)</td>\n  </tr>\n  <tr>\n\t\t<td>product_results</td>\n    <td>Results of customer’s last search by product (each result contains the below properties)</td>\n  </tr>\n  <tr>\n\t\t<td><span class=\"indent1\">products</span></td>\n    <td>List of search results for a product; points to <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model\">product card model</a></td>\n  </tr>\n  <tr>\n    tr> \n         <td><span class=\"indent1\">show_compare</span></td> \n         <td>Boolean corresponding to merchant’s control-panel selection whether or not to enable product comparisons </td> \n       </tr> \n       <tr> \n         <td><span class=\"indent1\">faceted_search_enabled</span>\n         </td> <td>Boolean that defines whether product-filtering search is enabled for the store</td> \n       </tr> \n       <tr> \n         <td><span class=\"indent1\">facets</span></td> \n         <td>All available search filters</td> \n       </tr> \n       <tr> \n         <td><span class=\"indent1\">pagination</span></td> \n         <td>References pagination model</td> \n       </tr> \n       <tr> \n         <td><span class=\"indent1\">selected</span></td> \n         <td>Currently selected filters</td> \n       </tr>\n</table>\n"
                                   }
-                                ]
+                                ],
+                                "children": []
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13128,6 +13098,7 @@
                                 "path": "/sitemap"
                               },
                               "data": {
+                                "children": [],
                                 "blocks": [
                                   {
                                     "type": "html",
@@ -13135,13 +13106,13 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "<b>Description:</b>A list of all sitemap properties for this BigCommerce storefront: pages, categories, and brands.<br>\n\n<b>Handlebars Expression:</b> `{{sitemap}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <td>Property</td>\n    <td>Description</td>\n  </tr>\n  <tr>\n    <td>subsection_url</td>\n    <td>URL to subsection content (pages, categories, brands) of the sitemap</td>\n  </tr>\n  <tr>\n    <td>label</td>\n    <td>Subsection title (pages, categories, brands)</td>\n  </tr>\n  <tr>\n\t\t<td><b>body</b></td>\n    <td>List of all sitemap subsections (url, label, children)</td>\n  </tr>\n  <tr>\n\t\t<td><i>url</i></td>\n\t\t<td><i>URL to the page, category, or brand</i></td>\n  </tr>\n  <tr>\n\t\t<td><i>label</i></td>\n    <td>Label of the page, category, or brand</td>\n  </tr>\n  <tr>\n\t\t<td><i><b>children<b></i></td>\n    <td>Nested list of children within pages or categories; will be null for brands (contains the below <i>url and label</i> properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>url</i></td>\n    <td>URL to the child page or category</td>\n  </tr>\n  <tr>\n\t\t<td><i>label</i></td>\n    <td>Label for the child page or category</td>\n  </tr>\n</table>"
+                                    "data": "<b>Description:</b>A list of all sitemap properties for this BigCommerce storefront: pages, categories, and brands.<br>\n\n<b>Handlebars Expression:</b> `{{sitemap}}`\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <td>Property</td>\n    <td>Description</td>\n  </tr>\n  <tr>\n    <td>subsection_url</td>\n    <td>URL to subsection content (pages, categories, brands) of the sitemap</td>\n  </tr>\n  <tr>\n    <td>label</td>\n    <td>Subsection title (pages, categories, brands)</td>\n  </tr>\n  <tr>\n    <td>body</td>\n    <td>List of all sitemap subsections</td>\n  </tr>\n  <tr>\n    <td><span class=\"indent1\"> url</span></td><td>URL to the page, category, or brand</td>\n  </tr>\n  <tr>\n      <td><span class=\"indent1\"> label</span></td>\n      <td>Label of the page, category, or brand</td>\n    </tr>\n    <tr>\n      <td><span class=\"indent1\"> children </span></td>\n      <td>Nested list of children within pages or categories; will be null for brands</td>\n    </tr>\n    <tr>\n      <td><span class=\"indent2\">url</span></td>\n      <td>URL to the child page or category</td>\n    </tr>\n    <tr>\n      <td><span class=\"indent2\">label</span></td>\n      <td>Label for the child page or category</td>\n    </tr>\n  </table>"
                                   }
                                 ]
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13151,6 +13122,7 @@
                                 "path": "/social-links"
                               },
                               "data": {
+                                "children": [],
                                 "blocks": [
                                   {
                                     "type": "html",
@@ -13164,7 +13136,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13187,7 +13159,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             },
@@ -13197,6 +13169,7 @@
                                 "path": "/top-sellers"
                               },
                               "data": {
+                                "children": [],
                                 "blocks": [
                                   {
                                     "type": "html",
@@ -13210,7 +13183,7 @@
                               },
                               "config": {
                                 "sidebar": {
-                                  "token": "Global Object"
+                                  "token": "global object"
                                 }
                               }
                             }
@@ -13244,11 +13217,6 @@
                                     "data": "Certain Stencil objects can be accessed through multiple other Stencil objects. For example, the image object is exposed through the Category, Product, Product Options, and other objects. Its structure is consistent for all objects/properties that access it. \n\nThis consistent behavior is true for each of the common objects documented in the following subsection: \n\n * [Catalog Price](/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/catalog-price)\n * [Price](/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/price)\n * [Price Range](/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/price-range)\n * [Stencil Image](/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/stencil-image)\n * [Common Product Card Model](/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model)\n"
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Overview"
-                                }
                               }
                             },
                             {
@@ -13267,11 +13235,6 @@
                                     "data": "<b>Description:</b> Exposes catalog price- and currency-related properties in both raw numeric, and formatted string, formats.\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n\t\t<td><b>with_tax</b></td>\n\t\t<td>Price including tax (includes the <i>formatted</i> and <i>value</i> properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n\t\t<td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n  <tr>\n\t\t<td><b>without_tax</b></td>\n\t\t<td>Price excluding tax (includes <i>formatted and value</i> properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n\t\t<td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n  \n  <tr>\n\t\t<td><b>non_sale_price_with_tax</b></td>\n    <td>Non-sale price, including tax. Can be displayed alongside standard <a href=\"#with_tax\">with_tax</a> during sale events. (Includes <i>formatted and value</i> properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n    <td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n  <tr>\n\t\t<td><b>non_sale_price_without_tax</b></td>\n    <td>Non-sale price, excluding tax. Can be displayed alongside standard <a href=\"#without_tax\">without_tax</a> during sale events. (Includes <i>formatted</i> and <i>value</i> properties) </td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n\t\t<td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n \n  <tr>\n\t\t<td><b>rrp_with_tax</b></td>\n    <td>List (i.e., manufacturer’s suggested retail) price, including tax (Includes <i>formatted</i> and <i>value</i> properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n\t\t<td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n  <tr>\n\t\t<td><b>rrp_without_tax</b></td>\n    <td>List (i.e., suggested retail) price, excluding tax (Includes <i>formatted</i> and <i>value</i> properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n\t\t<td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n  <tr>\n\t\t<td><b>saved</b></td>\n    <td>Amount customer saved, compared to list price (Includes <i>formatted</i> and <i>value</i> properties) </td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n\t\t<td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n  <tr>\n    <td>tax_label</td>\n    <td>Tax label (VAT, sales tax, etc.) displayed to customers</td>\n  </tr>\n  \n  <tr>\n    <td>price_range</td>\n    <td><a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/price-range\">See Price Range Object</a> </td>\n\t</tr>   \n   <tr>\n\t\t <td><b>map_price</b></td>\n    <td>Minimum advertised price (Includes <i>formatted</i> and <i>value</i> properties)</td>\n  </tr>\n  <tr>\n\t\t<td><i>formatted</i></td>\n    <td>String representation of the above price, including currency formatting</td>\n  </tr>\n  <tr>\n\t\t<td><i>value</i></td>\n    <td>Raw numeric value of the above price</td>\n  </tr>\n</table>\n\n<b>Available through:</b> \n\n<b>Object/Property:</b> `{{product.price}}`"
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Common Object"
-                                }
                               }
                             },
                             {
@@ -13290,11 +13253,6 @@
                                     "data": "<b>Description:</b> Exposes price- and currency-related properties in both raw numeric, and formatted string, formats. \n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>formatted</td>\n    <td>String representation of the price, including currency formatting</td>\n  </tr>\n  <tr>\n    <td>value</td>\n    <td>Raw numeric value of the price</td>\n  </tr>\n</table>\n\n<b>Available through:</b>\n\n<b>Common Object:</b> <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model\">Common Product Card Model</a>\n\n<b>Object:</b> `{{category.shop_by_price}}`"
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Common Object"
-                                }
                               }
                             },
                             {
@@ -13313,11 +13271,6 @@
                                     "data": "<b>Description:</b> For products with several variants with different prices, a price range is available which exposes the minimum and maximum variant price.\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <td>Property</td>\n    <td>Description</td>\n  </tr>\n  <tr>\n    <td> <A NAME=\"with_tax\"></a> min</td>\n    <td>The minimum variant price for the product, in the form of a <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model\">Catalog Price Common Object</a></td>\n  </tr>\n  <tr>\n    <td> <A NAME=\"without_tax\"></a> max</td>\n    <td>The maximum variant price for the product, in the form of a <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model\">Catalog Price Common Object</a>\n</td>\n  </tr>\n</table>\n\n<b>Available through:</b>\n\n<b>Object/Property:</b><code>{{product.price}</code></a> "
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Common Object"
-                                }
                               }
                             },
                             {
@@ -13336,11 +13289,6 @@
                                     "data": "<b>Description:</b> Exposes a URL and an \"alt\" string for images used in the Stencil framework\n\n<b>Object Properties:</b>\n\n<table>\n  <tr>\n    <th>Property</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>data</td>\n    <td>Internal URL to product or category image</td>\n  </tr>\n  <tr>\n    <td>alt</td>\n    <td>Corresponding text to display for missing images, accessible screen readers, etc.</td>\n  </tr>\n</table>\n\n<b>Available through:</b> \n\n<b>Stencil Handlebars Helper:</b> `{{getImage}}`\n\n<b>Common Object:</b> <a href=\"/stencil-docs/stencil-object-model-reference/stencil-objects/common-objects/common-product-card-model\">Common Product Card Model</a> \n\n<b>Object/Property:</b> `{{category.image}}`\n\n<b>Arrays/Elements:</b> `{{product.options.image}}`, `{{product.images}}`, `{{downloads.items.images}}`, `{{downloads.items.thumbnail}}`, `{{category.subcategories.image}}`, `{{order.items.image}}`, `{{customer.orders.image}}`, `{{brands.image}}`, `{{order.items.shipping_rows.image}}` \n\n<b> Usage Example: </b> \n\n`{{getImage image \"thumbnail\"}}`"
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Common Object"
-                                }
                               }
                             },
                             {
@@ -13391,11 +13339,6 @@
                                     "data": "## Other Objects & Properties Overview\n\nThis section covers the following objects. Note that in this section, each of the following reference pages contains multiple objects. For example, the Product Objects reference page contains all objects related to products not already covered. The objects in this section include:\n\n* Product Objects\n* Category Objects\n* Brand Objects\n* Cart Objects\n* Customer Objects\n* Blog Objects\n* Forms Objects\n"
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Overview"
-                                }
                               }
                             },
                             {
@@ -13477,11 +13420,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "objects"
-                                }
                               }
                             },
                             {
@@ -13521,11 +13459,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "objects"
-                                }
                               }
                             },
                             {
@@ -13565,11 +13498,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Objects"
-                                }
                               }
                             },
                             {
@@ -13623,11 +13551,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Objects"
-                                }
                               }
                             },
                             {
@@ -13723,11 +13646,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Objects"
-                                }
                               }
                             },
                             {
@@ -13760,11 +13678,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Objects"
-                                }
                               }
                             },
                             {
@@ -13818,11 +13731,6 @@
                                     }
                                   }
                                 ]
-                              },
-                              "config": {
-                                "sidebar": {
-                                  "token": "Objects"
-                                }
                               }
                             }
                           ]
@@ -14579,11 +14487,6 @@
                         }
                       }
                     ]
-                  },
-                  "config": {
-                    "sidebar": {
-                      "token": "Reference"
-                    }
                   }
                 }
               ]
@@ -19519,6 +19422,136 @@
                   }
                 },
                 {
+                  "title": "Multi-site",
+                  "route": {
+                    "path": "/multi-site"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">Multi Site Setup</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <li><a href=\"#multi-site_getting\">Getting Your API Credentials</a></li>\n        <li><a href=\"#multi-site_setting-up\">Setting up a WordPress Site Using API Account Credentials</a></li>\n\t</ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "When connecting more than one WordPress site to your BigCommerce store, you need to use an API account to link them. If you try to connect using the 'connect your store' flow, which uses a BigCommerce app to streamline the connection, your first WordPress site will lose its connection to BigCommerce.\n\nMultiple sites can share the same API credentials or you can choose to create a new set of credentials for each site.\n",
+                        "header": {
+                          "anchor": "multi-site_overview"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Getting Your API Credentials\n\n1. To get your store's API credentials, log into your BigCommerce store and head to `Advanced Settings` > `API Accounts`. Then, click the blue `Create API Account` button on the top left hand side.",
+                        "header": {
+                          "anchor": "multi-site_getting"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1544044020003",
+                        "header": {
+                          "title": "Click 'Create API Account' to get credentials"
+                        },
+                        "config": {
+                          "centered": true,
+                          "fluid": true,
+                          "bordered": true
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "2. Click `Create API Account`. This will open up a screen that will ask you to define a name and OAuth Scopes for the API account. For the OAuth Scopes, select the following:\n\n* Checkout Content: `none`\n* Customers Login: `login`\n\nSelect `modify` for all other scopes.\n\nThe screen will also contain your API Path, which you will need for the WordPress Plugin. "
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "title": "API Account Name Field",
+                          "body": "We suggest 'WordPress' for the name, although you can name it anything you'd like as long as it's unique within your API accounts and is more than 3 characters."
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1544044197137",
+                        "header": {
+                          "title": "Fill in the Name and OAuth Scopes."
+                        },
+                        "config": {
+                          "centered": true,
+                          "fluid": true,
+                          "bordered": true,
+                          "maxWidth": "600",
+                          "maxHeight": "600"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "3. After you have finished setting a name and selecting scopes, press `Save`. You will then see a modal that contains the `Client ID`, `Client Secret` and `Access Token` necessary for the remaining fields in the WordPress API Credentials settings."
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1544044553372",
+                        "header": {
+                          "title": "API Credentials"
+                        }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "body": "You'll also see a `.txt` file download in your browser that contains the same information in an easy-to-read format, including your API Path again in case you didn't copy it before.",
+                          "title": ".txt file fownload"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1544044589538",
+                        "header": {
+                          "title": ".txt file download"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Setting up a WordPress Site Using API Account Credentials\n\n1. To set up a WordPress site using this method, click `Enter your API credentials` on the welcome screen in the plugin. \n",
+                        "header": {
+                          "anchor": "multi-site_setting-up"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1544043727239",
+                        "header": {
+                          "title": "Wordpress Plugin Welcome Screen"
+                        },
+                        "config": {
+                          "centered": true,
+                          "fluid": true,
+                          "bordered": true,
+                          "maxWidth": "600",
+                          "maxHeight": "600"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "After clicking the text, you will be asked for your store's API credentials and base path."
+                      },
+                      {
+                        "type": "image",
+                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1544043952871"
+                      },
+                      {
+                        "type": "text",
+                        "data": "2. Enter the API credentials on your WordPress site. Saving the API Credentials on your WordPress site will take you to name the channel that the plugin will create so that you can list products to the channel from within BigCommerce, and link orders back to the channel that come from the WP site. You can also link to an existing channel.\n\n\n_Congratulations, you're done setting up your additional site!_ \n"
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "body": "The WordPress sites you connect to your BigCommerce store will process in the same currency as the BigCommerce store.",
+                          "title": "WordPress Currency Processing"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
                   "title": "Shortcodes",
                   "route": {
                     "path": "/shortcodes"
@@ -19600,6 +19633,84 @@
             },
             "data": {
               "children": [
+                {
+                  "title": "AMP for the Plugin",
+                  "route": {
+                    "path": "/new-subpage"
+                  },
+                  "data": {
+                    "blocks": [
+                      {
+                        "type": "html",
+                        "data": "<div><h3 class=\"sub-docs-type\" id=\"bigcommerce-for-wordpress\">BigCommerce for Wordpress</h3>\n<h1 class=\"sub-docs-title\">AMP for the BigCommerce WordPress plugin\n</h1>\n  <h4>Prepared by XWP for BigCommerce</h4>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#amp_whats-amp\">What’s AMP?</a></li>\t\n    <li><a href=\"#amp_real-world\">AMP real world example</a></li>\t\n    <li><a href=\"#amp_how-to\">How to enable AMP</a></li>\t\n    <li><a href=\"#amp_wordpress-amp\">WordPress AMP plugin support</a></li>\t\n    <li><a href=\"#amp_choosing\">Choosing an AMP mode</a></li>\n    <li><a href=\"#amp_previewing\">Previewing AMP</a></li>\n    <li><a href=\"#amp_amp-tools\">AMP Tools</a></li>\n    <li><a href=\"#amp_amp-for-seo\">AMP for SEO</a></li>\t\n    <li><a href=\"#amp_customizing-amp\">Customizing AMP templates</a></li>\t\n  </ul>\n</div>"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## What's AMP?\n\nAMP stands for Accelerated Mobile Pages and is an [open source project](https://www.ampproject.org/) created by Google and maintained by thousands of developers who care deeply about a better and faster web.\n\nAMP aims to load your web pages faster and thus providing a better end user experience. It does this by using a subset of HTML called AMP HTML which is very similar to HTML, with a few restrictions. There is also AMP JS which is a whitelisted and concise JavaScript library and most importantly the AMP Cache which search engines like Google use to serve AMP pages.\n\nWhile AMP is quite widely used in the publishing industry and many large news organizations have taken advantage of it, AMP has not yet been rolled out in any significant way to ecommerce stores. This means there is a big opportunity for online stores to get in early and start publishing AMP valid stores to increase traffic, conversion rates, and ultimately sales.",
+                        "header": {
+                          "anchor": "amp_whats-amp"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## AMP real world example\n\nA user who is looking to purchase a Christmas gift for a loved one would typically go to Google and search for the item. Let’s say they’re looking for a picture frame, they type “Picture Frame” in to the search box, and Google presents a search result page of websites and ecommerce stores selling picture frames.\n\nYou may notice when doing a Google search of your own, that Google now includes AMP specific results at the top of the SERP (search engine results page). It shows a carousel of AMP enabled content that is related to your search.\n\nBy clicking one of the results in the AMP carousel, let’s say it’s a product page of a picture frame that we searched for above, the website loads almost instantaneously. This is because Google has cached the AMP version of the websites which provide AMP valid markup and can show the pages as soon as a user clicks it without the user having to wait.\n\nSearch engine optimization is one of the key advantages of AMP, however user experience is also just as important of an advantage. A user browsing the AMP cached version of your site will feel like the pages are loading immediately which leads to higher conversions and more sales.\n\nThe good news is that BigCommerce for WordPress ships with AMP by default.",
+                        "header": {
+                          "anchor": "amp_real-world"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## How to enable AMP\n\nEnabling AMP in the BigCommerce for WordPress plugin is simple. All you need to do is download the [Official AMP Plugin for WordPress](https://wordpress.org/plugins/amp/), noting that its the “official” one by WordPress.com VIP, XWP, and Google.\n\nOnce you’ve downloaded the plugin, extract it to the plugins directory of your WordPress install and activate the plugin from WordPress admin.\n\nAlternatively, you can use the WordPress installer to install the Official AMP Plugin for WordPress by clicking Plugins in your WordPress admin sidebar and then Add New. Search for AMP, click Install Now, and then click Activate\n\nOnce the plugin is installed and activated, your store will immediately start serving an AMP version of the store when requested.\n",
+                        "header": {
+                          "anchor": "amp_how-to"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## WordPress AMP plugin support\n\nThe Official AMP Plugin for WordPress is currently at version 0.7.2 and the BigCommerce for WordPress plugin fully supports this version.\n\nVersion 1.0 of the Official AMP Plugin for WordPress is due to be released shortly and the great news is that BigCommerce for WordPress already fully supports this version of the AMP plugin. Version 1.0 brings a whole new set of features including the ability to validate AMP inside WordPress and we’re excited to be able to support that with the BigCommerce plugin.\n",
+                        "header": {
+                          "anchor": "amp_wordpress-amp"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Choosing an AMP mode\n\nThe official AMP Plugin for WordPress plugin allows you to serve AMP pages in 3 different ways. Let’s see what they are and which mode is best suited for you.\nClassic mode (AMP Plugin Version 0.1+)\nThis is the original mode for rendering AMP pages and it renders an AMP theme that is separate and different from your WordPress theme. Think of it as a whole new WordPress theme that is only displayed when the site is being viewed as AMP. The AMP theme is customizable and can be branded to align with your brand.\n\nGenerally this mode works out of the box and not much customization is needed to be done to your website for it to be AMP valid, this is because it uses specific a specific AMP valid theme. The draw back being that your website theme is different from the AMP theme.\n\n### Paired mode (AMP Plugin Version 0.7+)\n\nPaired mode uses your existing theme and through clever sanitization and post CSS processing, the plugin does it’s best to create an AMP valid version of it. Your AMP theme and WordPress theme look extremely similar except they’re just accessed from different URL’s.\n\nIn paired mode, there is usually additional development work needed to be done to your theme to make it AMP valid. The Official AMP Plugin for WordPress plugin does a really good job of reducing the size of the CSS and loading only what is needed on the page, but because of 3rd party plugins and custom theme development, you may need to conditionally remove parts of your site when AMP is valid for it to pass validation. The plugin helps you do this and in version 1.0 it has an interface to let you know of any failing AMP validations that need to be fixed.\n\n### Native mode (AMP Plugin Version 0.7+)\n\nNative mode is very much the same as paired mode in terms of rendering, however it will always render the AMP version of the theme. It’s basically always on AMP.\n\nFor more technical details on how the 3 modes are differentiated, please check out the [Theme docs for the Official AMP Plugin for WordPress](https://github.com/ampproject/amp-wp/wiki/Adding-Theme-Support).\n",
+                        "header": {
+                          "anchor": "amp_choosing"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Previewing AMP\n\nOnce AMP is enabled and you’ve decided on a mode, you will probably want to preview what your site looks like. This is easy to do but depending on the mode you selected, you would need to preview the AMP theme differently.\nClassic mode\nIf you’re running with classic, you can preview the mode in two ways:\n\n1. [yourdomain.com/products/product-slug/amp](yourdomain.com/products/product-slug/amp)\n\n2. [yourdomain.com/products/product-slug/?amp](yourdomain.com/products/product-slug/?amp)\n\nBy visiting any of these two URL’s the AMP version will be shown in a browser.\n\n### Paired Mode\nFor paired mode, you can only use the ?amp query parameter to show the AMP version in a browser. \n[yourdomain.com/products/product-slug/amp](yourdomain.com/products/product-slug/amp)\n\n### Native Mode\nAs discussed earlier, native mode will always display the AMP version of the theme.",
+                        "header": {
+                          "anchor": "amp_previewing"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## AMP Tools\n\nThere are a number of tools that you can use to help you with AMP development, testing, and maintenance.\n\n### AMP Test\nTo test if a webpage is AMP valid, you can use the AMP Test tool provided by Google:\nhttps://search.google.com/test/amp\n\n### AMP Validator\nThe official AMP project provides an AMP validator tool for validating and debugging AMP pages:\nhttps://validator.ampproject.org/\n\n### AMP Validator for Chrome\nIf you’re using Chrome, there is an AMP Validator extension that allows you to test AMP pages directly while browsing your website:\n[https://chrome.google.com/webstore/detail/amp-validator/nmoffdblmcmgeicmolmhobpoocbbmknc?hl=en](https://chrome.google.com/webstore/detail/amp-validator/nmoffdblmcmgeicmolmhobpoocbbmknc?hl=en)\n",
+                        "header": {
+                          "anchor": "amp_amp-tools"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## AMP for SEO\n\nEarlier we talked about how AMP can be beneficial for SEO purposes and driving web traffic to your store. Just by enabling the Official AMP Plugin for WordPress and BigCommerce for WordPress plugins, your AMP pages will automatically get indexed and cached by Google without having to submit or request this from Google. This is because the plugin adds a reference to the AMP page on each canonical web page that has an AMP version.\n\nThere is nothing additional that you need to do to get the added SEO benefit from AMP, it’s all handled for you by the plugin and Google crawler.\n",
+                        "header": {
+                          "anchor": "amp_amp-for-seo"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Customizing AMP templates\n\nThe BigCommerce for WordPress plugin ships with beautifully customized AMP templates that look great. You may however want to customize these AMP templates to be more aligned with your brand.\n\n### Classic Mode\nThe classic AMP theme can be customized in the WordPress Customizer. Click on `Appearance` on the WordPress Admin menu and then click `Customize`. The WordPress Customizer will then open and you’ll see a panel for AMP. Click `AMP` and then `Design` and from this panel you can change the look and feel.\n\nYou may want to go a step further an customize the actual HTML markup and output. This is customized in the same way as the non-AMP BigCommerce templates.\n\nFirstly, create a folder in your theme called `bigcommerce`. In this folder add an additional folder called `amp`. You can now copy and paste any template you would like to override from `bigcommerce/templates/public/amp` in to this folder and modify them. The BigCommerce plugin will look in your theme first for an AMP template before it looks at the template from the plugin.\n\n### Paired and Native Mode\n\nPaired and native mode uses your existing WordPress theme to display. So there is little to no customization needed in terms of the theme layout and branding. You may however want to override the html outputted by the components on a product archive or product page. To do this, you do exactly what you would in classic. Create a folder in your theme called `bigcommerce/amp/components`. In this folder copy and paste any components that you would want to override from the plugin `bigcommerce/templates/public/amp`.",
+                        "header": {
+                          "anchor": "amp_customizing-amp"
+                        }
+                      }
+                    ],
+                    "children": []
+                  }
+                },
                 {
                   "title": "Customization Guide",
                   "route": {
@@ -19738,19 +19849,6 @@
       "title": "Stencil and Cornerstone License",
       "data": {
         "$ref": "./stencil-licenses.html"
-      }
-    },
-    "/api": {
-      "title": "API",
-      "data": {
-        "children": [
-          {
-            "title": "Widgets",
-            "route": {
-              "path": "/widgets.html"
-            }
-          }
-        ]
       }
     }
   },
