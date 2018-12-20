@@ -70,7 +70,7 @@
   "paths": {
     "/catalog/products": {
       "get": {
-        "description": "Get all products from your BigCommerce catalog. Optional parameters can be passed in.",
+        "description": "Get all products from your BigCommerce catalog. Optional parameters can be passed in.\n\n**Available Filters**\n* `categories:in=123,456` - Use this filter to return products that are in more than one category.",
         "operationId": "getProducts",
         "parameters": [
           {
@@ -1718,7 +1718,7 @@
         "summary": "Get Variants by Product Id"
       },
       "post": {
-        "description": "Variants need to be created one at a time using this endpoint.To use a variant array and create products and variants in the same call use the /product endpoint during product creation.",
+        "description": "Variants need to be created one at a time using this endpoint. To use a variant array and create products and variants in the same call use the /product endpoint during product creation.",
         "operationId": "createVariant",
         "parameters": [
           {
@@ -5842,6 +5842,12 @@
           },
           {
             "$ref": "#/parameters/Content-Type"
+          },
+          {
+            "in": "query",
+            "name": "categories",
+            "type": "string",
+            "description": "To ensure that your request will retrieve products that are also cross-listed in additional categories beyond the categories you've specified, use the syntax: `categories:in=`"
           }
         ],
         "responses": {
@@ -7138,8 +7144,7 @@
                 "meta_keywords": [],
                 "image_url": "https://cdn8.bigcommerce.com/s-123456/product_images/d/fakeimage.png",
                 "custom_url": {
-                  "url": "/brands/Common-Good.html",
-                  "is_customized": false
+                  "url": "/brands/Common-Good.html"
                 }
               }
             }
@@ -7160,18 +7165,20 @@
             "examples": {
               "application/json": {
                 "data": {
+                  "id": 50,
                   "name": "Common Good",
                   "meta_keywords": [
                     "modern, clean, contemporary"
                   ],
-                  "meta_description": "Common Good is a modern brand.",
+                  "meta_description": "Common Good is a modern brand",
+                  "image_url": "",
                   "search_keywords": "kitchen, laundry, cart, storage",
                   "custom_url": {
                     "url": "/brands/Common-Good.html",
                     "is_customized": false
-                  },
-                  "id": 37
-                }
+                  }
+                },
+                "meta": {}
               }
             }
           },
@@ -9678,7 +9685,7 @@
     },
     "FilterDateModifiedParam": {
       "name": "date_modified",
-      "description": "Filter items by date_modified. For example `v3/catalog/products?date_last_imported:min=2018-06-15`",
+      "description": "Filter items by date_modified. For example `v3/catalog/products?date_modified:min=2018-06-15`",
       "required": false,
       "in": "query",
       "type": "string",
@@ -9694,7 +9701,7 @@
     },
     "FilterDateLastImportedParam": {
       "name": "date_last_imported",
-      "description": "Filter items by date_last_imported. For example `v3/catalog/products?date_modified:min=2018-06-15`",
+      "description": "Filter items by date_last_imported. For example `v3/catalog/products?date_last_imported:min=2018-06-15`",
       "required": false,
       "in": "query",
       "type": "string",
@@ -9702,14 +9709,10 @@
     },
     "FilterIsVisibleParam": {
       "name": "is_visible",
-      "description": "Filter items by is_visible. This filter uses numbers instead. 0 = false and 1 = true.\n",
+      "description": "Filter items by if visible on the storefront. ",
       "required": false,
       "in": "query",
-      "type": "integer",
-      "enum": [
-        1,
-        0
-      ]
+      "type": "boolean"
     },
     "FilterIsFeaturedParam": {
       "name": "is_featured",
@@ -9766,7 +9769,7 @@
     },
     "FilterCategoriesParam": {
       "name": "categories",
-      "description": "Filter items by categories.\n",
+      "description": "Filter items by categories. If a product is in more than one category, using this query will not return the product. Instead use `categories:in=12`.",
       "required": false,
       "in": "query",
       "type": "integer"
@@ -9805,7 +9808,7 @@
     },
     "FilterIncludeParam": {
       "name": "include",
-      "description": "Sub-resources to include on a product, in a comma-separated list. Valid expansions currently include `variants`, `images`, 'primary_image`, `custom_fields`, and `bulk_pricing_rules`.",
+      "description": "Sub-resources to include on a product, in a comma-separated list. Valid expansions currently include `variants`, `images`, `primary_image`, `custom_fields`, and `bulk_pricing_rules`.",
       "required": false,
       "in": "query",
       "type": "string",
@@ -10066,13 +10069,15 @@
       "in": "header",
       "type": "string",
       "name": "Accept",
-      "default": "application/json"
+      "default": "application/json",
+      "required": true
     },
     "Content-Type": {
       "name": "Content-Type",
       "in": "header",
       "type": "string",
-      "default": "application/json"
+      "default": "application/json",
+      "required": true
     },
     "product_id": {
       "name": "product_id",
@@ -10143,6 +10148,10 @@
           "x-required": [
             "post"
           ]
+        },
+        "sort_order": {
+          "type": "integer",
+          "description": "The order the modifiers display on the product detail page."
         },
         "config": {
           "$ref": "#/definitions/OptionConfig"
@@ -10275,7 +10284,7 @@
                 },
                 "image_url": {
                   "type": "string",
-                  "description": "The URL for an image displayed on the storefront when the modifier value is selected.\n",
+                  "description": "The URL for an image displayed on the storefront when the modifier value is selected.Limit of 8MB per file. \n",
                   "example": "https://cdn8.bigcommerce.com/s-{{store_hash}}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.1280.1280.jpg?c=2"
                 },
                 "purchasing_disabled": {
@@ -10632,7 +10641,7 @@
         },
         "layout_file": {
           "type": "string",
-          "description": "The layout template file used to render this category.\n",
+          "description": "A valid layout file. (Please refer to [this article](https://support.bigcommerce.com/articles/Public/Creating-Custom-Template-Files/) on creating category files.) This field is writable only for stores with a Blueprint theme applied.\n",
           "minLength": 0,
           "maxLength": 500,
           "example": "category.html"
@@ -10881,6 +10890,7 @@
     "VariantBase": {
       "type": "object",
       "description": "Common Variant properties.",
+      "title": "Variant Base",
       "properties": {
         "cost_price": {
           "type": "number",
@@ -10961,7 +10971,7 @@
         },
         "image_url": {
           "type": "string",
-          "description": "The image that will be displayed when this variant is selected on the storefront. When updating a SKU image, send the publicly accessible URL. Supported image formats are JPEG, PNG, and GIF. Generic product images not specific to the variant should be stored on the product.",
+          "description": "The image that will be displayed when this variant is selected on the storefront. When updating a SKU image, send the publicly accessible URL. Supported image formats are JPEG, PNG, and GIF. Generic product images not specific to the variant should be stored on the product. Limit of 8MB per file. ",
           "x-url": true
         },
         "upc": {
@@ -10986,8 +10996,7 @@
           "minLength": 0,
           "maxLength": 255
         }
-      },
-      "title": "Variant Base"
+      }
     },
     "Variant": {
       "type": "object",
@@ -11029,14 +11038,12 @@
       ]
     },
     "VariantPost": {
-      "type": "object",
       "description": "The model for a POST to create variants on a product.\n",
       "allOf": [
         {
           "$ref": "#/definitions/VariantBase"
         },
         {
-          "type": "object",
           "properties": {
             "product_id": {
               "type": "integer",
@@ -11054,18 +11061,19 @@
             },
             "option_values": {
               "type": "array",
-              "items": {
-                "$ref": "#/definitions/OptionValueVariantPost"
-              },
               "description": "Array of option and option values IDs that make up this variant. Will be empty if the variant is the product's base variant.",
               "x-required": [
                 "post"
-              ]
+              ],
+              "items": {
+                "$ref": "#/definitions/OptionValueVariantPost"
+              }
             }
           }
         }
       ],
-      "title": "Variant Post"
+      "title": "Variant Post",
+      "type": "object"
     },
     "VariantPut": {
       "type": "object",
@@ -11438,17 +11446,15 @@
       "title": "Product Image"
     },
     "ProductImagePost": {
-      "type": "object",
-      "description": "The model for a POST to create an image on a product.\n",
+      "description": "The model for a POST to create an image on a product.",
       "allOf": [
         {
           "$ref": "#/definitions/ProductImageBase"
         },
         {
-          "type": "object",
           "properties": {
             "image_url": {
-              "description": "Must be a fully qualified URL path, including protocol.\n",
+              "description": "Must be a fully qualified URL path, including protocol. Limit of 8MB per file. \n",
               "type": "string"
             },
             "image_file": {
@@ -11458,11 +11464,12 @@
           }
         }
       ],
-      "title": "Product Image Post"
+      "title": "Product Image Post",
+      "type": "object"
     },
     "ProductImagePut": {
       "type": "object",
-      "description": "The model for a PUT to update applicable ProductImage fields.\n",
+      "description": "The model for a PUT to update applicable Product Image fields.",
       "allOf": [
         {
           "$ref": "#/definitions/ProductImageBase"
@@ -11743,14 +11750,14 @@
     },
     "ResourceImage": {
       "type": "object",
-      "description": "An object containing a publicly accessible image URL, or a form post that contains an image file.\n",
+      "description": "An object containing a publicly accessible image URL, or a form post that contains an image file.",
+      "title": "Resource Image",
       "properties": {
         "image_url": {
           "type": "string",
-          "description": "A public URL for a GIF, JPEG, or PNG image.\n"
+          "description": "A public URL for a GIF, JPEG, or PNG image. Limit of 8MB per file. \n"
         }
-      },
-      "title": "Resource Image"
+      }
     },
     "ProductResponse": {
       "description": "Response payload for the BigCommerce API.\n",
@@ -11806,7 +11813,7 @@
         },
         "weight": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "Weight of the product, which can be used when calculating shipping costs. This is based on the unit set on the store\n",
           "x-required": [
             "post"
@@ -11817,7 +11824,7 @@
         },
         "width": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "Width of the product, which can be used when calculating shipping costs.\n",
           "minimum": 0,
           "maximum": 9999999999,
@@ -11825,7 +11832,7 @@
         },
         "depth": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "Depth of the product, which can be used when calculating shipping costs.\n",
           "minimum": 0,
           "maximum": 9999999999,
@@ -11833,7 +11840,7 @@
         },
         "height": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "Height of the product, which can be used when calculating shipping costs.\n",
           "minimum": 0,
           "maximum": 9999999999,
@@ -11841,7 +11848,7 @@
         },
         "price": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "The price of the product. The price should include or exclude tax, based on the store settings.\n",
           "x-required": [
             "post"
@@ -11851,21 +11858,27 @@
         },
         "cost_price": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "The cost price of the product. Stored for reference only; it is not used or displayed anywhere on the store.\n",
           "minimum": 0
         },
         "retail_price": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "The retail cost of the product. If entered, the retail cost price will be shown on the product page.\n",
           "minimum": 0
         },
         "sale_price": {
           "type": "number",
-          "format": "double",
+          "format": "float",
           "description": "If entered, the sale price will be used instead of value in the price field when calculating the product's cost.\n",
           "minimum": 0
+        },
+        "calculated_price": {
+          "type": "number",
+          "format": "float",
+          "description": "The price of the product as seen on the storefront. It will be equal to the `sale_price`, if set, and the `price` if there is not a `sale_price`.\n",
+          "example": 12.43
         },
         "tax_class_id": {
           "type": "integer",
@@ -11955,7 +11968,7 @@
         },
         "layout_file": {
           "type": "string",
-          "description": "The layout template file used to render this product.\n",
+          "description": "The layout template file used to render this product category. This field is writable only for stores with a Blueprint theme applied.\n",
           "minLength": 0,
           "maxLength": 500
         },
@@ -12072,7 +12085,7 @@
         },
         "is_preorder_only": {
           "type": "boolean",
-          "description": "If set to `false`, the product will not change its availability from `preorder` to `available` on the release date. Otherwise, on the release date the product's availability/status will change to `available`.\n"
+          "description": "If set to true then on the preorder release date the preorder status will automatically be removed.  \nIf set to false, then on the release date the preorder status **will not** be removed. It will need to be changed manually either in the\ncontrol panel or using the API. Using the API set `availability` to `available`.\n"
         },
         "is_price_hidden": {
           "type": "boolean",
@@ -12126,11 +12139,18 @@
           "type": "string",
           "example": "Common Good",
           "description": "The brand can be created during a product /PUT or /POST request. If the brand already exists then the product will be added. If not the brand will be created and the product added. If using `brand_name` it performs a fuzzy match and adds the brand. eg. Common Good and Common good are the same. Brand name does not return as part of a product response. Only the `brand_id`."
+        },
+        "gtin": {
+          "type": "string",
+          "description": "Global Trade Item Number"
+        },
+        "mpn": {
+          "type": "string",
+          "description": "Manufacturer Part Number"
         }
       }
     },
     "Product": {
-      "description": "A BigCommerce Product object describes a single purchasable unit or a collection of purchasable units.",
       "allOf": [
         {
           "$ref": "#/definitions/ProductBase"
@@ -12143,9 +12163,8 @@
             },
             "calculated_price": {
               "type": "number",
-              "format": "double",
               "description": "The price of the product as seen on the storefront. It will be equal to the `sale_price`, if set, and the `price` if there is not a `sale_price`.\n",
-              "example": 12.43
+              "format": "float"
             },
             "reviews_rating_sum": {
               "type": "integer",
@@ -12638,7 +12657,7 @@
             },
             "image_url": {
               "type": "string",
-              "description": "The URL for an image displayed on the storefront when the conditions are applied.\n",
+              "description": "The URL for an image displayed on the storefront when the conditions are applied. Limit of 8MB per file. \n",
               "example": "https://cdn8.bigcommerce.com/s-123456/product_images/d/fakeimage.png"
             },
             "conditions": {
@@ -12735,7 +12754,7 @@
     },
     "CustomFieldBase": {
       "type": "object",
-      "description": "Common CustomField properties.",
+      "description": "Common Custom Field properties.",
       "title": "Custom Field Base",
       "properties": {
         "name": {
