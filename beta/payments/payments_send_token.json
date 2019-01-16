@@ -50,12 +50,11 @@
                 "payment": {
                   "instrument": {},
                   "payment_method_id": "Lorem in",
-                  "amount": 81505146,
-                  "currency_code": "NYE"
+                  "save_instrument": true
                 }
               },
               "Payment Access Token": "// The access is sent in the header with an empty body.",
-              "Vaulted Card": "{\n  \"payment\": {\n    \"instrument\": {\n      \"type\": \"stored_card\",\n      \"token\": \"e74a240eb0eeabb41f987fab0b104b2b7f5a40f2b3a72affd86036cb1323d6a5\"\n    },\n    \"payment_method_id\": \"cybersource.card\"\n  }\n}",
+              "Vaulted Card": "{\n  \"payment\": {\n    \"instrument\": {\n      \"type\": \"stored_card\",\n      \"token\": \"e74a240eb0eeabb41f987fab0b104b2b7f5a40f2b3a72affd86036cb1323d6a5\"\n    \"verification_value\": \"535\"\n    },\n    \"payment_method_id\": \"cybersource.card\"\n  }\n}",
               "Credit Card": "{\n  \"payment\": {\n    \"instrument\": {\n      \"type\": \"card\",\n      \"number\": \"4111111111111111\",\n      \"cardholder_name\": \"BP\",\n      \"expiry_month\": 12,\n      \"expiry_year\": 2020,\n      \"verification_value\": \"411\"\n    },\n    \"payment_method_id\": \"authorizenet.card\"\n  }\n}"
             }
           },
@@ -126,16 +125,6 @@
       "title": "Payment",
       "type": "object",
       "properties": {
-        "amount": {
-          "description": "Amount in smallest currency unit",
-          "type": "integer",
-          "format": "int32"
-        },
-        "currency_code": {
-          "description": "Currency code",
-          "type": "string",
-          "pattern": "^[A-Z]{3}$"
-        },
         "instrument": {
           "description": "",
           "type": "object"
@@ -144,6 +133,10 @@
           "description": "Identifier for payment method that will be used for this payment",
           "type": "string",
           "minLength": 1
+        },
+        "save_instrument": {
+          "description": "Flag to indicate whether to save payment instrument",
+          "type": "string"
         }
       },
       "required": [
@@ -305,6 +298,12 @@
           "type": "string",
           "minLength": 64,
           "maxLength": 64
+        },
+        "verification_value": {
+          "description": "Verification value of this card",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 4
         }
       },
       "required": [
