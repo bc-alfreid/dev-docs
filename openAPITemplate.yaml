@@ -5,28 +5,13 @@ info:
   contact:
     {}
   description: >-
-    ## This API is in Beta
-
-
-    The Wishlist API allows for developers to create and edit customer wishlists. 
-
-
-    To signup for access please use this form.
+    This is a template for BigCommerce swagger docs. It uses the Wishlist API as an example.
 paths:
   /wishlists:
     post:
       description: >-
         Creates a *Wishlist*. 
-
-
         This will allow you to create a wishlist and add products in one API call.
-
-
-        **Required Fields:**
-
-        * customer_id
-
-        * name
       summary: Create a Wishlist
       tags:
         - Wishlists
@@ -37,17 +22,9 @@ paths:
             schema:
               $ref: "#/components/schemas/WishlistsCreateOrUpdateRequestData"
         required: true
-        x-examples:
-          application/json:
-            customer_id: -84468254
-            is_public: false
-            name: anim cu
-            products:
-              - product_id: -74658167
-                variant_id: 3186438
       responses:
         "201":
-          $ref: "#/components/responses/wishlistObject"
+          $ref: "#/components/responses/WishlistObject"
         "400":
           description: Authentication Required.
           content:
@@ -55,22 +32,37 @@ paths:
               schema:
                 {}
         default:
-          $ref: "#/components/responses/500Error"
+          description: An Error Occured. To document errors list out all possible responses in the response section then use oneOf to have them listed out. Note, there is a current bug in swagger where responses that use oneOf don't show. This is a limitiation our public api platform is fixing internally, so it should not be an issue for us.
+            https://github.com/swagger-api/swagger-ui/issues/3803
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/responses/500'
+                  - $ref: '#/components/responses/15001'
+                  - $ref: '#/components/responses/12001'
     get:
-      description: Returns a list of all *Wishlists*. Optional filter parameters can be
-        passed in.
+      description: Returns a list of all *Wishlists*. Optional filter parameters can be passed in.
       summary: Get All Wishlists
       tags:
         - Wishlists
-      operationId: wishlistsget
+      operationId: WishlistsGet
       parameters:
         - $ref: "#/components/parameters/FilterWishlistID"
+        - $ref: "#/components/parameters/FilterProductID"
+        - $ref: "#/components/parameters/FilterVariantID"
         - $ref: "#/components/parameters/FilterCustomerID"
         - $ref: "#/components/parameters/FilterLimit"
-        - $ref: "#/components/parameters/FilterOffset"
+        - $ref: "#/components/parameters/FilterIncludeFields"
+        - $ref: "#/components/parameters/FilterExcludeFields"
+        - $ref: "#/components/parameters/FilterDateModified"
+        - $ref: "#/components/parameters/FilterDateCreated"
+        - $ref: "#/components/parameters/FilterDirection"
+        - $ref: "#/components/parameters/FilterSort"
+        - $ref: "#/components/parameters/FilterPage"
       responses:
         "200":
-          $ref: "#/components/responses/wishlistObjectsArray"
+          $ref: "#/components/responses/WishlistObjectsArray"
         "400":
           description: Authentication Required.
           content:
@@ -78,24 +70,27 @@ paths:
               schema:
                 {}
         "500":
-          $ref: "#/components/responses/500Error"
+          $ref: "#/components/responses/500"
+
+        default:
+          description: An Error Occured
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/responses/500'
+                  - $ref: '#/components/responses/15001'
+                  - $ref: '#/components/responses/12001'
     put:
       description: >-
-        Creates a *Wishlist*. 
-
-
-        This will allow you to create a wishlist and add products in one API call.
-
-
-        **Required Fields:**
-
-        * customer_id
-
-        * name
-      summary: Create a Wishlist
+        Updates a Wishlist. Updates an existing customer Wishlist. Use this endpoint to add items to a customer Wishlist, change the name of the Wishlist or the customer the Wishlist belongs to.
+      summary: Update a Wishlist
       tags:
         - Wishlists
-      operationId: WishlistsPost
+      operationId: WishlistsPut
+      parameters:
+        - $ref: "#/components/parameters/FilterWishlistID"
+        - $ref: "#/components/parameters/FilterCustomerID"
       requestBody:
         content:
           application/json:
@@ -112,7 +107,7 @@ paths:
                 variant_id: 3186438
       responses:
         "201":
-          $ref: "#/components/responses/wishlistObject"
+          $ref: "#/components/responses/WishlistObject"
         "400":
           description: Authentication Required.
           content:
@@ -120,7 +115,50 @@ paths:
               schema:
                 {}
         default:
-          $ref: "#/components/responses/500Error"
+          description: An Error Occured
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/responses/500'
+                  - $ref: '#/components/responses/15001'
+                  - $ref: '#/components/responses/12001'
+    delete:
+      description: Delete Wishlists. A filter must be passed in to limit number of Wishlists being deleted. Batch deletion is available at 1,000 per batch.
+      summary: Delete Wishlists
+      tags:
+        - Wishlists
+      operationId: WishlistsDelete
+      parameters:
+        - $ref: "#/components/parameters/FilterWishlistID"
+        - $ref: "#/components/parameters/FilterProductID"
+        - $ref: "#/components/parameters/FilterVariantID"
+        - $ref: "#/components/parameters/FilterCustomerID"
+        - $ref: "#/components/parameters/FilterLimit"
+        - $ref: "#/components/parameters/FilterIncludeFields"
+        - $ref: "#/components/parameters/FilterExcludeFields"
+        - $ref: "#/components/parameters/FilterDateModified"
+        - $ref: "#/components/parameters/FilterDateCreated"
+        - $ref: "#/components/parameters/FilterDirection"
+        - $ref: "#/components/parameters/FilterSort"
+        - $ref: "#/components/parameters/FilterPage"
+      responses:
+        "204":
+          description: The resource was deleted successfully.
+        "400":
+          description: Authentication Required.
+        "500":
+          $ref: "#/components/responses/500"
+
+        default:
+          description: An Error Occured.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/responses/500'
+                  - $ref: '#/components/responses/15001'
+                  - $ref: '#/components/responses/12001'    
 tags:
   - name: Wishlists
     description: ""
@@ -146,27 +184,82 @@ components:
       description: Returns all wishlists related to that customer. Uses the customer ID.
       schema:
         type: integer
-    FilterLimit:
-      name: limit
-      in: query
-      description: The number of items to return in the response.
-      schema:
-        type: integer
-    FilterOffset:
-      in: query
-      name: offset
-      description: Offset allows you to return a subset of data starting with the offset
-        value. Offset is 0 based.
-      schema:
-        type: integer
     FilterWishlistID:
       in: query
       name: wishlist_id
       description: The ID of the Wishlist
       schema:
         type: integer    
+    FilterProductID:
+      in: query
+      name: product_id
+      description: The ID of the Product
+      schema:
+        type: integer    
+    FilterVariantID:
+      in: query
+      name: variant_id
+      description: The ID of the Variant
+      schema:
+        type: integer    
+    FilterIncludeFields:
+      in: query
+      name: include_fields
+      description: Fields to include in the response
+      schema:
+        type: string
+    FilterExcludeFields:
+      in: query
+      name: exclude_fields
+      description: Fields to exclude in the response
+      schema:
+        type: string    
+    FilterDateModified:
+      in: query
+      name: date_modified
+      description: Filter by date modified. RFC 3339 format.
+      schema:
+        type: string
+        format: date-time
+    FilterDateCreated:
+      in: query
+      name: date_created
+      description: Filter by date created. RFC 3339 format.
+      schema:
+        type: string
+        format: date-time  
+    FilterLimit:
+      name: limit
+      in: query
+      description: The number of items to return in the response.
+      schema:
+        type: integer
+    FilterDirection:
+      name: direction
+      in: query
+      description: The sort direction, either `asc` or `desc`.
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+    FilterSort:
+      name: sort
+      in: query
+      description: Field name to sort by in alphabetical order or numerical order from smallest to largest.
+      schema:
+        type: string
+        enum:
+          - date_modified
+          - date_created
+    FilterPage:
+      name: limit
+      in: query
+      description: The number of items to return in the response.
+      schema:
+        type: integer
   responses:
-    500Error:
+    500:
       description: Internal Server Error
       content:
         application/json:
@@ -180,7 +273,21 @@ components:
                 type: string
               type:
                 type: string
-    wishlistObject:
+    15001:
+      description: You should use this space to describe how to resolve the error.
+      content:
+        application/json:
+          schema:
+            title: Error
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              type:
+                type: string              
+    WishlistObject:
       description: Response for a single *Wishlist*.
       content:
         application/json:
@@ -188,19 +295,9 @@ components:
             title: Wishlist
             type: object
             properties:
-              id:
-                description: Wishlist ID, provided after creating a wishlist with a POST.
-                type: string
-                format: uuid
-              customer_id:
-                type: integer
-                description: The ID the customer to which the wishlist belongs.
-              name:
-                description: The *Wishlist* name.
-                type: string
-              is_public:
-                description: Whether the wishlist is available to the public.
-                type: boolean
+              items:
+                $ref: "#/components/schemas/Wishlist"
+              
               products:
                 description: Array of *Wishlist* products.
                 type: array
@@ -208,7 +305,7 @@ components:
                   $ref: "#/components/schemas/Product"
               meta:
                 type: object
-                description: empty meta object.
+                description: Contains information about page and count.
           examples:
             response:
               value:
@@ -227,7 +324,7 @@ components:
                     variant_id: 53274787
                   - product_id: -9700316
                     variant_id: -19555586
-    wishlistObjectsArray:
+    WishlistObjectsArray:
       description: "Response for a list of *Wishlists*. "
       content:
         application/json:
@@ -240,7 +337,7 @@ components:
                 items:
                   $ref: "#/components/schemas/Wishlist"
               meta:
-                type: object
+                $ref: "#/components/schemas/Meta"
           examples:
             response:
               value:
@@ -267,6 +364,20 @@ components:
                     products:
                       - product_id: -91354901
                         variant_id: 43258099
+    12001:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            title: Error
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              type:
+                type: string                    
   securitySchemes:
     X-Auth-Client:
       type: apiKey
@@ -283,48 +394,24 @@ components:
       properties:
         customer_id:
           type: integer
-          description: The customer id.
+          description: The customer ID.
+          example: 12
         is_public:
           description: Whether the wishlist is available to the public.
           type: boolean
+          example: true
         name:
-          description: The title of the wishlist.
+          description: The title of the Wishlist.
           type: string
+          example: Christmas List
         products:
           type: array
           items:
             $ref: "#/components/schemas/Product"
       required:
         - customer_id
+        - name
       description: Model to create a *Wishlist*.
-    WishlistUpdateData:
-      title: Wishlist Update Data
-      type: object
-      properties:
-        customer_id:
-          type: integer
-          description: The customer id.
-        is_public:
-          description: Whether the wishlist is available to the public.
-          type: boolean
-        name:
-          description: The title of the wishlist.
-          type: string
-        product:
-          $ref: "#/components/schemas/Product"
-      required:
-        - customer_id
-      description: Model to update *Wishlist* data.
-    WishlistAddItems:
-      title: Wishlist Add Items
-      type: object
-      properties:
-        products:
-          description: Array of products
-          type: array
-          items:
-            $ref: "#/components/schemas/Product"
-      description: Model to add items to an existing *Wishlist*.
     Wishlist:
       title: Wishlist
       type: object
@@ -334,15 +421,20 @@ components:
           description: Wishlist ID, provided after creating a wishlist with a POST.
           type: string
           format: uuid
+          example: 94a9-b7d7-f26c-46f6
         customer_id:
           type: integer
           description: The ID the customer to which the wishlist belongs.
+          format: int32
+          example: 12
         name:
           description: The *Wishlist* name.
           type: string
+          example: Christmas List
         is_public:
           description: Whether the wishlist is available to the public.
           type: boolean
+          example: true
         products:
           description: Array of *Wishlist* products.
           type: array
@@ -355,18 +447,39 @@ components:
         product_id:
           type: integer
           description: The ID of the product.
+          example: 32
         variant_id:
           type: integer
           description: The ID of the variant.
+          example: 154
       description: Model for a *Wishlist Product*.
-    Error:
-      title: Error
+    Meta:
       type: object
       properties:
-        status:
-          type: integer
-          format: int32
-        title:
-          type: string
-        type:
-          type: string
+        pagination:
+          type: object
+          properties:
+            total:
+              type: integer
+              example: 39
+            count:
+              type: integer
+              example: 39
+            per_page:
+              type: integer
+              example: 50
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 1
+            links:
+              type: object
+              properties:
+                current:
+                  type: string
+                  example: ?page=1&limit=50
+            too_many:
+              type: boolean
+              example: false
