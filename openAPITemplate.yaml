@@ -1,30 +1,30 @@
 openapi: 3.0.0
 info:
   version: ""
-  title: Wishlist API
+  title: Thing API
   contact:
     {}
   description: >-
-    This is a template for BigCommerce swagger docs. It uses the Wishlist API as an example.
+    This is a template for BigCommerce swagger docs. It uses the Thing API as an example.
 paths:
-  /wishlists:
+  /things:
     post:
       description: >-
-        Creates a *Wishlist*. 
-        This will allow you to create a wishlist and add products in one API call.
-      summary: Create a Wishlist
+        Creates a *Thing*. 
+        This will allow you to create a thing and add thingamajigs in one API call.
+      summary: Create a Thing
       tags:
-        - Wishlists
-      operationId: WishlistsPost
+        - Things
+      operationId: ThingsPost
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WishlistsCreateOrUpdateRequestData"
+              $ref: "#/components/schemas/ThingsCreateOrUpdateRequestData"
         required: true
       responses:
         "201":
-          $ref: "#/components/responses/WishlistObject"
+          $ref: "#/components/responses/ThingObject"
         "400":
           description: Authentication Required.
           content:
@@ -42,14 +42,14 @@ paths:
                   - $ref: '#/components/responses/15001'
                   - $ref: '#/components/responses/12001'
     get:
-      description: Returns a list of all *Wishlists*. Optional filter parameters can be passed in.
-      summary: Get All Wishlists
+      description: Returns a list of all *Things*. Optional filter parameters can be passed in.
+      summary: Get All Things
       tags:
-        - Wishlists
-      operationId: WishlistsGet
+        - Things
+      operationId: ThingsGet
       parameters:
-        - $ref: "#/components/parameters/FilterWishlistID"
-        - $ref: "#/components/parameters/FilterProductID"
+        - $ref: "#/components/parameters/FilterThingID"
+        - $ref: "#/components/parameters/FilterThingamajigID"
         - $ref: "#/components/parameters/FilterVariantID"
         - $ref: "#/components/parameters/FilterCustomerID"
         - $ref: "#/components/parameters/FilterLimit"
@@ -62,7 +62,7 @@ paths:
         - $ref: "#/components/parameters/FilterPage"
       responses:
         "200":
-          $ref: "#/components/responses/WishlistObjectsArray"
+          $ref: "#/components/responses/ThingObjectsArray"
         "400":
           description: Authentication Required.
           content:
@@ -83,31 +83,31 @@ paths:
                   - $ref: '#/components/responses/12001'
     put:
       description: >-
-        Updates a Wishlist. Updates an existing customer Wishlist. Use this endpoint to add items to a customer Wishlist, change the name of the Wishlist or the customer the Wishlist belongs to.
-      summary: Update a Wishlist
+        Updates a Thing. Updates an existing customer Thing. Use this endpoint to add items to a customer Thing, change the name of the Thing or the customer the Thing belongs to.
+      summary: Update a Thing
       tags:
-        - Wishlists
-      operationId: WishlistsPut
+        - Things
+      operationId: ThingsPut
       parameters:
-        - $ref: "#/components/parameters/FilterWishlistID"
+        - $ref: "#/components/parameters/FilterThingID"
         - $ref: "#/components/parameters/FilterCustomerID"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WishlistsCreateOrUpdateRequestData"
+              $ref: "#/components/schemas/ThingsCreateOrUpdateRequestData"
         required: true
         x-examples:
           application/json:
             customer_id: -84468254
             is_public: false
             name: anim cu
-            products:
-              - product_id: -74658167
+            thingamajigs:
+              - thingamajig_id: -74658167
                 variant_id: 3186438
       responses:
         "201":
-          $ref: "#/components/responses/WishlistObject"
+          $ref: "#/components/responses/ThingObject"
         "400":
           description: Authentication Required.
           content:
@@ -124,14 +124,14 @@ paths:
                   - $ref: '#/components/responses/15001'
                   - $ref: '#/components/responses/12001'
     delete:
-      description: Delete Wishlists. A filter must be passed in to limit number of Wishlists being deleted. Batch deletion is available at 1,000 per batch.
-      summary: Delete Wishlists
+      description: Delete Things. A filter must be passed in to limit number of Things being deleted. Batch deletion is available at 1,000 per batch.
+      summary: Delete Things
       tags:
-        - Wishlists
-      operationId: WishlistsDelete
+        - Things
+      operationId: ThingsDelete
       parameters:
-        - $ref: "#/components/parameters/FilterWishlistID"
-        - $ref: "#/components/parameters/FilterProductID"
+        - $ref: "#/components/parameters/FilterThingID"
+        - $ref: "#/components/parameters/FilterThingamajigID"
         - $ref: "#/components/parameters/FilterVariantID"
         - $ref: "#/components/parameters/FilterCustomerID"
         - $ref: "#/components/parameters/FilterLimit"
@@ -160,7 +160,7 @@ paths:
                   - $ref: '#/components/responses/15001'
                   - $ref: '#/components/responses/12001'    
 tags:
-  - name: Wishlists
+  - name: Things
     description: ""
 security:
   - X-Auth-Client:
@@ -181,19 +181,19 @@ components:
     FilterCustomerID:
       name: customer_id
       in: query
-      description: Returns all wishlists related to that customer. Uses the customer ID.
+      description: Returns all things related to that customer. Uses the customer ID.
       schema:
         type: integer
-    FilterWishlistID:
+    FilterThingID:
       in: query
-      name: wishlist_id
-      description: The ID of the Wishlist
+      name: thing_id
+      description: The ID of the Thing
       schema:
         type: integer    
-    FilterProductID:
+    FilterThingamajigID:
       in: query
-      name: product_id
-      description: The ID of the Product
+      name: thingamajig_id
+      description: The ID of the Thingamajig
       schema:
         type: integer    
     FilterVariantID:
@@ -287,22 +287,22 @@ components:
                 type: string
               type:
                 type: string              
-    WishlistObject:
-      description: Response for a single *Wishlist*.
+    ThingObject:
+      description: Response for a single *Thing*.
       content:
         application/json:
           schema:
-            title: Wishlist
+            title: Thing
             type: object
             properties:
               items:
-                $ref: "#/components/schemas/Wishlist"
+                $ref: "#/components/schemas/Thing"
               
-              products:
-                description: Array of *Wishlist* products.
+              thingamajigs:
+                description: Array of *Thing* thingamajigs.
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product"
+                  $ref: "#/components/schemas/Thingamajig"
               meta:
                 type: object
                 description: Contains information about page and count.
@@ -313,29 +313,29 @@ components:
                 customer_id: -79920652
                 name: velit a
                 is_public: false
-                products:
-                  - product_id: 38131451
+                thingamajigs:
+                  - thingamajig_id: 38131451
                     variant_id: -20219285
-                  - product_id: -94886694
+                  - thingamajig_id: -94886694
                     variant_id: 6917022
-                  - product_id: 31738696
+                  - thingamajig_id: 31738696
                     variant_id: -775902
-                  - product_id: -88018607
+                  - thingamajig_id: -88018607
                     variant_id: 53274787
-                  - product_id: -9700316
+                  - thingamajig_id: -9700316
                     variant_id: -19555586
-    WishlistObjectsArray:
-      description: "Response for a list of *Wishlists*. "
+    ThingObjectsArray:
+      description: "Response for a list of *Things*. "
       content:
         application/json:
           schema:
-            title: Wishlist
+            title: Thing
             type: object
             properties:
               data:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Wishlist"
+                  $ref: "#/components/schemas/Thing"
               meta:
                 $ref: "#/components/schemas/Meta"
           examples:
@@ -346,23 +346,23 @@ components:
                     customer_id: 57352274
                     name: dolore minim sint deserunt
                     is_public: false
-                    products:
-                      - product_id: 40291595
+                    thingamajigs:
+                      - thingamajig_id: 40291595
                         variant_id: -63152804
-                      - product_id: -16013203
+                      - thingamajig_id: -16013203
                         variant_id: -63073504
-                      - product_id: -62881529
+                      - thingamajig_id: -62881529
                         variant_id: -40486023
-                      - product_id: 93311257
+                      - thingamajig_id: 93311257
                         variant_id: 62556983
-                      - product_id: 63969202
+                      - thingamajig_id: 63969202
                         variant_id: -62968021
                   - id: 0c873490-32e2-98eb-6639-717e8c560743
                     customer_id: -41601982
                     name: dolore esse
                     is_public: false
-                    products:
-                      - product_id: -91354901
+                    thingamajigs:
+                      - thingamajig_id: -91354901
                         variant_id: 43258099
     12001:
       description: Internal Server Error
@@ -388,8 +388,8 @@ components:
       name: X-Auth-Token
       in: header
   schemas:
-    WishlistsCreateOrUpdateRequestData:
-      title: Wishlists Create
+    ThingsCreateOrUpdateRequestData:
+      title: Things Create
       type: object
       properties:
         customer_id:
@@ -397,62 +397,62 @@ components:
           description: The customer ID.
           example: 12
         is_public:
-          description: Whether the wishlist is available to the public.
+          description: Whether the thing is available to the public.
           type: boolean
           example: true
         name:
-          description: The title of the Wishlist.
+          description: The title of the Thing.
           type: string
           example: Christmas List
-        products:
+        thingamajigs:
           type: array
           items:
-            $ref: "#/components/schemas/Product"
+            $ref: "#/components/schemas/Thingamajig"
       required:
         - customer_id
         - name
-      description: Model to create a *Wishlist*.
-    Wishlist:
-      title: Wishlist
+      description: Model to create a *Thing*.
+    Thing:
+      title: Thing
       type: object
-      description: The *Wishlist* object.
+      description: The *Thing* object.
       properties:
         id:
-          description: Wishlist ID, provided after creating a wishlist with a POST.
+          description: Thing ID, provided after creating a thing with a POST.
           type: string
           format: uuid
           example: 94a9-b7d7-f26c-46f6
         customer_id:
           type: integer
-          description: The ID the customer to which the wishlist belongs.
+          description: The ID the customer to which the thing belongs.
           format: int32
           example: 12
         name:
-          description: The *Wishlist* name.
+          description: The *Thing* name.
           type: string
           example: Christmas List
         is_public:
-          description: Whether the wishlist is available to the public.
+          description: Whether the thing is available to the public.
           type: boolean
           example: true
-        products:
-          description: Array of *Wishlist* products.
+        thingamajigs:
+          description: Array of *Thing* thingamajigs.
           type: array
           items:
-            $ref: "#/components/schemas/Product"
-    Product:
-      title: Product
+            $ref: "#/components/schemas/Thingamajig"
+    Thingamajig:
+      title: Thingamajig
       type: object
       properties:
-        product_id:
+        thingamajig_id:
           type: integer
-          description: The ID of the product.
+          description: The ID of the thingamajig.
           example: 32
         variant_id:
           type: integer
           description: The ID of the variant.
           example: 154
-      description: Model for a *Wishlist Product*.
+      description: Model for a *Thingamajig*.
     Meta:
       type: object
       properties:
