@@ -581,7 +581,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## API Rate Limits\nApps that authenticate with OAuth are rate-limited, based on a quota that is refreshed every few seconds. The maximum quota for a store will vary depending on the store’s plan.\n\n* Enterprise plans and Enterprise Sandboxes (Enterprise-Test): Unlimited (7mil / 30sec)\n* Pro plans: 80k per hour (450 / 30sec)\n* All other sandboxes (Dev/Partner/Employee): 20k per hour (150 / 30sec)\n* Plus & Standard plans: 20k per hour (150 / 30sec)\n\nEach request to the API consumes one available request from the quota. When an app hits the quota limit, subsequent requests are rejected until the quota is refreshed.\n\nThe store’s overall quota is distributed across all apps that are accessing the store at a given time. This provides fairness for multiple apps that are accessing the API simultaneously, preventing a single greedy app from consuming the store’s entire quota by itself. The quota might adjust as additional clients connect or disconnect while you’re running requests. ",
+                              "data": "## API Rate Limits\nApps that authenticate with OAuth are rate-limited, based on a quota that is refreshed every few seconds. The maximum quota for a store will vary depending on the store’s plan.\n\n* Enterprise plans and Enterprise Sandboxes (Enterprise-Test): Unlimited (7mil / 30sec)\n* Pro plans: 60k per hour (450 / 30sec)\n* All other sandboxes (Dev/Partner/Employee): 20k per hour (150 / 30sec)\n* Plus & Standard plans: 20k per hour (150 / 30sec)\n\nEach request to the API consumes one available request from the quota. When an app hits the quota limit, subsequent requests are rejected until the quota is refreshed.\n\nThe store’s overall quota is distributed across all apps that are accessing the store at a given time. This provides fairness for multiple apps that are accessing the API simultaneously, preventing a single greedy app from consuming the store’s entire quota by itself. The quota might adjust as additional clients connect or disconnect while you’re running requests. ",
                               "header": {
                                 "anchor": "best-practices_rate-limits"
                               }
@@ -6298,7 +6298,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Basic CLI Options and Commands\n\nThe syntax to run a basic Stencil CLI command is: `stencil <commands> [options] <parameter>`.\n\nTo see the basic options and commands that the Stencil CLI package supports, enter any of the following forms of the help option on your command line:\n\n`stencil <command> [option] <parameter>`\n\nTo see the basic options and commands that the Stencil CLI package supports, enter any of the following forms of the help option on your command line:\n\n```\nstencil\nstencil help\nstencil --help\nstencil -h\n```\n\nYour terminal window will display options and commands listed in the tables below. \n\t\n<table>\n  <tr>\n    <th>Option</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>-h, --help</td>\n    <td>Outputs usage information.</td>\n  </tr>\n  <tr>\n    <td>-V, --version</td>\n    <td>Outputs the version number (which is read from package.json file</span>).</td>\n  </tr>\n</table>\n\n<p></p>\n<table>\n  <tr>\n    <th>Command</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>init</td>\n    <td >Interactively creates a .stencil file, which configures how to run a BigCommerce store locally.</td>\n  </tr>\n  <tr>\n    <td>start</td>\n    <td>Starts up the BigCommerce store, using theme files in the current directory. \n\n<b>Note:</b> If stencil start generates an \"Unauthorized, please use a valid username/token error: Please make sure that the .stencil file contains the correct store URL and (for OAuth) the correct URL prefix). Also, verify that you have copied the correct credentials, as outlined here. If you continue to get the same error, please reissue tokens, as outlined here.\n    </td>\n  </tr>\n \n  \n  <tr>\n    <td>bundle</td>\n    <td>Bundles up the theme into a structured .zip file, which can be uploaded to BigCommerce. (Please see restrictions here).</td>\n  </tr>\n  \n  <tr>\n    <td></a>push</td>\n    <td>Bundles up the theme into a structured .zip file; then directly uploads (pushes) the .zip to BigCommerce.(Please see</nobr> usage instructions here. The same restrictions apply as for the bundle command.)</td>\n  </tr>\n  \n  <tr>\n    <td>release</td>\n    <td>Creates a new release in a theme's GitHub repository. Developers outside BigCommerce can use this for forks (not master) of Stencil's Cornerstone base theme, or for their own parallel themes independent of Cornerstone.</td>\n  </tr>\n    \n  <tr>\n    <td>help &lt;command&gt;</td>\n    <td>return all the options available to use for the specified command. For example, <code>stencil help bundle</code> will return the options that are available to use specifically with the stencil bundle command.\t\n    </td>\n  </tr>  \n</table>\n",
+                              "data": "## Basic CLI Options and Commands\n\nThe syntax to run a basic Stencil CLI command is: `stencil <commands> [options] <parameter>`.\n\nTo see the basic options and commands that the Stencil CLI package supports, enter any of the following forms of the help option on your command line:\n\n```\nstencil\nstencil help\nstencil --help\nstencil -h\n```\n\nYour terminal window will display options and commands listed in the tables below. \n\t\n<table>\n  <tr>\n    <th>Option</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>-h, --help</td>\n    <td>Outputs usage information.</td>\n  </tr>\n  <tr>\n    <td>-V, --version</td>\n    <td>Outputs the version number (which is read from package.json file</span>).</td>\n  </tr>\n</table>\n\n<p></p>\n<table>\n\t\n  <tr>\n    <th>Command</th>\n    <th>Description</th>\n  </tr>\n\t\n  <tr>\n    <td>init</td>\n    <td >Interactively creates a .stencil file, which configures how to run a BigCommerce store locally.</td>\n  </tr>\n\t\n  <tr>\n    <td>start</td>\n    <td>Starts up the BigCommerce store, using theme files in the current directory. \n    </td>\n  </tr>\n\t\n  <tr>\n    <td>bundle</td>\n    <td>Bundles up the theme into a structured .zip file, which can be uploaded to BigCommerce. (Please see restrictions here).</td>\n  </tr>\n  \n  <tr>\n    <td>push</td>\n    <td>Bundles up the theme into a structured .zip file; then directly uploads (pushes) the .zip to BigCommerce.</td>\n  </tr>\n  \n  <tr>\n    <td>release</td>\n    <td>Creates a new release in a theme's GitHub repository. Developers outside BigCommerce can use this for forks (not master) of Stencil's Cornerstone base theme, or for their own parallel themes independent of Cornerstone.</td>\n  </tr>\n  \n  <tr>\n    <td>help &lt;command&gt;</td>\n    <td>display help and return all the options available to use for the specified command. For example, <code>stencil help bundle</code> will return the options that are available to use specifically with the <code>stencil bundle</code> command.\n    </td>\n  </tr> \n\t\n</table>\n",
                               "header": {
                                 "anchor": "#stencil_basic-cli"
                               }
@@ -6319,32 +6319,16 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Stencil Start Options\n\nTo see Stencil CLI's additional options for the `stencil start` command (described above), enter the following on your command line:\n\n`stencil help start` \n\nYour terminal screen should read similar to the image below.\n",
+                              "data": "## Stencil Start Options\n\nTo see Stencil CLI's additional options for the `stencil start` command (described above), enter the following on your command line:\n\n`stencil help start` \n\nYour terminal screen should read similar to the table below.\n\n<table>\n\t<tr>\n    <th>Option</th>\n    <th>Definition</th> \n\t</tr>\n  <tr>\n    <td>-V, --version</td>\n    <td>Outputs the version number</td> \n  </tr>\n  <tr>\n    <td>-o, --open</td>\n    <td>Automatically open default browser</td> \n  </tr>\n\t  <tr>\n\t\t\t<td>-v, --variation [name]</td>\n\t\t\t<td>Set which theme variation to use while developing</td> \n  </tr>\n\t  <tr>\n\t\t\t<td>-t, --test</td>\n\t\t\t<td>Enable QA mode which will bundle all javascript for speed to test locally</td> \n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>--tunnel</td>\n\t\t\t<td>Create a tunnel URL which points to your local server which anyone can use</td> \n\t\t</tr>\n\t  <tr>\n\t\t\t<td>-e, --theme-editor</td>\n\t\t\t<td>Run Theme Editor server</td> \n  </tr>\n\t  <tr>\n    <td>-n, --no-cache</td>\n    <td>Turns off caching for API resource data per storefront page. The cache lasts for 5 minutes before automatically refreshing.</td> \n  </tr>\n\t  <tr>\n\t\t\t<td>--theme-editor-port [port]</td>\n\t\t\t<td>Run the Theme Editor on a different port</td> \n  </tr>\n\t  <tr>\n\t\t\t<td>-h, --help</td>\n\t\t\t<td>output usage information</td> \n  </tr>\n</table>\n",
                               "header": {
                                 "anchor": "#stencil_stencil-start"
                               }
                             },
                             {
-                              "type": "image",
-                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538029681278",
-                              "config": {
-                                "maxWidth": "1300",
-                                "maxHeight": "1300"
-                              }
-                            },
-                            {
                               "type": "text",
-                              "data": "## Stencil Push Options\n\nTo see Stencil CLI's additional options for the stencil push command (described above), enter the following on your command line:\n\n`stencil help push`\n\nYour terminal screen should read similar to the image below.",
+                              "data": "## Stencil Push Options\n\nTo see Stencil CLI's additional options for the stencil push command (described above), enter the following on your command line:\n\n`stencil help push`\n\nYour terminal screen should read similar to the table below.\n\n<table>\n\t<tr>\n    <th>Option</th>\n    <th>Definition</th> \n\t</tr>\n  <tr>\n    <td>-V, --version</td>\n    <td>outputs the version number</td> \n  </tr>\n  <tr>\n    <td>--host [hostname]</td>\n    <td>specify the API host (default: https://api.bigcommerce.com)</td> \n  </tr>\n\t  <tr>\n\t\t\t<td>-f, --file [filename]</td>\n\t\t\t<td>specify the filename of the bundle to upload</td> \n  </tr>\n\t  <tr>\n\t\t\t<td>-s, --save [filename]</td>\n\t\t\t<td>specify the filename to save the bundle as</td> \n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>-a, --activate [variationname]</td>\n\t\t\t<td>This will skip the prompts that normally come up asking if you would like to activate the theme and to specify a variation.\n\nYou can either specify the variation name after the flag or leave it blank to select the first variation (Light for Cornerstone).</td> \n\t\t</tr>\n\t  <tr>\n\t\t\t<td>-h, --help</td>\n\t\t\t<td>Output usage information.</td> \n\t\t</tr>\n</table>",
                               "header": {
                                 "anchor": "stencil_stencil-push"
-                              }
-                            },
-                            {
-                              "type": "image",
-                              "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1538055086025",
-                              "config": {
-                                "maxHeight": "800",
-                                "maxWidth": "800"
                               }
                             },
                             {
@@ -6527,7 +6511,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## Reinstalling Dependencies and Relaunching\n\n* Ensure that your theme includes all current dependencies by repeating the [Stencil Utils installation.](https://developer.bigcommerce.com/stencil-docs/getting-started/installing-stencil#installing_installing-stencils-js-utilities) \n\n* To relaunch, repeat the steps listed in the _Launching Stencil_ section.\n",
+                              "data": "## Reinstalling Dependencies and Relaunching\n\n* Ensure that your theme includes all current dependencies by repeating the [Stencil Utils installation.](/stencil-docs/getting-started/installing-stencil#installing_installing-stencils-js-utilities) \n\n* To relaunch, repeat the steps listed in the _Launching Stencil_ section.\n",
                               "header": {
                                 "anchor": "#downloading_reinstalling-dependencies"
                               }
@@ -8782,11 +8766,11 @@
                       },
                       {
                         "type": "html",
-                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#preparing_where-and-how-merchants\">Where and How Merchants See Your Theme's Thumbnail Images</a></li>\n    <li><a href=\"#preparing_general-image\">General Image Requirements</a></li>\n    <li><a href=\"#preparing_themewide-composite\">Themewide Composite Image</a></li>\n    <li><a href=\"#preparing_variations\">Variations: Desktop/Mobile Screenshots</a></li>\n\t</ul>\n</div>"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#preparing_where-and-how-merchants\">Where Merchants See Your Theme's Thumbnail Images</a></li>\n    <li><a href=\"#preparing_general-image\">General Image Requirements</a></li>\n    <li><a href=\"#preparing_themewide-composite\">Themewide Composite Image</a></li>\n    <li><a href=\"#preparing_variations\">Variations: Desktop/Mobile Screenshots</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
-                        "data": "## Where and How Merchants See Your Theme's Thumbnail Images\n\nA complete Stencil theme includes screenshots to show off the theme on cards that appear in two locations within the BigCommerce Control Panel:\n\n* `Storefront` > `My Themes`: Each individual card displays a _themewide composite image_, which is an image that contains combination of screenshots of the theme's multiple variations. \n`Storefront` > `Themes Marketplace`: Each card displays one variation of your theme. The three variations of Cornerstone (Light, Warm, and Bold) are displayed across three separate cards.",
+                        "data": "## Where Merchants See Your Theme's Thumbnail Images\n\nA complete Stencil theme includes screenshots to show off the theme on cards that appear in two locations within the BigCommerce Control Panel:\n\n* **Storefront** › **My Themes**: Each individual card displays a _themewide composite image_, which is an image that contains combination of screenshots of the theme's multiple variations. \n* **Storefront** › **Themes Marketplace**: Each card displays one variation of your theme. The three variations of Cornerstone (Light, Warm, and Bold) are displayed across three separate cards.",
                         "header": {
                           "anchor": "preparing_where-and-how-merchants"
                         }
@@ -8796,13 +8780,13 @@
                         "data": {
                           "children": [
                             {
-                              "title": "Desktop View of 'My Themes'",
+                              "title": "Desktop View of My Themes",
                               "blocks": [
                                 {
                                   "type": "image",
                                   "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539625143199",
                                   "header": {
-                                    "title": "Storefront > My Themes",
+                                    "title": "Storefront › My Themes",
                                     "subtitle": "Each card contains a themewide composite image, showing all the variations of the theme in each. In this image, we see 3 variations for the Cornerstone theme and 4 for the Showroom theme."
                                   },
                                   "config": {
@@ -8822,7 +8806,7 @@
                                   "type": "image",
                                   "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1539624737619",
                                   "header": {
-                                    "title": "Storefront > Themes Marketplace"
+                                    "title": "Storefront › Themes Marketplace"
                                   }
                                 }
                               ]
@@ -8839,6 +8823,9 @@
                                     "bordered": true,
                                     "maxWidth": "500",
                                     "maxHeight": "1000"
+                                  },
+                                  "header": {
+                                    "title": "Storefront › Themes Marketplace"
                                   }
                                 }
                               ]
@@ -8851,23 +8838,45 @@
                       },
                       {
                         "type": "text",
-                        "data": "## General Image Requirements\n\nBelow are details about:\n* how to size and save these images to stage them within your theme's directory structure\n* how to reference the images in your `config.json` file.\n\nAll screenshots described below must meet the following specifications in order for the `stencil bundle` command to be able to process them:\n\n* Saved to a supported image file type: `.jpg/.jpeg`, `.png`, or `.gif`.\n* Be stored in your `<theme‑name>/meta/` subdirectory.\n\nAlso note that all of these screenshots must be in **portrait aspect ratio**, with specific resolutions listed under [Themewide Composite Image](#preparing_themewide-composite) below.",
+                        "data": "## General Image Requirements\n\nBelow are details about:\n* how to size and save these images to stage them within your theme's directory structure\n* how to reference the images in your [config.json](https://github.com/bigcommerce/cornerstone/blob/master/config.json) file.\n\nAll screenshots described below must meet the following specifications in order for the `stencil bundle` command to be able to process them:\n\n* Saved to a supported image file type: .jpg/.jpeg, .png, or .gif.\n* Be stored in your [<theme‑name>/meta/](https://github.com/bigcommerce/cornerstone/tree/master/meta) subdirectory.\n* Must be in **portrait aspect ratio**, with specific resolutions listed under [Themewide Composite Image](#preparing_themewide-composite) below.",
                         "header": {
                           "anchor": "preparing_general-image"
                         }
                       },
                       {
                         "type": "text",
-                        "data": "## Themewide Composite Image\n\nThe themewide composite image represents your theme in the Control Panel's `Storefront` > `My Themes` area, which shows merchants their currently available themes (including any custom uploaded themes). \n\nThis file will normally be a mosaic of screenshots from multiple variations within your theme. It must meet the following requirements, beyond the general specifications above:\n\n* Resolution of 600 x 760 pixels (horizontal x vertical).\n* File size smaller than 2 MB.\n* Arbitrary filename prefix, referenced in your `config.json` file as the \nmeta > composed_image key's value.\n\nHere is an example of a compliant file type and location:\n\n`<theme‑name>/meta/composed.png`\n\nHere is how you would reference this file within `config.json`:\n\n```\n{\n  [...]\n  \"meta\": {\n    [...]\n    \"composed_image\": \"composed.png\",\t\n    [...]\n}\n```",
+                        "data": "## Themewide Composite Image\n\nThe themewide composite image represents your theme in the control panel's **Storefront** › **My Themes**, which shows merchants their currently available themes (including any custom uploaded themes). \n\nThis file will normally be a mosaic of screenshots from multiple variations within your theme. It must meet the following requirements, beyond the general specifications above:\n\n* Resolution of 600 x 760 pixels (horizontal x vertical).\n* File size smaller than 2 MB.\n* Arbitrary filename prefix, referenced in your [config.json](https://github.com/bigcommerce/cornerstone/blob/master/config.json) file as the `meta` object's `composed_image` key value.\n\nHere is an example of a compliant file type and location:\n\n`<theme‑name>/meta/composed.png`\n\nHere is how you would reference this file within [config.json](https://github.com/bigcommerce/cornerstone/blob/master/config.json):\n",
                         "header": {
                           "anchor": "preparing_themewide-composite"
                         }
                       },
                       {
+                        "type": "code",
+                        "data": "{\n  [...]\n  \"meta\": {\n    [...]\n    \"composed_image\": \"composed.png\",\t\n    [...]\n}",
+                        "header": {
+                          "title": "config.json",
+                          "subtitle": "Referencing composed.png"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
                         "type": "text",
-                        "data": "## Variations: Desktop/Mobile Screenshots\n\nEach variation within your theme must be represented by two additional screenshots if you want that variation to appear in the control panel > Storefront > Themes Marketplace area, which shows merchants the themes that are available for download.\n\n### Desktop Screenshot\n\nThe first screenshot, showing your theme on a desktop viewport, must meet the following requirements beyond the general specifications above: \nResolution of 2048 x 2600 pixels (horizontal x vertical).\nFile size smaller than 5 MB.\nArbitrary filename prefix, referenced in your `config.json` file as the \n`<variation-name> > meta > desktop_screenshot` key's value.\n\t\n### Mobile Screenshot\n\nThe second screenshot, showing your theme on a mobile viewport, must meet the following requirements beyond the general specifications above: \n* Resolution of 304 x 540 pixels (horizontal x vertical).\n* File size smaller than 1 MB.\n* Arbitrary filename prefix, referenced in your config.json file as the \n`<variation-name> > meta > mobile_screenshot` key's value.\n\nHere is an example showing two files of compliant types and location:\n\n* `<theme‑name>/meta/desktop_bright.png`\n* `<theme‑name>/meta/mobile_bright.png`\t\n\nHere is how you would reference these files within `config.json`, for a variation named `Bright`:\n\n```\n [...]\n  \"variations\": [\n    {\n      \"name\": \"Bright\",\n      \"id\": \"bright\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_bright.png\",\n        \"mobile_screenshot\": \"mobile_bright.jpg\",\n    [...]\n    }\n  ]\n```",
+                        "data": "## Variations: Desktop/Mobile Screenshots\n\nEach variation within your theme must be represented by two additional screenshots if you want that variation to appear in the control panel's  **Storefront** › **Themes Marketplace**, which shows merchants the themes that are available for download.\n\n### Desktop Screenshot\n\nThe first screenshot, showing your theme on a desktop viewport, must meet the following requirements beyond the general specifications above: \n* Resolution of 2048 x 2600 pixels (horizontal x vertical).\n* File size smaller than 5 MB\n* Arbitrary filename prefix, referenced in your [config.json](https://github.com/bigcommerce/cornerstone/blob/master/config.json) file as the `variations` object's `desktop_screenshot` key value.\n\t\n### Mobile Screenshot\n\nThe second screenshot, showing your theme on a mobile viewport, must meet the following requirements beyond the general specifications above: \n* Resolution of 304 x 540 pixels (horizontal x vertical).\n* File size smaller than 1 MB.\n* Arbitrary filename prefix, referenced in your [config.json](https://github.com/bigcommerce/cornerstone/blob/master/config.json) file as the `variations` object's `mobile_screenshot` key value.\n\nBelow is an example showing two files of compliant types and location:\n\n* `<theme‑name>/meta/desktop_bright.png`\n* `<theme‑name>/meta/mobile_bright.png`\t\n\nHere is how you would reference these files within [config.json](https://github.com/bigcommerce/cornerstone/blob/master/config.json), for a variation named `Bright`:\n\n\n ",
                         "header": {
                           "anchor": "preparing_variations"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "[...]\n  \"variations\": [\n    {\n      \"name\": \"Bright\",\n      \"id\": \"bright\",\n      \"meta\": {\n        \"desktop_screenshot\": \"desktop_bright.png\",\n        \"mobile_screenshot\": \"mobile_bright.jpg\",\n    [...]\n    }\n  ]\n",
+                        "header": {
+                          "title": "config.json",
+                          "subtitle": "Referencing Bright Variation"
+                        },
+                        "config": {
+                          "mode": "js"
                         }
                       }
                     ]
@@ -9499,7 +9508,7 @@
                             },
                             {
                               "type": "text",
-                              "data": "## About Custom Templates\n\nAbout Custom Templates\nThe Stencil framework allows theme developers and merchants to assign custom layout templates to storefront pages of the following types:\n\n* Brand\n* Category\n* Product\n* Page (meaning \"Web Pages\" – the BigCommerce control panel's designation for static store pages, which can include the store's home page)\n",
+                              "data": "## About Custom Templates\n\nThe Stencil framework allows theme developers and merchants to assign custom layout templates to storefront pages of the following types:\n\n* Brand\n* Category\n* Product\n* Page (meaning \"Web Pages\" – the BigCommerce control panel's designation for static store pages, which can include the store's home page)\n",
                               "header": {
                                 "anchor": "custom-templates_about-custom"
                               }
@@ -10551,7 +10560,7 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "## Tutorial Overview\n\nThis tutorial will take you through the steps to implement a custom checkout built with React to the Cornerstone Theme. The checkout will utilize BigCommerce's Checkout SDK. This tutorial assumes Cornerstone 2.4.0 as a starting point.",
+                                    "data": "## Tutorial Overview\n\nThis tutorial will take you through the steps to implement a custom checkout built with React to the Cornerstone Theme. The checkout will utilize BigCommerce's Checkout SDK. This tutorial assumes [Cornerstone 2.4.0](https://github.com/bigcommerce/cornerstone/releases/tag/2.4.0) as a starting point.",
                                     "header": {
                                       "anchor": "implement_tutorial-overview"
                                     }
@@ -10566,10 +10575,22 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "## Steps to Implement a Custom React Checkout in Cornerstone\n\n### Tutorial Prerequisites\n\nBefore beginning this tutorial, you will need to have the Stencil CLI installed.\n\nIf you do not yet have Stencil CLI installed, complete the steps in [Installing Stencil](stencil-docs/getting-started/installing-and-launching/installing-stencil).\n\n### Install Dependencies\n\nThe React app used to demonstrate the Checkout SDK has a few additional dependencies.\nIn your theme directory (e.g. /stencil/cornerstone), run the following command:\n\n`npm install --save react react-dom react-text-mask classnames accounting babel-preset-react css-loader node-sass sass-loader style-loader @bigcommerce/checkout-sdk`\n\n\n### Update webpack.common.js\n\nThe React app includes .jsx files which will not be resolved using the default webpack configuration in Cornerstone. Additionally, loaders must be registered for .jsx and .scss files.\n\n**Note:** _Cornerstone 2.0 and above uses Webpack 4 which does **not** use a `webpack.conf.js` file like earlier Webpack versions. Instead, we will modify `webpack.common.js`._\n\n#### Register .jsx and .scss loaders\n\nIn webpack.common.js, add the following objects to the `rules` array:\n\n```\n{\n  test: /\\.jsx$/,\n  exclude: /node_modules/,\n  use: {\n      loader: \"babel-loader\",\n      options: {\n          presets: ['react'],\n      },\n  }\n},\n\n{\n  test: /\\.scss$/,\n  use:  [\n      'style-loader',\n      {\n          loader: 'css-loader',\n          options: {\n              modules: true\n          }\n      },\n      'sass-loader'\n  ],\n},\n```\n\nNext, in webpack.common.js, add the following property to the `resolve` object:\n\n\n`extensions: ['.js', '.jsx']`\n\n\n### Add React Checkout Components to Theme\n\n1. Clone or download BigCommerce's [Checkout SDK JS Example](https://github.com/bigcommerce/checkout-sdk-js-example) **outside** of your theme directory\n\n`git clone https://github.com/bigcommerce/checkout-sdk-js-example.git`\n\nIf the above command fails, and you are accessing GitHub anonymously, give the URL this alternate prefix:\n\n`git clone git@github.com:bigcommerce/checkout-sdk-js-example.git`\n\n2. In your theme directory, navigate to `/assets/js/` and create a `checkout-app` directory (i.e. `/assets/js/checkout-app`)\n\n3. Copy the contents of `/checkout-sdk-js-example/src` into your new `/assets/js/checkout-app` directory \n\n\n### Import Dependencies\n\nEdit `/assets/js/app.js` and add the following lines toward the beginning with the other import statements:\n\n```\nimport React from 'react';\nimport ReactDOM from 'react-dom';\nimport Checkout from './checkout-app/Checkout/checkout';\n```\n\n### Define a Function to Initialize React\n\nEdit `/assets/js/app.js` and add the following lines to the end:\n\n```\nwindow.initReact = function initReact() {\n    ReactDOM.render(\n        React.createElement(Checkout, null, null),\n        document.getElementById('checkout-app')\n    );\n};\n```\n\n### Customize the Checkout Template\n\n1. Edit `/templates/pages/checkout.html` and add the following lines between `{{{ footer.scripts }}}` and `{{/partial}}`\n\n```\n<script src=\"{{cdn 'assets/dist/theme-bundle.main.js'}}\"></script>\n \n<script type=\"text/javascript\" defer>\n    // Exported in app.js\n    window.initReact();\n</script>\n```\n\n2. In `/templates/pages/checkout.html`, replace `{{{ checkout.checkout_content }}}` with the following:\n\n```<div id=\"checkout-app\"></div>```\n\n### Congratulations!\n\nYou should now be able to view your example React checkout by running the `stencil start` command in your theme directory and navigating to your storefront at [http://localhost:3000](http://localhost:3000).\n\nYou can make further customizations to the checkout by modifying the React components in `/assets/js/checkout-app`.",
+                                    "data": "## Steps to Implement a Custom React Checkout in Cornerstone\n\n### Tutorial Prerequisites\n\nBefore beginning this tutorial, you will need to have the Stencil CLI installed.\n\nIf you do not yet have Stencil CLI installed, complete the steps in [Installing Stencil](stencil-docs/getting-started/installing-and-launching/installing-stencil).",
                                     "header": {
                                       "anchor": "implement_steps"
                                     }
+                                  },
+                                  {
+                                    "type": "callout",
+                                    "data": {
+                                      "type": "warning",
+                                      "body": "This tutorial is **not** currently compatible with Cornerstone versions 3.0.0 and above. If you would like to implement this checkout on your Cornerstone theme using the steps in this tutorial, you need to be developing on a Cornerstone theme below version 3.0.0. The tutorial assumes [Cornerstone 2.4.0](https://github.com/bigcommerce/cornerstone/releases/tag/2.4.0) as a starting point.\n",
+                                      "title": "Compatible with Cornerstone versions below 3.0"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "data": "### Install Dependencies\n\nThe React app used to demonstrate the Checkout SDK has a few additional dependencies.\nIn your theme directory (e.g. /stencil/cornerstone), run the following command:\n\n`npm install --save react react-dom react-text-mask classnames accounting babel-preset-react css-loader node-sass sass-loader style-loader @bigcommerce/checkout-sdk`\n\n\n### Update webpack.common.js\n\nThe React app includes .jsx files which will not be resolved using the default webpack configuration in Cornerstone. Additionally, loaders must be registered for .jsx and .scss files.\n\n**Note:** _Cornerstone 2.0 and above uses Webpack 4 which does **not** use a `webpack.conf.js` file like earlier Webpack versions. Instead, we will modify `webpack.common.js`._\n\n#### Register .jsx and .scss loaders\n\nIn webpack.common.js, add the following objects to the `rules` array:\n\n```\n{\n  test: /\\.jsx$/,\n  exclude: /node_modules/,\n  use: {\n      loader: \"babel-loader\",\n      options: {\n          presets: ['react'],\n      },\n  }\n},\n\n{\n  test: /\\.scss$/,\n  use:  [\n      'style-loader',\n      {\n          loader: 'css-loader',\n          options: {\n              modules: true\n          }\n      },\n      'sass-loader'\n  ],\n},\n```\n\nNext, in webpack.common.js, add the following property to the `resolve` object:\n\n\n`extensions: ['.js', '.jsx']`\n\n\n### Add React Checkout Components to Theme\n\n1. Clone or download BigCommerce's [Checkout SDK JS Example](https://github.com/bigcommerce/checkout-sdk-js-example) **outside** of your theme directory\n\n`git clone https://github.com/bigcommerce/checkout-sdk-js-example.git`\n\nIf the above command fails, and you are accessing GitHub anonymously, give the URL this alternate prefix:\n\n`git clone git@github.com:bigcommerce/checkout-sdk-js-example.git`\n\n2. In your theme directory, navigate to `/assets/js/` and create a `checkout-app` directory (i.e. `/assets/js/checkout-app`)\n\n3. Copy the contents of `/checkout-sdk-js-example/src` into your new `/assets/js/checkout-app` directory \n\n\n### Import Dependencies\n\nEdit `/assets/js/app.js` and add the following lines toward the beginning with the other import statements:\n\n```\nimport React from 'react';\nimport ReactDOM from 'react-dom';\nimport Checkout from './checkout-app/Checkout/checkout';\n```\n\n### Define a Function to Initialize React\n\nEdit `/assets/js/app.js` and add the following lines to the end:\n\n```\nwindow.initReact = function initReact() {\n    ReactDOM.render(\n        React.createElement(Checkout, null, null),\n        document.getElementById('checkout-app')\n    );\n};\n```\n\n### Customize the Checkout Template\n\n1. Edit `/templates/pages/checkout.html` and add the following lines between `{{{ footer.scripts }}}` and `{{/partial}}`\n\n```\n<script src=\"{{cdn 'assets/dist/theme-bundle.main.js'}}\"></script>\n \n<script type=\"text/javascript\" defer>\n    // Exported in app.js\n    window.initReact();\n</script>\n```\n\n2. In `/templates/pages/checkout.html`, replace `{{{ checkout.checkout_content }}}` with the following:\n\n```<div id=\"checkout-app\"></div>```\n\n### Congratulations!\n\nYou should now be able to view your example React checkout by running the `stencil start` command in your theme directory and navigating to your storefront at [http://localhost:3000](http://localhost:3000).\n\nYou can make further customizations to the checkout by modifying the React components in `/assets/js/checkout-app`."
                                   },
                                   {
                                     "type": "tabs",
@@ -11473,7 +11494,7 @@
                                   },
                                   {
                                     "type": "text",
-                                    "data": "The following standard helpers are available to handle HTML content.\n\n## {{ellipsis}}\n\nTruncates a string to the specified `length`, and appends an elipsis, `…`.\n\n#### Parameters\n\n* `str` {String}\n* `length` {Number}: The desired length of the returned string.\n* `returns` {String}: The truncated string.\n\n#### Example\n\n```js\n{{ellipsis \"<span>foo bar baz</span>\", 7}}\n//=> 'foo bar…'\n```",
+                                    "data": "The following standard helpers are available to handle HTML content.\n\n## {{ellipsis}}\n\nTruncates a string to the specified `length`, and appends an elipsis, `…`.\n\n#### Parameters\n\n* `str` {String}\n* `length` {Number}: The desired length of the returned string.\n* `returns` {String}: The truncated string.\n\n#### Example\n\n```\n{{ellipsis \"<span>foo bar baz</span>\" 7}}\n//=> 'foo bar…'\n```",
                                     "header": {
                                       "anchor": "handlebars_ellipsis"
                                     }
@@ -14599,7 +14620,7 @@
                       },
                       {
                         "type": "html",
-                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#adding_bundling-and-minification\">Bundling and Minification</a></li>\n    <li><a href=\"#adding_development-options\">Development Options</a></li>\n    <li><a href=\"#adding_using-npm\">Using npm (Node Package Manager)</a></li>\n    <li><a href=\"#adding_placing-modules\">Placing Modules in assets/js/</a></li>\n    <li><a href=\"#adding_theme-specific-js\">Theme-Specific JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-page\">Mapping Page Types to JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-custom\">Mapping Custom Templates to JavaScript Modules</a></li>\n    <li><a href=\"#adding_summary\">Summary</a></li>\n\t</ul>\n</div>\n\n\n\n\n\n\n\n"
+                        "data": "<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    <li><a href=\"#adding_bundling-and-minification\">Bundling and Minification</a></li>\n    <li><a href=\"#adding_development-options\">Development Options</a></li>\n    <li><a href=\"#adding_using-npm\">Using npm (Node Package Manager)</a></li>\n    <li><a href=\"#adding_placing-modules\">Placing Modules in assets/js/</a></li>\n    <li><a href=\"#adding_theme-specific-js\">Theme-Specific JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-page\">Mapping Page Types to JavaScript Modules</a></li>\n    <li><a href=\"#adding_mapping-custom\">Mapping Custom Templates to JavaScript Modules</a></li>\n    <li><a href=\"#adding_summary\">Summary</a></li>\n\t</ul>\n</div>"
                       },
                       {
                         "type": "text",
@@ -14658,20 +14679,27 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Mapping Page Types to JavaScript Modules\n\nTo find the mapping from page types to modules in `assets/js/theme/`, examine the `PageClasses` object in the file: `assets/js/app.js`. Each `=>import(...)` function within this class maps a page type to the entry module for that page type. For example: When the `cart` page type is loaded in the browser, the JavaScript module named `cart` will be loaded.\n\n### Mapping Example in app.js\n\nHere is an excerpt of mappings from the Cornerstone base theme's `assets/js/app.js`:\n\n```\n[...]\nconst pageClasses = {\n    account_orderstatus: getAccount,\n    account_order: getAccount,\n    account_addressbook: getAccount,\n    [...]\n    createaccount: getLogin,\n    getnewpassword: getLogin,\n    forgotpassword: getLogin,\n    blog: () => import('./theme/blog'),\n    blog_post: () => import('./theme/blog'),\n    brand: () => import('./theme/brand'),\n    brands: () => import('./theme/brand'),\n    cart: () => import('./theme/cart'),\n    [...]\n}; \n```\n\n### Mapping Example in cart.js\n\nInside the `cart` module (`assets/js/theme/cart.js`), other modules are imported, and custom JavaScript methods for the cart module are created in the `Cart` class.\n\nHere is an excerpt from Cornerstone's `assets/js/theme/cart.js` file:\n\n```\nimport PageManager from './page-manager';\nimport $ from 'jquery';\nimport _ from 'lodash';\nimport giftCertCheck from './common/gift-certificate-validator';\nimport utils from '@bigcommerce/stencil-utils';\nimport ShippingEstimator from './cart/shipping-estimator';\nimport { defaultModal } from './global/modal';\nimport swal from 'sweetalert2';\n\nexport default class Cart extends PageManager {\n    loaded(next) {\n        this.$cartContent = $('[data-cart-content]');\n        this.$cartMessages = $('[data-cart-status]');\n        this.$cartTotals = $('[data-cart-totals]');\n        this.$overlay = $('[data-cart] .loadingOverlay')\n            .hide(); // TODO: temporary until roper pulls in his cart components\n\n        this.bindEvents();\n\n        next();\n    }\n\n    cartUpdate($target) {\n        const itemId = $target.data('cart-itemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantity-max'), 10);\n        const minQty = parseInt($el.data('quantity-min'), 10);\n        const minError = $el.data('quantity-min-error');\n        const maxError = $el.data('quantity-max-error');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n        [...]\n```",
+                        "data": "## Mapping Page Types to JavaScript Modules\n\nTo find the mapping from page types to modules in `assets/js/theme/`, examine the `pageClasses` object in the file: `assets/js/app.js`. \n\nEach `=>import(...)` function within this class maps a page type to the entry module for that page type. \n\nFor example: When the `cart` page type is loaded in the browser, the JavaScript module named `cart` will be loaded.\n\n### Mapping Example in app.js\n\nBelow is an excerpt of mappings from the Cornerstone base theme's [assets/js/app.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/app.js):",
                         "header": {
                           "anchor": "adding_mapping-page"
                         }
                       },
                       {
-                        "type": "text",
-                        "data": "---"
+                        "type": "code",
+                        "data": "import Global from './theme/global';\n\nconst getAccount = () => import('./theme/account');\nconst getLogin = () => import('./theme/auth');\nconst noop = null;\n\nconst pageClasses = {\n    account_orderstatus: getAccount,\n    account_order: getAccount,\n    account_addressbook: getAccount,\n    shippingaddressform: getAccount,\n    account_new_return: getAccount,\n    'add-wishlist': () => import('./theme/wishlist'),\n    account_recentitems: getAccount,\n    account_downloaditem: getAccount,\n    editaccount: getAccount,\n    account_inbox: getAccount,\n    account_saved_return: getAccount,\n    account_returns: getAccount,\n    account_paymentmethods: getAccount,\n    account_addpaymentmethod: getAccount,\n    account_editpaymentmethod: getAccount,\n    login: getLogin,\n    createaccount_thanks: getLogin,\n    createaccount: getLogin,\n    getnewpassword: getLogin,\n    forgotpassword: getLogin,\n    blog: noop,\n    blog_post: noop,\n    brand: () => import('./theme/brand'),\n    brands: noop,\n    cart: () => import('./theme/cart'),\n    category: () => import('./theme/category'),\n    compare: () => import('./theme/compare'),\n    page_contact_form: () => import('./theme/contact-us'),\n    error: noop,\n    404: noop,\n    giftcertificates: () => import('./theme/gift-certificate'),\n    giftcertificates_balance: () => import('./theme/gift-certificate'),\n    giftcertificates_redeem: () => import('./theme/gift-certificate'),\n    default: noop,\n    page: noop,\n    product: () => import('./theme/product'),\n    amp_product_options: () => import('./theme/product'),\n    search: () => import('./theme/search'),\n    rss: noop,\n    sitemap: noop,\n    newsletter_subscribe: noop,\n    wishlist: () => import('./theme/wishlist'),\n    wishlists: () => import('./theme/wishlist'),\n};",
+                        "header": {
+                          "title": "app.js"
+                        }
                       },
                       {
                         "type": "text",
-                        "data": "## Mapping Custom Templates to JavaScript Modules\n\nIf you add [custom page templates]() to your theme, you can edit the same `assets/js/app.js` file to map each custom template to an appropriate JavaScript module.\n\nIn the example below, we have added the highlighted `if` statement to map a file called `my-custom-template`:\n\n```\nwindow.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {\n    const context = JSON.parse(contextJSON || {});\n\n    return {\n        load() {\n            $(async () => {\n                let globalClass;\n                let pageClass;\n                let PageClass;\n\n\nif (context.template === 'pages/custom/page/my-custom-template') {\n           // do something, import a file, call a function ...\n}\n\n                [...] \n```\n\nIn the theme's `templates/layout/base.html` template, we've added the `{{inject 'template' template}}` just above `{{{snippet 'htmlhead'}}}` statement to inject the custom template:\n\n```\n<head>\n        <title>{{ head.title }}</title>\n        {{{ head.meta_tags }}}\n        {{{ head.config }}}\n\n        [...]\n\n        {{{head.scripts}}}\n        {{{head.rsslinks}}}\n\n        {{inject 'themeSettings' theme_settings}}\n        {{inject 'genericError' (lang 'common.generic_error')}}\n        {{inject 'maintenanceMode' settings.maintenance}}\n        {{inject 'urls' urls}}\n        {{inject 'template' template}} //injects the custom template\n        {{{snippet 'htmlhead'}}}\n    </head> \n\t\t\n\t\t```\n\n\n",
+                        "data": "### Mapping Example in cart.js\n\nInside the `cart` module ([assets/js/theme/cart.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/theme/cart.js)), other modules are imported, and custom JavaScript methods for the cart module are created for the `Cart` class.\n\nHere is an excerpt from Cornerstone's `assets/js/theme/cart.js` file:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "import PageManager from './page-manager';\nimport _ from 'lodash';\nimport giftCertCheck from './common/gift-certificate-validator';\nimport utils from '@bigcommerce/stencil-utils';\nimport ShippingEstimator from './cart/shipping-estimator';\nimport { defaultModal } from './global/modal';\nimport swal from './global/sweet-alert';\n\nexport default class Cart extends PageManager {\n    onReady() {\n        this.$cartContent = $('[data-cart-content]');\n        this.$cartMessages = $('[data-cart-status]');\n        this.$cartTotals = $('[data-cart-totals]');\n        this.$overlay = $('[data-cart] .loadingOverlay')\n            .hide(); // TODO: temporary until roper pulls in his cart components\n\n        this.bindEvents();\n    }\n  \n\t\tcartUpdate($target) {\n        const itemId = $target.data('cartItemid');\n        const $el = $(`#qty-${itemId}`);\n        const oldQty = parseInt($el.val(), 10);\n        const maxQty = parseInt($el.data('quantityMax'), 10);\n        const minQty = parseInt($el.data('quantityMin'), 10);\n        const minError = $el.data('quantityMinError');\n        const maxError = $el.data('quantityMaxError');\n        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;\n        // Does not quality for min/max quantity\n        if (newQty < minQty) {\n            return swal({\n                text: minError,\n                type: 'error',\n            });\n        } else if (maxQty > 0 && newQty > maxQty) {\n            return swal({\n                text: maxError,\n                type: 'error',\n            });\n        }",
                         "header": {
-                          "anchor": "adding_mapping-custom"
+                          "title": "cart.js"
                         }
                       },
                       {
@@ -14680,7 +14708,50 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Summary\n\nTo review the basics of using JavaScript in your Stencil theme:\n\n* Stencil automatically bundles and minifies JavaScript modules to optimize page performance.\n\n* To insert custom JavaScript on a particular page in your theme, edit the JavaScript module that corresponds to the page's type.\n\n* To add files from third-party JavaScript modules to a theme, use npm, where possible.\n\n* To add JavaScript modules not distributed via npm, you can create new subdirectories within `assets/js/`.\n\n* Theme-Specific JavaScript modules are provided in the theme's `assets/js/theme/` subdirectory.\n\n* To find the mapping between modules in assets/js/theme/ and page types, examine the PageClasses object contained in `assets/js/app.js`.\n\n* You can map JavaScript modules to custom page templates by editing the same `assets/js/app.js` file.",
+                        "data": "## Mapping Custom Templates to JavaScript Modules\n\nIf you add [custom page templates](/stencil-docs/template-files/custom-templates/about-custom-templates) to your theme, you can edit the same `assets/js/app.js` file to map each custom template to an appropriate JavaScript module.",
+                        "header": {
+                          "anchor": "adding_mapping-custom"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "const customClasses = {};\n\n/**\n * This function gets added to the global window and then called\n * on page load with the current template loaded and JS Context passed in\n * @param pageType String\n * @param contextJSON\n * @returns {*}\n */\nwindow.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {\n    const context = JSON.parse(contextJSON || '{}');\n\n    return {\n        load() {\n            $(() => {\n                // Load globals\n                if (loadGlobal) {\n                    Global.load(context);\n                }\n\n                const importPromises = [];\n\n                // Find the appropriate page loader based on pageType\n                const pageClassImporter = pageClasses[pageType];\n                if (typeof pageClassImporter === 'function') {\n                    importPromises.push(pageClassImporter());\n                }\n\n                // See if there is a page class default for a custom template\n                const customTemplateImporter = customClasses[context.template];\n                if (typeof customTemplateImporter === 'function') {\n                    importPromises.push(customTemplateImporter());\n                }\n\n                // Wait for imports to resolve, then call load() on them\n                Promise.all(importPromises).then(imports => {\n                    imports.forEach(imported => {\n                        imported.default.load(context);\n                    });\n                });\n            });\n        },\n    };\n};",
+                        "header": {
+                          "title": "app.js",
+                          "subtitle": "map custom templates to js modules"
+                        },
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Injecting Custom Templates\n\nIn the theme's [templates/layout/base.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/layout/base.html) template, we've added the line `{{inject 'template' template}}` just above `{{{snippet 'htmlhead'}}}` statement to inject the custom template:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "<head>\n      <title>{{ head.title }}</title>\n      {{{ head.meta_tags }}}\n      {{{ head.config }}}\n      [...]\n\n      {{{head.scripts}}}\n      {{{head.rsslinks}}}\n\n      {{inject 'themeSettings' theme_settings}}\n      {{inject 'genericError' (lang 'common.generic_error')}}\n      {{inject 'maintenanceMode' settings.maintenance}}\n      {{inject 'urls' urls}}\n      {{inject 'template' template}} //injects the custom template\n      {{{snippet 'htmlhead'}}}\n</head> ",
+                        "header": {
+                          "title": "base.html",
+                          "subtitle": "custom template injection"
+                        },
+                        "config": {
+                          "mode": "html",
+                          "highlightRange": [
+                            {
+                              "from": "14",
+                              "to": "14"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Summary\n\nTo review the basics of using JavaScript in your Stencil theme:\n\n* Stencil automatically bundles and minifies JavaScript modules to optimize page performance.\n\n* To insert custom JavaScript on a particular page in your theme, edit the JavaScript module that corresponds to the page's type.\n\n* To add files from third-party JavaScript modules to a theme, use npm where possible.\n\n* To add JavaScript modules not distributed via npm, you can create new subdirectories within [assets/js/](https://github.com/bigcommerce/cornerstone/tree/master/assets/js).\n\n* Theme-Specific JavaScript modules are provided in the theme's [assets/js/theme/](https://github.com/bigcommerce/cornerstone/tree/master/assets/js/theme) subdirectory.\n\n* To find the mapping between modules in assets/js/theme/ and page types, examine the PageClasses object contained in [assets/js/app.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/app.js).\n\n* You can map JavaScript modules to custom page templates by editing the [assets/js/app.js](https://github.com/bigcommerce/cornerstone/blob/master/assets/js/app.js) file.",
                         "header": {
                           "anchor": "adding_summary"
                         }
@@ -14958,20 +15029,19 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Javascript API\n\nStencil themes include an API for running JavaScript on a per-page basis. To properly write JavaScript for your theme, you will have the following page types available to you:\n\n* \"pages/account/addresses\"\n* \"pages/account/add-address\"\n* \"pages/account/add-return\"\n* \"pages/account/add-wishlist\"\n* \"pages/account/recent-items\"\n* \"pages/account/download-item\"\n* \"pages/account/edit\"\n* \"pages/account/return-saved\"\n* \"pages/account/returns\"\n* \"pages/auth/login\"\n* \"pages/auth/account-created\"\n* \"pages/auth/create-account\"\n* \"pages/auth/new-password\"\n* \"pages/blog\"\n* \"pages/blog-post\"\n* \"pages/brand\"\n* \"pages/brands\"\n* \"pages/cart\"\n* \"pages/category\"\n* \"pages/compare\"\n* \"pages/errors\"\n* \"pages/gift-certificate/purchase\"\n* \"pages/gift-certificate/balance\"\n* \"pages/gift-certificate/redeem\"\n* \"global\"\n* \"pages/home\"\n* \"pages/order-complete\"\n* \"pages/page\"\n* \"pages/product\"\n* \"pages/search\"\n* \"pages/sitemap\"\n* \"pages/subscribed\"\n* \"page/account/wishlist-details\"\n* \"pages/account/wishlists\"\n\nThese page types correspond to the pages within your theme. Each of these page types maps to an ES6 module that extends the base `PageManager` abstract class:\n\n```\n   export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here – attach to internals, and use internals as you would 'this'\n        }\n    }\n```",
+                        "data": "## Javascript API\n\nStencil themes include an API for running JavaScript on a per-page basis. To properly write JavaScript for your theme, you will have the following page types available to you:\n\n* \"pages/account/addresses\"\n* \"pages/account/add-address\"\n* \"pages/account/add-return\"\n* \"pages/account/add-wishlist\"\n* \"pages/account/recent-items\"\n* \"pages/account/download-item\"\n* \"pages/account/edit\"\n* \"pages/account/return-saved\"\n* \"pages/account/returns\"\n* \"pages/auth/login\"\n* \"pages/auth/account-created\"\n* \"pages/auth/create-account\"\n* \"pages/auth/new-password\"\n* \"pages/blog\"\n* \"pages/blog-post\"\n* \"pages/brand\"\n* \"pages/brands\"\n* \"pages/cart\"\n* \"pages/category\"\n* \"pages/compare\"\n* \"pages/errors\"\n* \"pages/gift-certificate/purchase\"\n* \"pages/gift-certificate/balance\"\n* \"pages/gift-certificate/redeem\"\n* \"global\"\n* \"pages/home\"\n* \"pages/order-complete\"\n* \"pages/page\"\n* \"pages/product\"\n* \"pages/search\"\n* \"pages/sitemap\"\n* \"pages/subscribed\"\n* \"page/account/wishlist-details\"\n* \"pages/account/wishlists\"\n\nThese page types correspond to the pages within your theme. Each of these page types maps to an ES6 module that extends the base `PageManager` abstract class:",
                         "header": {
                           "anchor": "page-types_javascript-api"
                         }
                       },
                       {
-                        "type": "text",
-                        "data": "---"
-                      },
-                      {
-                        "type": "text",
-                        "data": "## Callback Methods\n\nWithin `PageManager`, you will see methods that are available from all your classes. But three methods are especially important. The following methods have the signature `func (callback)`, with the callback taking `callback(err)` in case of an error.\n\n### before(callback)\n\nWhen this method is implemented in your class, the code contained will be executed after the constructor but before the `loaded()` method. This will provide a shim for your code before your main implementation logic could run.\n\n```\n export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here\n        }\n        before(callback) {\n            //Code that should be ran before any other code in this class\n\n            //Callback must be called to move on to the next method\n            callback();\n        }\n    }\n```\n\n### loaded(callback)\n\nThis method will be called when the constructor has ran and `before()` has executed. Main implementation code should live in the `loaded()` method.\n\n```\n export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here\n        }\n        loaded(callback) {\n            //Main implementation logic here\n\n            //Callback must be called to move on to the next method\n            callback();\n        }\n    }\n```\n\n### after(callback)\n\nThis method is for any cleanup that may need to happen, and it will be executed after `before()` and `loaded()`.\n\n```\n    export default class Blog extends PageManager {\n        constructor() {\n            //Set up code goes here\n        }\n        after(callback) {\n            //Main implementation logic here\n\n            //Callback must be called to move on to the next method\n            callback();\n        }\n    }\n```\n\n\n\n\n",
+                        "type": "code",
+                        "data": "export default class Blog extends PageManager {\n        constructor() {\n            //Setup code goes here – attach to internals, and use internals as you would 'this'\n        }\n    }",
                         "header": {
-                          "anchor": "page-types_callback"
+                          "title": "pages/blog extending the page PageManager class"
+                        },
+                        "config": {
+                          "mode": "js"
                         }
                       },
                       {
@@ -14980,10 +15050,21 @@
                       },
                       {
                         "type": "text",
-                        "data": "## JavaScript Template Context Injection\n\nOccasionally, you might need to use dynamic data from the template context within your theme's client-side application code. Two helpers are provided to help achieve this.\n\nThe `inject` helper allows you to compose a json object with a subset of the template context to be sent to the browser:\n\n`{{inject \"stringBasedKey\" contextValue}}`\n\nTo retrieve the parsable JSON object, just call `{{jsContext}}` after all of the `{{inject}}` calls.\n\nFor example, to set up the product name in your client-side app, you can do this if you're in the context of a product:\n\n```\n{{inject \"myProductName\" product.title}}\n\n<script>\n// Note the lack of quotes around the jsContext handlebars helper, it becomes a string automatically.\nvar jsContext = JSON.parse({{jsContext}}); //jsContext would output \"{\\\"myProductName\\\": \\\"Sample Product\\\"}\" which can feed directly into your JavaScript\n\nconsole.log(jsContext.myProductName); // Will output: Sample Product\n</script>\n```\n\nYou can compose your JSON object across multiple pages, to create a different set of client-side data depending on the currently loaded template context.\n\nStencil's Cornerstone base theme makes the `jsContext` available as `this.context`, both on the active page scoped and on global `PageManager` objects.\n\n\n\n\n\n",
+                        "data": "## JavaScript Template Context Injection\n\nOccasionally, you might need to use dynamic data from the template context within your theme's client-side application code. Two helpers are provided to help achieve this.\n\nThe `inject` helper allows you to compose a json object with a subset of the template context to be sent to the browser:\n\n`{{inject \"stringBasedKey\" contextValue}}`\n\nTo retrieve the parsable JSON object, just call `{{jsContext}}` after all of the `{{inject}}` calls.\n\nFor example, to set up the product name in your client-side app, you can do this if you're in the context of a product:",
                         "header": {
                           "anchor": "page-types_javascript"
                         }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{{inject \"myProductName\" product.title}}\n\n<script>\n// Note the lack of quotes around the jsContext handlebars helper, it becomes a string automatically.\nvar jsContext = JSON.parse({{jsContext}}); //jsContext would output \"{\\\"myProductName\\\": \\\"Sample Product\\\"}\" which can feed directly into your JavaScript\n\nconsole.log(jsContext.myProductName); // Will output: Sample Product\n</script>",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "You can compose your JSON object across multiple pages, to create a different set of client-side data depending on the currently loaded template context.\n\nStencil's Cornerstone base theme makes the `jsContext` available as `this.context`, both on the active page scoped and on global `PageManager` objects."
                       }
                     ]
                   }
@@ -15321,9 +15402,17 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Localization Touchpoints Overview \n\nYou can run a BigCommerce store in any single language of your choice. If you want to support multiple languages, we recommend setting up a separate store for each language. To fully localize a store into a language/region other than U.S. English, you will need to customize three areas:\n\nStorefront theme pages: Translate static strings. This requires adding translation files for your chosen non-English languages, via Stencil CLI.\n\nCheckout: Localizing checkout requires modifications both to theme files (in Stencil CLI) and to settings in the BigCommerce control panel.\n\nOutside your theme: Adjust other localization details via the BigCommerce control panel.\n\nThe following sections provide a linked summary of all the steps involved.",
+                        "data": "A BigCommerce storefront can be customized to display in any one language of your choice. To fully localize a store into a language/region other than U.S. English, you will need to customize three areas:\n\n[Storefront theme pages](#localizing_translating-theme-files) - Translate static strings. This requires adding translation files for your chosen non-English languages, via Stencil CLI.\n\n[Checkout](#localizing_localizing-checkout) -  Localizing checkout requires modifications both to theme files (in Stencil CLI) and to settings in the BigCommerce control panel.\n\n[Outside your theme](#localizing_localizing-control-panel) - Adjust other localization details via the BigCommerce control panel.",
                         "header": {
                           "anchor": "localizing_localization-touchpoints"
+                        }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "info",
+                          "title": "Storefront Language Support",
+                          "body": "Each storefront can only support a single language. If you want to support displaying multiple languages, we recommend setting up a separate store for each language."
                         }
                       },
                       {
@@ -15332,7 +15421,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Translating Theme Files via Stencil CLI\n\nThe core of localizing a store is to translate content on your theme's page templates into each language that you choose to support. You will need to abstract these templates' literal text strings into `{{lang}}` variables, then provide per-language JSON files that define these variables in corresponding key/value pairs.\n\nFor details on this process, see this section's remaining pages, starting with [Basis for Internationalization](/stencil-docs/internationalization-and-localization/basis-for-internationalization).",
+                        "data": "## Translating Theme Files via Stencil CLI\n\nThe bulk of localizing a store is translating content on your theme's page templates. You will need to abstract these templates' literal text strings into `{{lang}}` variables, then provide per-language JSON files that define these variables in corresponding key/value pairs.\n\nFor details on this process, see this section's remaining pages, starting with [Basis for Internationalization](/stencil-docs/internationalization-and-localization/basis-for-internationalization).",
                         "header": {
                           "anchor": "localizing_translating-theme-files"
                         }
@@ -15343,10 +15432,22 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Localizing Checkout\n\nLocalizing your theme's checkout and order confirmation pages requires specific steps in:\n* the corresponding templates \n* each of your JSON translation files \n* and in the BigCommerce control panel\n\n**Note:** _To localize your theme's checkout and/or order confirmation page, you must first enable [Optimized One-Page Checkout.](/stencil-docs/template-files/customiz-stencil-checkout/optimized-one-page-checkout#optimized_enable)_\n\nFor details, please see the following pages:\n\n* [Enabling Optimized One-Page Checkout](/stencil-docs/template-files/customiz-stencil-checkout/optimized-one-page-checkout#optimized_enable) is a **prerequisite** for the remaining checkout internationalization options below.\n\n* [Currency-Conversion Options](/stencil-docs/template-files/customiz-stencil-checkout/currency-conversion) covers displaying prices in alternate currencies.\n\n* [Multi-Language Checkout](/stencil-docs/template-files/customiz-stencil-checkout/multi-language-checkout) covers translating your checkout and/or order confirmation templates.",
+                        "data": "## Localizing Checkout\n\nLocalizing your theme's checkout and order confirmation pages requires customizations within:\n\n* the corresponding templates ([checkout.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/checkout.html) and [order-confirmation.html](https://github.com/bigcommerce/cornerstone/blob/master/templates/pages/order-confirmation.html)) \n* each [JSON translation file](https://github.com/bigcommerce/cornerstone/tree/master/lang) \n* the [BigCommerce control panel](http://login.bigcommerce.com/deep-links/manage/)",
                         "header": {
                           "anchor": "localizing_localizing-checkout"
                         }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "warning",
+                          "title": "Checkout Localization",
+                          "body": "Checkout localization is only available for [Optimized One-Page Checkout.](/stencil-docs/template-files/customize-stencil-checkout/optimized-one-page-checkout#optimized_enable)"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### Additional Resources\n\n* [Enabling Optimized One-Page Checkout](/stencil-docs/template-files/customize-stencil-checkout/optimized-one-page-checkout#optimized_enable) - required for the remaining checkout internationalization options below\n\n* [Currency-Conversion Options](/stencil-docs/template-files/customize-stencil-checkout/currency-conversion) -displaying prices in alternate currencies.\n\n* [Multi-Language Checkout](/stencil-docs/template-files/customize-stencil-checkout/multi-language-checkout) -covers translating your checkout and/or order confirmation templates"
                       },
                       {
                         "type": "text",
@@ -15354,16 +15455,28 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Localizing Control Panel Content\n\nThe remaining localization options reside outside your theme and are accessible through the BigCommerce control panel:\n\n* [Product Catalog](#product-catalog)\n* [Currency](#currency)\n* [Date Format](#date-format)\n* [Order Statuses](#order-statuses)\n* [Blog](#blog)\n* [Static Web Pages](#static-web-pages)\n* [Transactional Emails](#transactional-emails)\n* [Gift Certificates](#gift-certificates)\n\n**Note:** _The BigCommerce platform does not currently support translation of Transactional Emails or Gift Certificates into languages other than English, so we have rather provided a management best practice for each._\n\n### <div id=\"product-catalog\">Localizing the Product Catalog</div>\n\nYou must localize the store's product catalog separately from its theme. Each entry within a catalog can be set up in only one language, so you will want to localize a separate version of your catalog for each single-language store.\n\nFor an overview of populating the store catalog – including options for bulk-importing content that you can localize outside the BigCommerce platform – please see our support article on Adding and Managing Your Product Catalog.\n\n### <div id=\"currency\">Localizing Currency</div>\nEach store's default currency is configured in the BigCommerce control panel. For details, please see our support article on Changing Your Default Currency.\n\n### <div id=\"date-format\">Localizing Date Format</div>\nYou can set the appropriate date format for your store's language/region in the BigCommerce control panel (under Store Setup > Store Settings > Date & Timezone). For details, please see this support article.\n\n### <div id=\"order-statuses\">Localizing Order Statuses</div>\nThe order-status labels displayed on a BigCommerce storefront are configured outside your theme. You can translate each of these strings via the BigCommerce control panel's Orders > Order Statuses option. For instructions, please see the Customizing an Order Status Label support topic.\n\n### <div id=\"blog\">Localizing the Blog</div>\nYou manage blog entries through the BigCommerce control panel (under Storefront Content > Blog). You are free to add blog content in any language you choose. For details, please see this support article.\n\n### <div id=\"static-web-pages\">Localizing Static Web Pages</div>\nIf you create static pages as Stencil custom templates, you can localize their content just like other theme pages' content. However, if you create custom pages via the BigCommerce control panel (under Storefront Content > Web Pages), you must also enter their localized content via the control panel; for details, please see this support article.\n\n### <div id=\"transactional-emails\">Managing Transactional Emails</div>\nBigCommerce does not currently provide native support for localizing transactional emails. To fully localize a store into a language other than English, the simplest solution is to disable the sending of BigCommerce native emails. You can access this option from the BigCommerce control panel's left nav in one of two locations (depending on your store's control-panel version):\n\n`Storefront Design` > `My Themes` > `Design Options` > `More` (drop-down list) > `Emails`\nNext, in the Enable column, uncheck the check box for each email type that you want to disable. (These toggles require no confirmation step.) For further details about managing BigCommerce transactional emails, please see this support article.\n\n### <div id=\"gift-certificates\">Managing Gift Certificates</div>\nThe BigCommerce platform does not currently support translation of gift certificates into languages other than English. To fully localize your store, you can choose to disable gift certificates via the BigCommerce control panel.",
+                        "data": "## Localizing Control Panel Content\n\nThe remaining localization options reside outside your theme and are accessible through the BigCommerce control panel:\n\n* [Product Catalog](#product-catalog)\n* [Currency](#currency)\n* [Date Format](#date-format)\n* [Order Statuses](#order-statuses)\n* [Blog](#blog)\n* [Static Web Pages](#static-web-pages)\n* [Transactional Emails](#transactional-emails)\n* [Gift Certificates](#gift-certificates)",
                         "header": {
                           "anchor": "localizing_localizing-control-panel"
                         }
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "type": "warning",
+                          "body": "The BigCommerce platform does not currently support translation of Transactional Emails or Gift Certificates into languages other than English, so instead we have provided a best practice for each.",
+                          "title": "Transactional Emails or Gift Certificates Translation"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "### <div id=\"product-catalog\">Localizing the Product Catalog</div>\n\nYou must localize the store's product catalog separately from its theme. Each entry within a catalog can be set up in only one language, so you will want to localize a separate version of your catalog for each single-language store.\n\nFor an overview of populating the store catalog – including options for bulk-importing content that you can localize outside the BigCommerce platform – see [Adding Products](https://support.bigcommerce.com/s/article/Adding-Products) (BigCommerce Support).\n\n### <div id=\"currency\">Localizing Currency</div>\nEach store's default currency is configured in the BigCommerce control panel. For details, see [Changing Your Default Currency](https://support.bigcommerce.com/s/article/Managing-Currencies#default) (BigCommerce Support).\n\n### <div id=\"date-format\">Localizing Date Format</div>\nYou can set the appropriate date format for your store's language/region in the BigCommerce control panel (under [**Store Setup**›\n **Store Settings** ›\n **Date & Timezone**](http://login.bigcommerce.com/deep-links/manage/settings/store). For details, see [Changing Your Default Currency](https://support.bigcommerce.com/s/article/Managing-Currencies#default) (BigCommerce Support).\n\n### <div id=\"order-statuses\">Localizing Order Statuses</div>\n\nThe `order-status` labels displayed on a BigCommerce storefront are configured outside your theme. You can translate each of these strings via the BigCommerce control panel under [**Orders** ›\n **Order Statuses**](http://login.bigcommerce.com/deep-links/manage/orders/order-statuses). For instructions, see [Renaming an Order Status Label](https://support.bigcommerce.com/s/article/Order-Statuses#rename) (BigCommerce Support).\n\n### <div id=\"blog\">Localizing the Blog</div>\nBlog entries are managed through the BigCommerce control panel under [**Storefront Content** ›\n **Blog**](https://nik.mybigcommerce.com/manage/content/blog). You can add blog content in any language you choose. For details, see [Creating a Blog Post](https://support.bigcommerce.com/s/article/Using-the-Built-In-Blog#creating-post) (BigCommerce Support).\n\n### <div id=\"static-web-pages\">Localizing Static Web Pages</div>\nIf you create static pages as Stencil custom templates, you can localize their content just like other theme pages' content. However, if you create custom pages via the BigCommerce control panel (under [Storefront Content › Web Pages](http://login.bigcommerce.com/deep-links/manage/content/pages)), you must also enter their localized content via the control panel. \n\n### <div id=\"transactional-emails\">Managing Transactional Emails</div>\n\nBigCommerce does not currently provide native support for localizing transactional emails such as Order Confirmation or status updates. To fully localize a store into a language other than English, the simplest solution is to disable the sending of BigCommerce native emails.\n\nTo disable native emails, go to [Storefront › Email Templates](http://login.bigcommerce.com/deep-links//manage/storefront-manager/email-templates). Uncheck each email type that you prefer to customize. If you would like to localize transactional emails, see our Partner Apps, such as [Conversio](https://www.bigcommerce.com/apps/conversio/), for more details.\n\n### <div id=\"gift-certificates\">Managing Gift Certificates</div>\n\nThe BigCommerce platform does not currently support translation of gift certificates into languages other than English. To fully localize your store, you can choose to disable gift certificates via the BigCommerce control panel."
                       }
                     ]
                   }
                 },
                 {
-                  "title": "Basis for Internationalization",
+                  "title": "Defining Translation Keys",
                   "route": {
                     "path": "/basis-for-internationalization"
                   },
@@ -15371,7 +15484,7 @@
                     "blocks": [
                       {
                         "type": "html",
-                        "data": "<h1>Basis for Internationalization</h1>"
+                        "data": "<h1>Defining Translation Keys</h1>"
                       },
                       {
                         "type": "html",
@@ -15412,9 +15525,16 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Localization File Structure\n\nThe `.json` translation files have a straightforward structure of key-value pairs. Here is an example, from Stencil’s default `en.json` file:\n\n`\"welcome_back\": \"Welcome back, {name}\"`\n\nAbove, `\"welcome_back\"` is an arbitrary key name for a welcome message. The string `\"Welcome back, {name}\"` is its assigned value for English-language stores.\n\nIf you design your theme’s storefront pages to refer to this message by its generic key name `\"welcome_back\"`, they can pass its localized value in other languages, as that value is defined in each language’s `.json` file.\nKey-value pairs are grouped into objects, as you can see in this longer example:\n\n```\n{\n   \"header\": {\n    \"welcome_back\": \"Welcome back, {name}\"\n   },\n   \"prelaunch\": {\n    \"coming_soon\": \"Coming Soon\",\n    \"intro\": \"This store will be launching shortly. Please visit again!\"\n   },\n   \"cart\": {\n    \"items\": \"{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}\",\n    \"label\": \"Cart\",\n    \"is_empty\": \"Your cart is empty\",\n     \"coupon_code\": \"Coupon Code\",\n    \"gift_certificate\": \"Gift Certificate\",\n    \"freeshipping\": \"Free Shipping\",\n    \"shipping_peritem\": \"Per Item Shipping\",\n    \"shipping_estimator\": {\n        \"add_info\": \"Add Info\",\n        \"select_a_country\": \"Select a Country\",\n        \"select_a_state\": \"Select a State\",\n        \"estimate_shipping\": \"Estimate Shipping\"\n    }\n   },\n}\n```",
+                        "data": "## Localization File Structure\n\nThe `.json` translation files have a straightforward structure of key-value pairs. Here is an example, from Stencil’s default `en.json` file:\n\n`\"welcome_back\": \"Welcome back, {name}\"`\n\nAbove, `\"welcome_back\"` is an arbitrary key name for a welcome message. The string `\"Welcome back, {name}\"` is its assigned value for English-language stores.\n\nIf you design your theme’s storefront pages to refer to this message by its generic key name `\"welcome_back\"`, they can pass its localized value in other languages, as that value is defined in each language’s `.json` file.\nKey-value pairs are grouped into objects, as you can see in this longer example below:",
                         "header": {
                           "anchor": "basis_localization-file"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n   \"header\": {\n    \"welcome_back\": \"Welcome back, {name}\"\n   },\n   \"prelaunch\": {\n    \"coming_soon\": \"Coming Soon\",\n    \"intro\": \"This store will be launching shortly. Please visit again!\"\n   },\n   \"cart\": {\n    \"items\": \"{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}\",\n    \"label\": \"Cart\",\n    \"is_empty\": \"Your cart is empty\",\n     \"coupon_code\": \"Coupon Code\",\n    \"gift_certificate\": \"Gift Certificate\",\n    \"freeshipping\": \"Free Shipping\",\n    \"shipping_peritem\": \"Per Item Shipping\",\n    \"shipping_estimator\": {\n        \"add_info\": \"Add Info\",\n        \"select_a_country\": \"Select a Country\",\n        \"select_a_state\": \"Select a State\",\n        \"estimate_shipping\": \"Estimate Shipping\"\n    }\n   },\n}",
+                        "config": {
+                          "mode": "js"
                         }
                       }
                     ]
@@ -15437,9 +15557,44 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Translation Syntax\n\nOnce keys and values are defined in the appropriate .json translation files, you invoke dynamic translation strings using the Stencil framework’s `{{lang}}` custom Handlebars helper. Your invocation would follow this generic format:\n\n`{{lang \"translation.key\" optionalVariable=”someValue”}}`\n\nHere is how this works. In a non-internationalized theme, a storefront page might include a static/dynamic string like this:\n\n`<a href=\"{{ urls.account }}\">Welcome Back <span>{{ customer.name }}</span></a>`\n\nThe corresponding internationalized version – ready to work with any language – would substitute the fully dynamic `{{ lang... }}` Handlebars helper shown below:\n\n`<a href=\"{{ urls.account }}\">{{ lang \"header.welcome_back\" name=customer.name }}</a>`",
+                        "data": "## Translation Syntax\n\nOnce keys and values are defined in the [.json translation files](https://github.com/bigcommerce/cornerstone/tree/master/lang), you can invoke dynamic translation strings using the the [custom `{{lang}}` Handlebars helper](/stencil-docs/handlebars-syntax-and-helpers/handlebars-helpers-reference/string-helpers/custom-string-helpers#handlebars_lang). Your invocation would follow this generic format:",
                         "header": {
                           "anchor": "invoking_translation"
+                        }
+                      },
+                      {
+                        "type": "code",
+                        "data": "{{lang \"translation.key\" optionalVariable=”someValue”}}",
+                        "header": {
+                          "title": "Translation invocation"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Here is how this works. In a non-internationalized theme, a storefront page might include a string like this:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "<a href=\"{{ urls.account }}\">Welcome Back <span>{{ customer.name }}</span></a>",
+                        "header": {
+                          "title": "Non Internationalized string"
+                        },
+                        "config": {
+                          "mode": "html"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "The corresponding internationalized version would substitute the text with the fully dynamic `{{ lang }}` Handlebars helper shown below:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "<a href=\"{{ urls.account }}\">{{ lang \"header.welcome_back\" name=customer.name }}</a>",
+                        "header": {
+                          "title": "Internationalized String using {{lang}} Handlebars Helper"
+                        },
+                        "config": {
+                          "mode": "html"
                         }
                       },
                       {
@@ -15503,10 +15658,21 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Nested Plurality and Gender Support\nThe framework allows you to code conditional plurality for strings within each translation file. For example, your code within an English-language file could overload a single message to display in each of the following forms – depending on the actual value of its two numeric variables:\n\n* \"There are 3 items in 2 categories\"\n* \"There is 1 item in 2 categories\"\n* \"There are 2 items in 1 category\"\n\nHere is the markup that would handle the first three words in each example above, assuming appropriate parameters were inserted in the translation files:\n\n```\n<h2 class=\"modal-header-title\">\n   {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}} [...]\n</h2>\n```\n\nSimilarly, the framework supports per-language conditional coding of appropriate genders for pronouns and nouns.",
+                        "data": "## Nested Plurality and Gender Support\nThe framework allows you to code conditional plurality for strings within each translation file. For example, your code within an English-language file could overload a single message to display in each of the following forms – depending on the actual value of its two numeric variables:\n\n* \"There are 3 items in 2 categories\"\n* \"There is 1 item in 2 categories\"\n* \"There are 2 items in 1 category\"\n\nHere is the markup that would handle the first three words in each example above, assuming appropriate parameters were inserted in the translation files:",
                         "header": {
                           "anchor": "implementation_nested-plurality"
                         }
+                      },
+                      {
+                        "type": "code",
+                        "data": "<h2 class=\"modal-header-title\">\n   {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}} [...]\n</h2>",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Similarly, the framework supports per-language conditional coding of appropriate genders for pronouns and nouns."
                       }
                     ]
                   }
@@ -15528,10 +15694,32 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Cornerstone Implementation Example\n\nHere is an example based on this file within Cornerstone:\n`cornerstone/templates/components/cart/shipping-estimator.html`\n\nIn the excerpt below, each highlighted `{{lang...}}` statement is a Handlebars helper. Each of the statements abstracts the message indicated by its (English-language) key name to enable internationalization of that message:\n\n```\n<div class=\"shipping-estimator\" style=\"display: none;\">\n    <form class=\"estimator-form\">\n      <button class=\"shipping-estimate-hide\">{{lang 'cancel'}}</button>\n      <select name=\"shipping-country\">\n      <option>{{lang 'cart.shipping_estimator.select_a_country'}}</option>\n      {{#each countries}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n                {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <select name=\"shipping-state\">\n      <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>\n      {{#each states}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n              {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <input type=\"text\" name=\"shipping-zip\" value=\"{{selected_zip}}\">\n      <button class=\"shipping-estimate-submit\">{{lang 'cart.shipping_estimator.estimate_shipping'}}\n      </button>\n    </form>\n    <div class=\"shipping-quotes\"></div>\n</div>\n\n```\n\n\nIn the excerpts below, you can see that the default theme’s basic `.../lang/en.json` file includes matches, and value definitions, for each of the translation keys in the Handlebars helpers above:\n\n\n```\n{\n  \"header\": {\n        \"welcome_back\": \"Welcome back, {name}\"\n  },\n  ...\n      \"label\": \"Cart\",\n        \"is_empty\": \"Your cart is empty\",\n        \"coupon_code\": \"Coupon Code\",\n        \"gift_certificate\": \"Gift Certificate\",\n        \"freeshipping\": \"Free Shipping\",\n        \"shipping_peritem\": \"Per Item Shipping\",\n      \"shipping_estimator\": {\n            \"add_info\": \"Add Info\",\n          \"select_a_country\": \"Select a Country\",\n          \"select_a_state\": \"Select a State\",\n          \"estimate_shipping\": \"Estimate Shipping\"\n      }\n  },\n  \"common\": {\n        \"currency_converter\": \"Currency Converter\",\n        \"newsletter_signup\": \"Sign up for our newsletter\",\n        \"form_submit\": \"Submit\",\n        \"required\": \"Required\",\n        \"email_address\": \"Email Address\",\n      \"edit\": \"Edit\",\n      \"no\": \"No\",\n      \"yes\": \"Yes\",\n      \"cancel\": \"Cancel\",\n      \"share\": \"Share\",\n      \"delete\": \"Delete\",\n      \"public\": \"Public\",\n        \"private\": \"Private\",\n        \"view_all\": \"View All\",\n        \"paginator\": {\n            \"page_of\": \"Page {current} of {total}\"\n      },\n      ...\n```\n\n\nTranslation files for other languages would use the same format, to define these keys’ values in their respective languages.",
+                        "data": "## Cornerstone Implementation Example\n\nHere is an example based on this file within Cornerstone:\n`cornerstone/templates/components/cart/shipping-estimator.html`\n\nIn the excerpt below, each highlighted `{{lang...}}` statement is a Handlebars helper. Each of the statements abstracts the message indicated by its (English-language) key name to enable internationalization of that message:",
                         "header": {
                           "anchor": "#implementation_cornerstone-example"
                         }
+                      },
+                      {
+                        "type": "code",
+                        "data": "<div class=\"shipping-estimator\" style=\"display: none;\">\n    <form class=\"estimator-form\">\n      <button class=\"shipping-estimate-hide\">{{lang 'cancel'}}</button>\n      <select name=\"shipping-country\">\n      <option>{{lang 'cart.shipping_estimator.select_a_country'}}</option>\n      {{#each countries}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n                {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <select name=\"shipping-state\">\n      <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>\n      {{#each states}}\n          <option value=\"{{id}}\" {{#if selected}}selected=\"selected\"{{/if}}>\n              {{name}}\n          </option>\n      {{/each}}\n      </select>\n      <input type=\"text\" name=\"shipping-zip\" value=\"{{selected_zip}}\">\n      <button class=\"shipping-estimate-submit\">{{lang 'cart.shipping_estimator.estimate_shipping'}}\n      </button>\n    </form>\n    <div class=\"shipping-quotes\"></div>\n</div>\n",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "In the excerpts below, you can see that the default theme’s basic `.../lang/en.json` file includes matches, and value definitions, for each of the translation keys in the Handlebars helpers above:"
+                      },
+                      {
+                        "type": "code",
+                        "data": "{\n  \"header\": {\n        \"welcome_back\": \"Welcome back, {name}\"\n  },\n  ...\n      \"label\": \"Cart\",\n        \"is_empty\": \"Your cart is empty\",\n        \"coupon_code\": \"Coupon Code\",\n        \"gift_certificate\": \"Gift Certificate\",\n        \"freeshipping\": \"Free Shipping\",\n        \"shipping_peritem\": \"Per Item Shipping\",\n      \"shipping_estimator\": {\n            \"add_info\": \"Add Info\",\n          \"select_a_country\": \"Select a Country\",\n          \"select_a_state\": \"Select a State\",\n          \"estimate_shipping\": \"Estimate Shipping\"\n      }\n  },\n  \"common\": {\n        \"currency_converter\": \"Currency Converter\",\n        \"newsletter_signup\": \"Sign up for our newsletter\",\n        \"form_submit\": \"Submit\",\n        \"required\": \"Required\",\n        \"email_address\": \"Email Address\",\n      \"edit\": \"Edit\",\n      \"no\": \"No\",\n      \"yes\": \"Yes\",\n      \"cancel\": \"Cancel\",\n      \"share\": \"Share\",\n      \"delete\": \"Delete\",\n      \"public\": \"Public\",\n        \"private\": \"Private\",\n        \"view_all\": \"View All\",\n        \"paginator\": {\n            \"page_of\": \"Page {current} of {total}\"\n      },\n      ...",
+                        "config": {
+                          "mode": "js"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "Translation files for other languages would use the same format, to define these keys’ values in their respective languages."
                       }
                     ]
                   }
@@ -15884,7 +16072,7 @@
       }
     },
     "/changelog": {
-      "title": "Changelog",
+      "title": "Developer Changelog",
       "data": {
         "$ref": "./Changelog.html"
       }
@@ -19329,11 +19517,11 @@
                       },
                       {
                         "type": "text",
-                        "data": "BigCommerce for WordPress allows you to power content-driven WordPress storefronts with the ecommerce functionality of the BigCommerce backend. Product data is pulled into WordPress as a custom post type, giving you the freedom to embed products in posts and pages to create a tailored shopping experience. Using the full suite of BigCommerce APIs, shoppers can seamlessly complete a purchase end-to-end on WordPress.\n\nYou can use the BigCommerce for WordPress plugin as a building block to create an ecommerce solution that’s unique to your brand. Link multiple WordPress storefronts to a single BigCommerce store or extend the open source plugin to create custom-made solutions--BigCommerce for WordPress makes it easy to combine the power of BigCommerce with the flexible presentation of WordPress."
+                        "data": "BigCommerce for WordPress allows you to power content-driven WordPress storefronts with the ecommerce functionality of BigCommerce. Product data is pulled into WordPress as a custom post type, giving you the freedom to embed products in posts and pages to create a tailored shopping experience. The plugin utilizes the full suite of BigCommerce APIs, allowing shoppers to seamlessly complete a purchase end-to-end on WordPress.\n\nYou can use the BigCommerce for WordPress plugin as a building block to create an ecommerce solution that’s unique to your brand. Whether you want to link multiple WordPress storefronts to a single BigCommerce store or extend the open source plugin to create custom-made solutions, BigCommerce for WordPress makes it easy to combine the power of BigCommerce with the flexible presentation of WordPress.\n"
                       },
                       {
                         "type": "text",
-                        "data": "## How It Works\n\nYour WordPress site will connect to your BigCommerce store via an API, and pull all of the relevant data into a variety of database tables, some custom, some default WordPress. Products are a post type, and product data is stored in the post table and product meta is stored in the post_meta table.\n\nData like _Orders_ is stored on the BigCommerce servers and is accessible in your WordPress site via API with custom code and via a nice UI in the BigCommerce admin. In the future there will be a UI inside WordPress as well.\n\nMost store options and settings are managed inside the BigCommerce UI. This would include things like Shipping and Taxes. Eventually these options will be available in WordPress as well, but even now it doesn’t impact your customers.\n\n\n### Templating\nThe BigCommerce for WordPress plugin follows the standard WordPress method of templating. Templates are found in `/wp-content/plugins/bigcommerce-for-wordpress-master/public-views`\n\nand can be moved to the theme folder into a bigcommerce folder, like this: `/wp-content/THEME/bigcommerce/` \n\nwhere THEME is the name of the active theme.\n\n### Sales Funnel\nWhen a customer visits the store, the products they see are stored locally in WordPress.  A cart is optional--when the customer clicks add-to-cart, they can either be directed to a cart page or delivered directly to the checkout page.\n\nWhen a shopper proceeds to checkout, they land on the BigCommerce checkout page in an embedded iframe, which can by styled to match your WordPress site. This creates a seamless experience for the shopper because they remain on your WordPress site and domain for the entire shopping experience. BigCommerce embeddable checkout also allows you to leverage the built-in security and PCI-compliance of the BigCommerce checkout.\n\n### Channels\nChannels allow you to manage products in BigCommerce and sell them in other storefronts like Amazon and Facebook. A key concept is that the products being sold in other channels are managed centrally from your BigCommerce store, so inventory is tracked neatly across all channels. This means that if all of your product ends up being sold through Amazon, your Facebook store will be sold out.\n\n### WordPress as a Channel\nWhen using the WordPress plugin for BigCommerce, you’re simply making WordPress another channel. This means that your WordPress store is aware of inventory levels, because those are monitored in your BigCommerce store.\n\nWhile merchants traditionally sell primarily through their BigCommerce store and supplement with channels, it is possible to mask the main BigCommerce store and treat any given channel as the primary store. This would allow you to use WordPress as your primary store.",
+                        "data": "## How It Works\n\nBigCommerce for WordPress connects your WordPress site to your BigCommerce store via API, and pulls all of the relevant data into a variety of database tables, some custom, some default WordPress. Products are a post type: product data is stored in the post table and product meta is stored in the post_meta table.\n\nOrders data is stored on the BigCommerce servers and is accessible in your WordPress site via API with custom code and via a nice UI in the BigCommerce admin. \n\nMost store options and settings are managed inside the BigCommerce UI, including Shipping, Taxes, and Payment Gateways.\n\n\n### Templating\n\nThe BigCommerce for WordPress plugin follows the standard WordPress method of templating. Templates are found in `/wp-content/plugins/bigcommerce-for-wordpress-master/public-views`\n\nand can be moved to the theme folder into a bigcommerce folder, like this: `/wp-content/theme-name/bigcommerce/` \n\nwhere `<theme-name>` is the name of the active theme.\n\n### Shopper Experience\n\nWhen a customer visits the store, the products they see are stored locally in WordPress. A cart is optional–when the customer clicks add-to-cart, they can either be directed to a cart page or delivered directly to the checkout page.\nWhen a shopper proceeds to checkout, they land on the BigCommerce checkout page in an embedded iframe, which can be styled to match your WordPress site. This creates a seamless experience for the shopper because they remain on your WordPress site and domain for the entire shopping experience. BigCommerce embedded checkout also allows you to leverage the built-in security and PCI-compliance of the BigCommerce checkout.\n\n### Channels\n\nChannels allow you to manage products in BigCommerce and sell them on other storefronts, like one or more WordPress sites, or in marketplaces, like Amazon and Facebook. A key concept is that the products listed on other channels are managed centrally from your BigCommerce store, so inventory is tracked neatly across all channels. This means that if all of your product ends up being sold through Amazon, your Facebook store will also be sold out.\n\n### WordPress as a Channel\n\nWhen using the WordPress plugin for BigCommerce, each connected WordPress site is considered another channel. This means that your WordPress store is aware of inventory levels, because those are monitored centrally in your BigCommerce store, and when an order is placed, it appears in the BigCommerce Order View UI along with orders received on other channels. Orders are labeled with the channel they originated from, to help you track sales data across multiple channels.\n\nWhile merchants traditionally sell primarily through their BigCommerce store and supplement with channels, it is possible to mask the main BigCommerce store and treat any given channel as the primary store. This would allow you to use WordPress as your primary store.\n",
                         "header": {
                           "anchor": "introduction_how-it-works"
                         }
@@ -19354,24 +19542,37 @@
                       },
                       {
                         "type": "text",
-                        "data": "---"
-                      },
-                      {
-                        "type": "text",
-                        "data": "Install and activate the plugin in your WordPress admin, then connect to BigCommerce by either logging in with an existing account, or creating a new one. After you've connected, your BigCommerce products will begin syncing to WordPress (new accounts will have demo products).\n\n1. Search for \"BigCommerce for WordPress\" in the plugins area of your WordPress admin, [or download the plugin here](https://wordpress.org/plugins/bigcommerce/). Install and activate the plugin."
-                      },
-                      {
-                        "type": "image",
-                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6116/1544655609231",
-                        "config": {
-                          "fluid": true,
-                          "bordered": true,
-                          "centered": true
+                        "data": "## System Requirements:\n\n* PHP: 5.6+ (7.1+ recommended)\n* MySQL: 5.5+ (5.6+ recommended)\n* WordPress: 4.8+\n* SSL\n* The PHP intl extension is recommended to enable better currency formatting",
+                        "header": {
+                          "anchor": "#install_requirements"
                         }
                       },
                       {
                         "type": "text",
-                        "data": "2. Once activated, there will be a new dashboard item for BigCommerce. Go to BigCommerce › Welcome, or click Get Started in the activation success message.\n\n3. If you already have an existing BigCommerce account, click Connect My Account. If not, you can start a free trial by clicking Create New Account.\n\n* **Existing Stores**\n\nOn the next page, a pop-up will appear asking you to log in to your existing account or to sign up for a new one. (You may need to disable pop-up blocking in your browser). Click Log In and enter your BigCommerce account credentials. If you have more than one, select which store to connect to WordPress. Click Confirm to grant the app permission to access your store.\n \n* **New to BigCommerce**\n\nOn the next page, you'll be asked to provide some more details to create your store. After your store is created, click Confirm to grant the app permission to access your store.\n\n\nOnce connected, you'll set up a new [Channel Name](https://support.bigcommerce.com/s/article/BigCommerce-for-WordPress#channel). This name will be used to identify this specific WordPress instance in BigCommerce when checking orders or listing products.\n\nAfter you've created your new channel name, the initial product sync will begin and you can begin configuring your plugin settings.\n\n "
+                        "data": "---"
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Installation\n\nTo install BigCommerce for WordPress, you’ll need to [install and activate the plugin](https://wordpress.org/plugins/bigcommerce/) in WordPress and connect your BigCommerce account. If you don’t already have an account, you will be prompted to create one. \n\nFor a walkthrough on installing and activating the plugin, see [Using BigCommerce for Wordpress](https://support.bigcommerce.com/s/article/BigCommerce-for-WordPress#installation) (BigCommerce Help Center).",
+                        "header": {
+                          "anchor": "#install_installation"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "## Setting Your Channel Name\n\nOnce connected, you’ll set up a new [Channel Name](https://support.bigcommerce.com/s/article/BigCommerce-for-WordPress#channel). This name will be used to identify this specific WordPress instance in BigCommerce when checking orders or listing products."
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "body": "Looking for multi-site instructions? See [Multi Site Setup](/bigcommerce-for-wordpress/setup/multi-site).",
+                          "type": "info",
+                          "title": "\nMulti-Site Instructions "
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "data": "After you’ve created your new channel name, the initial product sync will begin and you can begin configuring your plugin settings."
                       }
                     ]
                   }
@@ -19389,7 +19590,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "When you use BigCommerce for WordPress, your storefront is rendered by WordPress rather than BigCommerce, so some apps may not be compatible. \nThis means that there are differences in the types of BigCommerce apps that are compatible.\n\nFor the most part, any app that operates solely on the backend can be used without modification on WordPress, such as those that interface with our catalog, order, shipping, and customer APIs. There are over a hundred BigCommerce apps that will work with BigCommerce for WordPress, including apps in these categories:\n\n* [Accounting & Tax](https://www.bigcommerce.com/apps/accounting-tax/)\n* [Catalog & Order Management](https://www.bigcommerce.com/apps/catalog-order-management/)\n* [Data Transfer & Migration Services](https://www.bigcommerce.com/apps/data-transfer-migration-services/)\n* [ERP](https://www.bigcommerce.com/apps/erp/)\n* [Sales Channels](https://www.bigcommerce.com/apps/sales-channels/)\n* [Shipping & Fullfillment](https://www.bigcommerce.com/apps/shipping-fulfillment/)\n\nApps that modify the storefront are currently not supported, such as apps that add popup promotions or banners.  For example, [Customer Acquisition & Retention](https://www.bigcommerce.com/apps/customer-acquisition-retention/) apps that modify the storefront are not supported.\n\nSome companies, like [Mailchimp](https://mailchimp.com/), build both BigCommerce apps and WordPress plugins. Keep that in mind when searching for a solution.\n\nIf you are a BigCommerce app developer and would like to help our merchants on WordPress too, please reach out to our App Marketplace team at <a href=\"mailto:appstore@bigcommerce.com\">appstore@bigcommerce.com</a>.\n"
+                        "data": "When you use BigCommerce for WordPress, your storefront is rendered by WordPress rather than BigCommerce, so some apps that you use for a BigCommerce-powered storefront may no longer be compatible.\n\n### Supported Apps\n\nFor the most part, any app that operates solely on the backend can be used without modification on WordPress. This includes  apps that interface with our catalog, order, shipping, and customer APIs. You can find hundreds of compatible apps in these categories:\n\n* [Accounting & Tax](https://www.bigcommerce.com/apps/accounting-tax/)\n* [Catalog & Order Management](https://www.bigcommerce.com/apps/catalog-order-management/)\n* [Data Transfer & Migration Services](https://www.bigcommerce.com/apps/data-transfer-migration-services/)\n* [ERP](https://www.bigcommerce.com/apps/erp/)\n* [Sales Channels](https://www.bigcommerce.com/apps/sales-channels/)\n* [Shipping & Fullfillment](https://www.bigcommerce.com/apps/shipping-fulfillment/)\n\n### Unsupported Apps \n\nApps that modify the storefront are currently not supported. This includes [Customer Acquisition & Retention](https://www.bigcommerce.com/apps/customer-acquisition-retention/) apps show banners, pop-ups, or other storefront modifications.\n\nAlthough a specific BigCommerce app may not be available, you may be able to find an alternative in the WordPress Plugin Directory. For example, some companies, like [Mailchimp](https://mailchimp.com/), build both BigCommerce apps and WordPress plugins. Keep that in mind when searching for a solution.\n\nIf you are a BigCommerce app developer and would like to help our merchants on WordPress too, reach out to our App Marketplace team at [appstore@bigcommerce.com](mailto:appstore@bigcommerce.com).\n"
                       }
                     ]
                   }
@@ -19433,41 +19634,7 @@
                       },
                       {
                         "type": "text",
-                        "data": " \n## API Keys\nTo connect with your BigCommerce account, you first must create an API Account.\nTo create an API account, visit the [API Accounts page under Advanced Settings](https://login.bigcommerce.com/deep-links/settings/auth/api-accounts) in your BigCommerce store admin.",
-                        "header": {
-                          "anchor": "plugin-settings_api-keys"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "data": "---"
-                      },
-                      {
-                        "type": "image",
-                        "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1540477832970",
-                        "header": {
-                          "title": "API Keys"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "data": "Click the \"Create API Account\" button at the top of the page to create a new account. Give your API keys a name, it can be anything. Then set all of the OAuth Scopes to “Modify”.  (Currently \"Content\", \"Marketing\", and \"Themes\" permissions are not used, but they may be added to the plugin in the future.\nThen click the Save button.\nYou will be asked to save a text file with contents similar to this:\n```\nACCESS TOKEN: jm5eqx5gte9tdzuip4hsnxqc7tq0ruh\nCLIENT ID: 6lth4chwzeww8io49mxz69acs55dg89\nCLIENT SECRET: 18146epslacfteu7kld2qr1ya5sxxsf\nNAME: My Store API Keys\nAPI PATH: https://api.bigcommerce.com/stores/hrkrfg31fr/v3/\n```\nIn addition to this text file the information will also be presented on your screen."
-                      },
-                      {
-                        "type": "callout",
-                        "data": {
-                          "type": "warning",
-                          "body": "There is no way to re-display this pop-up after you select Done to dismiss it. \n\nMake sure you store your credentials – either by copying/pasting the contents of each field out of the pop-up, or by keeping the downloaded .txt file. Otherwise, you will need to repeat all the above steps to generate new credentials. ",
-                          "title": "Keep Your Credentials"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "data": "---"
-                      },
-                      {
-                        "type": "text",
-                        "data": "## Product Sync\nOnce your API credentials are validated, the plugin will import products using the BigCommerce API. This will run automatically using WordPress cron, using the schedule set on the settings page (default: every five minutes).\nIf you choose to disable the cron job, you can set a server-side cron job to run the sync using WP-CLI. The command to import products is:\n\n`wp bigcommerce import products`\n\nProduct descriptions can be edited in the WordPress admin. The \"Do not update products on import\" setting should remain checked to preserve these edits. If it is unchecked, those edits will be overwritten with data from the API on the next import. No matter the value of the checkbox, other product details (e.g., prices, availability, categories) will always be synchronized.",
+                        "data": "## Product Sync\nOnce the plugin is connected, the plugin will import products using the BigCommerce API. This will run automatically using [WordPress cron](https://developer.wordpress.org/plugins/cron/), using the schedule set on the settings page (default: every five minutes).\nIf you choose to disable the cron job, you can set a server-side cron job to run the sync using WP-CLI. The command to import products is:\n\n`wp bigcommerce import products`\n\nProduct titles, descriptions, and post statuses can be edited in the WordPress admin. Your changes will be automatically synced with your BigCommerce channel and preserved during future imports.",
                         "header": {
                           "anchor": "plugin-settings_product-sync"
                         }
@@ -19478,16 +19645,9 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Cart Settings\nWhen the cart is enabled, visitors to your store can add products to carts before checkout. If it is disabled, the \"Add to Cart\" button becomes a \"Buy Now\" button, sending customers directly to checkout for that product.\nWhen the cart is enabled, the plugin will automatically created a page to host the cart shortcode, `[bigcommerce_cart]`. This shortcode will show the current visitor's cart. To change this to a different page, first create a page with the cart shortcode, then come back to the settings page and select it from the dropdown. Note: this page may have been created automatically by the plugin.\n\n### Currency Settings\nThe store's currency code will be imported from the BigCommerce API as part of the product import process.\nIf the PHP intl extension is available on your server, there is nothing else to configure. If it is not available, you will be presented with additional fields to control currency formatting. These will also be populated automatically from the API.\nCurrency formatting can be filtered using the `bigcommerce/currency/format` filter.\n\n\n### Accounts and Registration\nUser accounts in WordPress will be connected to customers in BigCommerce. If user registration is enabled in WordPress (the \"Anyone can register\" checkbox at Settings -> General in the WordPress admin), customers will be able to register accounts and manage their profiles.\nThe plugin requires several pages to support user account management. These pages will all be created automatically. Each will contain a shortcode that renders the relevant content. If any are deleted, they will be automatically re-created for you. If you have multiple pages with these shortcodes, you may select which will be treated as canonical using the dropdowns in this settings section.\nThe \"Support Email\" field will be used to give customers an address to contact you with questions about orders.",
+                        "data": "## Cart Settings\n\nWhen the cart is enabled, visitors to your store can add products to carts before checkout. If it is disabled, the “Add to Cart” button becomes a “Buy Now” button, sending customers directly to checkout for that product. When the cart is enabled, the plugin will automatically create a page to host the cart shortcode, `[bigcommerce_cart]`. This shortcode will show the current visitor’s cart. To use a different page as your Cart page, first create a page, insert the cart shortcode, then come back to the settings page and select it from the dropdown. Note: the plugin automatically creates this page.\n\n### Currency Settings\n\nThe store’s currency code will be imported from the BigCommerce API as part of the product import process. If the PHP intl extension is available on your server, there is nothing else to configure. If it is not available, you will be presented with additional fields to control currency formatting. These will also be populated automatically from the API. Currency formatting can be filtered using the `bigcommerce/currency/format` filter.\n\n### Accounts and Registration\n\nUser accounts in WordPress will be connected to customer accounts in BigCommerce. If user registration is enabled in WordPress (the “Anyone can register” checkbox in **Settings** › **General** in the WordPress admin), customers will be able to register accounts and manage their profiles. \n\nThe plugin requires several pages to support user account management. These pages will all be created automatically. Each will contain a shortcode that renders the relevant content. If any are deleted, they will be automatically re-created for you. If you have multiple pages with these shortcodes, you may select which will be treated as canonical using the dropdowns in this settings section. \n\nThe “Support Email” field will be used to give customers an address to contact you with questions about orders.\nThe cart page should be excluded from any page caching system enabled for your site.",
                         "header": {
                           "anchor": "plugin-settings_cart-settings"
-                        }
-                      },
-                      {
-                        "type": "callout",
-                        "data": {
-                          "type": "warning",
-                          "body": "The cart page should be excluded from any page caching system enabled for your site."
                         }
                       },
                       {
@@ -19496,7 +19656,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Theme Customizer\nThe visual presentation of your store can be customized using the WordPress theme customizer. Open the theme customizer and find the \"BigCommerce\" panel, which contains several sections.\n\n**Buttons:** Control the labels applied to buttons for interacting with products.  \n**Colors & Themes:** Customize colors to better match your theme.  \n**Catalog Pages:** Control the presentation of lists of products.  \n**Product Single:** Control the presentation of individual product pages.  \n**Product Archive:** Customize labels and filters for the prouct archive.",
+                        "data": "## Theme Customizer\nThe visual presentation of your store can be customized using the WordPress theme customizer. Open the theme customizer and find the \"BigCommerce\" panel, which contains several sections.\n\n* **Buttons:** Control the labels applied to buttons for interacting with products.  \n\n* **Colors & Themes:** Customize colors to better match your theme.\n  \n* **Catalog Pages:** Control the presentation of lists of products. \n \n* **Product Single:** Control the presentation of individual product pages.  \n\n* **Product Archive:** Customize labels and filters for the prouct archive.",
                         "header": {
                           "anchor": "plugin-settings_theme-customizer"
                         }
@@ -19507,7 +19667,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Navigation Menus\nThis plugin creates several pages, and they can be added to the WordPress navigation menus using the standard WordPress admin (Appearance -> Menus, or in the theme customizer). \nSome of these pages acquire special functionality when they are added to navigation menus:\n**Cart:** The cart menu item will show the number of items in the current user's cart.  \n**Login:** If the user is logged in, the login page menu item becomes a link to log out.  \n**Register:** If user registration is disabled, the menu item will be disabled (it won't render on the front end of the site). If the user is logged in, the menu item will link to the user's account profile.  \n**Account Profile, Order History, Addresses:** If the user is not logged in, these menu items will be disabled (they won't render on the front end of the site).",
+                        "data": "## Navigation Menus\n\nThe BigCommerce for WordPress plugin creates several pages, which can be added to the WordPress navigation menus using the standard WordPress admin(**Appearance** › **Menus**, or in the theme customizer). \nSome of these pages acquire special functionality when they are added to navigation menus:\n\n* **Cart:** The cart menu item will show the number of items in the current user's cart.\n  \n* **Login:** If the user is logged in, the login page menu item becomes a link to log out.\n  \n* **Register:** If user registration is disabled, the menu item will be disabled (it won't render on the front end of the site). If the user is logged in, the menu item will link to the user's account profile.  \n* **Account Profile, Order History, Addresses:** If the user is not logged in, these menu items will be disabled (they won't render on the front end of the site).",
                         "header": {
                           "anchor": "plugin-settings_navigation-menus"
                         }
@@ -19518,7 +19678,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Reviews\nReviews left on the WordPress store are sync’d back to BigCommerce for permanent storage as well as usage on other channels.  Additionally, they’re store in a local, custom database for quick access.\n\nWhether reviews are active or not is determined by the site’s Comments setting, under Settings → Discussion in the WordPress admin.  Additionally, each product has a Comments switch which can be used to override the global settings.",
+                        "data": "## Reviews\nReviews placed on the WordPress store are synced to BigCommerce for permanent storage as well as usage on other channels. Additionally, reviews are stored in a local, custom database for quick access.\nThe review system on WordPress is enabled or disabled by the site’s Comments setting, under Settings → Discussion in the WordPress admin. Additionally, each product has a Comments switch which can be used to override the global settings.\n",
                         "header": {
                           "anchor": "plugin-settings_reviews"
                         }
@@ -19529,7 +19689,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Gift Certificate Settings\nIf this checkbox is enabled then people will be able to purchase gift certificates from the site. This will also require that two pages be created with the proper shortcodes on them.\nGift Certificate Page\nThis page has probably already been created by the plugin, but if not create a plain page with whatever title you’d like, and make sure this shortcode is in the page content:\n`[bigcommerce_gift_form]`\n\nThis is the page where customers will buy their gift certificates.\n\n### Gift Certificate Balance Page\nThis page has probably already been created by the plugin, but if not create a plain page with whatever title you’d like, and make sure this shortcode is in the page content: `[bigcommerce_gift_balance]`\n\nThis is the page where customers will be able to check their gift certificate balance.",
+                        "data": "## Gift Certificate Settings\nIf the gift certificate setting is enabled in WordPress, shoppers will be able to purchase gift certificates from the site. Gift certificate functionality relies on two pages that are automatically created by the plugin. Both pages can be replaced by pages you create containing the appropriate shortcodes.\n\n* Gift Certificate Page: The page where customers purchase gift certificates. \nUse the shortcode `[bigcommerce_gift_form]`\n\n* Gift Certificate Balance Page:\nThe page where customers can check their gift certificate balance. Use the shortcode`[bigcommerce_gift_balance]`\n",
                         "header": {
                           "anchor": "plugin-settings_gift-certificate-settings"
                         }
@@ -19550,7 +19710,14 @@
                       },
                       {
                         "type": "text",
-                        "data": "Products are imported from the BigCommerce API on a WordPress cron job, or using a WP-CLI command: `wp bigcommerce import products`\n\nThe import runs in several stages:\n1. A list of all products from the API is added to a queue for processing.\n2. Any products on the site that are no longer available in the BigCommerce store are marked for deletion.\n3. The queue is processed in chunks (five items at a time), whereby products are imported, updated, or deleted to match the data in BigCommerce.\n4. Currency and other store information from the API updates settings in WordPress.\n"
+                        "data": "Products are imported from the BigCommerce API on a [WordPress cron job](https://developer.wordpress.org/plugins/cron/), or using a WP-CLI command: `wp bigcommerce import products`\n\nThe import runs in several stages:\n1. A list of all products from the API is added to a queue for processing.\n2. Any products on the site that are no longer available in the BigCommerce store are marked for deletion.\n3. The queue is processed in chunks (five items at a time), whereby products are imported, updated, or deleted to match the data in BigCommerce.\n4. Currency and other store information from the API updates settings in WordPress.\n"
+                      },
+                      {
+                        "type": "callout",
+                        "data": {
+                          "title": "WordPress Currency Processing",
+                          "body": "The WordPress sites you connect to your BigCommerce store will process in the same default currency as the BigCommerce store."
+                        }
                       }
                     ]
                   }
@@ -19702,7 +19869,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Products Shortcode\n`[bigcommerce_product]`\n\nThe product shortcode can be used to include one or more products on other pages or posts on the WordPress site. Click the \"Add Products\" button above the editor to select products or build a dynamic query to include in the page.\n\nWhile the shortcode can be built using the button, it can also be created manually. It accepts a number of optional attributes:\n\n- `id` - A comma delimited list of BigCommerce product IDs \n- `post_id` - A comma delimited list of WordPress product post IDs  \n- `sku` - A comma delimited list of BigCommerce product SKUs  \n- `category` - A comma delimited list of Product Category slugs  \n- `brand` - A comma delimited list of Brand slugs\n- `featured` - Set to 1 to limit the query to featured products  \n- `sale` - Set to 1 to limit the query to sale products\nrecent - Set to 1 to limit the query to products imported in the last 2 days (filter the duration with the bigcommerce/query/recent_days filter)  \n- `search` - A search string to match against product titles, BigCommerce product IDs, or SKUs  \n- `paged` - Set to 0 to disable pagination  \n- `per_page` - The number of products to show per page. Defaults to the value set in the theme customizer.\n- `order` - Whether to sort products in \"ASC\" or \"DESC\" order\n- `orderby` - Which field to use for sorting. Accepts any field that WP_Query accepts (e.g., title, date)\n",
+                        "data": "## Products Shortcode\n`[bigcommerce_product]`\n\nThe product shortcode can be used to include one or more products on other pages or posts on the WordPress site. Click the **Add Products** button above the editor to select products or build a dynamic query to include in the page.\n\nWhile the shortcode can be built using the button, it can also be created manually. It accepts a number of optional attributes:\n\n- `id` - A comma delimited list of BigCommerce product IDs \n- `post_id` - A comma delimited list of WordPress product post IDs  \n- `sku` - A comma delimited list of BigCommerce product SKUs  \n- `category` - A comma delimited list of Product Category slugs  \n- `brand` - A comma delimited list of Brand slugs\n- `featured` - Set to 1 to limit the query to featured products  \n- `sale` - Set to 1 to limit the query to sale products\nrecent - Set to 1 to limit the query to products imported in the last 2 days (filter the duration with the bigcommerce/query/recent_days filter)  \n- `search` - A search string to match against product titles, BigCommerce product IDs, or SKUs  \n- `paged` - Set to 0 to disable pagination  \n- `per_page` - The number of products to show per page. Defaults to the value set in the theme customizer.\n- `order` - Whether to sort products in \"ASC\" or \"DESC\" order\n- `orderby` - Which field to use for sorting. Accepts any field that WP_Query accepts (e.g., title, date)\n",
                         "header": {
                           "anchor": "shortcode_product-shortcodes"
                         }
@@ -19738,7 +19905,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## Error on \"Add to Cart\" button, 404 error\nNot Found  \nThe requested URL /bigcommerce/cart/42 was not found on this server.  \nAdditionally, a 404 Not Found error was encountered while trying to use an ErrorDocument to handle the request.\n\n### Solution\nIn WordPress, go to Settings → Permalinks. Scroll to the bottom of the page and click Save. This resets the site’s redirects properly.",
+                        "data": "## Error on \"Add to Cart\" button, 404 error\n\n### Symptom\n\n> Not Found: The requested URL /bigcommerce/cart/42 was not found on this server.  \n> Additionally, a 404 Not Found error was encountered while trying to use an ErrorDocument to handle the request.\n\n### Solution\nIn WordPress, go to Settings → Permalinks. Scroll to the bottom of the page and click Save. This resets the site’s redirects properly.",
                         "header": {
                           "anchor": "troubleshooting_add-cart-error"
                         }
@@ -19749,7 +19916,7 @@
                       },
                       {
                         "type": "text",
-                        "data": "## PHP getenv() Errors\nWhen in use the plugin floods the error log with the following:\n\n```\nPHP message: PHP Warning: getenv() expects exactly 1 parameter, 2 given in wp-content/plugins/bigcommerce-for-wordpress-0.11.1/bigcommerce.php on line 58\n```\n\n### Solution\nYou can expect to see that error if you're on PHP version 5.4 or lower (the plugin requires 5.6+).",
+                        "data": "## PHP getenv() Errors\n\n### Symptom: \nWhen in use the plugin floods the error log with the following:\n\n\n> PHP message: PHP Warning: getenv() expects exactly 1 parameter, 2 given in wp-content/plugins/bigcommerce-for-wordpress-0.11.1/bigcommerce.php on line 58\n\n\n### Solution\nYou can expect to see that error if you're on PHP version 5.4 or lower (the plugin requires 5.6+).",
                         "header": {
                           "anchor": "troubleshooting_php-getenv"
                         }
