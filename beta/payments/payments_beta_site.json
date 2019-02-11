@@ -1,202 +1,206 @@
 {
-    "title": "Beta - Payments API",
-    "header": {
-      "nav": {
-        "left": [
+  "title": "Beta - Payments API",
+  "header": {
+    "nav": {
+      "left": [
+        {
+          "title": "API Documentation",
+          "path": "https://developer-beta.bigcommerce.com/"
+        }
+      ],
+      "center": [],
+      "right": []
+    }
+  },
+  "pages": {
+    "/": {
+      "title": "Home",
+      "data": {
+        "blocks": [
           {
-            "title": "API Documentation",
-            "path": "https://developer.bigcommerce.com"
+            "type": "html",
+            "data": "<h1> Payments API </h1>\n<h3> On this Page </h3>\n<ul>\n  <li><a href=\"#payments_postman-collection\">Postman Collection</a></li>\n  <li><a href=\"#payments_workflow\">Workflow</a></li>\n  <li><a href=\"#payments_technical-details\">Technical Details</a></li>\n  <li><a href=\"#payments_current-limitations\">Current Limitations</a></li>\n  <li><a href=\"#payments_webhooks\">Webhooks </a></li>\n\t<li><a href=\"#payments_oauth-scopes\">OAuth Scopes</a></li>\n  <li><a href=\"#payments_sample-app-diagram\">Sample App Diagram</a></li>\n</ul>"
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "The Payments API processes a payment through BigCommerce payment gateway integrations. A payment can be taken for an order that is created using the /orders endpoint on the [Server to Server Checkout API](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api).\n\nPayments are processed via a sequence of requests to two API hosts:\n- **Create the payment token:**\n`https://api.bigcommerce.com/stores/{store_hash}/v3/payments`\n\n- **Process the payment:**  `https://payments.bigcommerce.com/stores/{store_hash}/payments`"
+          },
+          {
+            "type": "text",
+            "data": "## Postman Collection:\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/7914b4a99bf6e9ee6292)",
+            "header": {
+              "anchor": "payments_postman-collection"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Workflow\n\nPayments can be processed using cards stored with the BigCommerce Stored Credit Cards feature or by providing a credit card number\n\n### Using a Stored Card\n\n\n1. To pay with a stored card, first make a call to the [Order Transaction API](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api) for the `payment_instrument_token`. This is then passed in as part of the request in the `token` field.\n\n2. Make a request to [payments/access_tokens](/create-payment-tokem/payment-access-token/paymentsaccesstokenspost) to get the authorization token that needs to be passed in the header.\n\n3. The request body containing the `payment_instrument_token` must sent using the [/payments](/process-payment/payment/paymentspost) endpoint.\n\n* The type field value will always be `stored_card`.\n* Currently, choosing which vaulted card to use is not supported. Specifying the `payment_instrument_token` will ensure the correct card is used.\n* You can retrieve the `payment_method_id` for your configured gateway from the [Order Transaction API](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api) gateway.\n\n### Current Supported Gateways\n- Authorize.Net\n- Paypal Powered by Braintree\n- CyberSource\n- Stripe",
+            "header": {
+              "anchor": "payments_workflow"
+            }
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"order\": {\n    \"id\": 182\n  }\n}",
+            "header": {
+              "title": "Get Payment Access Token Body"
+            }
+          },
+          {
+            "type": "code",
+            "data": "curl -X POST \\\n  https://payments.bigcommerce.com/stores/{store_hash}/payments\\\n  -H 'Accept: application/vnd.bc.v1+json' \\\n  -H 'Authorization: PAT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzgxMTA1MDQsIm5iZiI6MTUzODEwNjkwNCwiaXNzIjoicGF5bWVudHMuYmlnY29tbWVyY2UuY29tIiwic3ViIjoid3dzam11MGhmMiIsImp0aSI6IjNiNjNjZmJkLTU5MmItNDllMy04NTQxLTgwMjc3Mjk1ZTU3NiIsImlhdCI6MTUzODEwNjkwNCwiZGF0YSI6eyJzdG9yZV9pZCI6MTIyOTA2NTEsIm9yZGVyX2lkIjoxMDQsImFtb3VudCI6NDk1MCwiY3VycmVuY3kiOiJVU0QifX0.KjH6PcxSOsREwVfXuKm5RKfngrw-s3tZH6HtSRkutNQ' \\\n  -H 'Content-Type: application/json' \\",
+            "header": {
+              "subtitle": "Pass token in the header as Authorization to the Process Payments endpoint",
+              "title": "Sample Header"
+            },
+            "config": {
+              "mode": "http"
+            }
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"payment\": {\n  \t\"instrument\":{\n  \t\t\"type\": \"stored_card\",\n  \t\t\"token\": \"e74a240eb0eeabb41f987fab0b104b2b7f5a40f2b3a72affd86036cb1323d6a5\" // From transactions api\n  \t}, \n    \"payment_method_id\": \"cybersource.card\"\n  }\n}",
+            "header": {
+              "title": "Stored Card"
+            }
+          },
+          {
+            "type": "text",
+            "data": "### Pay with a Credit Card\n\n1. Make a request to the [payments/access_tokens endpoint](/create-payment-tokem/payment-access-token/paymentsaccesstokenspost) to get the authorization token, which  needs to be passed in the header of the next request.\n1. Send a request body containing the payment details and Authorization header to the [/payments endpoint](/process-payment/payment/paymentspost).\n\t* The type will always be card.\n\t* All fields are required to process a payment.\n\n### Current Supported Gateways\nThe following gateways have been tested for compatability. Other gateways may work using a credit card. The gateway names can found at `gateway` on [Order Transaction API](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api). \n\n- Authorize.Net\n- Paypal Powered by Braintree\n- CyberSource\n- Stripe "
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"order\": {\n    \"id\": 182\n  }\n}",
+            "header": {
+              "title": "Get Payment Access Token Body"
+            }
+          },
+          {
+            "type": "code",
+            "data": "curl -X POST \\\n  https://payments.bigcommerce.com/stores/{store_hash}/payments\\\n  -H 'Accept: application/vnd.bc.v1+json' \\\n  -H 'Authorization: PAT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzgxMTA1MDQsIm5iZiI6MTUzODEwNjkwNCwiaXNzIjoicGF5bWVudHMuYmlnY29tbWVyY2UuY29tIiwic3ViIjoid3dzam11MGhmMiIsImp0aSI6IjNiNjNjZmJkLTU5MmItNDllMy04NTQxLTgwMjc3Mjk1ZTU3NiIsImlhdCI6MTUzODEwNjkwNCwiZGF0YSI6eyJzdG9yZV9pZCI6MTIyOTA2NTEsIm9yZGVyX2lkIjoxMDQsImFtb3VudCI6NDk1MCwiY3VycmVuY3kiOiJVU0QifX0.KjH6PcxSOsREwVfXuKm5RKfngrw-s3tZH6HtSRkutNQ' \\\n  -H 'Content-Type: application/json' \\\n  -H 'X-Auth-Client: 5f807597694949349638cdd59e2250' \\ \n  -H 'X-Auth-Token: ibeabab0a57234dbe82f2c4a6bb56bb'",
+            "header": {
+              "subtitle": "Pass token in the header as Authorization to the Process Payments endpoint",
+              "title": "Sample Header"
+            },
+            "config": {
+              "mode": "http"
+            }
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"payment\": {\n  \t\"instrument\":{\n  \t\t\"type\": \"card\",\n  \t\t\"number\": \"4111111111111111\",\n  \t\t\"cardholder_name\": \"BP\",\n  \t\t\"expiry_month\": 12,\n  \t\t\"expiry_year\":\t2020,\n  \t\t\"verification_value\": \"411\"\n  \t},\n    \"payment_method_id\": \"authorizenet.card\"\n  }\n}",
+            "header": {
+              "title": "Pay with Credit Card"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Technical Details \n\n### Token\nThe `payment_access_token` is not from the payment provider. It is created by BigCommerce.\n\n### Decline Payments\nIf a payment is declined it will return a 4XX error with details if available. \n\n### Authorization\nIf a payment gateway is configured for authorization only, the payment will be authorized at the time of processing. The order will have to later be captured through the control panel. If the gateway is set for authorization and capture, the payment will be authorized and captured when payment is processed.\n\n### Stored Cards\nThe Payments API supports payment with cards that are currently stored. It does not provide a method for storing new cards.\n\n### Control Panel\nOrders created and captured via the API will look the same as other orders created via the storefront or other apps. The order source will be “Checkout API.” \n\n### Payment Providers\nThe Payments API supports any payment provider BigCommerce supports. The test payment gateway is currently not supported.\n\nFor credit cards and stored cards, Payments API works with Braintree, Authorize.net, Stripe and Cybersource.\n\nThe API flow does not currently support hosted/offsite providers such as PayPal and Adyen and wallet type payments such as Amazon Pay.\n\n### Data Access\nThe card data is not accessible via the API once the payment is processed. \n\n### Rate Limits\nBigCommerce has rates limits in place for this API. Some payment providers will provide checks on the incoming requests.",
+            "header": {
+              "anchor": "payments_technical-details"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Current Limitations\n\n* Orders with more than one shipping address or consignment are not able to process payments. \n* Store Credit is not supported as a payment method.\n* Gift Certificates can not be used to pay for an order.\n* Manual Discounts are not supported.",
+            "header": {
+              "anchor": "payments_current-limitations"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Webhooks\nThere are no specific webhooks for payments. \n\nRelated Webhooks:\n- Orders\n- Cart",
+            "header": {
+              "anchor": "payments_webhooks"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## OAuth Scopes\n\nCreate Payments",
+            "header": {
+              "anchor": "payments_oauth-scopes"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Sample App Diagram\n\nThe following diagram shows how the `payment_access_token` interacts with BigCommerce API and BigCommerce payments. \n\nOrders can be created using the [Server to Server API Endpoints.](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout/postcheckoutscheckoutidorders) or [Orders API](https://developer.bigcommerce.com/api-reference/orders/orders-api).",
+            "header": {
+              "anchor": "payments_sample-app-diagram"
+            }
+          },
+          {
+            "type": "image",
+            "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1539365657330",
+            "header": {
+              "title": "Sample App"
+            }
           }
         ],
-        "center": [],
-        "right": []
-      }
-    },
-    "pages": {
-      "/": {
-        "title": "Home",
-        "data": {
-          "blocks": [
-            {
-              "type": "html",
-              "data": "<h1> Payments API </h1>\n<h3> On this Page </h3>\n<ul>\n  <li><a href=\"#payments_postman-collection\">Postman Collection</a></li>\n  <li><a href=\"#payments_workflow\">Workflow</a></li>\n  <li><a href=\"#payments_technical-details\">Technical Details</a></li>\n  <li><a href=\"#payments_current-limitations\">Current Limitations</a></li>\n  <li><a href=\"#payments_webhooks\">Webhooks </a></li>\n\t<li><a href=\"#payments_oauth-scopes\">OAuth Scopes</a></li>\n  <li><a href=\"#payments_sample-app-diagram\">Sample App Diagram</a></li>\n</ul>"
+        "children": [
+          {
+            "title": "Create Payment Token",
+            "route": {
+              "path": "/create-payment-tokem"
             },
-            {
-              "type": "text",
-              "data": "---"
-            },
-            {
-              "type": "text",
-              "data": "The Payments API allows for an order to have a payment processed.\nA payment can be taken for an order that is created using the [V2 Orders API](https://developer.bigcommerce.com/api/v2/#create-an-order) or with orders created using the /orders endpoint on the [Server to Server Checkout API](https://developer.bigcommerce.com/api/v3/#/reference/checkout).\n\nPayments consist of two API hosts:\n\n- **Create the payment token:**\nhttps://api.bigcommerce.com/stores/{store_hash}/v3/payments\n\n- **Process the payment:**  https://payments.bigcommerce.com/stores/{store_hash}/payments"
-            },
-            {
-              "type": "text",
-              "data": "## Postman Collection:\n\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/7914b4a99bf6e9ee6292)",
-              "header": {
-                "anchor": "payments_postman-collection"
-              }
-            },
-            {
-              "type": "text",
-              "data": "---"
-            },
-            {
-              "type": "text",
-              "data": "## Workflow\n\nThere are two ways to process a payment using the API. \n\n### 1. Using a Stored Card\n\nTo pay with a stored card first a call must be made to the [Order Transaction API](https://developer.bigcommerce.com/api/v3/#/reference/orders/order-transactions) for the `payment_instrument_token`. This is then passed in as part of the request in the `token` field.\n\nThen a request must be made to the [payments/access_tokens](/create-payment-tokem/payment-access-token/paymentsaccesstokenspost) to get the authroization token that needs to be passed in the header. \n\nThen the body with the `payment_instrument_token` must sent using the [/payments](/process-payment/payment/paymentspost) endpoint. \n\nThe type will always be `stored_card`. \n\nCurrently, choosing which valuted card to use is not supported. Using the `payment_instrument_token` will ensure the correct card is used.\n\nThe `payment_method_id` is available from the [Order Transaction API](https://developer.bigcommerce.com/api/v3/#/reference/orders/order-transactions) `gateway`.\n\n### Current Supported Gateways\n- Authorize.Net\n- Paypal Powered by Braintree\n- CyberSource\n- Stripe",
-              "header": {
-                "anchor": "payments_workflow"
-              }
-            },
-            {
-              "type": "code",
-              "data": "{\n  \"order\": {\n    \"id\": 182\n  }\n}",
-              "header": {
-                "title": "Get Payment Access Token Body"
-              }
-            },
-            {
-              "type": "code",
-              "data": "curl -X POST \\\n  https://payments.bigcommerce.com/stores/{store_hash}/payments\\\n  -H 'Accept: application/json' \\\n  -H 'Authorization: PAT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzgxMTA1MDQsIm5iZiI6MTUzODEwNjkwNCwiaXNzIjoicGF5bWVudHMuYmlnY29tbWVyY2UuY29tIiwic3ViIjoid3dzam11MGhmMiIsImp0aSI6IjNiNjNjZmJkLTU5MmItNDllMy04NTQxLTgwMjc3Mjk1ZTU3NiIsImlhdCI6MTUzODEwNjkwNCwiZGF0YSI6eyJzdG9yZV9pZCI6MTIyOTA2NTEsIm9yZGVyX2lkIjoxMDQsImFtb3VudCI6NDk1MCwiY3VycmVuY3kiOiJVU0QifX0.KjH6PcxSOsREwVfXuKm5RKfngrw-s3tZH6HtSRkutNQ' \\\n  -H 'Content-Type: application/json' \\",
-              "header": {
-                "subtitle": "Pass token in the header as Authorization to the Process Payments endpoint",
-                "title": "Sample Header"
-              },
-              "config": {
-                "mode": "http"
-              }
-            },
-            {
-              "type": "code",
-              "data": "{\n  \"payment\": {\n  \t\"instrument\":{\n  \t\t\"type\": \"stored_card\",\n  \t\t\"token\": \"e74a240eb0eeabb41f987fab0b104b2b7f5a40f2b3a72affd86036cb1323d6a5\" // From transactions api\n  \t}, \n    \"payment_method_id\": \"cybersource.card\"\n  }\n}",
-              "header": {
-                "title": "Stored Card"
-              }
-            },
-            {
-              "type": "text",
-              "data": "### 2. Pay with a Credit Card\n\nFirst request must be made to the [payments/access_tokens](/create-payment-tokem/payment-access-token/paymentsaccesstokenspost) to get the authroization token that needs to be passed in the header. \n\nThen send a request body with the payment details and Authorization header to the [/payments](/process-payment/payment/paymentspost) endpoint.\n\n- The `type` will always be card. \n- All fields are required to process a payment.  \n\n\n### Current Supported Gateways\nThe following gateways have been tested for compatability. Other gateways may work using a credit card. The gateway names can found at `gateway` on [Order Transaction API](https://developer.bigcommerce.com/api/v3/#/reference/orders/order-transactions). \n\n- Authorize.Net\n- Paypal Powered by Braintree\n- CyberSource\n- Stripe "
-            },
-            {
-              "type": "code",
-              "data": "{\n  \"order\": {\n    \"id\": 182\n  }\n}",
-              "header": {
-                "title": "Get Payment Access Token Body"
-              }
-            },
-            {
-              "type": "code",
-              "data": "curl -X POST \\\n  https://payments.bigcommerce.com/stores/{store_hash}/payments\\\n  -H 'Accept: application/json' \\\n  -H 'Authorization: PAT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzgxMTA1MDQsIm5iZiI6MTUzODEwNjkwNCwiaXNzIjoicGF5bWVudHMuYmlnY29tbWVyY2UuY29tIiwic3ViIjoid3dzam11MGhmMiIsImp0aSI6IjNiNjNjZmJkLTU5MmItNDllMy04NTQxLTgwMjc3Mjk1ZTU3NiIsImlhdCI6MTUzODEwNjkwNCwiZGF0YSI6eyJzdG9yZV9pZCI6MTIyOTA2NTEsIm9yZGVyX2lkIjoxMDQsImFtb3VudCI6NDk1MCwiY3VycmVuY3kiOiJVU0QifX0.KjH6PcxSOsREwVfXuKm5RKfngrw-s3tZH6HtSRkutNQ' \\\n  -H 'Content-Type: application/json' \\\n  -H 'X-Auth-Client: 5f807597694949349638cdd59e2250' \\ \n  -H 'X-Auth-Token: ibeabab0a57234dbe82f2c4a6bb56bb'",
-              "header": {
-                "subtitle": "Pass token in the header as Authorization to the Process Payments endpoint",
-                "title": "Sample Header"
-              },
-              "config": {
-                "mode": "http"
-              }
-            },
-            {
-              "type": "code",
-              "data": "{\n  \"payment\": {\n  \t\"instrument\":{\n  \t\t\"type\": \"card\",\n  \t\t\"number\": \"4111111111111111\",\n  \t\t\"cardholder_name\": \"BP\",\n  \t\t\"expiry_month\": 12,\n  \t\t\"expiry_year\":\t2020,\n  \t\t\"verification_value\": \"411\"\n  \t},\n    \"payment_method_id\": \"authorizenet.card\"\n  }\n}",
-              "header": {
-                "title": "Pay with Credit Card"
-              }
-            },
-            {
-              "type": "text",
-              "data": "---"
-            },
-            {
-              "type": "text",
-              "data": "## Technical Details \n\n### Token\nThe `payment_access_token` is not from the payment provider.\n\n### Decline Payments\nIf a payment is declined it will return a 4XX error with details if available. \n\n### Authorization\nIf a payment gateway is configured for authorization only, it will authorize the payment. The order will have to later be captured through the control panel. If the gateway is set for authorization and capture, it will authorize and capture the payment.\n\n### Stored Cards\nIt works with cards that are currently stored. It does not allow for cards to be stored via the API.\n\n### Control Panel\nOrders created and captured via the API will look the same as other orders created via the storefront or other apps. It will have unknown as the order source for now. \n\n### Payment Providers\nThis works with any payment provider BigCommerce supports. The test payment gateway is currently not supported\n\nFor credit cards and stored cards, it works with Braintree, Authorize.net, Stripe and Cybersource.\n\nThe API flow does not currently support hosted/offsite providers such as PayPal and Adyen and wallet type payments such as Amazon Pay.\n\n### Data Access\nThe card data is not accessible via the API once the payment is processed. A credit card can be passed in the request body.\n\n### Rate Limits\nBigCommerce has rates limits in place for this API. Some payment providers will provide checks on the incoming requests.",
-              "header": {
-                "anchor": "payments_technical-details"
-              }
-            },
-            {
-              "type": "text",
-              "data": "---"
-            },
-            {
-              "type": "text",
-              "data": "## Current Limitations\n\n* Orders with more than one shipping address or consignment are not able to process payments. \n* Store Credit is not supported as a payment method\n* Gift Certificates can not be used to pay for an order.\n* Manual Discounts are not supported.",
-              "header": {
-                "anchor": "payments_current-limitations"
-              }
-            },
-            {
-              "type": "text",
-              "data": "---"
-            },
-            {
-              "type": "text",
-              "data": "## Webhooks\nThere are no specific webhooks for payments. \n\nRelated Webhooks:\n- Orders\n- Cart",
-              "header": {
-                "anchor": "payments_webhooks"
-              }
-            },
-            {
-              "type": "text",
-              "data": "---"
-            },
-            {
-              "type": "text",
-              "data": "## OAuth Scopes\n\nCreate Payments",
-              "header": {
-                "anchor": "payments_oauth-scopes"
-              }
-            },
-            {
-              "type": "text",
-              "data": "## Sample App Diagram\n\nThe following diagram shows how the `payment_access_token` interacts with BigCommerce API and BigCommerce payments. \n\nOrders can be created using the [Server to Server API Endpoints.](https://developer.bigcommerce.com/api/v3/#/reference/cart) or [Orders API](https://developer.bigcommerce.com/api/v3/#/reference/orders).",
-              "header": {
-                "anchor": "payments_sample-app-diagram"
-              }
-            },
-            {
-              "type": "image",
-              "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1539365657330",
-              "header": {
-                "title": "Sample App"
-              }
+            "data": {
+              "$ref": "./CreatePaymentAccessToken.oas2.yml"
             }
-          ],
-          "children": [
-            {
-              "title": "Create Payment Token",
-              "route": {
-                "path": "/create-payment-tokem"
-              },
-              "data": {
-                "$ref": "./CreatePaymentAccessToken.oas2.yml"
-              }
+          },
+          {
+            "title": "Process Payment",
+            "route": {
+              "path": "/process-payment"
             },
-            {
-              "title": "Process Payment",
-              "route": {
-                "path": "/process-payment"
-              },
-              "data": {
-                "$ref": "./PayForOrder.oas2.yml"
-              }
+            "data": {
+              "$ref": "./PayForOrder.oas2.yml"
             }
-          ]
-        },
-        "config": {
-          "sidebar": {
-            "token": "BETA"
           }
+        ]
+      },
+      "config": {
+        "sidebar": {
+          "token": "BETA"
         }
       }
-    },
-    "meta": {
-      "description": "The Payments API allows for an app developer to create seamless cart, checkout, order and payment process.",
-      "title": "BigCommerce Payments API Beta",
-      "favicon": "https://www.bigcommerce.com/assets/images/favicons/favicon-96x96.png"
-    },
-    "theme": {
-      "texture": "",
-      "secondary": "#3B99FC",
-      "primary": "#3B99FC"
-    },
-    "logo": "https://wwwcdn.bigcommerce.com/www1.bigcommerce.com/assets/mediakit/downloads/BigCommerce-logomark-whitebg.png?mtime=20160412110957&_ga=2.41860196.791007043.1538409083-555198224.1517588045"
-  }
+    }
+  },
+  "meta": {
+    "description": "The Payments API allows for an app developer to create seamless cart, checkout, order and payment process.",
+    "title": "BigCommerce Payments API Beta",
+    "favicon": "https://www.bigcommerce.com/assets/images/favicons/favicon-96x96.png"
+  },
+  "theme": {
+    "texture": "",
+    "secondary": "#3B99FC",
+    "primary": "#3B99FC"
+  },
+  "logo": "https://wwwcdn.bigcommerce.com/www1.bigcommerce.com/assets/mediakit/downloads/BigCommerce-logomark-whitebg.png?mtime=20160412110957&_ga=2.41860196.791007043.1538409083-555198224.1517588045"
+}
