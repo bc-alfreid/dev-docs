@@ -9,7 +9,7 @@
       "url": ""
     },
     "termsOfService": "https://www.bigcommerce.com/terms/api-terms/",
-    "description": "This endpoint will create a payment tokent that can be used to process payments. A Payment token is required for stored cards, credit cards and orders where a `payment_access_token` is being used. \n\nWhile the Try It Now will work, please use the test payment gateway for security."
+    "description": "This endpoint will create a payment tokent that can be used to process payments. A Payment token is required for stored cards, credit cards and orders where a `payment_access_token` is being used. \n\nWhile the Try it Now does work, please use other methods of testing for security."
   },
   "host": "api.bigcommerce.com",
   "basePath": "/stores/{store_hash}/v3",
@@ -306,6 +306,9 @@
     }
   },
   "tags": [
+    {
+      "name": "New Tag"
+    },
     {
       "name": "Payment Access Token",
       "description": ""
