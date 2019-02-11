@@ -1,0 +1,648 @@
+{
+  "title": "Promotions API Beta",
+  "logo": "https://wwwcdn.bigcommerce.com/www1.bigcommerce.com/assets/mediakit/downloads/BigCommerce-logomark-whitebg.png?mtime=20160412110957&_ga=2.41860196.791007043.1538409083-555198224.1517588045",
+  "header": {
+    "nav": {
+      "left": [
+        {
+          "title": "Developer Documentation",
+          "path": "https://developer.bigcommerce.com/api-docs"
+        }
+      ],
+      "right": []
+    }
+  },
+  "pages": {
+    "/": {
+      "title": "Promotions API Beta",
+      "data": {
+        "blocks": [
+          {
+            "type": "html",
+            "data": "<h1>Promotions API Beta</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n    \t\t<li><a href=\"#promotions_introduction\">Introduction<a/></li>\n        <li><a href=\"#promotions_how-to-create-promotion\">How to Create a Promotion</a></li>\n        <li><a href=\"#promotions_merchant-view\">Merchant View</a></li>\n    <li><a href=\"#promotions_action-only-promotions\">Action Only Promotions</a></li>\n        <li><a href=\"#promotions_product-order-discount\">Product Level Discount & Order Level Discount</a></li>\n    \t<li><a href=\"#promotions_free-shipping\">Free Shipping</a></li>\n<li><a href=\"#promotions_logical-operators\">Using Logical Operators</a></li>\n<li><a href=\"#promotions_definitions\">Definitions</a></li>\n\t</ul>\n</div>"
+          },
+          {
+            "type": "text",
+            "data": "## Introduction\nPromotions are a way to give discounts based on whether the shopper has met certain criteria such as ordering a certain amount, purchasing certain brands or being a repeat customer.\n\nA Promotion are made in two ways. \n\nOne, is to create a [Rule](/promotions-beta/models/rule) that includes a [Condition](/promotions-beta/models/condition) on which to take an action. For example, Buy one (condition) get one free (action). The shopper must meet the condition of having a certain item in the cart before getting another item free.\n\nSecond, is to create a Promotion with just an action. For example, Take 20% off the most expensive item in the cart. The shopper need not satisfy any special conditions and the promotion will apply automatically.\n\nPromotions also include the ability to set the priority or the order in which the Promotions apply, start and end time and the banners that appear to alert the shopper to the Promotion. \n\n\n### Beta\nDuring the beta we will support the following conditions and actions:\n\nCondition\n* Cart condition evaluates against what’s in the shopping cart\n\nAction\n* Free shipping action gives free shipping\n* Cart item action applies discounts on each eligible line item(s) in the cart\n* Cart value action applies to the promotion value of the  entire cart. ",
+            "header": {
+              "anchor": "promotions_introduction"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## How to Create a Promotion\n\nWe will walk through creating the promotion for Buy One Get One Free. While creating the promotion, we will review basic information about the Promotions API. Below is an example of the final request. We will step through the promotion line by line and explain the details. \n\nBefore starting make sure you have:\n* Promotions API Reference\n* A `product_id`\n* Scopes set to: [Marketing](https://developer.bigcommerce.com/api-docs/getting-started/basics/authentication#authentication_oauth-scopes)",
+            "header": {
+              "anchor": "promotions_how-to-create-promotion"
+            }
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"name\": \"Buy One Get One Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"include_items_considered_by_condition\": false,\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": false,\n      \"stop\": false,\n      \"condition\": {\n        \"cart\": {\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"minimum_quantity\": 1\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"Buy one Le Parfait Jar, Get One Free!\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"You are eligible for a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"Congratulations, you have received a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 1,\n  \"stop\": false,\n  \"start_date\": \"2019-01-28T00:00:00+00:00\",\n  \"status\": \"ENABLED\"\n}",
+            "header": {
+              "title": "Buy One Get One Free Promotion"
+            },
+            "config": {
+              "mode": "json"
+            }
+          },
+          {
+            "type": "text",
+            "data": "First give the promotion a name. This will appear in the control panel for the merchant and as part of the response. Then we need to build the rule. Remember, a rule is made of a [Condition](/promotions-beta/models/condition) and an [Action](/promotions-beta/models/cartitemsaction). To build the rule, you need the action, condition and the remaining configuration fields. \n\n### Creating the Action\n\nThere are three possible actions for promotions. \n* [Cart Items Action](/promotions-beta/models/cartitemsaction) will apply to the individual items in the cart. \n* [Cart Value Action](/promotions-beta/models/cartvalueaction) will apply to the promotion value of the  entire cart. \n* [Shipping Action](/promotions-beta/models/shippingaction) will give a discount on shipping, which can be limited to specific zones.\n\nIn this example we will create a Buy One Get One discount. We’ll use Cart Items Action, or `cart_items`,  since the shopper will purchase an item and the discount applies after the item is added to the cart. \n\n**Discount**  \n\n[Discount](/promotions-beta/models/discount) type can be percentage amount or fixed amount. A fixed amount is used when the promotion offers X dollars off an item or items. Percentage is used to offer a percentage off an item or items. When the promotion is Buy one get one, the percentage is used. This is because one item will be free or 100% off. This is to avoid having to calculate the item price every time. \n\nIn this example we will use `percentage_amount` set to 100.\n\n**Strategy**  \n\n[Strategy](/promotions-beta/models/cartitemsaction) decides how the discount applies when there are multiple items in the cart. `LEAST_EXPENSIVE` sorts the items in ascending order by price and the discount applies to the cheapest item. Strategy can also be changed to apply to the `MOST_EXPENSIVE` item in the cart.\n\nIn this example, we will use the [Strategy](/promotions-beta/models/cartitemsaction) `LEAST_EXPENSIVE`.\n\n**Add Free Item**\n\nSet `add_free_item` as `true` if the item should be added to the shopper’s cart automatically. When true, the item is shown as $0 on the storefront. The free is is not able to be removed from the cart. To empty the cart, remove the “Buy One” item from the cart. "
+          },
+          {
+            "type": "image",
+            "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1549386204417",
+            "header": {
+              "subtitle": "Buy One Get One Storefront Cart",
+              "title": "Add Free Item Set to True"
+            },
+            "config": {
+              "centered": true,
+              "fluid": true
+            }
+          },
+          {
+            "type": "text",
+            "data": "If set to false, then the shopper will need to add the eligible product to the cart to get the discount. The manual item will display the original price with a strikethrough and $0 price. The shopper will be able to remove the free item from the cart.\n\nIn this example, we set `add_free_item` to true."
+          },
+          {
+            "type": "image",
+            "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1549386319578",
+            "header": {
+              "title": "Add Free Item Set to False",
+              "subtitle": "Buy One Get One Storefront Cart"
+            },
+            "config": {
+              "centered": true,
+              "fluid": true
+            }
+          },
+          {
+            "type": "text",
+            "data": "**As Total**\n\nAs_total will distribute the discount across the items. For example, if the total discount is $10 on two items, setting as_total to true will apply a total of $5 to each item. If set to false, then each item will apply  $10 per item for a total discount of $20.  \n\nIn this example, we set `as_total` to false.\n\n**Items Object**\n\nThe items object includes a product array. This is a list of products the action should apply to. Quantity is the number of products that the discount applies to. The shopper will continue to get the discount as long as the condition is satisfied.\n\nIn this example the products array only has one item it will apply to. Quantity is set to one since the promotion is Buy One Get One. \n\nBelow is what the Promotion should like so far. "
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"name\": \"Buy One Get One Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"include_items_considered_by_condition\": false,\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": false,\n      \"stop\": false,\n      \"currency_code\" : \"USD\",\n      \"condition\": {\n        \"cart\": {\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"minimum_quantity\": 1\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"Buy one Le Parfait Jar, Get One Free!\",\n      \"locations\": [\n        \"HOME_PAGE\",\n        \"PRODUCT_PAGE\",\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"You are eligible for a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"Congratulations, you have received a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 1,\n  \"stop\": false,\n  \"start_date\": \"2019-01-28T00:00:00+00:00\",\n  \"status\": \"ENABLED\"\n}",
+            "header": {
+              "subtitle": "This is an abbreviated code sample",
+              "title": "Promotion with Action"
+            },
+            "config": {
+              "mode": "json"
+            }
+          },
+          {
+            "type": "text",
+            "data": "### Setting the Rule Configuration\n\nAfter the Action object, there are two configurations that need to be set within the rule. \n\n**Apply Once**\n\nApply Once can be set to true or false. If set to true, the Action will only happen once. If set to false, it will happen more than once. Set this carefully. In the Promotion we are building, setting it to false means the shopper can add 2 products to the cart and get two of the same items for free. "
+          },
+          {
+            "type": "callout",
+            "data": {
+              "type": "warning",
+              "body": "Set `apply_once` carefully to avoid giving a more generous discount than intended"
+            }
+          },
+          {
+            "type": "text",
+            "data": "**Stop**\n\nStop determines if the remaining rules should be skipped. Promotions can have more than one rule. If set to false, after the first promotion applies successfully, the next eligible promotion is applied. The order in which promotions are applied is set using the priority. If set to true after the current promotion is successful, it stops executing all other promotions. \n\nIn this example stop is set to false. Since there is only one rule, stop can be set to true or false in this example. "
+          },
+          {
+            "type": "callout",
+            "data": {
+              "type": "warning",
+              "body": "If there is more than one promotion active at a time, setting the stop should be taken under consideration."
+            }
+          },
+          {
+            "type": "text",
+            "data": "**Currency Code**\n\nPromotions only apply to a specific transactional currency. `currency_code` is optional and defaults to the store default currency if not supplied.\n\n`currency_code` must be a three letter [ISO 4217 ](https://en.wikipedia.org/wiki/ISO_4217) currency code in uppercase. \n\ne.g. \n* USD\n* GBP\n* AUD\n\nBC supports both display and transactional currencies. \nOrders are paid for in transactional currencies. Display currencies will be converted to the default transactional currency for payment.\n\nThus Promotions which are int the default currency will apply to all display currencies in addition to the default currency.\n\nPromotions which have a non-default transactional currency will only apply to that currency.\n\ne.g\n\nYou have configure five currencies in your store.\n\n1. USD - default transactional\n2. AUD - transactional\n3. GBP - transactional\n4. NZD - display\n5. CAD - display\n\nPromotions created in \n1. USD will apply to orders in USD, NZD, CAD\n2. AUD will only apply to orders in AUD\n3. GBP will only apply to orders in GBP\n4. NZD & CAD are not valid `currency_code` values as they are display only\n"
+          },
+          {
+            "type": "text",
+            "data": "Below is what the Promotion should like so far. "
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"name\": \"Buy One Get One Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"include_items_considered_by_condition\": false,\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": false,\n      \"stop\": false,\n      \"currency_code\": \"USD\"\n    }\n  ]\n}",
+            "header": {
+              "subtitle": "This is an abbreviated code sample",
+              "title": "Promotion with stop and apply_once"
+            }
+          },
+          {
+            "type": "text",
+            "data": "### Creating the Condition\n\nWe can base the Condition on: \n* [Cart](/promotions-beta/models/cartcondition)  Uses the cart contents.\n* [Customer](/promotions-beta/models/customercondition) Customer’s identity and past order history\n* [AndCondition](/promotions-beta/models/andcondition) Logical and operator\n* [OrCondition](/promotions-beta/models/orcondition) Logical or operator\n* [NotCondition](/promotions-beta/models/notcondition) Logical not operator\n\nCart Condition allows you to set the items (products), `minimum_quantity` and `minimum_spend`. Setting the `minimum_quantity` will decide how many items the shopper needs in the cart for the promotion to trigger. This can be Buy One, Buy Two, etc. The `minimum_spend` is how much the shopper needs to spend for the discount to trigger. If left blank or not included, then it assumes the shopper does not have a `minimum_spend`. In our Buy One Get One example, the discount is based on the number of products not the amount being spent, so it can be left off. \n\n\nIn this example we will use Cart Condition. Then add our items in a product array the discount should apply to. The product should match the one set in the action product array above. If they are not set to match then the discount would be Buy X product Get Y Product Free. Set the `minimum_quantity` to one. "
+          },
+          {
+            "type": "callout",
+            "data": {
+              "type": "info",
+              "body": "\nIn the beta Customer Condition is not available. This is coming soon."
+            }
+          },
+          {
+            "type": "text",
+            "data": "Below is what the Promotion should like so far. "
+          },
+          {
+            "type": "code",
+            "data": "{\n      \"name\": \"Buy One Get One Free\",\n      \"rules\": [\n        {\n          \"action\": {\n            \"cart_items\": {\n              \"discount\": {\n                \"percentage_amount\": \"100\"\n              },\n              \"strategy\": \"LEAST_EXPENSIVE\",\n              \"add_free_item\": true,\n              \"as_total\": false,\n              \"include_items_considered_by_condition\": false,\n              \"items\": {\n                \"products\": [\n                  174\n                ]\n              },\n              \"quantity\": 1\n            }\n          },\n          \"apply_once\": false,\n          \"stop\": false,\n          \"condition\": {\n            \"cart\": {\n              \"items\": {\n                \"products\": [\n                  174\n                ]\n              },\n              \"minimum_quantity\": 1\n            }\n          }\n        }\n      ]\n}\n",
+            "header": {
+              "subtitle": "This is an abbreviated code sample",
+              "title": "Promotion with Condition"
+            }
+          },
+          {
+            "type": "text",
+            "data": "### Create the Notifications\n\nA notification represents a message that may be displayed to a shopper depending on the state an evaluated rule is in (for example, a “Congratulations! You’ve received free shipping!” message when the shopper receives free shipping). Due to the nature of cart-level discounts, they will not be apparent to the customer until after they have added products to their cart. For this reason, we recommend advertising your discounts with a notification.\n\nThere are four types of notifications:\n\n* **PROMOTION**  \nPromotion notifications are shown all the time promoting the discount you’re providing. (i.e “Spend $50 and get free shipping!”).\n\n* **UPSELL**  \nUpsell notifications are shown when the user has made partial progress towards unlocking a discount. This type of notification can be used to increase the Average Order Value (AOV) or increase the quantity of items in average order (example: “You’ve spent $40, add another $10 to your cart to receive free shipping!”, “You have 1 of Rebel Shoes, buy 1 more get 20% off your order total”).\n\n\n* **ELIGIBLE**  \nEligible notifications are shown when the user has met the conditions for a rule but hasn’t yet taken advantage of the discount it provides (i.e “You’ve spent over $60 on bathroom accessories and are eligible to choose a free item from the ‘Towels’ category!”). "
+          },
+          {
+            "type": "callout",
+            "data": {
+              "body": "\nEligible banners are only shown if the actions attached to the rule can’t be automatically applied such as the shopper selecting a free product from a category."
+            }
+          },
+          {
+            "type": "text",
+            "data": "* **APPLIED**  \nApplied notifications are shown once the discount has been received by the shopper in their cart (i.e “Congratulations! You’ve received a free bath towel!”).\n\nEach of these notifications can be attached to one or multiple of locations. A location defines the context when these notifications are to be presented. \n\nThere are four locations:\n\n* **HOME_PAGE**  \nThis is the homepage of the store. A good example of notification on this location could be an upsell banner or a promotion banner.\n\n* **PRODUCT_PAGE**  \nThis is a Product Detail Page for a specific product. A notification will appear on PDP when the product is used in condition and notification criteria are met. Example: “Buy 2 of Rebel Shoes, get 10% off you order total” will appear on Rebel Shoes PDP only.\n\n* **CART_PAGE**  \nThis is the cart page.\n\n* **CHECKOUT_PAGE**  \nThis is the checkout pages.\n\n\nNotifications will accept HTML as part of the formatting. In this example you can see we have set content for each type. The location array can have the content message appear in more than one location. \n\nBelow is what the Promotion should like so far. "
+          },
+          {
+            "type": "code",
+            "data": "{\n\t\"name\": \"Buy One Get One Free\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"100\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": true,\n\t\t\t\t\"as_total\": false,\n\t\t\t\t\"include_items_considered_by_condition\": false,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"products\": [\n\t\t\t\t\t\t174\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"quantity\": 1\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": false,\n\t\t\"stop\": false,\n\t\t\"condition\": {\n\t\t\t\"cart\": {\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"products\": [\n\t\t\t\t\t\t174\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"minimum_quantity\": 1\n\t\t\t}\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"Buy one Le Parfait Jar, Get One Free!\",\n\t\t\t\"locations\": [\n\t\t\t\t\"HOME_PAGE\",\n\t\t\t\t\"PRODUCT_PAGE\",\n\t\t\t\t\"CART_PAGE\"\n\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"You are eligible for a free Le Parfait Jar.\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"Congratulations, you have received a free Le Parfait Jar.\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t]\n}",
+            "header": {
+              "title": "Promotion with Notifications Added"
+            }
+          },
+          {
+            "type": "text",
+            "data": "### Finishing the Promotion\n\n**Priority**  \nPriority determines the order in which the promotions are applied in the cart. Lower number means higher priority.\n\n**Stop**  \nStop determines if any other promotions are calculated after this one. Setting it to false means no other promotions are taken into consideration after this one applied. \n\n**Max Uses**  \nThe number of times a promotion can be used before status is changed to **DISABLED**. This is optional and if not set the promotion will be active until manually disabled.\n\n**Start Date**  \nTime and date to start the Promotion. If left blank it will default to the current time. \n\n**End Date**\nTime and date to end the Promotion.\n\n**Status**\nStatus is a way to enable and disable the promotion. This can also be set by start dates, end dates, and max uses. \n\nBelow is the completed Promotion for Buy One, Get One Free. "
+          },
+          {
+            "type": "callout",
+            "data": {
+              "body": "There are two stops. One in the rule which determines if other rules will execute. One in the promotion to decide if the other promotions will execute."
+            }
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"name\": \"Buy One Get One Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"include_items_considered_by_condition\": false,\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": false,\n      \"stop\": false,\n      \"condition\": {\n        \"cart\": {\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"minimum_quantity\": 1\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"Buy one Le Parfait Jar, Get One Free!\",\n      \"locations\": [\n        \"HOME_PAGE\",\n        \"PRODUCT_PAGE\",\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"You are eligible for a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"Congratulations, you have received a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 1,\n  \"stop\": false,\n  \"start_date\": \"2019-01-28T00:00:00+00:00\",\n  \"status\": \"ENABLED\"\n}",
+            "header": {
+              "title": "Buy One Get One Free"
+            }
+          },
+          {
+            "type": "text",
+            "data": "Use the request below to try out creating the Promotion."
+          },
+          {
+            "type": "http",
+            "data": {
+              "method": "put",
+              "url": "https://api.bigcommerce.com/stores/{store_hash}/v3/promotions",
+              "headers": {
+                "X-Auth-Client": "",
+                "X-Auth-Token": "",
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+              },
+              "body": "{\n  \"name\": \"Buy One Get One Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"include_items_considered_by_condition\": false,\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": false,\n      \"stop\": false,\n      \"condition\": {\n        \"cart\": {\n          \"items\": {\n            \"products\": [\n              174\n            ]\n          },\n          \"minimum_quantity\": 1\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"Buy one Le Parfait Jar, Get One Free!\",\n      \"locations\": [\n        \"HOME_PAGE\",\n        \"PRODUCT_PAGE\",\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"You are eligible for a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"Congratulations, you have received a free Le Parfait Jar.\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 1,\n  \"stop\": false,\n  \"start_date\": \"2019-01-28T00:00:00+00:00\",\n  \"status\": \"ENABLED\"\n}"
+            },
+            "header": {
+              "title": "Create a Buy One Get One Promotion On Your Store"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Merchant View\nAfter the promotion is created, it will appear under **Marketing > Cart Level Discounts**. A promotion created via API can not be edited in the Control Panel. The merchant will be able to disable, change the priority, set the stop and delete the promotion.\n",
+            "header": {
+              "anchor": "promotions_merchant-view"
+            }
+          },
+          {
+            "type": "image",
+            "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1549390235183",
+            "header": {
+              "subtitle": "Merchant View Control Panel"
+            },
+            "config": {
+              "centered": true,
+              "fluid": true
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Action Only Promotions\n\nRules do not need Conditions. For example, 10% off All Common Good Brand. Here, omit the rule and just add in the action part of the Promotion. Condition is omitted here since the shopper need not take any extra actions for the discount to apply. ",
+            "header": {
+              "anchor": "promotions_action-only-promotions"
+            }
+          },
+          {
+            "type": "code",
+            "data": "{\n\t\"name\": \"10% off Fog Linen Work\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"10\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\"as_total\": false,\n\t\t\t\t\"include_items_considered_by_condition\": false,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"brands\": [\n\t\t\t\t\t\t40\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": false\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"<div>&nbsp;Get 10% off All Linen Fog Work.</div>\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"HOME_PAGE\",\n\t\t\t\t\"PRODUCT_PAGE\",\n\t\t\t\t\"CART_PAGE\",\n\t\t\t\t\"CHECKOUT_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"<div>You are eligible for 10% off Linen Fog Work.</div>\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"<div>&nbsp;Congratulations! You saved 10% on Linen Fog Work.&nbsp; %</div>\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 5,\n\t\"stop\": false,\n\t\"max_uses\": 200,\n\t\"start_date\": \"2019-02-07T05:00:00+00:00\",\n\t\"end_date\": \"2019-02-14T04:59:59+00:00\",\n\t\"status\": \"ENABLED\"\n\n}\n",
+            "header": {
+              "title": "Action Promotion Example"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Product Level Discount & Order Level Discount\n\n### How To Create \nOrder level discount only comes from [CartValueAction](/promotions-beta/models/cartvalueaction), it does not allow for line items to be excluded. Product level discounts only comes from [CartItemsAction](/promotions-beta/models/cartitemsaction) allows for line items to be excluded while the discounts are displayed on individual eligible items \n\n### Actual discounting behaviour:\n\n[CartValueAction](/promotions-beta/models/cartvalueaction) only applies to order subtotal, that is line items in the cart, but not shipping or handling fees. When applying order level discounts, the amount is distributed among all line items in the cart -- it is designed this way because we need to attribute discounts to individual line item for correct tax calculation. \n\nProduct level discounts are displayed as discounts on each individual line items with strikethrough.",
+            "header": {
+              "anchor": "promotions_product-order-discount"
+            }
+          },
+          {
+            "type": "image",
+            "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1549392385533",
+            "header": {
+              "title": "Product Level Discount Display"
+            },
+            "config": {
+              "centered": true,
+              "fluid": true
+            }
+          },
+          {
+            "type": "text",
+            "data": "Order level discounts are displayed as a separate line item on the order."
+          },
+          {
+            "type": "image",
+            "data": "//s3.amazonaws.com/user-content.stoplight.io/6012/1549392416779",
+            "header": {
+              "title": "Order Level Discount Display"
+            },
+            "config": {
+              "centered": true,
+              "fluid": true
+            }
+          },
+          {
+            "type": "text",
+            "data": "### Weighting\nProduct level discounts always apply before order level discounts regardless the execution sequence of the promotions."
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Free Shipping\n\nAt the moment we offer a free shipping action that provides an additional shipping method called “free shipping” on the storefront checkout flow. This is not the same as 100% off shipping since the shopper is offered a choice of shipping options with one of them being free shipping. ",
+            "header": {
+              "anchor": "promotions_free-shipping"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Using Logical Operators\n\nUsing logical operators allows you to create promotions that require a shopper to meet more than one condition before the discount applies. They can also be used to exclude brand, products and categories from discounts.\n\nThe following two examples demonstrate the flexibility of using logical operators in promotions. Each example shows two similar cart conditions and how to fulfill each conditions.\n\n\n* Two items from brand X and two items from category Y\n* Two items from either brand X and category Y\n\n```\nand: [{\n\t\t\tcart: {\n\t\t\t\tminimum_quantity: 2\n\t\t\t\titems: {\n\t\t\t\t\tbrands: [x]\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tcart: {\n\t\t\t\tminimum_quantity: 2\n\t\t\t\titems: {\n\t\t\t\t\tcategories: [y]\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t]\n```\n\n\nJSON Schema\n\n```\n{\n\tRule {\n\t\tCondition {\n\t\t\tAndCondition: [{\n\t\t\t\tCartCondition: {\n\t\t\t\t\tItemMatcher: {},\n\t\t\t\t\tminimum_quantity\n\n\t\t\t\t},\n\t\t\t\tCartCondition: {\n\t\t\t\t\tItemMatcher: {},\n\t\t\t\t\tminimum_quantity\n\n\t\t\t\t},\n\t\t\t}]\n\t\t}\n\t}\n}\n```\n\n---\n\nTwo items that belong to both brand X and category Y\n\n```\n{\n\tcart: {\n\t\tminimum_quantity: 2\n\t\titems: {\n\t\t\tand: [{\n\t\t\t\t\tbrands: [x]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tcategories: [y]\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}\n```\n\nJSON Schema\n\n```\n{\n\tRule: {\n\t\tCondition:{\n\t\t\tCartCondition:{\n\t\t\tminimum_quantity: 2,\n\t\t\t  ItemMatcher:{\n\t\t\t  \tAndItemMatcher:[\n\t\t\t\t\tBrandItemMatcher(SimpleItemMatcher):[],\n\t\t\t\t\tCategoriesItemMatcher(SimpleItemMatcher):[]\n\t\t\t\t]\n\t\t\t  }\n\t\t\t}\n\t\t}\n\t}\n}\n```",
+            "header": {
+              "anchor": "promotions_logical-operators"
+            }
+          },
+          {
+            "type": "text",
+            "data": "The following Promotion use the [Cart Items Action > Item Matcher > Not Item Matcher > Categories Item Matcher](/promotions-beta/models/cartitemsaction). This gives all items in the cart 15% off except for items that are in the sale category. This Promotion also does not have a condition. There is nothing the shopper needs to do for the discount to apply. "
+          },
+          {
+            "type": "code",
+            "data": "{\n  \"name\": \"15% off store except sale items\" ,\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"15\"\n          },\n          \"items\": {\n            \"not\": {\n              \"categories\": [\n                18\n              ]\n            }\n          }\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": true\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"15% off store except sale\",\n      \"locations\": [\n        \"HOME_PAGE\",\n        \"PRODUCT_PAGE\",\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"15% off store except sale\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"15% off store except sale\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ]\n}",
+            "header": {
+              "title": "15% of Store Except Sale Category"
+            },
+            "config": {
+              "mode": "json"
+            }
+          },
+          {
+            "type": "text",
+            "data": "---"
+          },
+          {
+            "type": "text",
+            "data": "## Definitions\n\n**Active and Inactive Promotions**  \nIf a promotion has reached its max_uses then the status will change to inactive and no longer be available to shoppers. The start and end date can also change the status of the promotion.\n\n**Multiple Promotions**  \nIf there are multiple promotions active on a store, to control the order in which the promotions apply set the priority attribute. A higher priority means the promotion will apply first. (eg. priority 1 promotion runs before priority 2, etc) \n\n**Promotion Stop**  \nThe stop attribute controls whether to skip all the promotions with lower priority than the current when the current promotion is applied successfully. This is part of the [Rule Object](/promotions-beta/models/rule).\n\n**Apply Once**  \nThis controls whether a promotion can run multiple times or just once. If the promotion is configured to repeat, we run a loop to check if condition is satisfied, then apply action until condition can no longer satisfied. Notice that under certain condition/action combination, this may result in infinite loop that results in promotion being put into “INVALID” status. This is part of the [Rule Object](/promotions-beta/models/rule).\n\n\n**As Total**\n If set to true the promotion is distributed among the items in the cart. For example if the discount is $10 and there are two eligible items in the cart, then the discount is spread among the items. In this case each item will get a $5 discount. \n\nIf set to false then the promotion will apply to each item. For example, if the discount is $10 then each item will be discount by $10, making the total discount $20. This is part of the [CartItemsAction](/promotions-beta/models/cartitemsaction).\n\n**Include Items Considered by Condition**\n\nIf false, items that used to satisfy the condition are excluded from the discount. For example, Buy One Get One 20% Off. If the cart only contains one item, it can not be used for the discount. \n\nIf true the item used to satisfy the condition are included in the discount. For example, Buy X Get A Discount. If there is only one item in the cart, it will be used to satisfy the discount. \n\n*Buy One from Category X, Get One Free Product From the Same Category*: \n\nWhen the cart only has one item, it will not discount the item in the cart. When the second item from the same category is added, the second item will be free. It is using the original item in the cart to satisfy the condition.\n\n*Buy 2 from category X, receive $10, buy 3 from category X, receive $15*:\n\nWhen the cart contains two items from category X, then both items will get the $10 discount.\nThis is part of the [CartItemsAction](/promotions-beta/models/cartitemsaction)",
+            "header": {
+              "anchor": "promotions_definitions"
+            }
+          }
+        ],
+        "children": [
+          {
+            "title": "Code Samples",
+            "route": {
+              "path": "/code-samples-promotion-api"
+            },
+            "data": {
+              "blocks": [
+                {
+                  "type": "html",
+                  "data": "<h1>Code Samples -- Promotions API Beta</h1>\n<div class=\"otp\" id=\"no-index\">\n\t<h3> On This Page </h3>\n\t<ul>\n        <p>Shipping Promotions</p>\n        <ul>\n            <li><a href=\"#promotions_code-samples_shipping-one\">Buy Two of X and Buy Two of Y Get Free Shipping to All Zones (Start/End Times AND Operator)</a></li>\n            <li><a href=\"#promotions_code-samples_shipping-two\">Order at Least $X, Get Free Shipping to Specific Shipping Zones (Start/End Times)</a></li>\n            <li><a href=\"#promotions_code-samples_shipping-three\">Order At Least 2X of Product Get Free Shipping (Start/End Times)</a></li>\n        </ul>\n        </br>\n        <p>Product Promotions</p>\n        <ul>\n            <li><a href=\"#promotions_code-samples_product-one\">Buy One Get One Free (Start/End Times)</a></li>\n            <li><a href=\"#promotions_code-samples_product-two\">Buy (X units) of Product A, Get (Y units) of Product B For $ or % Off Per Unit</a></li>\n            <li><a href=\"#promotions_code-samples_product-three\">Get $ or % Off Product X</a></li>\n            <li><a href=\"#promotions_code-samples_product-four\">Take X% Off the Most Expensive Item in the Cart</a></li>\n            <li><a href=\"#promotions_code-samples_product-five\">Buy X Product Variant and Get X Product Variant Free</a></li>\n        </ul>\n        </br>\n        <p>Brand Promotions</p>\n        <ul>\n            <li><a href=\"#promotions_code-samples_brand-one\">Spend $X in Brand X, Get Free Shipping to X Shipping Zones</a></li>\n            <li><a href=\"#promotions_code-samples_brand-two\">Apply a $ or % Discount to Each Item in One or More Brands (AND, NOT Operators)</a></li>\n          \t<li><a href=\"#promotions_code-samples_brand-three\">Spend X Amount in Brand Y, Get X% Off in Brand Y</a></li>\n        </ul>\n        </br>\n        <p>Category Promotions</p>\n        <ul>\n            <li><a href=\"#promotions_code-samples_category-one\">Apply a $ or % Discount to Each Item in One or More Categories</a></li>\n            <li><a href=\"#promotions_code-samples_category-two\">Apply a Tiered Discount to X Products Based on the Quantity of Items Ordered Within X Categories</a></li>\n            <li><a href=\"#promotions_code-samples_category-three\">Buy X Units in (Category A), Get Y Additional Units in the Same Category Free (Must be of Equal or Lesser Value)</a></li>\n        </ul>\n        </br>\n        <p>Order Promotions</p>\n        <ul>\n            <li><a href=\"#promotions_code-samples_order-one\">Tiered $ Off Order Based on Order Value</a></li>\n            <li><a href=\"#promotions_code-samples_order-two\">X$ Off When you Purchase 2 of X Product or 1 of X Product (OR Operator)</a></li>\n            <li><a href=\"#promotions_code-samples_order-three\">Spend X$ Get X$ Off Order</a></li>\n            <li><a href=\"#promotions_code-samples_order-four\">Order at Least $X Get X Item Free</a></li>\n            <li><a href=\"#promotions_code-samples_order-five\">Take X% Off Items Storewide Except for X Category (NOT Operator)</a></li>\n        </ul>\n        </br>\n        <p>Logical Operators</p>\n        <ul>\n            <li><a href=\"#promotions_code-samples_logical-condition-one\">Buy 2 of Product X or Buy 2 of Product Y (OR Operator)</a></li>\n            <li><a href=\"#promotions_code-samples_logical-condition-two\">Buy 2 (Product X or Product Y) (OR Operator)</a></li>\n            <li><a href=\"#promotions_code-samples_logical-item-matcher-one\">Get Percentage Off X category, Excluding an Item (AND, NOT Operators)</a></li>\n            <li><a href=\"#promotions_code-samples_logical-item-matcher-two\">Get X% Off All Brand X and All Except X Products in Brand Y (OR, AND, NOT Operators)</a></li>\n        </ul>\n\t</ul>\n</div>"
+                },
+                {
+                  "type": "text",
+                  "data": "## Code Samples\n\nBelow is a list of promotions, along with a create request for each.\n\nEach discount can be configured in many different ways. The samples below just show  possible configurations."
+                },
+                {
+                  "type": "text",
+                  "data": "---"
+                },
+                {
+                  "type": "text",
+                  "data": "## Shipping Promotions"
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Buy two of X and Buy two of Y get free shipping to all zones\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"shipping\": {\n          \"free_shipping\": true,\n          \"zone_ids\": \"*\"\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": false,\n      \"currency_code\": \"AUD\",\n      \"condition\": {\n        \"and\": [\n          {\n            \"cart\": {\n              \"items\": {\n                \"products\": [\n                  97\n                ]\n              },\n              \"minimum_quantity\": 2\n            }\n          },\n          {\n            \"cart\": {\n              \"items\": {\n                \"variants\": [\n                  12\n                ]\n              },\n              \"minimum_quantity\": 2\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"notifications\": [],\n  \"priority\": 20,\n  \"stop\": false,\n  \"status\": \"ENABLED\",\n  \"start_date\": \"2019-02-06T05:00:00+00:00\",\n  \"end_date\": \"2019-02-09T04:59:59+00:00\"\n}",
+                  "header": {
+                    "title": "Buy Two of X and Buy Two of Y Get Free Shipping to All Zones Start/End Times AND Operator",
+                    "subtitle": "Shipping",
+                    "anchor": "promotions_code-samples_shipping-one"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"Order at least X units of product Y, get free shipping to specific shipping zones\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"shipping\": {\n\t\t\t\t\"free_shipping\": true,\n\t\t\t\t\"zone_ids\": [\n\t\t\t\t\t2,\n\t\t\t\t\t3\n\t\t\t\t]\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": false,\n\t\t\"condition\": {\n\t\t\t\"cart\": {\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"products\": [\n\t\t\t\t\t\t163\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"minimum_quantity\": 1\n\t\t\t}\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"Get free shipping for purchasing Twine Stand with Cutter. Limited to first 50 customers!\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"HOME_PAGE\",\n\t\t\t\t\"PRODUCT_PAGE\",\n\t\t\t\t\"CART_PAGE\",\n\t\t\t\t\"CHECKOUT_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"You are eligible for free shipping.\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"Congratulations you get free shipping!\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 10,\n\t\"stop\": false,\n\t\"max_uses\": 50,\n\t\"start_date\": \"2019-02-01T05:00:00+00:00\",\n\t\"end_date\": \"2019-02-05T04:59:59+00:00\",\n\t\"status\": \"ENABLED\"\n\n}",
+                  "header": {
+                    "title": "Order at Least $X, Get Free Shipping to Specific Shipping Zones",
+                    "subtitle": "Shipping",
+                    "anchor": "promotions_code-samples_shipping-two"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Order At Least 2X of Product Get Free Shipping\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"shipping\": {\n          \"free_shipping\": true,\n          \"zone_ids\": \"*\"\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": false,\n      \"condition\": {\n        \"cart\": {\n          \"items\": {\n            \"products\": [\n              175\n            ]\n          },\n          \"minimum_quantity\": 2\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 6,\n  \"stop\": false,\n  \"status\": \"ENABLED\",\n        \"start_date\": \"2019-02-06T05:00:00+00:00\",\n        \"end_date\": \"2019-02-09T04:59:59+00:00\"\n}",
+                  "header": {
+                    "title": "Order At Least 2X of Product Get Free Shipping",
+                    "anchor": "promotions_code-samples_shipping-three",
+                    "subtitle": "Shipping"
+                  }
+                },
+                {
+                  "type": "text",
+                  "data": "---"
+                },
+                {
+                  "type": "text",
+                  "data": "## Product Promotions"
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Buy One Get One Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"items\": {\n            \"products\": [\n              81\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": false,\n      \"stop\": false,\n      \"currency_code\": \"AUD\",\n      \"condition\": {\n        \"cart\": {\n          \"items\": {\n            \"products\": [\n              81\n            ]\n          },\n          \"minimum_quantity\": 1\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 1,\n  \"stop\": false,\n  \"status\": \"ENABLED\",\n  \"start_date\": \"2019-02-06T05:00:00+00:00\",\n  \"end_date\": \"2019-02-09T04:59:59+00:00\"\n}",
+                  "header": {
+                    "title": "Buy One Get One Free",
+                    "anchor": "promotions_code-samples_product-one",
+                    "subtitle": "Product"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"Buy 2 X get 10% off Y\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"10\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\"as_total\": false,\n\t\t\t\t\"include_items_considered_by_condition\": false,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"products\": [\n\t\t\t\t\t\t81\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"quantity\": 1\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": false,\n\t\t\"stop\": false,\n\t\t\"condition\": {\n\t\t\t\"cart\": {\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"products\": [\n\t\t\t\t\t\t80\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"minimum_quantity\": 1\n\t\t\t}\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 2,\n\t\"stop\": false,\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Buy (X units) of Product A, Get (Y units) of Product B For $ or % Off Per Unit",
+                    "anchor": "promotions_code-samples_product-two",
+                    "subtitle": "Product"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"Spend 100 dollar and get 10% off small orbit\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"10\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\"as_total\": false,\n\t\t\t\t\"include_items_considered_by_condition\": false,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"products\": [\n\t\t\t\t\t\t81\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"quantity\": 1\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": false,\n\t\t\"condition\": {\n\t\t\t\"cart\": {\n\t\t\t\t\"minimum_spend\": \"100\"\n\t\t\t}\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 5,\n\t\"stop\": false,\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Get $ or % Off Product X",
+                    "anchor": "promotions_code-samples_product-three",
+                    "subtitle": "Product"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n            \"name\": \"Apply 20% off Most Expensive Cart Item\",\n            \"rules\": [\n                {\n                    \"action\": {\n                        \"cart_items\": {\n                            \"discount\": {\n                                \"percentage_amount\": \"20\"\n                            },\n                            \"quantity\": 1,\n                            \"strategy\": \"MOST_EXPENSIVE\",\n                            \"add_free_item\": true,\n                            \"as_total\": false\n                        }\n                    },\n                    \"apply_once\": true,\n                    \"stop\": false\n                }\n            ],\n            \"notifications\": [\n                {\n                    \"type\": \"UPSELL\",\n                    \"content\": \"<div>&nbsp;</div>\",\n                    \"locations\": [\n                        \"CART_PAGE\"\n                    ]\n                },\n                {\n                    \"type\": \"ELIGIBLE\",\n                    \"content\": \"<div>&nbsp;</div>\",\n                    \"locations\": [\n                        \"CART_PAGE\"\n                    ]\n                },\n                {\n                    \"type\": \"APPLIED\",\n                    \"content\": \"<div>&nbsp;</div>\",\n                    \"locations\": [\n                        \"CART_PAGE\"\n                    ]\n                }\n            ],\n            \"priority\": 9,\n            \"stop\": false,\n            \"current_uses\": 0,\n            \"max_uses\": null,\n            \"start_date\": \"2019-01-31T05:00:00+00:00\",\n            \"end_date\": null,\n            \"status\": \"ENABLED\"\n        }\n\n",
+                  "header": {
+                    "title": "Take X% Off the Most Expensive Item in The Cart",
+                    "anchor": "promotions_code-samples_product-four",
+                    "subtitle": "Product"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Buy X Product Variant and Get X Product Variant Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"include_items_considered_by_condition\": false,\n          \"items\": {\n            \"variants\": [\n              471\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": false,\n      \"stop\": false,\n      \"currency_code\": \"GBP\",\n      \"condition\": {\n        \"cart\": {\n          \"items\": {\n            \"variants\": [\n              421\n            ]\n          },\n          \"minimum_quantity\": 2\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"<div>&nbsp;</div>\\r\\n<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"<div>&nbsp;</div>\\r\\n<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"<div>&nbsp;</div>\\r\\n<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 5,\n  \"stop\": false,\n  \"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Buy X Product Variant and Get X Product Variant Free",
+                    "anchor": "promotions_code-samples_product-five"
+                  }
+                },
+                {
+                  "type": "text",
+                  "data": "---"
+                },
+                {
+                  "type": "text",
+                  "data": "## Brand Promotions"
+                },
+                {
+                  "type": "code",
+                  "data": "      {\n      \t\"name\": \"Order $100 of this Common Good Brand, Get Free Shipping\",\n      \t\"rules\": [{\n      \t\t\"action\": {\n      \t\t\t\"shipping\": {\n      \t\t\t\t\"free_shipping\": true,\n      \t\t\t\t\"zone_ids\": [\n      \t\t\t\t\t1,\n      \t\t\t\t\t3\n      \t\t\t\t]\n      \t\t\t}\n      \t\t},\n      \t\t\"apply_once\": true,\n      \t\t\"stop\": false,\n      \t\t\"condition\": {\n      \t\t\t\"cart\": {\n      \t\t\t\t\"items\": {\n      \t\t\t\t\t\"brands\": [\n      \t\t\t\t\t\t37\n      \t\t\t\t\t]\n      \t\t\t\t},\n      \t\t\t\t\"minimum_quantity\": 1,\n      \t\t\t\t\"minimum_spend\": 100\n\n      \t\t\t}\n      \t\t}\n      \t}],\n      \t\"notifications\": [{\n      \t\t\t\"type\": \"UPSELL\",\n      \t\t\t\"content\": \"Get Free Shipping for Common Good Upsell\",\n      \t\t\t\"locations\": [\n      \t\t\t\t\"CART_PAGE\"\n      \t\t\t]\n      \t\t},\n      \t\t{\n      \t\t\t\"type\": \"ELIGIBLE\",\n      \t\t\t\"content\": \"On the Cart Page, Eligible\",\n      \t\t\t\"locations\": [\n      \t\t\t\t\"CART_PAGE\"\n      \t\t\t]\n      \t\t},\n      \t\t{\n      \t\t\t\"type\": \"APPLIED\",\n      \t\t\t\"content\": \"Applied Cart Page\",\n      \t\t\t\"locations\": [\n      \t\t\t\t\"CART_PAGE\"\n      \t\t\t]\n      \t\t}\n      \t],\n      \t\"priority\": 1,\n      \t\"stop\": false,\n      \t\"status\": \"ENABLED\"\n      }",
+                  "header": {
+                    "title": "Spend $X in Brand X, Get Free Shipping to X Shipping Zones",
+                    "anchor": "promotions_code-samples_brand-one",
+                    "subtitle": "Brand"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\n\t\"name\": \"Apply a $ or % discount to each item in one or more brands\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"15\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\"as_total\": false,\n\t\t\t\t\"include_items_considered_by_condition\": false,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"and\": [{\n\t\t\t\t\t\t\t\"brands\": [\n\t\t\t\t\t\t\t\t41,\n\t\t\t\t\t\t\t\t44,\n\t\t\t\t\t\t\t\t37,\n\t\t\t\t\t\t\t\t45\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"not\": {\n\t\t\t\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t\t\t\t19\n\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": false\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"Get 15% off in Common Good, Chemex, Barr-Co and Kinfolk.\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"HOME_PAGE\",\n\t\t\t\t\"PRODUCT_PAGE\",\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"You are eligible for 15% off!\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"Congratulations you have earned 15% off.\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 11,\n\t\"stop\": false,\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Apply a $ or % Discount to Each Item in One or More Brands AND, NOT Operators",
+                    "anchor": "promotions_code-samples_brand-two",
+                    "subtitle": "Brand"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"Spend X Amount in Brand Y, Get X% Off in Brand Y\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"10\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\"as_total\": true,\n\t\t\t\t\"include_items_considered_by_condition\": true,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"brands\": [\n\t\t\t\t\t\t36\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": false,\n\t\t\"condition\": {\n\t\t\t\"cart\": {\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"brands\": [\n\t\t\t\t\t\t36\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"minimum_spend\": \"200\",\n\t\t\t\t\"minimum_quantity\": 1\n\t\t\t}\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 4,\n\t\"stop\": false,\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Spend X Amount in Brand Y, Get X% Off in Brand Y",
+                    "anchor": "promotions_code-samples_brand-three"
+                  }
+                },
+                {
+                  "type": "text",
+                  "data": "## Category Promotions"
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\n\t\"name\": \"20 dollar off all Garden material\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"fixed_amount\": \"20\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\"as_total\": false,\n\t\t\t\t\"include_items_considered_by_condition\": false,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t19\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": false\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 4,\n\t\"stop\": false,\n\t\"start_date\": \"2019-01-29T00:00:00+00:00\",\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Apply a $ or % Discount to Each Item in One or More Categories",
+                    "anchor": "promotions_code-samples_category-one",
+                    "subtitle": "Category"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\n\t\"name\": \"Apply a tiered discount to applicable products based on the quantity of items ordered within one or \",\n\t\"rules\": [{\n\t\t\t\"action\": {\n\t\t\t\t\"cart_items\": {\n\t\t\t\t\t\"discount\": {\n\t\t\t\t\t\t\"fixed_amount\": \"20\"\n\t\t\t\t\t},\n\t\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\t\"as_total\": true,\n\t\t\t\t\t\"include_items_considered_by_condition\": true,\n\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t\t23\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"apply_once\": true,\n\t\t\t\"stop\": true,\n\t\t\t\"condition\": {\n\t\t\t\t\"cart\": {\n\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t\t23\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t\"minimum_quantity\": 4\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"action\": {\n\t\t\t\t\"cart_items\": {\n\t\t\t\t\t\"discount\": {\n\t\t\t\t\t\t\"fixed_amount\": \"15\"\n\t\t\t\t\t},\n\t\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\t\"as_total\": true,\n\t\t\t\t\t\"include_items_considered_by_condition\": true,\n\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t\t23\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"apply_once\": true,\n\t\t\t\"stop\": true,\n\t\t\t\"condition\": {\n\t\t\t\t\"cart\": {\n\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t\t23\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t\"minimum_quantity\": 3\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"action\": {\n\t\t\t\t\"cart_items\": {\n\t\t\t\t\t\"discount\": {\n\t\t\t\t\t\t\"fixed_amount\": \"10\"\n\t\t\t\t\t},\n\t\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\t\"as_total\": true,\n\t\t\t\t\t\"include_items_considered_by_condition\": true,\n\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t\t23\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"apply_once\": true,\n\t\t\t\"stop\": true,\n\t\t\t\"condition\": {\n\t\t\t\t\"cart\": {\n\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t\t23\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t\"minimum_quantity\": 2\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 13,\n\t\"stop\": true,\n\t\"start_date\": \"2019-02-01T05:00:00+00:00\",\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Apply a Tiered Discount to X Products Based on the Quantity of Items Ordered Within X Categories",
+                    "anchor": "promotions_code-samples_category-two"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"Buy X units in (Category A), get Y additional units in the same category free (must be of equal or l\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"100\"\n\t\t\t\t},\n\t\t\t\t\"strategy\": \"LEAST_EXPENSIVE\",\n\t\t\t\t\"add_free_item\": false,\n\t\t\t\t\"as_total\": false,\n\t\t\t\t\"include_items_considered_by_condition\": false,\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t23\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"quantity\": 1\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": false,\n\t\t\"condition\": {\n\t\t\t\"cart\": {\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"categories\": [\n\t\t\t\t\t\t23\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"minimum_quantity\": 1\n\t\t\t}\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\\r\\n<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 13,\n\t\"stop\": false,\n\t\"start_date\": \"2019-02-01T05:00:00+00:00\",\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Buy X Units in (Category A), Get Y Additional Units in the Same Category Free (Must be of Equal or Lesser Value)",
+                    "anchor": "promotions_code-samples_category-three",
+                    "subtitle": "Category"
+                  }
+                },
+                {
+                  "type": "text",
+                  "data": "## Order Promotions"
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Tiered $ off Order Based on Order Value\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_value\": {\n          \"discount\": {\n            \"fixed_amount\": \"45\"\n          }\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": true,\n      \"currency_code\": \"AUD\",\n      \"condition\": {\n        \"cart\": {\n          \"minimum_spend\": \"175\"\n        }\n      }\n    },\n    {\n      \"action\": {\n        \"cart_value\": {\n          \"discount\": {\n            \"fixed_amount\": \"30\"\n          }\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": true,\n      \"condition\": {\n        \"cart\": {\n          \"minimum_spend\": \"150\"\n        }\n      }\n    },\n    {\n      \"action\": {\n        \"cart_value\": {\n          \"discount\": {\n            \"fixed_amount\": \"15\"\n          }\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": true,\n      \"condition\": {\n        \"cart\": {\n          \"minimum_spend\": \"100\"\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 13,\n  \"stop\": false,\n  \"start_date\": \"2019-02-01T05:00:00+00:00\",\n  \"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "anchor": "promotions_code-samples_order-one",
+                    "title": "Tiered $ Off Order Based on Order Value",
+                    "subtitle": "Order"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"50$ Off when you buy 2 Tiered Wire Baskets or a Small Purple Towel\",\n\t\"rules\": [{\n\t\t\"condition\": {\n\t\t\t\"or\": [{\n\t\t\t\t\t\"cart\": {\n\t\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\t\"products\": [97]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"minimum_quantity\": 2\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"cart\": {\n\t\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\t\"variants\": [12]\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t]\n\n\t\t},\n\t\t\"action\": {\n\t\t\t\"cart_value\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"fixed_amount\": \"50\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true\n\t}]\n}\n",
+                  "header": {
+                    "title": "X$ Off When you Purchase 2 of X Product or 1 of X Product OR Operator",
+                    "anchor": "promotions_code-samples_order-two",
+                    "subtitle": "Order"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"Spend X$ Get X$ Off Order\",\n\t\"rules\": [{\n\t\t\"action\": {\n\t\t\t\"cart_value\": {\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"fixed_amount\": \"20\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": true,\n\t\t\"stop\": true,\n\t\t\"condition\": {\n\t\t\t\"cart\": {\n\t\t\t\t\"minimum_spend\": \"200\"\n\t\t\t}\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 4,\n\t\"stop\": false,\n\t\"currency_code\": \"USD\",\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Spend X$ Get X$ Off Order",
+                    "subtitle": "Order",
+                    "anchor": "promotions_code-samples_order-three"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Order at Least $X Get X Item Free\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"discount\": {\n            \"percentage_amount\": \"100\"\n          },\n          \"strategy\": \"LEAST_EXPENSIVE\",\n          \"add_free_item\": true,\n          \"as_total\": false,\n          \"include_items_considered_by_condition\": false,\n          \"items\": {\n            \"products\": [\n              175\n            ]\n          },\n          \"quantity\": 1\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": false,\n      \"currency_code\": \"AUD\",\n      \"condition\": {\n        \"cart\": {\n          \"minimum_spend\": \"200\"\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 5,\n  \"stop\": false,\n  \"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Order at Least $X Get X Item Free",
+                    "anchor": "promotions_code-samples_order-four",
+                    "subtitle": "Order"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n        \"name\": \"15% off store except sale\",\n        \"rules\": [\n            {\n                \"action\": {\n                    \"cart_items\": {\n                        \"discount\": {\n                            \"percentage_amount\": \"15\"\n                        },\n                        \"items\": {\n                            \"not\":{\n                                \"categories\":[40]\n                                \n                            }\n                        }\n                    }\n                },\n                \"apply_once\": true,\n                \"stop\": true\n            }\n        ],\n        \"notifications\": [\n            {\n                \"type\": \"UPSELL\",\n                \"content\": \"15% off store except sale\",\n                \"locations\": [\n                    \"HOME_PAGE\",\n                    \"PRODUCT_PAGE\",\n                    \"CART_PAGE\"\n                ]\n            },\n            {\n                \"type\": \"ELIGIBLE\",\n                \"content\": \"15% off store except sale\",\n                \"locations\": [\n                    \"CART_PAGE\"\n                ]\n            },\n            {\n                \"type\": \"APPLIED\",\n                \"content\": \"15% off store except sale\",\n                \"locations\": [\n                    \"CART_PAGE\"\n                ]\n            }\n        ]        \n}\n",
+                  "header": {
+                    "title": "Take X% Off Items Storewide Except for X Category NOT Operator",
+                    "subtitle": "Order",
+                    "anchor": "promotions_code-samples_order-five"
+                  },
+                  "config": {
+                    "mode": "json"
+                  }
+                },
+                {
+                  "type": "text",
+                  "data": "---"
+                },
+                {
+                  "type": "text",
+                  "data": "## Logical Operators -- Condition"
+                },
+                {
+                  "type": "text",
+                  "data": "The Promotion below uses logical “OR” at the conditional level and it requires the shopper to have either 2 of product X or 2 of product Y in the cart to satisfy this condition."
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Buy 2 product X OR Buy 2 product Y\",\n  \"rules\": [\n    {\n      \"condition\": {\n        \"or\": [\n          {\n            \"cart\": {\n              \"items\": {\n                \"products\": [\n                  97\n                ]\n              },\n              \"minimum_quantity\": 2\n            }\n          },\n          {\n            \"cart\": {\n              \"items\": {\n                \"variants\": [\n                  12\n                ]\n              },\n              \"minimum_quantity\": 2\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 13,\n  \"stop\": false,\n  \"start_date\": \"2019-02-01T05:00:00+00:00\",\n  \"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Buy 2 of Product X or Buy 2 of Product Y OR Operator",
+                    "anchor": "promotions_code-samples_logical-condition-one",
+                    "subtitle": "Logical Operators -- Condition"
+                  }
+                },
+                {
+                  "type": "text",
+                  "data": "The Promotion below uses logical “OR” at item matcher level and the shopper can have any of the following combinations to satisfy it:\n* 1 product X + 1 product Y\n* 2 product X\n* 2 product Y"
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\n\t\"name\": \"Buy 2 (product X or product Y)\",\n\n\n\t\"rules\": [{\n\t\t\"condition\": {\n\t\t\t\"or\": [{\n\t\t\t\t\t\"products\": [97]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"variants\": [12]\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"minimum_quantity\": 2\n\t\t}\n\t}],\n\t\"notifications\": [{\n\t\t\t\"type\": \"UPSELL\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"ELIGIBLE\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"APPLIED\",\n\t\t\t\"content\": \"<div>&nbsp;</div>\",\n\t\t\t\"locations\": [\n\t\t\t\t\"CART_PAGE\"\n\t\t\t]\n\t\t}\n\t],\n\t\"priority\": 13,\n\t\"stop\": false,\n\t\"start_date\": \"2019-02-01T05:00:00+00:00\",\n\t\"status\": \"ENABLED\"\n}",
+                  "header": {
+                    "title": "Buy 2 (Product X or Product Y) OR Operator",
+                    "anchor": "promotions_code-samples_logical-condition-two",
+                    "subtitle": "Logical Operators"
+                  }
+                },
+                {
+                  "type": "text",
+                  "data": "---"
+                },
+                {
+                  "type": "text",
+                  "data": "## Logical Operators -- Item Matcher"
+                },
+                {
+                  "type": "code",
+                  "data": "{\n\t\"name\": \"Get 20% off all kitchen items, excluding Able Brewing System\",\n\t\"rules\": [{\n\n\t\t\"action\": {\n\t\t\t\"cart_items\": {\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"and\": [{\n\t\t\t\t\t\t\t\"categories\": [21]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"not\": {\n\t\t\t\t\t\t\t\t\"products\": [86]\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t\"discount\": {\n\t\t\t\t\t\"percentage_amount\": \"20\"\n\t\t\t\t}\n\n\t\t\t}\n\t\t},\n\t\t\"apply_once\": false\n\t}]\n}",
+                  "header": {
+                    "title": "et Percentage Off X category, Excluding an Item AND, NOT Operators",
+                    "anchor": "promotions_code-samples_logical-item-matcher-one",
+                    "subtitle": "Logical Operators -- Item Matcher"
+                  }
+                },
+                {
+                  "type": "code",
+                  "data": "{\n  \"name\": \"Get 20% off all Coffee Makers and all but new arrivals Coffee Filters\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_items\": {\n          \"items\": {\n            \"or\": [\n              {\n                \"and\": [\n                  {\n                    \"brands\": [\n                      1\n                    ]\n                  },\n                  {\n                    \"categories\": [\n                      1\n                    ]\n                  }\n                ]\n              },\n              {\n                \"and\": [\n                  {\n                    \"brands\": [\n                      2\n                    ]\n                  },\n                  {\n                    \"categories\": [\n                      2\n                    ]\n                  },\n                  {\n                    \"not\": {\n                      \"categories\": [\n                        3\n                      ]\n                    }\n                  }\n                ]\n              }\n            ]\n          },\n          \"discount\": {\n            \"percentage_amount\": \"20\"\n          }\n        }\n      },\n      \"apply_once\": false,\n      \"currency_code\": \"AUD\",\n    }\n  ]\n}",
+                  "header": {
+                    "title": "Get X% Off All Brand X and All Except X Products in Brand Y OR, AND, NOT Operators",
+                    "anchor": "promotions_code-samples_logical-item-matcher-two",
+                    "subtitle": "Logical Operators -- Item Matcher"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "title": "Promotions API",
+            "route": {
+              "path": "/promotions-beta"
+            },
+            "data": {
+              "$ref": "./Promotions API Beta.oas2.yml"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "meta": {
+    "favicon": "https://www.bigcommerce.com/assets/images/favicons/favicon-96x96.png",
+    "title": "BigCommerce Promotions API  Beta",
+    "description": "The Promotions API allows for developers to create promotions that drive sales."
+  }
+}

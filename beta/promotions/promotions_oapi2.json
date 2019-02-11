@@ -1,0 +1,1310 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Promotions API Beta",
+    "version": "",
+    "description": "## This API is currently in BETA. \n\n* To learn more about Promotions, see [Promotions](/)."
+  },
+  "paths": {
+    "/promotions": {
+      "get": {
+        "summary": "Get All Promotions",
+        "description": "Returns a list of *Promotions*.\n\nThe response includes the display name and other details about each promotion, and lists the promotions in order of priority by default.",
+        "operationId": "getPromotions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter items by `id`.",
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filter items by `name`.",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter items by `status`.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field name to sort by.",
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "priority"
+            ]
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/PromotionsCollectionResponse"
+          },
+          "422": {
+            "description": "Failure due to an invalid query parameter.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Promotions"
+        ]
+      },
+      "post": {
+        "summary": "Create Promotion",
+        "operationId": "createPromotion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Promotion"
+            },
+            "x-examples": {
+              "Shipping": "{\n  \"name\": \"Buy two of X and Buy two of Y get free shipping to all zones\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"shipping\": {\n          \"free_shipping\": true,\n          \"zone_ids\": \"*\"\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": false,\n      \"condition\": {\n        \"and\": [\n          {\n            \"cart\": {\n              \"items\": {\n                \"products\": [\n                  97\n                ]\n              },\n              \"minimum_quantity\": 2\n            }\n          },\n          {\n            \"cart\": {\n              \"items\": {\n                \"variants\": [\n                  12\n                ]\n              },\n              \"minimum_quantity\": 2\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"notifications\": [],\n  \"priority\": 20,\n  \"stop\": false,\n  \"status\": \"ENABLED\"\n}",
+              "Product": {
+                "name": "Buy One Get One Free",
+                "rules": [
+                  {
+                    "action": {
+                      "cart_items": {
+                        "discount": {
+                          "percentage_amount": "100"
+                        },
+                        "strategy": "LEAST_EXPENSIVE",
+                        "add_free_item": true,
+                        "as_total": false,
+                        "items": {
+                          "products": [
+                            81
+                          ]
+                        },
+                        "quantity": 1
+                      }
+                    },
+                    "apply_once": false,
+                    "stop": false,
+                    "currency_code": "AUD",
+                    "condition": {
+                      "cart": {
+                        "items": {
+                          "products": [
+                            81
+                          ]
+                        },
+                        "minimum_quantity": 1
+                      }
+                    }
+                  }
+                ],
+                "notifications": [
+                  {
+                    "type": "UPSELL",
+                    "content": "",
+                    "locations": [
+                      "CART_PAGE"
+                    ]
+                  },
+                  {
+                    "type": "ELIGIBLE",
+                    "content": "",
+                    "locations": [
+                      "CART_PAGE"
+                    ]
+                  },
+                  {
+                    "type": "APPLIED",
+                    "content": "",
+                    "locations": [
+                      "CART_PAGE"
+                    ]
+                  }
+                ],
+                "priority": 1,
+                "stop": false,
+                "status": "ENABLED"
+              },
+              "Order": "{\n  \"name\": \"Tiered $ off Order Based on Order Value\",\n  \"rules\": [\n    {\n      \"action\": {\n        \"cart_value\": {\n          \"discount\": {\n            \"fixed_amount\": \"45\"\n          }\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": true,\n      \"condition\": {\n        \"cart\": {\n          \"minimum_spend\": \"175\"\n        }\n      }\n    },\n    {\n      \"action\": {\n        \"cart_value\": {\n          \"discount\": {\n            \"fixed_amount\": \"30\"\n          }\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": true,\n      \"condition\": {\n        \"cart\": {\n          \"minimum_spend\": \"150\"\n        }\n      }\n    },\n    {\n      \"action\": {\n        \"cart_value\": {\n          \"discount\": {\n            \"fixed_amount\": \"15\"\n          }\n        }\n      },\n      \"apply_once\": true,\n      \"stop\": true,\n      \"condition\": {\n        \"cart\": {\n          \"minimum_spend\": \"100\"\n        }\n      }\n    }\n  ],\n  \"notifications\": [\n    {\n      \"type\": \"UPSELL\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"ELIGIBLE\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    },\n    {\n      \"type\": \"APPLIED\",\n      \"content\": \"<div>&nbsp;</div>\",\n      \"locations\": [\n        \"CART_PAGE\"\n      ]\n    }\n  ],\n  \"priority\": 13,\n  \"stop\": false,\n  \"start_date\": \"2019-02-01T05:00:00+00:00\",\n  \"status\": \"ENABLED\"\n}"
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/responses/PromotionsResponse"
+          },
+          "422": {
+            "description": "The request payload was invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Promotions"
+        ],
+        "description": "Creates a *Promotion*.\nTo learn more about how to create a *Promotion*, see [Promotions API](/).\nFor a full list of code samples, see [Code Samples](/code-samples-promotion-api). \n\n**Required Fields**\n- apply_once\n- content\n- type\n- locations"
+      }
+    },
+    "/promotions/{id}": {
+      "get": {
+        "summary": "Get Promotion",
+        "description": "Returns a single *Promotion*.",
+        "operationId": "getPromotion",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique identifier for the promotion.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/PromotionsResponse"
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Promotions"
+        ]
+      },
+      "put": {
+        "summary": "Update Promotion",
+        "operationId": "updatePromotion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The `id` of the promotion to be updated.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Promotion"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "Buy One Get One Free",
+                "rules": [
+                  {
+                    "action": {
+                      "cart_items": {
+                        "discount": {
+                          "percentage_amount": "100"
+                        },
+                        "strategy": "LEAST_EXPENSIVE",
+                        "add_free_item": true,
+                        "as_total": false,
+                        "include_items_considered_by_condition": false,
+                        "items": {
+                          "products": [
+                            174
+                          ]
+                        },
+                        "quantity": 1
+                      }
+                    },
+                    "apply_once": false,
+                    "stop": false,
+                    "condition": {
+                      "cart": {
+                        "items": {
+                          "products": [
+                            174
+                          ]
+                        },
+                        "minimum_quantity": 1
+                      }
+                    }
+                  }
+                ],
+                "notifications": [
+                  {
+                    "type": "UPSELL",
+                    "content": "",
+                    "locations": [
+                      "CART_PAGE"
+                    ]
+                  },
+                  {
+                    "type": "ELIGIBLE",
+                    "content": "",
+                    "locations": [
+                      "CART_PAGE"
+                    ]
+                  },
+                  {
+                    "type": "APPLIED",
+                    "content": "",
+                    "locations": [
+                      "CART_PAGE"
+                    ]
+                  }
+                ],
+                "priority": 2,
+                "stop": false,
+                "currency_code": "USD",
+                "max_uses": null,
+                "start_date": "2019-01-28T00:00:00+00:00",
+                "end_date": null,
+                "status": "ENABLED"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/PromotionsResponse"
+          },
+          "404": {
+            "description": "The requested resource could not be found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Promotions"
+        ],
+        "description": "Updates a *Promotion*."
+      },
+      "delete": {
+        "summary": "Delete Promotion",
+        "description": "Deletes a *Promotion*.",
+        "operationId": "deletePromotion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the promotion to be deleted.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Accept"
+          },
+          {
+            "$ref": "#/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The deletion was successful or the resource does not exist."
+          }
+        },
+        "tags": [
+          "Promotions"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Promotion": {
+      "type": "object",
+      "description": "**Promotion**  \nA *Promotion* is composed of a condition that a customer can satisfy (such as increasing their cart value above a certain amount or adding an item to their cart) and an action will take place (such as a discount on the customer's order total, or a free item being added to their cart).",
+      "title": "Promotion",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "An auto generated unique identifier for the discount rule.",
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "description": "An internal name for this rule for the merchant to refer to.",
+          "example": "Buy Product X Get Free Shipping"
+        },
+        "rules": {
+          "type": "array",
+          "description": "An ordered list of rules to be executed until the first applicable one applies a discount successfully and the rest will be skipped.",
+          "items": {
+            "$ref": "#/definitions/Rule"
+          }
+        },
+        "current_uses": {
+          "type": "integer",
+          "description": "A read-only count of the times this rule has been used by customers. A rule is considered to be used when a customer successfully checks out with a rule that has applied a discount to their cart.",
+          "example": 2
+        },
+        "max_uses": {
+          "type": "integer",
+          "description": "The maximum number of times this discount can be used by customers.",
+          "example": 10
+        },
+        "status": {
+          "type": "string",
+          "description": "Controls whether or not a discount rule can be used by customers. `INVALID` is a read-only status into which enabled discount rules may transition when they become invalid.",
+          "enum": [
+            "ENABLED",
+            "DISABLED",
+            "INVALID"
+          ]
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date & time this rule will become active.",
+          "example": "2019-01-20T22:00:00+00:00"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date & time that this rule will expire. If left null, then the promotion never expires.",
+          "example": "2019-01-20T22:00:00+00:00"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "The order in which this promotion will be evaluated compared to other promotions. If left unspecified, the new promotion created will be appended to the end of the list",
+          "minimum": 1,
+          "example": 1
+        },
+        "stop": {
+          "type": "boolean",
+          "description": "When the promotion is applied successfully, whether to stop evaluating promotions down the priority list",
+          "example": false
+        },
+        "currency_code": {
+          "type": "string",
+          "description": "The ISO-4217 transactional currency code to which the promotion applies",
+          "default": false,
+          "example": "USD"
+        },
+        "notifications": {
+          "type": "array",
+          "description": "Notifications to display on the storefront based on promotion evaluation result.",
+          "items": {
+            "$ref": "#/definitions/Notification"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "rules"
+      ]
+    },
+    "Rule": {
+      "type": "object",
+      "description": "**Rule**  \nRule is the executable unit of the promotion, it applies the discount defined in the specified action when the condition is met.",
+      "title": "Rule",
+      "properties": {
+        "condition": {
+          "$ref": "#/definitions/Condition"
+        },
+        "action": {
+          "$ref": "#/definitions/Action"
+        },
+        "apply_once": {
+          "type": "boolean",
+          "description": "Whether the action should be applied only once"
+        },
+        "stop": {
+          "type": "boolean",
+          "description": "When the current promotion is applied successfully, whether to stop executing all the remaining promotions down the priority list"
+        }
+      },
+      "required": [
+        "action",
+        "apply_once"
+      ]
+    },
+    "Condition": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/CartCondition"
+        },
+        {
+          "$ref": "#/definitions/CustomerCondition"
+        },
+        {
+          "$ref": "#/definitions/AndCondition"
+        },
+        {
+          "$ref": "#/definitions/OrCondition"
+        },
+        {
+          "$ref": "#/definitions/NotCondition"
+        }
+      ],
+      "title": "Condition",
+      "description": "**Condition**"
+    },
+    "AndCondition": {
+      "type": "object",
+      "description": "**AndCondition**  \nEvaluates to true when all children are evaluated to true",
+      "title": "AndCondition",
+      "properties": {
+        "and": {
+          "type": "array",
+          "description": "Array of [Condition](/promotions-beta/models/condition).",
+          "items": {}
+        }
+      }
+    },
+    "OrCondition": {
+      "type": "object",
+      "description": "**OrCondition**  \nEvaluates to true when at least one of the children are evaluated to true in the order they are specified",
+      "title": "OrCondition",
+      "properties": {
+        "or": {
+          "type": "array",
+          "description": "Array of [Condition](/promotions-beta/models/condition).",
+          "items": {}
+        }
+      }
+    },
+    "NotCondition": {
+      "type": "object",
+      "description": "**NotCondition**  \nEvaluates to true when the child is evaluated to false.",
+      "title": "NotCondition",
+      "properties": {
+        "not": {
+          "type": "object",
+          "description": "Object of [Condition](/promotions-beta/models/condition)."
+        }
+      }
+    },
+    "CustomerCondition": {
+      "type": "object",
+      "description": "**CustomerCondition**  \nCondition based on customer's identity and past order history",
+      "properties": {
+        "customer": {
+          "type": "object",
+          "properties": {
+            "customer_groups": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "minimum_order_count": {
+              "type": "integer",
+              "description": "The minimum number of completed orders required of the customer in order to satisfy the condition."
+            },
+            "minimum_spend": {
+              "$ref": "#/definitions/Money"
+            },
+            "date_range": {
+              "type": "string",
+              "description": "The date range during which paid orders count towards minimum_spend and minimum_order_count. If left null, all past orders are considered."
+            }
+          }
+        }
+      },
+      "title": "Customer Condition"
+    },
+    "CartCondition": {
+      "type": "object",
+      "description": "**Cart Condition**  \nCondition based on current cart content.",
+      "properties": {
+        "cart": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "$ref": "#/definitions/ItemMatcher"
+            },
+            "minimum_quantity": {
+              "type": "integer",
+              "description": "minimal quantity of matched items, only have effect when items are specified",
+              "example": 1
+            },
+            "minimum_spend": {
+              "$ref": "#/definitions/Money"
+            }
+          }
+        }
+      },
+      "title": "Cart Condition"
+    },
+    "ItemMatcher": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/SimpleItemMatcher"
+        },
+        {
+          "$ref": "#/definitions/AndItemMatcher"
+        },
+        {
+          "$ref": "#/definitions/OrItemMatcher"
+        },
+        {
+          "$ref": "#/definitions/NotItemMatcher"
+        }
+      ],
+      "description": "**ItemMatcher**  \nWhat items to consider in the condition or action.",
+      "title": "Item Matcher"
+    },
+    "AndItemMatcher": {
+      "type": "object",
+      "description": "**AndItemMatcher**  \nEvaluates to true when all children are evaluated to true",
+      "title": "AndItemMatcher",
+      "properties": {
+        "and": {
+          "type": "array",
+          "description": "Array of [ItemMatcher](/promotions-beta/models/itemmatcher).",
+          "items": {}
+        }
+      }
+    },
+    "OrItemMatcher": {
+      "type": "object",
+      "description": "**OrItemMatcher**  \nEvaluates to true when at least one of the children are evaluated to true in the order they are specified.",
+      "title": "OrItemMatcher",
+      "properties": {
+        "or": {
+          "type": "array",
+          "description": "Array of [ItemMatcher](/promotions-beta/models/itemmatcher).",
+          "items": {}
+        }
+      }
+    },
+    "NotItemMatcher": {
+      "type": "object",
+      "description": "**NotItemMatcher**  \nEvaluates to true when the child is evaluated to false.",
+      "title": "NotItemMatcher",
+      "properties": {
+        "not": {
+          "type": "object",
+          "description": "Object of [ItemMatcher](/promotions-beta/models/itemmatcher)."
+        }
+      }
+    },
+    "SimpleItemMatcher": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/BrandsItemMatcher"
+        },
+        {
+          "$ref": "#/definitions/CategoriesItemMatcher"
+        },
+        {
+          "$ref": "#/definitions/ProductsItemMatcher"
+        },
+        {
+          "$ref": "#/definitions/VariantsItemMatcher"
+        }
+      ],
+      "title": "Simple Item Matcher",
+      "description": "**Simple Item Matcher**"
+    },
+    "BrandsItemMatcher": {
+      "type": "object",
+      "description": "**BrandsItemMatcher**  \nBrands which the items should belong to.",
+      "properties": {
+        "brands": {
+          "type": "array",
+          "description": "List of brand ids",
+          "items": {
+            "type": "integer"
+          },
+          "example": "[\n  1,\n  2,\n  3\n]"
+        }
+      },
+      "title": "Brands Item Matcher"
+    },
+    "CategoriesItemMatcher": {
+      "type": "object",
+      "description": "**CategoriesItemMatcher**  \nCategories which the items should belong to.",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "description": "List of category ids",
+          "items": {
+            "type": "integer"
+          },
+          "example": "[\n  1,\n  2,\n  3\n]"
+        }
+      },
+      "title": "Categories Item Matcher"
+    },
+    "ProductsItemMatcher": {
+      "type": "object",
+      "description": "**Products Item Matcher**  \nSpecific products which items should be from.",
+      "properties": {
+        "products": {
+          "type": "array",
+          "description": "List of product ids",
+          "items": {
+            "type": "integer"
+          },
+          "example": "[\n  1,\n  2,\n  3\n]"
+        }
+      },
+      "title": "Products Item Matcher"
+    },
+    "VariantsItemMatcher": {
+      "type": "object",
+      "description": "**Variants Item Matcher**  \nProduct variants which items should be from.",
+      "properties": {
+        "variants": {
+          "type": "array",
+          "description": "List of variant ids",
+          "items": {
+            "type": "integer"
+          },
+          "example": "[\n  1,\n  2,\n  3\n]"
+        }
+      },
+      "title": "Variants Item Matcher"
+    },
+    "CartValueAction": {
+      "type": "object",
+      "description": "**Cart Value Action**  \nApplies discount on the entire cart.",
+      "properties": {
+        "cart_value": {
+          "type": "object",
+          "properties": {
+            "discount": {
+              "$ref": "#/definitions/Discount"
+            }
+          },
+          "required": [
+            "discount"
+          ]
+        }
+      },
+      "title": "Cart Value Action"
+    },
+    "CartItemsAction": {
+      "type": "object",
+      "description": "**Cart Items Action**  \nApplies discount on matching products in the cart.",
+      "title": "Cart Items Action",
+      "properties": {
+        "cart_items": {
+          "type": "object",
+          "properties": {
+            "discount": {
+              "$ref": "#/definitions/Discount"
+            },
+            "as_total": {
+              "type": "boolean",
+              "description": "Enable this option to distribute the discount as a total among matching items. By default, discount applies to each item.\nExample: If set to false, the discount is $10 and you have 2 eligible items for this discount in the cart, both items will be discounted by $10, with a total of $20 off the order.\nIf set to true, $10 will be distributed among the 2 items, weighted by their respective price. in the simple case of same item, each item will receive $5 discount.\n"
+            },
+            "items": {
+              "$ref": "#/definitions/ItemMatcher"
+            },
+            "include_items_considered_by_condition": {
+              "type": "boolean",
+              "description": "Enable this option to discount items that are used to satisify the condition. By default items that are used to satisfy the condition are excluded from receving discount, eg Buy 1 Get 1 20% off, when the cart only contains 1 item, it's not discountable."
+            },
+            "strategy": {
+              "type": "string",
+              "description": "If the shopper has multiple items in their cart that could be discounted by this action, strategy will determine which items are discounted, for example LEAST_EXPENSIVE will sort items in price ascending order and discount the cheapest item first.",
+              "enum": [
+                "LEAST_EXPENSIVE",
+                "LEAST_EXPENSIVE_ONLY",
+                "MOST_EXPENSIVE",
+                "MOST_EXPENSIVE_ONLY"
+              ]
+            },
+            "quantity": {
+              "type": "integer",
+              "description": "Quantity of matching item to discount, if left omitted, infinite quantity can be discounted",
+              "example": 2
+            },
+            "add_free_item": {
+              "type": "boolean",
+              "description": "When the action is configured as 100% off single product variant, enable this option to add the free item to the cart automatically"
+            }
+          },
+          "required": [
+            "discount"
+          ]
+        }
+      }
+    },
+    "ShippingAction": {
+      "type": "object",
+      "description": "**Shipping Action**  \nApplies discount on shipping, optionally restricted to specific shipping zones.",
+      "title": "Shipping Action",
+      "properties": {
+        "shipping": {
+          "type": "object",
+          "properties": {
+            "free_shipping": {
+              "type": "boolean",
+              "description": "Provide a separate free shipping method. This is the only type of discount we support at this stage. Read-Only."
+            },
+            "zone_ids": {
+              "example": "[1,2,3]",
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "All configured shipping zones.",
+                  "enum": [
+                    "*"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "description": "List of shipping zone IDs that free shipping can apply to.",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "zone_ids"
+          ]
+        }
+      }
+    },
+    "Discount": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/FixedDiscount"
+        },
+        {
+          "$ref": "#/definitions/PercentageDiscount"
+        }
+      ],
+      "title": "Discount",
+      "description": "**Discount**"
+    },
+    "PercentageDiscount": {
+      "type": "object",
+      "title": "Percentage Discount",
+      "description": "**Percentage Discount**",
+      "properties": {
+        "percentage_amount": {
+          "type": "number",
+          "description": "The percentage off discount to apply.",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "maximum": 100
+        }
+      }
+    },
+    "FixedDiscount": {
+      "type": "object",
+      "properties": {
+        "fixed_amount": {
+          "$ref": "#/definitions/Money"
+        }
+      },
+      "description": "**Fixed Discount**",
+      "title": "Fixed Discount"
+    },
+    "Money": {
+      "type": "string",
+      "description": "**Money**\nRepresents a monetary value in the store's default currency.",
+      "pattern": "[0-9]+(\\.[0-9]+)?",
+      "example": "12.95",
+      "title": "Money"
+    },
+    "CollectionMeta": {
+      "type": "object",
+      "description": "Contains data about the response including pagination and collection totals.",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/Pagination"
+        }
+      },
+      "title": "Collection Meta"
+    },
+    "Pagination": {
+      "type": "object",
+      "description": "Data about the response, including pagination and collection totals.",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Total number of items in the result set."
+        },
+        "count": {
+          "type": "integer",
+          "description": "Total number of items in the collection response."
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The amount of items returned in the collection per page, controlled by the limit parameter."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The page you are currently on within the collection."
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages in the collection."
+        },
+        "links": {
+          "type": "object",
+          "description": "Pagination links for the previous and next parts of the whole collection.",
+          "properties": {
+            "previous": {
+              "type": "string",
+              "description": "Link to the previous page returned in the response."
+            },
+            "current": {
+              "type": "string",
+              "description": "Link to the current page returned in the response."
+            },
+            "next": {
+              "type": "string",
+              "description": "Link to the next page returned in the response."
+            }
+          }
+        }
+      },
+      "title": "Pagination"
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "title": "Error Response"
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "stauts": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "title": "Error"
+    },
+    "Notification": {
+      "type": "object",
+      "description": "**Notification**  \nA notification displayed to the user based on the result of executing a promotion (e.g. a \"Congratulations! You've received free shipping!\" message when the shopper receives free shipping).",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The notification content to be displayed to the user.\nData from the Condition and Action are available allowing the message to be customised.",
+          "example": "Congratulations! You've received a free %ACTION.FREE_PRODUCT%!"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "UPSELL",
+            "ELIGIBLE",
+            "APPLIED"
+          ]
+        },
+        "locations": {
+          "type": "array",
+          "description": "Indicates where the notification message will be displayed.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "HOME_PAGE",
+              "PRODUCT_PAGE",
+              "CART_PAGE",
+              "CHECKOUT_PAGE"
+            ]
+          }
+        }
+      },
+      "required": [
+        "content",
+        "type",
+        "locations"
+      ],
+      "title": "Notification"
+    },
+    "Action": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/CartValueAction"
+        },
+        {
+          "$ref": "#/definitions/CartItemsAction"
+        },
+        {
+          "$ref": "#/definitions/ShippingAction"
+        }
+      ],
+      "title": "Action",
+      "description": "**Action**"
+    }
+  },
+  "parameters": {
+    "page": {
+      "name": "page",
+      "in": "query",
+      "description": "Specifies the page number in a limited (paginated) list of resources.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "limit": {
+      "name": "limit",
+      "in": "query",
+      "description": "Controls the number of items per page in a limited (paginated) list of resources.",
+      "type": "integer",
+      "maximum": 250,
+      "minimum": 1
+    },
+    "Accept": {
+      "name": "Accept",
+      "in": "header",
+      "type": "string",
+      "default": "application/json"
+    },
+    "Content-Type": {
+      "name": "Content-Type",
+      "in": "header",
+      "type": "string",
+      "default": "application/json"
+    }
+  },
+  "tags": [
+    {
+      "name": "Promotions"
+    }
+  ],
+  "responses": {
+    "PromotionsCollectionResponse": {
+      "description": "",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Promotion"
+          },
+          "meta": {
+            "$ref": "#/definitions/CollectionMeta"
+          }
+        }
+      },
+      "examples": {
+        "application/json": {
+          "data": [
+            {
+              "id": 10,
+              "name": "Buy One Get One Free",
+              "rules": [
+                {
+                  "action": {
+                    "cart_items": {
+                      "discount": {
+                        "percentage_amount": "100"
+                      },
+                      "strategy": "LEAST_EXPENSIVE",
+                      "add_free_item": true,
+                      "as_total": false,
+                      "include_items_considered_by_condition": false,
+                      "items": {
+                        "products": [
+                          174
+                        ]
+                      },
+                      "quantity": 1
+                    }
+                  },
+                  "apply_once": false,
+                  "stop": false,
+                  "condition": {
+                    "cart": {
+                      "items": {
+                        "products": [
+                          174
+                        ]
+                      },
+                      "minimum_quantity": 1
+                    }
+                  }
+                }
+              ],
+              "notifications": [
+                {
+                  "type": "UPSELL",
+                  "content": "",
+                  "locations": [
+                    "CART_PAGE"
+                  ]
+                },
+                {
+                  "type": "ELIGIBLE",
+                  "content": "",
+                  "locations": [
+                    "CART_PAGE"
+                  ]
+                },
+                {
+                  "type": "APPLIED",
+                  "content": "",
+                  "locations": [
+                    "CART_PAGE"
+                  ]
+                }
+              ],
+              "priority": 2,
+              "stop": false,
+              "currency_code": "USD",
+              "current_uses": 0,
+              "max_uses": null,
+              "start_date": "2019-01-28T00:00:00+00:00",
+              "end_date": null,
+              "status": "ENABLED"
+            },
+            {
+              "id": 15,
+              "name": "Apply 100% off Twine Stand",
+              "rules": [
+                {
+                  "action": {
+                    "cart_items": {
+                      "discount": {
+                        "percentage_amount": "100"
+                      },
+                      "strategy": "LEAST_EXPENSIVE",
+                      "add_free_item": true,
+                      "as_total": false,
+                      "include_items_considered_by_condition": false,
+                      "items": {
+                        "products": [
+                          163
+                        ]
+                      },
+                      "quantity": 1
+                    }
+                  },
+                  "apply_once": true,
+                  "stop": false
+                }
+              ],
+              "notifications": [
+                {
+                  "type": "UPSELL",
+                  "content": "<div>&nbsp;</div>",
+                  "locations": [
+                    "CART_PAGE"
+                  ]
+                },
+                {
+                  "type": "ELIGIBLE",
+                  "content": "<div>&nbsp;</div>",
+                  "locations": [
+                    "CART_PAGE"
+                  ]
+                },
+                {
+                  "type": "APPLIED",
+                  "content": "<div>&nbsp;</div>",
+                  "locations": [
+                    "CART_PAGE"
+                  ]
+                }
+              ],
+              "priority": 1,
+              "stop": false,
+              "currency_code": "USD",
+              "current_uses": 0,
+              "max_uses": null,
+              "start_date": "2019-01-31T05:00:00+00:00",
+              "end_date": null,
+              "status": "DISABLED"
+            }
+          ],
+          "meta": {
+            "pagination": {
+              "total": 2,
+              "count": 2,
+              "per_page": 50,
+              "current_page": 1,
+              "total_pages": 1,
+              "links": {
+                "current": "?page=1&limit=50"
+              }
+            }
+          }
+        }
+      }
+    },
+    "PromotionsResponse": {
+      "description": "",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/definitions/Promotion"
+          },
+          "meta": {
+            "type": "object",
+            "description": "Empty meta object; may be used later."
+          }
+        }
+      },
+      "examples": {
+        "application/json": {
+          "data": {
+            "id": 10,
+            "name": "Buy One Get One Free",
+            "rules": [
+              {
+                "action": {
+                  "cart_items": {
+                    "discount": {
+                      "percentage_amount": "100"
+                    },
+                    "strategy": "LEAST_EXPENSIVE",
+                    "add_free_item": true,
+                    "as_total": false,
+                    "include_items_considered_by_condition": false,
+                    "items": {
+                      "products": [
+                        174
+                      ]
+                    },
+                    "quantity": 1
+                  }
+                },
+                "apply_once": false,
+                "stop": false,
+                "condition": {
+                  "cart": {
+                    "items": {
+                      "products": [
+                        174
+                      ]
+                    },
+                    "minimum_quantity": 1
+                  }
+                }
+              }
+            ],
+            "notifications": [
+              {
+                "type": "UPSELL",
+                "content": "",
+                "locations": [
+                  "CART_PAGE"
+                ]
+              },
+              {
+                "type": "ELIGIBLE",
+                "content": "",
+                "locations": [
+                  "CART_PAGE"
+                ]
+              },
+              {
+                "type": "APPLIED",
+                "content": "",
+                "locations": [
+                  "CART_PAGE"
+                ]
+              }
+            ],
+            "priority": 2,
+            "stop": false,
+            "currency_code": "USD",
+            "current_uses": 0,
+            "max_uses": null,
+            "start_date": "2019-01-28T00:00:00+00:00",
+            "end_date": null,
+            "status": "ENABLED"
+          },
+          "meta": {}
+        }
+      }
+    }
+  },
+  "host": "api.bigcommerce.com",
+  "basePath": "/stores/{store_hash}/v3/promotions",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "X-Auth-Client": {
+      "type": "apiKey",
+      "name": "X-Auth-Client",
+      "in": "header"
+    },
+    "X-Auth-Token": {
+      "type": "apiKey",
+      "name": "X-Auth-Token",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "X-Auth-Client": []
+    },
+    {
+      "X-Auth-Token": []
+    }
+  ]
+}
