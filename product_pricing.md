@@ -65,6 +65,7 @@ The variant price is accessible from:
 ### Bulk Pricing 
 
 Bulk pricing offers shoppers a discount if the purchase a certain number of items. 
+Available in Fixed ($5), Relative (-$2), or Percentage (-25%). Might apply to one product, a category of products, or the entire store's products.
 
 The variant price is accessible from:
 * Control Panel
@@ -73,7 +74,8 @@ The variant price is accessible from:
 
 ## Customer Groups
 
-Customer groups allows you to organize customers and give them discounts. '
+Customer groups allows you to organize customers and give them discounts. 
+Available in Fixed ($5), Relative (-$2), or Percentage (-25%). Might apply to one product, a category of products, or the entire store's products.
 
 Customer Groups are accessible from:
 * Control Panel
@@ -109,6 +111,20 @@ Example:
 Currency settings allows for inputting a large number of decimal places for display. Since pricing precision cuts off at 4, the rest are displayed as zero’s.
 
 [add pdp image here]
+
+Pricing Table [working title]
+This table shows the order in which pricing is applied to the product. The weighting is read from top to bottom. Each price overwrites the pricing that came before. 
+
+| Price Type | Behavior  | Example | Product | Variant | Other |
+|--|--|--|--|--| -- |
+| Default Product Price | Required on product.| T-Shirt: $25  | Price: $25</br></br>Calculated Price: $ 25 | N/A |
+| Sale Price | Overrides the default product price.  Optional on product | With a discount of $5 each item is now only $20 | ~~Price: $25~~</br></br>Sale Price: $20</br></br>Calculated Price: $ 20 | N/A|
+| Variant Price |Overrides default product or sale pricing. The base product will still show the default pricing in an API response. On the storefront, the shopper only sees variant pricing. </br>Optional on product | Small T-Shirt: $30</br></br>Medium T-Shirt: $35</br></br>Large T-Shirt: $40| ~~Price: $25~~</br></br>~~Sale Price: $20~~</br></br>~~Calculated Price: $ 20~~ | Price: $30</br></br>Calculated Price: $30|
+| Variant Sale Price | Overrides default product, sale pricing or variant pricing. The base product will still show the default pricing in an API response. On the storefront, the shopper only sees variant pricing.Optional on product |Small T-Shirt: ~~$30~~ $15</br></br>Medium T-Shirt: $35</br></br>Large T-Shirt: $40| ~~Price: $25~~</br></br>~~Sale Price: $20~~</br></br>~~Calculated Price: $ 20~~ | ~~Price: $30~~</br></br>Sale Price: $15</br></br>Calculated Price: $15 |
+| Customer Groups | It is combined with any previous sale or variant pricing. Optional on product. |It will use the variant sale pricing to take $2 off each item. For example, variant price is $15. With the Customer Group Discount it is now $13 off each item.  |~~Price: $25~~</br></br>~~Sale Price: $20~~</br></br>~~Calculated Price: $ 20~~ | ~~Price: $30~~</br></br>Sale Price: $15</br></br>Calculated Price: $15</br></br>Product Display Page: $13 |
+| Product Bulk Pricing |  Applies a storewide discount on products based on a tiered discount. Bulk Pricing does not change the default, variant or customer pricing. Bulk pricing is combined with any previous sale or customer group pricing. It is combined with any previous default pricing, sale pricing, variant pricing and customer group discounts. | If the storewide discount is buy 20 get $1 off each item. Then each item will be $12. This is because this is now including the previous customer group discount. | ~~Price: $25~~</br></br>~~Sale Price: $20~~</br></br>~~Calculated Price: $ 20~~ | ~~Price: $30~~</br></br>Sale Price: $15</br></br>Calculated Price: $15</br></br>Product Display Page: Buy in Bulk and Save | Cart Price: $12 |
+| Price List Variant | It is only availble to Customer Groups. Required for Price List. | 2% discount on all product variants. This will be on top of the variant sale pricing. It no longer includes customer group pricing or bulk pricing. Small T-Shirt: $30 Medium T-Shirt: $35 Large T-Shirt: $40| N/A | ~~Price: $30~~</br></br>Sale Price: $15</br></br>Calculated Price: $ 15 | Price List Variant, based on Variant Sale Price</br></br>Price: $14.70</br></br> Sale Price: N/A</br></br>Calculated Price: $14.70 |
+
 
 
 
