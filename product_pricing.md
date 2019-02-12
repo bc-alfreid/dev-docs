@@ -124,6 +124,13 @@ This table shows the order in which pricing is applied to the product. The weigh
 | Customer Groups | It is combined with any previous sale or variant pricing. Optional on product. |It will use the variant sale pricing to take $2 off each item. For example, variant price is $15. With the Customer Group Discount it is now $13 off each item.  |~~Price: $25~~</br></br>~~Sale Price: $20~~</br></br>~~Calculated Price: $ 20~~ | ~~Price: $30~~</br></br>Sale Price: $15</br></br>Calculated Price: $15</br></br>Product Display Page: $13 |
 | Product Bulk Pricing |  Applies a storewide discount on products based on a tiered discount. Bulk Pricing does not change the default, variant or customer pricing. Bulk pricing is combined with any previous sale or customer group pricing. It is combined with any previous default pricing, sale pricing, variant pricing and customer group discounts. | If the storewide discount is buy 20 get $1 off each item. Then each item will be $12. This is because this is now including the previous customer group discount. | ~~Price: $25~~</br></br>~~Sale Price: $20~~</br></br>~~Calculated Price: $ 20~~ | ~~Price: $30~~</br></br>Sale Price: $15</br></br>Calculated Price: $15</br></br>Product Display Page: Buy in Bulk and Save | Cart Price: $12 |
 | Price List Variant | It is only availble to Customer Groups. Required for Price List. | 2% discount on all product variants. This will be on top of the variant sale pricing. It no longer includes customer group pricing or bulk pricing. Small T-Shirt: $30 Medium T-Shirt: $35 Large T-Shirt: $40| N/A | ~~Price: $30~~</br></br>Sale Price: $15</br></br>Calculated Price: $ 15 | Price List Variant, based on Variant Sale Price</br></br>Price: $14.70</br></br> Sale Price: N/A</br></br>Calculated Price: $14.70 |
+| Price List Variant Sale Price |
+| Price List Variant Bulk Pricing |
+| Price List Variant with Product Pick List |
+| Variant with Modifier |
+| Variant with Price List |
+| Cart Level Discounts |
+| Coupons |
 
 
 
