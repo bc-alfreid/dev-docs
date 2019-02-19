@@ -1,255 +1,120 @@
-Questions:
-1. Is there anyway during create or update customer I can add the attributes values?
-I wasn't able to figure out the correct formatting for the create/update customer request.
-
-2. I made a few schema changes. I noticed the Create and Update used the response, but it was not in the right format. Array Object. `[{}]`. So I broke them out into thier own models and also updated the create to remove the id in some instances from the request example. Please review the docs and let me know if they are not correct. 
-
-3. I got 504 Gateway Timeout errors frequently. I just kept retrying until it worked. Is that normal for now. 
-
-4. Are the fields below the only ones that can be updated on PUT /customer?
-
-- email
-- first name
-- last name
-- authentication
-- company
-- customer_group_id
-- notes
-- tax_exempt_category
-
-5. Will the /DELETE endpoints delete all objects (customer, address etc) if the id is not passed in as part of the query? (Didn't want to test my store :) )
-
-6. The query params are not working for the /GET endpoints. I get a 422 each time. I just used address as the example here. 
-`name` and `customer_id` are not working as query params
-https://api.bigcommerce.com/stores/jrah6gmn/v3/customers/addresses?customer_id=20
-```
-{
-    "status": 422,
-    "title": "The filter(s): customer_id are not valid filter parameter(s).",
-    "type": "https://developer.bigcommerce.com/api#api-status-codes",
-    "errors": {}
-}
-```
-
-7. DetailedErrors is an empty object. Any reason why?
-
-8. IdsRequest is an empty array. What is this used for?
-https://bigcommerce-customer-attributes-beta.docs.stoplight.io/api-reference/models/idsrequest
-
-9. Will the batch size ever increase, for example creating customer attributes.
-
-```
-{
-    "status": 422,
-    "title": "Max batch size allowed is 1",
-    "type": "https://developer.bigcommerce.com/api#api-status-codes",
-    "errors": {}
-}
-```
-
-10. When creating customer attributes can the dates also be apart of the request? Such as setting your own date_created?
-
-11. I was trying to update a customer address https://api.bigcommerce.com/stores/jrah6gmn/v3/customers/addresses
-
-```
-[{
-	"id":16, //address id
-	"address1": "555 East Street"
-}]
-```
-
-and it required a phone number as well. Do they always have to pass in the pn during an update? If true, is there a reason why?
-
-I did check that add and it has a pn. 
-
-```
-{
-    "data": [
-        {
-            "id": 16,
-            "address1": "123 Main Street",
-            "address2": "",
-            "address_type": "residential",
-            "city": "Austin",
-            "company": "",
-            "country": "United States",
-            "country_code": "US",
-            "customer_id": 11,
-            "first_name": "Jane",
-            "last_name": "Doe",
-            "phone": "1234567890",
-            "postal_code": "78751",
-            "state_or_province": "Texas"
-        }....
-```
-
-This did work
-```
-[{
-	"id":16,
-	"address1": "555 East Street",
-	"phone": "1234567890"
-}]
-```
-12. > The ability to get the hat size from the Customer Resource Object in stencil. This is coming later right, no need to go into this? 
-
-13. It would be neat if the attribute name also returned in the /GET Customers response. That way they don't have to do a join to see the name. 
-
-```
-      "attributes": [
-        {
-          "id": 1,
-          "customer_id": 11,
-          "attribute_id": 1,
-          "attribute_value": "55",
-          "date_created": "2018-11-14T18:58:08Z",
-          "date_modified": "2018-11-14T18:58:08Z"
-        }
-      ]
-```
-
-14. For Authentication will confirming passwords be available? Is this being deprecated?
-
-Confirming Passwords
-An additional optional password_confirmation field can also be sent, providing password confirmation as a service:
-```
-{
-    "_authentication": {
-       "password": "12w69Y217PYR96J",
-       "password_confirmation": "12w69Y217PYR96J"
-    }
-}
-```
-
-15. I tried to create an attribute value that had a type of number but the request only accepted a string. Will that change? Its a bit confusing to me. 
-
-```
-[
-  {
-    "customer_id": 12,
-    "attribute_id": 2,
-    "value": "10"
-  }
- ]
-```
-This ended up working even though the type was number:
-```
-
-{
-    "data": [
-        {
-            "id": 1,
-            "name": "Age",
-            "type": "string",
-            "date_created": "2018-11-13T21:42:06Z",
-            "date_modified": "2018-11-14T16:46:23Z"
-        },
-        {
-            "id": 2,
-            "name": "Shoe Size",
-            "type": "number",
-            "date_created": "2018-11-14T16:34:57Z",
-            "date_modified": "2018-11-14T16:34:57Z"
-        }
-    ],
-    "meta": {
-        "pagination": {
-            "total": 2,
-            "count": 2,
-            "per_page": 50,
-            "current_page": 1,
-            "total_pages": 1
-        }
-    }
-}
-```
-Error when using a number
-```
- {
-    "status": 422,
-    "title": "JSON data is missing or invalid",
-    "type": "https://developer.bigcommerce.com/api#api-status-codes",
-    "errors": {
-        "": "error.expected.jsstring"
-    }
-}
-```
-
----
-# Documentation (please ignore the formatting)
-
-<h1> Customers API </h1>
-<h3> On this Page </h3>
-<ul>
-	<li><a href="#payments_postman-collection">Introduction</a></li>
-  	<li><a href="#payments_postman-collection">Postman Collection</a></li>
-  	<li><a href="#payments_workflow">Workflow</a></li>
-  	<li><a href="#payments_technical-details">Technical Details</a></li>
-	<li><a href="#payments_postman-collection">Differences between existing Customer API</a></li>
-  	<li><a href="#payments_current-limitations">Current Limitations</a></li>
-  	<li><a href="#payments_webhooks">Webhooks </a></li>
-	<li><a href="#payments_oauth-scopes">OAuth Scopes</a></li>
-</ul>
-
----
 ## Introduction
-The Customer Attributes API allows for data to be stored aganist a customer. For example by creating an attribute of hat size, then storing the value of 10 aganist a customer. When that customer is queried it will return an attribute of hat size with a value of 9. 
+The Customer Attributes API allows for data to be stored against a customer. For example, by creating an attribute of hat size, then storing the value of 10 against a customer. When that customer is queried it will return an attribute of hat size with a value of 10. 
 
----
-## Postman Collection
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/86ccd56a3d6a7701f065)
+### Customer Attribute
+A customer attribute contains a description of the data (name) and the type (string, number, data). 
+Attribute names are not available on the customer object. 
+
+[Get Customer Attribute]
+
+### Customer Attribute Value
+A customer attribute values are stored directly on the customer object and return as part of the response when doing a /GET or /PUT against the customer resource. 
+[Get Customer Attribute Value]
 ---
 
 ## Workflow
 
 ### Create a Customer Attribute
 
-Creating a [customer attribute](#link to /POST here) requires the name of the attribute and the data type of the attribute. 
+Creating a [customer attribute](#link to /POST here) requires the name of the attribute and the data type of the attribute. 
 
 ```
 [
-  {
-    "name": "Hat Size",
-    "type": "string"
-  }
+  {
+    “name”: “Hat Size”,
+    “type”: “string”
+  }
 ]
 ```
 
-The name accepts a string. As a best practice, the name should be descriptive of the data it is associated with. 
-The type accepts a string and it can be set to string, number or date. 
+Name accepts a string. As a best practice, the name should be descriptive of the data associated with the attribute. Types available are string, number and date.
 
 Note: Once the data type is set, it can not be changed. The attribute will need to be deleted then created again with the new data type. This will also delete it from the customer.
 
 ### Create a Customer Attribute Value
 
-Creating a [customer attribute value](#link to PUT here) is done by creating the value and addig it to the customer in one call. 
+Once the Customer Attribute is created, then assign it to a customer with a value.
 
+There are two ways to assign the Customer Attribute Value to the customer:
+1. Have attributes array as part of the Create a Customer request.
+2. A /PUT request to update the customer.
 
----
-## Technical Details
-
-### Customer Attribute
-A customer attribute contains a description of the data(name) and the type(string, number, data). 
-Attribute names are not available on the customer object. The attribute name is available 
-
-### Customer Attribute Value
-A customer attribute values are stored directly on the customer object and return as part of the response when doing a /GET or /PUT aganist the customer resource. 
-
-### Example Customer Attribute 
-(this response has been shortned)
-
+Create a Customer Request Example
 ```
-      "attributes": [
-        {
-          "id": 1,
-          "customer_id": 11,
-          "attribute_id": 1,
-          "attribute_value": "55",
-          "date_created": "2018-11-14T18:58:08Z",
-          "date_modified": "2018-11-14T18:58:08Z"
-        }
-      ]
- ```
+[
+  {
+    "email": "johndoe@email.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "BigCommerce",
+    "phone": "1234567890",
+    "registration_ip_address": "123.4.56.789",
+    "notes": "Warehouse",
+    "customer_group_id": 5,
+    "addresses": [
+      {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address1": "Bennelong Point ",
+        "city": "Sydney",
+        "state_or_province": "New South Wales",
+        "postal_code": "2000",
+        "country_code": "AU",
+        "phone": "1234567890",
+        "address_type": "commercial"
+      },
+      {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address1": "111 E West Street",
+        "address2": "654",
+        "city": "Akron",
+        "state_or_province": "Ohio",
+        "postal_code": "44325",
+        "country_code": "US",
+        "phone": "1234567890",
+        "address_type": "residential"
+      }
+    ],
+     "attributes": [
+      {
+        "attribute_id": 1,
+        "value": "45"
+      },
+      {
+        "attribute_id": 2,
+        "value": 12
+      }
+    ],
+    "authentication": {
+      "force_password_reset": true,
+      "new_password": "tempPassword1"
+    }
+  }
+]
+```
+
+Update a Customer Example. The customer ID is required.
+```
+[
+  {
+    "id": 32,
+    "email": "etu",
+    "first_name": "Excepte",
+    "last_name": "incidi",
+    "company": "anim",
+    "phone": "quis ",
+    "registration_ip_address": "l",
+    "notes": "adipisicing incididunt quis dolor",
+    "tax_exempt_category": "Excepteur ",
+    "customer_group_id": -76846758,
+    "authentication": {
+      "force_password_reset": true,
+      "new_password": "cupidatat dolore"
+    }
+  }
+]
+```
 
 ---
 
@@ -257,37 +122,48 @@ A customer attribute values are stored directly on the customer object and retur
 
 ### Request URL
 
-The new Customers API has been streamlined. Now instead of needed a different url to get a single customer vs all customers. One url used with a query parameter added to return the only the data needed. This is the same for all CRUD actions on the new customers API.
+The new Customers API is streamlined. Now instead of needed a different URL to get a single customer vs all customers. One URL used with a query parameter added to return only the data needed. This is the same for all CRUD actions on the new Customers API.
 
 - Single Customer on V3
-	--`/customers?customer_id=12`
+ --`/customers?customer_id=12`
 
 Single Customer on V2
---	`/customers/{customer_id}`
+-- `/customers/{customer_id}`
 
- 
+ 
 ### Querying
-Since this endpoint is more streamlined using queries is front and center. To see which filters are available, see [Filtering](https://developer-beta.bigcommerce.com/api-docs/getting-started/basics/filtering). 
+Using queries is a bigger part of the new V3 Customers API. Instead of using a different endpoint to get a certain customer, there is one GET endpoint per resource with filters. 
 
-Get Customer Address by name and company. 
-`/customers/addresses?name=Jane&company=BigCommerce`
+Get Customer Address by name and company. 
+`/customers/addresses?compant:in=bigcommerce,commongood&customer_id:in1,2,3`
 
 Get Attribute Values where the attribute id is one and the customer id is one.
 `/customers/attribute-values?attribute_id:in=1&customer_id:in=1`
 
 ### Requests
 
-Requests on this endpoint require at array object for all Create and Update Actions. 
+Requests on this endpoint require at array object for all Create and Update Actions. 
 
 Update a Customer V3
-`/customers?customer_id=12`
+`/customers`
 
 ```
 [
   {
-    "id": 20,
-    "email": "golightly5@testing.com",
-    "phone": "1234567840"
+    “id”: 65206491,
+    “email”: “etu”,
+    “first_name”: “Excepte”,
+    “last_name”: “incidi”,
+    “company”: “anim”,
+    “phone”: “quis “,
+    “registration_ip_address”: “l”,
+    “notes”: “adipisicing incididunt quis dolor”,
+    “tax_exempt_category”: “Excepteur “,
+    “customer_group_id”: -76846758,
+    “authentication”: {
+      “force_password_reset”: true,
+      “new_password”: “cupidatat dolore”
+    }
   }
 ]
 ```
@@ -295,27 +171,27 @@ Update a Customer V3
 Update a Customer on V2
 `/customers/{customer_id}`
 ```
+
 {
-  "first_name": "Jane",
-  "email": "jane@email.com",
-  "phone": "1234567890"
+  “first_name”: “Jane”,
+  “email”: “jane@email.com”,
+  “phone”: “1234567890”
 }
+
 ```
 
 ### Authentication Object
 
-On the new Customers endpoint, when creating a customer there are two ways to set customers passwords. The password can be entered into the `new_password` field or when a customer logs in for the first time by setting `force_password_reset` to true, it will force the customer to go through the password reset process. 
+On the new Customers endpoint, when creating a customer there are two ways to set customers passwords. 
+A new password can be set under the `authentication > new password` object in a /PUT or /POST. To have customers reset the password set `force_password_reset` to `true` under `authentication > new password` object in a /PUT or /POST
 
-Password Confirmation is not available, this can be done by creating a customer using the [V2 endpoint](add create customer v2 here).  
-
----
-## Current Limitation
-
+[Password Confirmation]() and [validation]() are still available under V2 Customers. 
 
 ---
 ### Endpoints Still on V2
 - [Customer Groups]()
 - [Password Validation]()
+- Password Confirmation
 
 ---
 ## Webhooks
@@ -323,7 +199,3 @@ Password Confirmation is not available, this can be done by creating a customer 
 ---
 ## OAuth Scopes
 - [Customers]()
-
-
-
-
